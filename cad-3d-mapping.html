@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SR Associates provides CAD and 3D mapping services including survey drafting, contour plans, sections, surface models and three-dimensional mapping.">
+  <title>CAD & 3D Mapping | SR Associates</title>
+  <link rel="stylesheet" href="styles.css">
+
+<style>
+  .service-page { background:#fff; color:#111; }
+
+  .services-hero {
+    min-height:58vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    background:
+      linear-gradient(100deg, rgba(0,0,0,.88), rgba(0,0,0,.55)),
+      url("assets/drone.jpg") center/cover no-repeat;
+    color:#fff;
+  }
+
+  .services-hero-content {
+    width:min(1180px,92%);
+    margin:0 auto;
+    padding:90px 0;
+  }
+
+  .services-hero .eyebrow,
+  .section .eyebrow,
+  .deliverables .eyebrow,
+  .services-final-cta .eyebrow {
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+  }
+
+  .services-hero .eyebrow { color:rgba(255,255,255,.7); }
+
+  .services-hero h1 {
+    margin:12px 0 20px;
+    font-size:clamp(46px,7vw,82px);
+    line-height:.98;
+    letter-spacing:-2px;
+    max-width:900px;
+  }
+
+  .services-hero h1 span { color:#d71920; }
+
+  .services-hero-copy {
+    max-width:680px;
+    font-size:18px;
+    line-height:1.7;
+    color:rgba(255,255,255,.82);
+    margin-bottom:30px;
+  }
+
+  .service-intro {
+    max-width:850px;
+    margin-bottom:55px;
+  }
+
+  .service-intro .eyebrow,
+  .section > .eyebrow { color:#d71920; }
+
+  .service-intro h2,
+  .section > h2 {
+    margin:12px 0 16px;
+    font-size:clamp(36px,5vw,58px);
+    line-height:1.05;
+    letter-spacing:-1px;
+  }
+
+  .service-intro p,
+  .section-copy {
+    font-size:17px;
+    line-height:1.8;
+    color:#666;
+    margin:0;
+  }
+
+  .section {
+    width:min(1180px,92%);
+    margin:0 auto;
+    padding:90px 0;
+  }
+
+  .service-detail-list {
+    display:grid;
+    gap:28px;
+  }
+
+  .service-detail {
+    display:grid;
+    grid-template-columns:90px 1fr;
+    gap:30px;
+    padding:38px;
+    border:1px solid #e7e7e7;
+    background:#fff;
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+
+  .service-detail:hover {
+    transform:translateY(-4px);
+    box-shadow:0 18px 45px rgba(0,0,0,.08);
+  }
+
+  .service-detail-number {
+    width:72px;
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#171717;
+    color:#fff;
+    font-size:21px;
+    font-weight:700;
+  }
+
+  .service-detail h3 {
+    margin:0 0 10px;
+    font-size:28px;
+    letter-spacing:-.5px;
+  }
+
+  .service-detail p {
+    margin:0 0 20px;
+    color:#666;
+    line-height:1.7;
+    max-width:850px;
+  }
+
+  .service-points {
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+  }
+
+  .service-points span {
+    padding:8px 12px;
+    background:#f5f5f5;
+    color:#444;
+    font-size:13px;
+    font-weight:600;
+  }
+
+  .deliverables {
+    background:#171717;
+    color:#fff;
+    margin-top:20px;
+  }
+
+  .deliverables-inner {
+    width:min(1180px,92%);
+    margin:auto;
+    padding:90px 0;
+  }
+
+  .deliverables .eyebrow { color:rgba(255,255,255,.7); }
+
+  .deliverables h2 {
+    font-size:clamp(36px,5vw,58px);
+    line-height:1.05;
+    margin:12px 0 45px;
+    max-width:760px;
+  }
+
+  .deliverables h2 span { color:#d71920; }
+
+  .deliverable-flow {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:#444;
+  }
+
+  .deliverable-step {
+    background:#171717;
+    padding:32px 25px;
+  }
+
+  .deliverable-step b {
+    display:block;
+    color:#d71920;
+    font-size:13px;
+    margin-bottom:20px;
+  }
+
+  .deliverable-step h3 {
+    margin:0 0 10px;
+    font-size:20px;
+  }
+
+  .deliverable-step p {
+    margin:0;
+    color:#aaa;
+    line-height:1.6;
+    font-size:14px;
+  }
+
+  .applications-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:45px;
+  }
+
+  .application-card {
+    min-height:180px;
+    padding:30px;
+    border:1px solid #e5e5e5;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+
+  .application-card strong { font-size:18px; }
+
+  .application-card span {
+    color:#d71920;
+    font-size:28px;
+    font-weight:700;
+  }
+
+  .service-note {
+    margin-top:28px;
+    padding:20px 22px;
+    border-left:3px solid #d71920;
+    background:#f7f7f7;
+    color:#666;
+    line-height:1.7;
+    font-size:14px;
+  }
+
+  .services-final-cta {
+    background:#d71920;
+    color:#fff;
+    padding:80px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+  }
+
+  .services-final-cta .eyebrow { color:rgba(255,255,255,.7); }
+
+  .services-final-cta h2 {
+    margin:8px 0 0;
+    font-size:clamp(35px,5vw,58px);
+    line-height:1;
+  }
+
+  .services-final-actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .services-final-actions .btn { white-space:nowrap; }
+
+  @media(max-width:800px) {
+    .services-hero { min-height:65vh; }
+    .services-hero-content { padding:70px 0; }
+    .services-hero h1 { letter-spacing:-1px; }
+
+    .service-detail {
+      grid-template-columns:1fr;
+      gap:20px;
+      padding:28px;
+    }
+
+    .service-detail-number { width:58px; height:58px; }
+
+    .service-detail h3 { font-size:24px; }
+
+    .deliverable-flow { grid-template-columns:1fr 1fr; }
+    .applications-grid { grid-template-columns:1fr; }
+
+    .services-final-cta {
+      flex-direction:column;
+      align-items:flex-start;
+      padding:65px 5%;
+    }
+  }
+
+  @media(max-width:520px) {
+    .deliverable-flow { grid-template-columns:1fr; }
+    .services-hero-copy { font-size:16px; }
+    .service-detail { padding:24px; }
+    .service-points span { font-size:12px; }
+  }
+</style>
+
+</head>
+
+<body class="service-page">
+
+
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="SR Associates home">
+    <img src="assets/logo.jpg" alt="SR Associates">
+  </a>
+
+  <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a class="active" href="services.html">Services</a>
+    <a href="projects.html">Projects</a>
+    <a href="technology.html">Technology</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <a class="nav-whatsapp"
+     href="https://wa.me/918057755380"
+     target="_blank"
+     rel="noopener">WhatsApp</a>
+</header>
+
+
+<main>
+
+  <section class="services-hero">
+    <div class="services-hero-content">
+      <p class="eyebrow">SR ASSOCIATES / SERVICES</p>
+      <h1>CAD &<br><span>3D Mapping.</span></h1>
+      <p class="services-hero-copy">Conversion of field survey data into clear digital drawings, plans, sections and three-dimensional models suitable for design, planning and documentation.</p>
+      <a class="btn btn-primary" href="contact.html">Discuss Your Project <b>→</b></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="service-intro">
+      <p class="eyebrow">WHAT WE DO</p>
+      <h2>Clear survey data for better planning.</h2>
+      <p>At SR Associates, field measurements can be converted into organized CAD drawings and digital mapping outputs. Survey points, levels, boundaries and site features are structured into practical information for planning, design, construction and documentation.</p>
+    </div>
+
+    <div class="service-detail-list">
+
+        <article class="service-detail">
+          <div class="service-detail-number">01</div>
+          <div>
+            <h3>CAD Drawings</h3>
+            <p>Clear digital survey drawings showing measured boundaries, points, levels, dimensions and existing site features.</p>
+            <div class="service-points">
+              <span>2D CAD Plans</span>
+              <span>Survey Drafting</span>
+              <span>Site Features</span>
+              <span>Dimensions</span>
+              <span>Digital Drawings</span>
+            </div>
+          </div>
+        </article>
+        <article class="service-detail">
+          <div class="service-detail-number">02</div>
+          <div>
+            <h3>Contour Plans</h3>
+            <p>Elevation information represented through contours and spot levels to help understand the shape and slope of the surveyed ground.</p>
+            <div class="service-points">
+              <span>Contours</span>
+              <span>Spot Levels</span>
+              <span>Elevation Data</span>
+              <span>Terrain Shape</span>
+              <span>Site Mapping</span>
+            </div>
+          </div>
+        </article>
+        <article class="service-detail">
+          <div class="service-detail-number">03</div>
+          <div>
+            <h3>Sections & Profiles</h3>
+            <p>Survey data can be organized into sections and profiles where the project requires a clearer view of changes in elevation.</p>
+            <div class="service-points">
+              <span>Longitudinal Sections</span>
+              <span>Cross Sections</span>
+              <span>Profiles</span>
+              <span>Levels</span>
+              <span>Elevation Comparison</span>
+            </div>
+          </div>
+        </article>
+        <article class="service-detail">
+          <div class="service-detail-number">04</div>
+          <div>
+            <h3>Surface Models</h3>
+            <p>Surveyed elevation points can be used to develop digital ground surfaces for terrain understanding and project analysis.</p>
+            <div class="service-points">
+              <span>Existing Surface</span>
+              <span>Terrain Model</span>
+              <span>Elevation Points</span>
+              <span>Surface Data</span>
+              <span>3D Information</span>
+            </div>
+          </div>
+        </article>
+        <article class="service-detail">
+          <div class="service-detail-number">05</div>
+          <div>
+            <h3>3D Mapping</h3>
+            <p>Three-dimensional survey information provides a visual representation of terrain and existing site conditions.</p>
+            <div class="service-points">
+              <span>3D Terrain</span>
+              <span>Digital Mapping</span>
+              <span>Site Visualization</span>
+              <span>Point Data</span>
+              <span>Surface Representation</span>
+            </div>
+          </div>
+        </article>
+        <article class="service-detail">
+          <div class="service-detail-number">06</div>
+          <div>
+            <h3>Digital Project Data</h3>
+            <p>Survey outputs are organized for use in CAD, engineering, construction and other digital project workflows.</p>
+            <div class="service-points">
+              <span>Coordinate Data</span>
+              <span>Point Lists</span>
+              <span>CAD-Ready Data</span>
+              <span>Digital Files</span>
+              <span>Project Documentation</span>
+            </div>
+          </div>
+        </article>
+    </div>
+
+  </section>
+
+  <section class="deliverables">
+    <div class="deliverables-inner">
+      <p class="eyebrow">FROM FIELD TO FINAL OUTPUT</p>
+      <h2>One survey. Multiple digital outputs.<br><span>Clear project deliverables.</span></h2>
+
+      <div class="deliverable-flow">
+
+          <div class="deliverable-step">
+            <b>01 / FIELD</b>
+            <h3>Measurement</h3>
+            <p>Survey observations and spatial data are collected accurately on site.</p>
+          </div>
+          <div class="deliverable-step">
+            <b>02 / PROCESS</b>
+            <h3>Data Processing</h3>
+            <p>Field observations are checked, organized and processed into usable survey data.</p>
+          </div>
+          <div class="deliverable-step">
+            <b>03 / MODEL</b>
+            <h3>Model & Draft</h3>
+            <p>Drawings, contours, sections, surfaces and 3D information are generated as required.</p>
+          </div>
+          <div class="deliverable-step">
+            <b>04 / DELIVER</b>
+            <h3>Final Output</h3>
+            <p>CAD drawings, maps, models and digital deliverables are prepared for the project.</p>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">WHERE OUR SERVICES ARE USED</p>
+    <h2>Supporting projects from ground level up.</h2>
+
+    <div class="applications-grid">
+
+        <article class="application-card">
+          <span>01</span>
+          <strong>Land Development</strong>
+        </article>
+        <article class="application-card">
+          <span>02</span>
+          <strong>Construction Projects</strong>
+        </article>
+        <article class="application-card">
+          <span>03</span>
+          <strong>Road & Infrastructure</strong>
+        </article>
+        <article class="application-card">
+          <span>04</span>
+          <strong>Site Planning</strong>
+        </article>
+        <article class="application-card">
+          <span>05</span>
+          <strong>Engineering Surveys</strong>
+        </article>
+        <article class="application-card">
+          <span>06</span>
+          <strong>Terrain & Site Mapping</strong>
+        </article>
+    </div>
+  </section>
+
+  <section class="services-final-cta">
+    <div>
+      <p class="eyebrow">HAVE A PROJECT TO MAP?</p>
+      <h2>Tell us what
+needs mapping.</h2>
+    </div>
+
+    <div class="services-final-actions">
+      <a class="btn btn-light" href="contact.html">Get a Quote →</a>
+      <a class="btn btn-light" href="https://wa.me/918057755380" target="_blank" rel="noopener">WhatsApp Us</a>
+      <a class="btn btn-light" href="tel:+918057755380">Call Us</a>
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <span>© 2026 SR Associates. All Rights Reserved.</span>
+  <span>Accurate Measurement. Solid Foundation.</span>
+  <span>landsurveyor.co.in</span>
+</footer>
+
+
+<script src="script.js"></script>
+</body>
+</html>

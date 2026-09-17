@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Professional drone survey and photogrammetry services by SR Associates for aerial mapping, orthomosaics, terrain models, 3D models and project documentation.">
+
+  <title>Drone Survey & Photogrammetry | SR Associates</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* =========================================================
+       DRONE SURVEY & PHOTOGRAMMETRY PAGE
+       ========================================================= */
+
+    .service-hero {
+      min-height: 68vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(100deg, rgba(0,0,0,.9), rgba(0,0,0,.42)),
+        url("https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+      color: #fff;
+    }
+
+    .service-hero-content {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 100px 0;
+    }
+
+    .service-hero h1 {
+      margin: 12px 0 22px;
+      font-size: clamp(43px, 7vw, 82px);
+      line-height: .95;
+      letter-spacing: -2px;
+      max-width: 980px;
+    }
+
+    .service-hero h1 span {
+      color: #d71920;
+    }
+
+    .service-hero-copy {
+      max-width: 720px;
+      font-size: 18px;
+      line-height: 1.75;
+      color: rgba(255,255,255,.84);
+      margin-bottom: 32px;
+    }
+
+    .service-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Intro */
+
+    .service-intro {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .service-intro h2,
+    .service-section h2 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin: 10px 0 20px;
+    }
+
+    .service-intro h2 span,
+    .service-section h2 span {
+      color: #d71920;
+    }
+
+    .service-intro-text p,
+    .service-section > p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 17px;
+      max-width: 850px;
+    }
+
+    /* Feature cards */
+
+    .survey-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 45px;
+    }
+
+    .survey-feature {
+      border: 1px solid #e5e5e5;
+      padding: 32px;
+      min-height: 210px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .survey-feature:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.08);
+    }
+
+    .survey-feature-number {
+      color: #d71920;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .survey-feature h3 {
+      font-size: 21px;
+      margin: 0 0 10px;
+    }
+
+    .survey-feature p {
+      margin: 0;
+      color: #666;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* Image + text */
+
+    .survey-image-section {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .survey-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .survey-image-copy h2 {
+      margin-top: 0;
+    }
+
+    .survey-list {
+      list-style: none;
+      padding: 0;
+      margin: 28px 0 0;
+    }
+
+    .survey-list li {
+      position: relative;
+      padding: 14px 0 14px 28px;
+      border-bottom: 1px solid #e8e8e8;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .survey-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #d71920;
+      font-weight: 700;
+    }
+
+    /* Photogrammetry highlight */
+
+    .drone-highlight {
+      background: #f5f5f5;
+    }
+
+    .drone-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .drone-card {
+      padding: 30px;
+      background: #fff;
+      border: 1px solid #e5e5e5;
+    }
+
+    .drone-card strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .drone-card p {
+      margin: 0;
+      color: #666;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* Output strip */
+
+    .output-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 45px;
+      border: 1px solid #ddd;
+    }
+
+    .output-item {
+      padding: 30px 24px;
+      border-right: 1px solid #ddd;
+    }
+
+    .output-item:last-child {
+      border-right: 0;
+    }
+
+    .output-item b {
+      display: block;
+      color: #d71920;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .output-item strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .output-item p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Process */
+
+    .survey-process {
+      background: #171717;
+      color: #fff;
+    }
+
+    .survey-process-inner {
+      width: min(1180px, 92%);
+      margin: auto;
+      padding: 90px 0;
+    }
+
+    .survey-process h2 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      margin: 10px 0 45px;
+      max-width: 760px;
+    }
+
+    .survey-process h2 span {
+      color: #d71920;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #444;
+    }
+
+    .process-card {
+      background: #171717;
+      padding: 32px 25px;
+    }
+
+    .process-card b {
+      display: block;
+      color: #d71920;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .process-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .process-card p {
+      color: #aaa;
+      line-height: 1.6;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Deliverables */
+
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .deliverable-card {
+      padding: 28px 30px;
+      border-left: 4px solid #d71920;
+      background: #f5f5f5;
+    }
+
+    .deliverable-card h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .deliverable-card p {
+      margin: 0;
+      color: #666;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* Gallery */
+
+    .survey-gallery {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .8fr;
+      gap: 14px;
+      margin-top: 42px;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-large {
+      height: 575px;
+      grid-row: span 2;
+    }
+
+    .gallery-note {
+      margin-top: 14px;
+      color: #888;
+      font-size: 13px;
+    }
+
+    /* CTA */
+
+    .service-final-cta {
+      background: #d71920;
+      color: #fff;
+      padding: 80px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .service-final-cta h2 {
+      margin: 8px 0 0;
+      font-size: clamp(35px, 5vw, 58px);
+      line-height: 1;
+    }
+
+    .service-final-cta .eyebrow {
+      color: rgba(255,255,255,.7);
+    }
+
+    .service-final-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .service-final-actions .btn {
+      white-space: nowrap;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 800px) {
+      .service-hero {
+        min-height: 70vh;
+      }
+
+      .service-hero-content {
+        padding: 75px 0;
+      }
+
+      .service-intro,
+      .survey-image-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .survey-features {
+        grid-template-columns: 1fr;
+      }
+
+      .survey-image {
+        height: 360px;
+      }
+
+      .drone-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .output-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .output-item:nth-child(2) {
+        border-right: 0;
+      }
+
+      .output-item:nth-child(-n+2) {
+        border-bottom: 1px solid #ddd;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .survey-gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-large {
+        grid-column: span 2;
+        grid-row: auto;
+        height: 400px;
+      }
+
+      .deliverables-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-final-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 65px 5%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .service-hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .service-hero-copy {
+        font-size: 16px;
+      }
+
+      .output-strip,
+      .process-grid,
+      .survey-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .output-item {
+        border-right: 0;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .output-item:last-child {
+        border-bottom: 0;
+      }
+
+      .gallery-large {
+        grid-column: auto;
+        height: 300px;
+      }
+
+      .gallery-image {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+
+  <header class="site-header">
+
+    <a class="brand" href="index.html" aria-label="SR Associates home">
+      <img src="assets/logo.jpg" alt="SR Associates">
+    </a>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="technology.html">Technology</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a
+      class="nav-whatsapp"
+      href="https://wa.me/918057755380"
+      target="_blank"
+      rel="noopener">
+      WhatsApp
+    </a>
+
+  </header>
+
+
+  <main>
+
+    <!-- =======================================================
+         HERO
+         ======================================================= -->
+
+    <section class="service-hero">
+
+      <div class="service-hero-content">
+
+        <p class="eyebrow">SR ASSOCIATES / DRONE SURVEY</p>
+
+        <h1>
+          Drone Survey &<br>
+          <span>Photogrammetry.</span>
+        </h1>
+
+        <p class="service-hero-copy">
+          Aerial data collection for efficient mapping of large areas,
+          generating orthomosaics, terrain models, three-dimensional
+          information and visual project documentation.
+        </p>
+
+        <div class="service-hero-actions">
+          <a class="btn btn-primary" href="contact.html">
+            Discuss Your Project <b>→</b>
+          </a>
+
+          <a class="btn btn-light" href="services.html">
+            All Services
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         INTRODUCTION
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="service-intro">
+
+        <div>
+          <p class="eyebrow red">AERIAL MAPPING</p>
+
+          <h2>
+            Capture the site<br>
+            <span>from above.</span>
+          </h2>
+        </div>
+
+        <div class="service-intro-text">
+
+          <p>
+            Drone surveying and photogrammetry use aerial photographs
+            collected from planned flight paths to create detailed
+            mapping and three-dimensional project information.
+          </p>
+
+          <p>
+            At SR Associates, aerial survey data can be processed into
+            orthomosaics, terrain information, 3D models and other
+            digital outputs depending on the project scope and required
+            deliverables.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="survey-features">
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">01 / AERIAL</div>
+          <h3>Aerial Mapping</h3>
+          <p>
+            Efficient aerial image collection for mapping larger areas
+            and documenting existing site conditions.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">02 / ORTHO</div>
+          <h3>Orthomosaic</h3>
+          <p>
+            Processed aerial imagery combined into a map-like
+            orthomosaic for visual measurement and documentation.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">03 / PHOTO</div>
+          <h3>Photogrammetry</h3>
+          <p>
+            Overlapping aerial photographs processed to derive
+            measurable spatial and three-dimensional information.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">04 / TERRAIN</div>
+          <h3>Terrain Models</h3>
+          <p>
+            Digital terrain or surface information generated from
+            processed aerial survey data where suitable.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">05 / 3D</div>
+          <h3>3D Models</h3>
+          <p>
+            Three-dimensional representations of surveyed sites for
+            visualization, documentation and further processing.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">06 / DOCUMENT</div>
+          <h3>Site Documentation</h3>
+          <p>
+            Aerial imagery and processed mapping outputs for recording
+            project progress and existing site conditions.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         AERIAL IMAGE + TEXT
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="survey-image-section">
+
+        <div>
+          <!-- TEST PHOTO: replace URL later with your own drone survey photo -->
+          <img
+            class="survey-image"
+            src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1400&q=85"
+            alt="Drone used for aerial survey"
+            loading="lazy">
+        </div>
+
+        <div class="survey-image-copy">
+
+          <p class="eyebrow red">AERIAL DATA COLLECTION</p>
+
+          <h2>
+            More coverage.<br>
+            <span>More site information.</span>
+          </h2>
+
+          <p>
+            Aerial surveying can cover large and difficult-to-access areas
+            efficiently. The collected photographs can then be processed
+            into mapping and 3D outputs suited to the project requirement.
+          </p>
+
+          <ul class="survey-list">
+            <li>Large-area aerial imagery</li>
+            <li>High-resolution site documentation</li>
+            <li>Orthomosaic mapping</li>
+            <li>Terrain and surface modelling</li>
+            <li>3D reconstruction and visualization</li>
+            <li>Progress and existing-condition documentation</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PHOTOGRAMMETRY
+         ======================================================= -->
+
+    <section class="section drone-highlight service-section">
+
+      <p class="eyebrow red">PHOTOGRAMMETRY WORKFLOW</p>
+
+      <h2>
+        Images become<br>
+        <span>spatial information.</span>
+      </h2>
+
+      <p>
+        Photogrammetry uses overlapping photographs and processing
+        workflows to reconstruct the surveyed area. The final result
+        depends on flight planning, image quality, overlap, ground
+        control where required, processing settings and site conditions.
+      </p>
+
+      <div class="drone-grid">
+
+        <article class="drone-card">
+          <strong>Flight Planning</strong>
+          <p>
+            The aerial survey is planned according to the site area,
+            terrain, required coverage and intended project outputs.
+          </p>
+        </article>
+
+        <article class="drone-card">
+          <strong>Image Acquisition</strong>
+          <p>
+            Overlapping photographs are collected across the survey area
+            to provide suitable coverage for photogrammetric processing.
+          </p>
+        </article>
+
+        <article class="drone-card">
+          <strong>Ground Control</strong>
+          <p>
+            Ground control points can be incorporated when required by
+            the project to help reference and check the resulting data.
+          </p>
+        </article>
+
+        <article class="drone-card">
+          <strong>Processing</strong>
+          <p>
+            Images are processed to generate mapping, surface,
+            orthomosaic and three-dimensional outputs as required.
+          </p>
+        </article>
+
+      </div>
+
+
+      <div class="output-strip">
+
+        <div class="output-item">
+          <b>01 / MAP</b>
+          <strong>Orthomosaic</strong>
+          <p>
+            Georeferenced aerial image output for visual mapping and
+            project documentation.
+          </p>
+        </div>
+
+        <div class="output-item">
+          <b>02 / SURFACE</b>
+          <strong>Terrain / Surface</strong>
+          <p>
+            Digital elevation or surface information generated from the
+            processed survey data.
+          </p>
+        </div>
+
+        <div class="output-item">
+          <b>03 / MODEL</b>
+          <strong>3D Model</strong>
+          <p>
+            Three-dimensional reconstruction for visualization and
+            suitable project applications.
+          </p>
+        </div>
+
+        <div class="output-item">
+          <b>04 / DATA</b>
+          <strong>Digital Outputs</strong>
+          <p>
+            Processed imagery and spatial data for further mapping or
+            CAD-based workflows where required.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PROCESS
+         ======================================================= -->
+
+    <section class="survey-process">
+
+      <div class="survey-process-inner">
+
+        <p class="eyebrow">OUR APPROACH</p>
+
+        <h2>
+          From flight<br>
+          <span>to final model.</span>
+        </h2>
+
+        <div class="process-grid">
+
+          <div class="process-card">
+            <b>01 / PLAN</b>
+            <h3>Plan the Flight</h3>
+            <p>
+              The survey area, flight coverage and required outputs are
+              considered before aerial data collection.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>02 / CAPTURE</b>
+            <h3>Collect Images</h3>
+            <p>
+              Overlapping aerial photographs are captured across the
+              project area.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>03 / PROCESS</b>
+            <h3>Build the Model</h3>
+            <p>
+              Images and available control information are processed into
+              the required mapping and 3D outputs.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>04 / DELIVER</b>
+            <h3>Prepare Data</h3>
+            <p>
+              Final imagery, terrain, 3D or digital project outputs are
+              prepared according to the agreed scope.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         DELIVERABLES
+         ======================================================= -->
+
+    <section class="section service-section">
+
+      <p class="eyebrow red">PROJECT OUTPUTS</p>
+
+      <h2>
+        Aerial data ready<br>
+        <span>for your workflow.</span>
+      </h2>
+
+      <p>
+        The exact deliverables can be selected according to the project
+        requirement. Different outputs can be produced from the same
+        aerial survey dataset when the collection and processing
+        workflow supports them.
+      </p>
+
+      <div class="deliverables-grid">
+
+        <article class="deliverable-card">
+          <h3>Orthomosaic</h3>
+          <p>
+            Aerial image mosaic suitable for visual mapping,
+            documentation and project reference.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>Digital Terrain / Surface Model</h3>
+          <p>
+            Processed elevation or surface information for terrain
+            visualization and suitable analysis.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>3D Model</h3>
+          <p>
+            Three-dimensional representation of the surveyed site for
+            visualization and project documentation.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>Point / Digital Data</h3>
+          <p>
+            Suitable processed spatial data for mapping, CAD and further
+            project workflows where included in the scope.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         APPLICATIONS
+         ======================================================= -->
+
+    <section class="section service-section">
+
+      <p class="eyebrow red">APPLICATIONS</p>
+
+      <h2>
+        Aerial surveying for<br>
+        <span>different projects.</span>
+      </h2>
+
+      <div class="survey-features">
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">01</div>
+          <h3>Land & Terrain Mapping</h3>
+          <p>
+            Aerial mapping of larger areas and terrain where drone
+            coverage is suitable.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">02</div>
+          <h3>Construction Documentation</h3>
+          <p>
+            Aerial imagery and models for recording existing conditions
+            and project progress.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">03</div>
+          <h3>Earthwork & Site Analysis</h3>
+          <p>
+            Surface and terrain information that can support suitable
+            earthwork and site-analysis workflows.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PHOTO GALLERY
+         ======================================================= -->
+
+    <section class="section">
+
+      <p class="eyebrow red">DRONE SURVEY FIELD WORK</p>
+
+      <h2>
+        The site<br>
+        <span>from above.</span>
+      </h2>
+
+      <div class="survey-gallery">
+
+        <!-- TEST PHOTOS: replace these URLs later with original SR Associates photos -->
+
+        <img
+          class="gallery-image gallery-large"
+          src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=1400&q=85"
+          alt="Drone aerial survey"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1000&q=85"
+          alt="Drone flying over a survey area"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=1000&q=85"
+          alt="Aerial drone photography"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1000&q=85"
+          alt="Site documentation"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85"
+          alt="Aerial landscape mapping"
+          loading="lazy">
+
+      </div>
+
+      <p class="gallery-note">
+        Temporary demonstration photographs. These can be replaced with
+        your original SR Associates drone survey photographs later.
+      </p>
+
+    </section>
+
+
+    <!-- =======================================================
+         CTA
+         ======================================================= -->
+
+    <section class="service-final-cta">
+
+      <div>
+
+        <p class="eyebrow">HAVE A DRONE SURVEY REQUIREMENT?</p>
+
+        <h2>
+          Tell us what<br>
+          you need mapped.
+        </h2>
+
+      </div>
+
+      <div class="service-final-actions">
+
+        <a class="btn btn-light" href="contact.html">
+          Get a Quote →
+        </a>
+
+        <a
+          class="btn btn-light"
+          href="https://wa.me/918057755380"
+          target="_blank"
+          rel="noopener">
+          WhatsApp Us
+        </a>
+
+        <a class="btn btn-light" href="tel:+918057755380">
+          Call Us
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
+  <footer>
+
+    <span>© 2026 SR Associates. All Rights Reserved.</span>
+
+    <span>Accurate Measurement. Solid Foundation.</span>
+
+    <span>landsurveyor.co.in</span>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Professional GNSS RTK survey services by SR Associates for high-accuracy positioning, control points, coordinate collection, georeferencing and large-area surveying.">
+
+  <title>GNSS / RTK Survey | SR Associates</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* =========================================================
+       GNSS / RTK SURVEY PAGE
+       ========================================================= */
+
+    .service-hero {
+      min-height: 68vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(100deg, rgba(0,0,0,.9), rgba(0,0,0,.48)),
+        url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+      color: #fff;
+    }
+
+    .service-hero-content {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 100px 0;
+    }
+
+    .service-hero h1 {
+      margin: 12px 0 22px;
+      font-size: clamp(48px, 7vw, 84px);
+      line-height: .95;
+      letter-spacing: -2px;
+      max-width: 900px;
+    }
+
+    .service-hero h1 span {
+      color: #d71920;
+    }
+
+    .service-hero-copy {
+      max-width: 700px;
+      font-size: 18px;
+      line-height: 1.75;
+      color: rgba(255,255,255,.84);
+      margin-bottom: 32px;
+    }
+
+    .service-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Intro */
+
+    .service-intro {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .service-intro h2,
+    .service-section h2 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin: 10px 0 20px;
+    }
+
+    .service-intro h2 span,
+    .service-section h2 span {
+      color: #d71920;
+    }
+
+    .service-intro-text p,
+    .service-section > p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 17px;
+      max-width: 850px;
+    }
+
+    /* Feature cards */
+
+    .survey-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 45px;
+    }
+
+    .survey-feature {
+      border: 1px solid #e5e5e5;
+      padding: 32px;
+      min-height: 210px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .survey-feature:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.08);
+    }
+
+    .survey-feature-number {
+      color: #d71920;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .survey-feature h3 {
+      font-size: 21px;
+      margin: 0 0 10px;
+    }
+
+    .survey-feature p {
+      margin: 0;
+      color: #666;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* Image + text */
+
+    .survey-image-section {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .survey-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .survey-image-copy h2 {
+      margin-top: 0;
+    }
+
+    .survey-list {
+      list-style: none;
+      padding: 0;
+      margin: 28px 0 0;
+    }
+
+    .survey-list li {
+      position: relative;
+      padding: 14px 0 14px 28px;
+      border-bottom: 1px solid #e8e8e8;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .survey-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #d71920;
+      font-weight: 700;
+    }
+
+    /* GNSS information */
+
+    .gnss-highlight {
+      background: #f5f5f5;
+    }
+
+    .gnss-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .gnss-card {
+      padding: 30px;
+      background: #fff;
+      border: 1px solid #e5e5e5;
+    }
+
+    .gnss-card strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .gnss-card p {
+      margin: 0;
+      color: #666;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* Accuracy strip */
+
+    .accuracy-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 45px;
+      border: 1px solid #ddd;
+    }
+
+    .accuracy-item {
+      padding: 30px;
+      border-right: 1px solid #ddd;
+    }
+
+    .accuracy-item:last-child {
+      border-right: 0;
+    }
+
+    .accuracy-item b {
+      display: block;
+      color: #d71920;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .accuracy-item strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .accuracy-item p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Process */
+
+    .survey-process {
+      background: #171717;
+      color: #fff;
+    }
+
+    .survey-process-inner {
+      width: min(1180px, 92%);
+      margin: auto;
+      padding: 90px 0;
+    }
+
+    .survey-process h2 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      margin: 10px 0 45px;
+      max-width: 720px;
+    }
+
+    .survey-process h2 span {
+      color: #d71920;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #444;
+    }
+
+    .process-card {
+      background: #171717;
+      padding: 32px 25px;
+    }
+
+    .process-card b {
+      display: block;
+      color: #d71920;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .process-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .process-card p {
+      color: #aaa;
+      line-height: 1.6;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Deliverables */
+
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .deliverable-card {
+      padding: 28px 30px;
+      border-left: 4px solid #d71920;
+      background: #f5f5f5;
+    }
+
+    .deliverable-card h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .deliverable-card p {
+      margin: 0;
+      color: #666;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* Gallery */
+
+    .survey-gallery {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .8fr;
+      gap: 14px;
+      margin-top: 42px;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-large {
+      height: 575px;
+      grid-row: span 2;
+    }
+
+    .gallery-note {
+      margin-top: 14px;
+      color: #888;
+      font-size: 13px;
+    }
+
+    /* CTA */
+
+    .service-final-cta {
+      background: #d71920;
+      color: #fff;
+      padding: 80px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .service-final-cta h2 {
+      margin: 8px 0 0;
+      font-size: clamp(35px, 5vw, 58px);
+      line-height: 1;
+    }
+
+    .service-final-cta .eyebrow {
+      color: rgba(255,255,255,.7);
+    }
+
+    .service-final-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .service-final-actions .btn {
+      white-space: nowrap;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 800px) {
+      .service-hero {
+        min-height: 70vh;
+      }
+
+      .service-hero-content {
+        padding: 75px 0;
+      }
+
+      .service-intro,
+      .survey-image-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .survey-features {
+        grid-template-columns: 1fr;
+      }
+
+      .survey-image {
+        height: 360px;
+      }
+
+      .gnss-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .accuracy-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .accuracy-item {
+        border-right: 0;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .accuracy-item:last-child {
+        border-bottom: 0;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .survey-gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-large {
+        grid-column: span 2;
+        grid-row: auto;
+        height: 400px;
+      }
+
+      .deliverables-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-final-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 65px 5%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .service-hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .service-hero-copy {
+        font-size: 16px;
+      }
+
+      .process-grid,
+      .survey-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-large {
+        grid-column: auto;
+        height: 300px;
+      }
+
+      .gallery-image {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+
+  <header class="site-header">
+
+    <a class="brand" href="index.html" aria-label="SR Associates home">
+      <img src="assets/logo.jpg" alt="SR Associates">
+    </a>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="technology.html">Technology</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a
+      class="nav-whatsapp"
+      href="https://wa.me/918057755380"
+      target="_blank"
+      rel="noopener">
+      WhatsApp
+    </a>
+
+  </header>
+
+
+  <main>
+
+    <!-- =======================================================
+         HERO
+         ======================================================= -->
+
+    <section class="service-hero">
+
+      <div class="service-hero-content">
+
+        <p class="eyebrow">SR ASSOCIATES / GNSS / RTK SURVEY</p>
+
+        <h1>
+          GNSS / RTK<br>
+          <span>Survey.</span>
+        </h1>
+
+        <p class="service-hero-copy">
+          High-accuracy satellite-based positioning and coordinate
+          collection for control surveys, mapping, georeferencing,
+          construction and large-area survey applications.
+        </p>
+
+        <div class="service-hero-actions">
+          <a class="btn btn-primary" href="contact.html">
+            Discuss Your Project <b>→</b>
+          </a>
+
+          <a class="btn btn-light" href="services.html">
+            All Services
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         INTRODUCTION
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="service-intro">
+
+        <div>
+          <p class="eyebrow red">GNSS POSITIONING</p>
+
+          <h2>
+            Precise coordinates<br>
+            <span>for real projects.</span>
+          </h2>
+        </div>
+
+        <div class="service-intro-text">
+
+          <p>
+            GNSS RTK surveying uses satellite positioning with real-time
+            corrections to collect accurate coordinates in the field.
+            It is useful where reliable horizontal and vertical position
+            information is required across a site.
+          </p>
+
+          <p>
+            At SR Associates, GNSS RTK survey data can be used for
+            control points, topographical mapping, georeferencing,
+            construction-related work and large-area surveys according
+            to project requirements and site conditions.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="survey-features">
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">01 / RTK</div>
+          <h3>RTK Positioning</h3>
+          <p>
+            Real-time corrected GNSS positioning for collecting accurate
+            field coordinates where suitable correction services are
+            available.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">02 / CONTROL</div>
+          <h3>Control Points</h3>
+          <p>
+            Establishment or observation of survey control points for
+            mapping, construction and project reference.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">03 / COORDINATES</div>
+          <h3>Coordinate Collection</h3>
+          <p>
+            Collection of point coordinates for survey mapping,
+            measurement and further CAD processing.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">04 / GEOREFERENCING</div>
+          <h3>Georeferencing</h3>
+          <p>
+            Positioning survey or mapping information within a defined
+            coordinate reference system as required.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">05 / LARGE AREA</div>
+          <h3>Large-Area Survey</h3>
+          <p>
+            Efficient coordinate collection across larger sites and
+            areas where GNSS positioning is suitable.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">06 / DATA</div>
+          <h3>Digital Survey Data</h3>
+          <p>
+            Organized coordinate information for CAD drawings, mapping,
+            terrain models and other project deliverables.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         FIELD IMAGE + TEXT
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="survey-image-section">
+
+        <div>
+          <!-- TEST PHOTO: replace URL later with your own GNSS site photo -->
+          <img
+            class="survey-image"
+            src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=85"
+            alt="GNSS and land surveying field environment"
+            loading="lazy">
+        </div>
+
+        <div class="survey-image-copy">
+
+          <p class="eyebrow red">FIELD POSITIONING</p>
+
+          <h2>
+            Coordinates<br>
+            <span>where you need them.</span>
+          </h2>
+
+          <p>
+            GNSS RTK can provide efficient point positioning across open
+            sites. Survey observations can then be checked, organized
+            and processed into project-ready coordinate information.
+          </p>
+
+          <ul class="survey-list">
+            <li>Survey control and reference points</li>
+            <li>Topographical point collection</li>
+            <li>Property and site coordinates</li>
+            <li>Mapping and georeferencing</li>
+            <li>Construction survey points where required</li>
+            <li>Large-area coordinate collection</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         GNSS INFORMATION
+         ======================================================= -->
+
+    <section class="section gnss-highlight service-section">
+
+      <p class="eyebrow red">GNSS RTK WORKFLOW</p>
+
+      <h2>
+        Positioning depends on<br>
+        <span>good field conditions.</span>
+      </h2>
+
+      <p>
+        RTK performance depends on satellite visibility, correction
+        availability, observation conditions and the survey requirement.
+        Survey observations are therefore collected and checked according
+        to the conditions at the site.
+      </p>
+
+      <div class="gnss-grid">
+
+        <article class="gnss-card">
+          <strong>Satellite Visibility</strong>
+          <p>
+            Open sky conditions generally provide better satellite
+            visibility and can support stable GNSS observations.
+          </p>
+        </article>
+
+        <article class="gnss-card">
+          <strong>RTK Corrections</strong>
+          <p>
+            Real-time correction information is used where available and
+            suitable for the required positioning workflow.
+          </p>
+        </article>
+
+        <article class="gnss-card">
+          <strong>Coordinate System</strong>
+          <p>
+            Survey points can be organized using the coordinate system
+            and reference framework required for the project.
+          </p>
+        </article>
+
+        <article class="gnss-card">
+          <strong>Field Verification</strong>
+          <p>
+            Survey observations can be reviewed and checked before the
+            final coordinate data is prepared for project use.
+          </p>
+        </article>
+
+      </div>
+
+
+      <div class="accuracy-strip">
+
+        <div class="accuracy-item">
+          <b>01 / POSITION</b>
+          <strong>Horizontal</strong>
+          <p>
+            Collection of plan-position coordinates according to the
+            project requirement and field conditions.
+          </p>
+        </div>
+
+        <div class="accuracy-item">
+          <b>02 / ELEVATION</b>
+          <strong>Vertical</strong>
+          <p>
+            GNSS-derived elevation information where the survey workflow
+            and project reference system support it.
+          </p>
+        </div>
+
+        <div class="accuracy-item">
+          <b>03 / QUALITY</b>
+          <strong>Field Checks</strong>
+          <p>
+            Observations can be checked using available positioning
+            quality information before delivery.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PROCESS
+         ======================================================= -->
+
+    <section class="survey-process">
+
+      <div class="survey-process-inner">
+
+        <p class="eyebrow">OUR APPROACH</p>
+
+        <h2>
+          From satellite<br>
+          <span>to survey data.</span>
+        </h2>
+
+        <div class="process-grid">
+
+          <div class="process-card">
+            <b>01 / PLAN</b>
+            <h3>Define Reference</h3>
+            <p>
+              We identify the survey scope, coordinate requirements and
+              required project control.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>02 / CONNECT</b>
+            <h3>Set Up RTK</h3>
+            <p>
+              GNSS equipment and the required correction workflow are
+              prepared for field observations.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>03 / SURVEY</b>
+            <h3>Collect Points</h3>
+            <p>
+              Required points are observed and recorded across the
+              project area according to the survey scope.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>04 / DELIVER</b>
+            <h3>Process Data</h3>
+            <p>
+              Coordinates are organized and prepared for mapping, CAD,
+              reporting or other project deliverables.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         DELIVERABLES
+         ======================================================= -->
+
+    <section class="section service-section">
+
+      <p class="eyebrow red">PROJECT OUTPUTS</p>
+
+      <h2>
+        GNSS data ready<br>
+        <span>for the next stage.</span>
+      </h2>
+
+      <p>
+        Depending on the project scope, GNSS RTK survey work can provide
+        coordinate information and digital survey data for mapping,
+        engineering, construction and further CAD processing.
+      </p>
+
+      <div class="deliverables-grid">
+
+        <article class="deliverable-card">
+          <h3>Coordinate Data</h3>
+          <p>
+            Organized point coordinates collected during the GNSS RTK
+            survey.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>Control Point Data</h3>
+          <p>
+            Survey control and reference-point information where included
+            in the project scope.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>Topographical Points</h3>
+          <p>
+            Point data for terrain mapping, spot levels, contours and
+            existing-feature representation.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>CAD / Digital Data</h3>
+          <p>
+            Processed coordinate information that can support CAD
+            drawings, mapping and further survey workflows.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         APPLICATIONS
+         ======================================================= -->
+
+    <section class="section service-section">
+
+      <p class="eyebrow red">APPLICATIONS</p>
+
+      <h2>
+        GNSS RTK across<br>
+        <span>different project types.</span>
+      </h2>
+
+      <div class="survey-features">
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">01</div>
+          <h3>Topographical Mapping</h3>
+          <p>
+            Coordinate and elevation point collection for mapping
+            existing terrain and site features.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">02</div>
+          <h3>Land & Property</h3>
+          <p>
+            Survey point collection for property measurement,
+            demarcation and site documentation.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">03</div>
+          <h3>Construction & Infrastructure</h3>
+          <p>
+            Survey control and coordinate information for suitable
+            construction and infrastructure applications.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PHOTO GALLERY
+         ======================================================= -->
+
+    <section class="section">
+
+      <p class="eyebrow red">GNSS / RTK FIELD WORK</p>
+
+      <h2>
+        Positioning<br>
+        <span>in the field.</span>
+      </h2>
+
+      <div class="survey-gallery">
+
+        <!-- TEST PHOTOS: replace these URLs later with original SR Associates photos -->
+
+        <img
+          class="gallery-image gallery-large"
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=85"
+          alt="Survey and construction field work"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1531835551805-16d864c8d311?auto=format&fit=crop&w=1000&q=85"
+          alt="Engineering field work"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1000&q=85"
+          alt="Surveying technology and engineering"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1000&q=85"
+          alt="Construction site survey"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=85"
+          alt="Professional project field work"
+          loading="lazy">
+
+      </div>
+
+      <p class="gallery-note">
+        Temporary demonstration photographs. These can be replaced with
+        your original SR Associates GNSS / RTK photographs later.
+      </p>
+
+    </section>
+
+
+    <!-- =======================================================
+         CTA
+         ======================================================= -->
+
+    <section class="service-final-cta">
+
+      <div>
+
+        <p class="eyebrow">HAVE A GNSS / RTK REQUIREMENT?</p>
+
+        <h2>
+          Tell us what<br>
+          you need positioned.
+        </h2>
+
+      </div>
+
+      <div class="service-final-actions">
+
+        <a class="btn btn-light" href="contact.html">
+          Get a Quote →
+        </a>
+
+        <a
+          class="btn btn-light"
+          href="https://wa.me/918057755380"
+          target="_blank"
+          rel="noopener">
+          WhatsApp Us
+        </a>
+
+        <a class="btn btn-light" href="tel:+918057755380">
+          Call Us
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
+  <footer>
+
+    <span>© 2026 SR Associates. All Rights Reserved.</span>
+
+    <span>Accurate Measurement. Solid Foundation.</span>
+
+    <span>landsurveyor.co.in</span>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

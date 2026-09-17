@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Professional Total Station survey services by SR Associates for detailed site surveys, construction layout, setting out, alignment and precise measurement.">
+
+  <title>Total Station Survey | SR Associates</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* =========================================================
+       TOTAL STATION SURVEY PAGE
+       ========================================================= */
+
+    .service-hero {
+      min-height: 68vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(100deg, rgba(0,0,0,.9), rgba(0,0,0,.48)),
+        url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+      color: #fff;
+    }
+
+    .service-hero-content {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 100px 0;
+    }
+
+    .service-hero h1 {
+      margin: 12px 0 22px;
+      font-size: clamp(48px, 7vw, 84px);
+      line-height: .95;
+      letter-spacing: -2px;
+      max-width: 900px;
+    }
+
+    .service-hero h1 span {
+      color: #d71920;
+    }
+
+    .service-hero-copy {
+      max-width: 700px;
+      font-size: 18px;
+      line-height: 1.75;
+      color: rgba(255,255,255,.84);
+      margin-bottom: 32px;
+    }
+
+    .service-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Intro */
+
+    .service-intro {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .service-intro h2,
+    .service-section h2 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin: 10px 0 20px;
+    }
+
+    .service-intro h2 span,
+    .service-section h2 span {
+      color: #d71920;
+    }
+
+    .service-intro-text p,
+    .service-section > p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 17px;
+      max-width: 850px;
+    }
+
+    /* Feature cards */
+
+    .survey-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 45px;
+    }
+
+    .survey-feature {
+      border: 1px solid #e5e5e5;
+      padding: 32px;
+      min-height: 210px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .survey-feature:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.08);
+    }
+
+    .survey-feature-number {
+      color: #d71920;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .survey-feature h3 {
+      font-size: 21px;
+      margin: 0 0 10px;
+    }
+
+    .survey-feature p {
+      margin: 0;
+      color: #666;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* Image + text */
+
+    .survey-image-section {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .survey-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .survey-image-copy h2 {
+      margin-top: 0;
+    }
+
+    .survey-list {
+      list-style: none;
+      padding: 0;
+      margin: 28px 0 0;
+    }
+
+    .survey-list li {
+      position: relative;
+      padding: 14px 0 14px 28px;
+      border-bottom: 1px solid #e8e8e8;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .survey-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #d71920;
+      font-weight: 700;
+    }
+
+    /* Measurement highlight */
+
+    .station-highlight {
+      background: #f5f5f5;
+    }
+
+    .station-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .station-card {
+      padding: 30px;
+      background: #fff;
+      border: 1px solid #e5e5e5;
+    }
+
+    .station-card strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .station-card p {
+      margin: 0;
+      color: #666;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* Survey applications strip */
+
+    .station-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 45px;
+      border: 1px solid #ddd;
+    }
+
+    .station-item {
+      padding: 30px;
+      border-right: 1px solid #ddd;
+    }
+
+    .station-item:last-child {
+      border-right: 0;
+    }
+
+    .station-item b {
+      display: block;
+      color: #d71920;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .station-item strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .station-item p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Process */
+
+    .survey-process {
+      background: #171717;
+      color: #fff;
+    }
+
+    .survey-process-inner {
+      width: min(1180px, 92%);
+      margin: auto;
+      padding: 90px 0;
+    }
+
+    .survey-process h2 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      margin: 10px 0 45px;
+      max-width: 720px;
+    }
+
+    .survey-process h2 span {
+      color: #d71920;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #444;
+    }
+
+    .process-card {
+      background: #171717;
+      padding: 32px 25px;
+    }
+
+    .process-card b {
+      display: block;
+      color: #d71920;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .process-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .process-card p {
+      color: #aaa;
+      line-height: 1.6;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Deliverables */
+
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .deliverable-card {
+      padding: 28px 30px;
+      border-left: 4px solid #d71920;
+      background: #f5f5f5;
+    }
+
+    .deliverable-card h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .deliverable-card p {
+      margin: 0;
+      color: #666;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* Gallery */
+
+    .survey-gallery {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .8fr;
+      gap: 14px;
+      margin-top: 42px;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-large {
+      height: 575px;
+      grid-row: span 2;
+    }
+
+    .gallery-note {
+      margin-top: 14px;
+      color: #888;
+      font-size: 13px;
+    }
+
+    /* CTA */
+
+    .service-final-cta {
+      background: #d71920;
+      color: #fff;
+      padding: 80px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .service-final-cta h2 {
+      margin: 8px 0 0;
+      font-size: clamp(35px, 5vw, 58px);
+      line-height: 1;
+    }
+
+    .service-final-cta .eyebrow {
+      color: rgba(255,255,255,.7);
+    }
+
+    .service-final-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .service-final-actions .btn {
+      white-space: nowrap;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 800px) {
+      .service-hero {
+        min-height: 70vh;
+      }
+
+      .service-hero-content {
+        padding: 75px 0;
+      }
+
+      .service-intro,
+      .survey-image-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .survey-features {
+        grid-template-columns: 1fr;
+      }
+
+      .survey-image {
+        height: 360px;
+      }
+
+      .station-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .station-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .station-item {
+        border-right: 0;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .station-item:last-child {
+        border-bottom: 0;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .survey-gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-large {
+        grid-column: span 2;
+        grid-row: auto;
+        height: 400px;
+      }
+
+      .deliverables-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-final-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 65px 5%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .service-hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .service-hero-copy {
+        font-size: 16px;
+      }
+
+      .process-grid,
+      .survey-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-large {
+        grid-column: auto;
+        height: 300px;
+      }
+
+      .gallery-image {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+
+  <header class="site-header">
+
+    <a class="brand" href="index.html" aria-label="SR Associates home">
+      <img src="assets/logo.jpg" alt="SR Associates">
+    </a>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="technology.html">Technology</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a
+      class="nav-whatsapp"
+      href="https://wa.me/918057755380"
+      target="_blank"
+      rel="noopener">
+      WhatsApp
+    </a>
+
+  </header>
+
+
+  <main>
+
+    <!-- =======================================================
+         HERO
+         ======================================================= -->
+
+    <section class="service-hero">
+
+      <div class="service-hero-content">
+
+        <p class="eyebrow">SR ASSOCIATES / TOTAL STATION SURVEY</p>
+
+        <h1>
+          Total Station<br>
+          <span>Survey.</span>
+        </h1>
+
+        <p class="service-hero-copy">
+          Precise angular and distance measurement for detailed site
+          surveys, construction layout, setting out, alignment and
+          engineering applications.
+        </p>
+
+        <div class="service-hero-actions">
+          <a class="btn btn-primary" href="contact.html">
+            Discuss Your Project <b>→</b>
+          </a>
+
+          <a class="btn btn-light" href="services.html">
+            All Services
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         INTRODUCTION
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="service-intro">
+
+        <div>
+          <p class="eyebrow red">TOTAL STATION SURVEYING</p>
+
+          <h2>
+            Measure the site<br>
+            <span>with precision.</span>
+          </h2>
+        </div>
+
+        <div class="service-intro-text">
+
+          <p>
+            A total station combines electronic angle and distance
+            measurement to collect detailed survey observations. It is
+            widely used where controlled point measurement, detailed
+            site information and setting-out work are required.
+          </p>
+
+          <p>
+            At SR Associates, total station surveys can support existing
+            site surveys, construction layout, alignment, setting out,
+            detailed measurement and other engineering requirements.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="survey-features">
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">01 / SITE</div>
+          <h3>Detailed Site Survey</h3>
+          <p>
+            Collection of measured points and existing features for
+            detailed representation of a project site.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">02 / SETTING OUT</div>
+          <h3>Construction Layout</h3>
+          <p>
+            Transfer of required design or project points to the ground
+            for construction-related activities.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">03 / ALIGNMENT</div>
+          <h3>Alignment</h3>
+          <p>
+            Establishment and checking of lines, points and alignments
+            according to project requirements.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">04 / MEASUREMENT</div>
+          <h3>Precise Measurement</h3>
+          <p>
+            Electronic measurement of angles and distances for required
+            survey points and site features.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">05 / LEVELS</div>
+          <h3>Point & Level Data</h3>
+          <p>
+            Collection of point information that can support site
+            drawings, levels and further survey processing.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">06 / ENGINEERING</div>
+          <h3>Engineering Survey</h3>
+          <p>
+            Survey support for suitable engineering, construction and
+            infrastructure applications.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         FIELD IMAGE + TEXT
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="survey-image-section">
+
+        <div>
+          <!-- TEST PHOTO: replace URL later with your own Total Station site photo -->
+          <img
+            class="survey-image"
+            src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1400&q=85"
+            alt="Engineering and surveying field work"
+            loading="lazy">
+        </div>
+
+        <div class="survey-image-copy">
+
+          <p class="eyebrow red">FIELD MEASUREMENT</p>
+
+          <h2>
+            From measured<br>
+            <span>points to layout.</span>
+          </h2>
+
+          <p>
+            Total station observations can be used both to collect
+            existing site information and to establish required points
+            on the ground. The workflow depends on the survey scope,
+            reference data and project requirements.
+          </p>
+
+          <ul class="survey-list">
+            <li>Existing site feature measurement</li>
+            <li>Construction grid and reference points</li>
+            <li>Building and structural setting out</li>
+            <li>Road and infrastructure alignment</li>
+            <li>Point and level observations</li>
+            <li>Survey data for CAD processing</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         MEASUREMENT INFORMATION
+         ======================================================= -->
+
+    <section class="section station-highlight service-section">
+
+      <p class="eyebrow red">TOTAL STATION CAPABILITIES</p>
+
+      <h2>
+        One instrument.<br>
+        <span>Many site applications.</span>
+      </h2>
+
+      <p>
+        Total station surveying can be adapted to different site
+        requirements, from detailed existing-condition measurement to
+        construction setting out and alignment work.
+      </p>
+
+      <div class="station-grid">
+
+        <article class="station-card">
+          <strong>Angle & Distance</strong>
+          <p>
+            Electronic horizontal and vertical angle observations
+            combined with distance measurement provide point-based
+            survey information.
+          </p>
+        </article>
+
+        <article class="station-card">
+          <strong>Point Positioning</strong>
+          <p>
+            Measured observations can be used to establish or record
+            required points relative to the project survey reference.
+          </p>
+        </article>
+
+        <article class="station-card">
+          <strong>Construction Setting Out</strong>
+          <p>
+            Design points and construction references can be transferred
+            to the ground according to the available project data.
+          </p>
+        </article>
+
+        <article class="station-card">
+          <strong>Site Verification</strong>
+          <p>
+            Survey observations can support checking of positions,
+            alignments and measured site conditions during project work.
+          </p>
+        </article>
+
+      </div>
+
+
+      <div class="station-strip">
+
+        <div class="station-item">
+          <b>01 / SURVEY</b>
+          <strong>Existing Conditions</strong>
+          <p>
+            Capture measured points and relevant physical site features.
+          </p>
+        </div>
+
+        <div class="station-item">
+          <b>02 / SET OUT</b>
+          <strong>Design to Ground</strong>
+          <p>
+            Establish required project points and alignments on site.
+          </p>
+        </div>
+
+        <div class="station-item">
+          <b>03 / CHECK</b>
+          <strong>Site Verification</strong>
+          <p>
+            Measure and check selected points against the project
+            requirements.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PROCESS
+         ======================================================= -->
+
+    <section class="survey-process">
+
+      <div class="survey-process-inner">
+
+        <p class="eyebrow">OUR APPROACH</p>
+
+        <h2>
+          From reference<br>
+          <span>to ground.</span>
+        </h2>
+
+        <div class="process-grid">
+
+          <div class="process-card">
+            <b>01 / PLAN</b>
+            <h3>Review</h3>
+            <p>
+              We identify the survey scope, reference information and
+              points required for the project.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>02 / SET UP</b>
+            <h3>Establish</h3>
+            <p>
+              The instrument is positioned and oriented using the
+              appropriate project reference.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>03 / MEASURE</b>
+            <h3>Survey</h3>
+            <p>
+              Required points, features, distances and angles are
+              observed in the field.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>04 / DELIVER</b>
+            <h3>Process Data</h3>
+            <p>
+              Survey information is organized for drawings, setting-out
+              records, CAD processing or other required outputs.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         DELIVERABLES
+         ======================================================= -->
+
+    <section class="section service-section">
+
+      <p class="eyebrow red">PROJECT OUTPUTS</p>
+
+      <h2>
+        Survey data ready<br>
+        <span>for project use.</span>
+      </h2>
+
+      <p>
+        Depending on the scope of work, total station survey projects can
+        provide measured point data, site drawings and information for
+        construction and engineering workflows.
+      </p>
+
+      <div class="deliverables-grid">
+
+        <article class="deliverable-card">
+          <h3>Detailed Survey Data</h3>
+          <p>
+            Organized measured point information collected from the
+            project site.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>Site Plan</h3>
+          <p>
+            Drawing representation of measured site features and
+            relevant project information.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>Setting-Out Points</h3>
+          <p>
+            Required construction points and layout information according
+            to the project data.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>CAD-Ready Data</h3>
+          <p>
+            Processed survey information suitable for further CAD
+            drawing and project documentation.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         APPLICATIONS
+         ======================================================= -->
+
+    <section class="section service-section">
+
+      <p class="eyebrow red">APPLICATIONS</p>
+
+      <h2>
+        Built for detailed<br>
+        <span>site work.</span>
+      </h2>
+
+      <div class="survey-features">
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">01</div>
+          <h3>Building Construction</h3>
+          <p>
+            Site layout, reference points and setting-out activities for
+            suitable building projects.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">02</div>
+          <h3>Road & Infrastructure</h3>
+          <p>
+            Alignment, point measurement and construction survey support
+            for infrastructure projects.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">03</div>
+          <h3>Engineering Projects</h3>
+          <p>
+            Detailed measurements and site verification for suitable
+            engineering and construction requirements.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PHOTO GALLERY
+         ======================================================= -->
+
+    <section class="section">
+
+      <p class="eyebrow red">TOTAL STATION FIELD WORK</p>
+
+      <h2>
+        Precision<br>
+        <span>on site.</span>
+      </h2>
+
+      <div class="survey-gallery">
+
+        <!-- TEST PHOTOS: replace these URLs later with original SR Associates photos -->
+
+        <img
+          class="gallery-image gallery-large"
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=85"
+          alt="Construction and survey field work"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1531835551805-16d864c8d311?auto=format&fit=crop&w=1000&q=85"
+          alt="Construction site"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1000&q=85"
+          alt="Engineering field work"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1000&q=85"
+          alt="Construction project"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=85"
+          alt="Building construction project"
+          loading="lazy">
+
+      </div>
+
+      <p class="gallery-note">
+        Temporary demonstration photographs. These can be replaced with
+        your original SR Associates Total Station photographs later.
+      </p>
+
+    </section>
+
+
+    <!-- =======================================================
+         CTA
+         ======================================================= -->
+
+    <section class="service-final-cta">
+
+      <div>
+
+        <p class="eyebrow">HAVE A TOTAL STATION REQUIREMENT?</p>
+
+        <h2>
+          Tell us what<br>
+          you need measured.
+        </h2>
+
+      </div>
+
+      <div class="service-final-actions">
+
+        <a class="btn btn-light" href="contact.html">
+          Get a Quote →
+        </a>
+
+        <a
+          class="btn btn-light"
+          href="https://wa.me/918057755380"
+          target="_blank"
+          rel="noopener">
+          WhatsApp Us
+        </a>
+
+        <a class="btn btn-light" href="tel:+918057755380">
+          Call Us
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
+  <footer>
+
+    <span>© 2026 SR Associates. All Rights Reserved.</span>
+
+    <span>Accurate Measurement. Solid Foundation.</span>
+
+    <span>landsurveyor.co.in</span>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

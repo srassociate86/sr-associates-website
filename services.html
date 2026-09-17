@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="SR Associates provides professional land surveying, topographical surveying, GNSS RTK, total station, drone mapping, CAD, 3D mapping and earthwork quantity services.">
+
+  <title>Surveying Services | SR Associates</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* =========================================================
+       SERVICES PAGE
+       ========================================================= */
+
+    .services-hero {
+      min-height: 58vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(100deg, rgba(0,0,0,.88), rgba(0,0,0,.55)),
+        url("assets/drone.jpg") center/cover no-repeat;
+      color: #fff;
+    }
+
+    .services-hero-content {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 90px 0;
+    }
+
+    .services-hero h1 {
+      margin: 12px 0 20px;
+      font-size: clamp(46px, 7vw, 82px);
+      line-height: .98;
+      letter-spacing: -2px;
+      max-width: 850px;
+    }
+
+    .services-hero h1 span {
+      color: #d71920;
+    }
+
+    .services-hero-copy {
+      max-width: 650px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.82);
+      margin-bottom: 30px;
+    }
+
+    .services-intro {
+      max-width: 850px;
+      margin-bottom: 55px;
+    }
+
+    .services-intro p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #666;
+      margin: 0;
+    }
+
+    /* Main service list */
+
+    .service-detail-list {
+      display: grid;
+      gap: 28px;
+    }
+
+    .service-detail {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 30px;
+      padding: 38px;
+      border: 1px solid #e7e7e7;
+      background: #fff;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .service-detail:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.08);
+    }
+
+    .service-detail-number {
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #171717;
+      color: #fff;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .service-detail h3 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      letter-spacing: -.5px;
+    }
+
+    .service-detail p {
+      margin: 0 0 20px;
+      color: #666;
+      line-height: 1.7;
+      max-width: 800px;
+    }
+
+    .service-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .service-points span {
+      padding: 8px 12px;
+      background: #f5f5f5;
+      color: #444;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* Deliverables */
+
+    .deliverables {
+      background: #171717;
+      color: #fff;
+      margin-top: 20px;
+    }
+
+    .deliverables-inner {
+      width: min(1180px, 92%);
+      margin: auto;
+      padding: 90px 0;
+    }
+
+    .deliverables h2 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      margin: 12px 0 45px;
+      max-width: 720px;
+    }
+
+    .deliverables h2 span {
+      color: #d71920;
+    }
+
+    .deliverable-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #444;
+    }
+
+    .deliverable-step {
+      background: #171717;
+      padding: 32px 25px;
+    }
+
+    .deliverable-step b {
+      display: block;
+      color: #d71920;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .deliverable-step h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .deliverable-step p {
+      margin: 0;
+      color: #aaa;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* Applications */
+
+    .applications-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 45px;
+    }
+
+    .application-card {
+      min-height: 180px;
+      padding: 30px;
+      border: 1px solid #e5e5e5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .application-card strong {
+      font-size: 18px;
+    }
+
+    .application-card span {
+      color: #d71920;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    /* CTA */
+
+    .services-final-cta {
+      background: #d71920;
+      color: #fff;
+      padding: 80px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .services-final-cta h2 {
+      margin: 8px 0 0;
+      font-size: clamp(35px, 5vw, 58px);
+      line-height: 1;
+    }
+
+    .services-final-cta .eyebrow {
+      color: rgba(255,255,255,.7);
+    }
+
+    .services-final-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .services-final-actions .btn {
+      white-space: nowrap;
+    }
+
+
+    /* Learn More links */
+
+    .service-learn-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+      color: #d71920;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: gap .2s ease;
+    }
+
+    .service-learn-more:hover {
+      gap: 13px;
+    }
+
+    .service-learn-more span {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 800px) {
+
+      .services-hero {
+        min-height: 65vh;
+      }
+
+      .services-hero-content {
+        padding: 70px 0;
+      }
+
+      .services-hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .service-detail {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 28px;
+      }
+
+      .service-detail-number {
+        width: 58px;
+        height: 58px;
+      }
+
+      .service-detail h3 {
+        font-size: 24px;
+      }
+
+      .deliverable-flow {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .applications-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-final-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 65px 5%;
+      }
+    }
+
+    @media (max-width: 520px) {
+
+      .deliverable-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .services-hero-copy {
+        font-size: 16px;
+      }
+
+      .service-detail {
+        padding: 24px;
+      }
+
+      .service-points span {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+
+  <header class="site-header">
+
+    <a class="brand" href="index.html" aria-label="SR Associates home">
+      <img src="assets/logo.jpg" alt="SR Associates">
+    </a>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="technology.html">Technology</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a
+      class="nav-whatsapp"
+      href="https://wa.me/918057755380"
+      target="_blank"
+      rel="noopener">
+      WhatsApp
+    </a>
+
+  </header>
+
+
+  <main>
+
+    <!-- =======================================================
+         HERO
+         ======================================================= -->
+
+    <section class="services-hero">
+
+      <div class="services-hero-content">
+
+        <p class="eyebrow">SR ASSOCIATES / SERVICES</p>
+
+        <h1>
+          Surveying<br>
+          <span>Services.</span>
+        </h1>
+
+        <p class="services-hero-copy">
+          Professional surveying, mapping and measurement solutions
+          for land development, construction, infrastructure and
+          engineering projects.
+        </p>
+
+        <a class="btn btn-primary" href="quote.html">
+          Discuss Your Project <b>→</b>
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         INTRODUCTION
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="services-intro">
+
+        <p class="eyebrow red">WHAT WE DO</p>
+
+        <h2>Accurate data for better decisions.</h2>
+
+        <p>
+          At SR Associates, we combine field surveying expertise with
+          modern measurement and mapping technology to provide reliable
+          spatial data. From a small land parcel to large-area
+          topographical mapping, our work is focused on accuracy,
+          clear documentation and practical project deliverables.
+        </p>
+
+      </div>
+
+
+      <!-- =====================================================
+           SERVICE DETAILS
+           ===================================================== -->
+
+      <div class="service-detail-list">
+
+
+        <article class="service-detail">
+
+          <div class="service-detail-number">01</div>
+
+          <div>
+
+            <h3>Land Survey</h3>
+
+            <p>
+              Accurate measurement and documentation of land parcels,
+              boundaries and existing site conditions for property,
+              planning, development and construction requirements.
+            </p>
+
+            <div class="service-points">
+              <span>Boundary Survey</span>
+              <span>Plot Measurement</span>
+              <span>Area Calculation</span>
+              <span>Demarcation</span>
+              <span>Site Measurement</span>
+            </div>
+
+            <a class="service-learn-more" href="land-survey.html">
+              Learn More <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <article class="service-detail">
+
+          <div class="service-detail-number">02</div>
+
+          <div>
+
+            <h3>Topographical Survey</h3>
+
+            <p>
+              Detailed survey of natural and man-made features,
+              elevations and terrain conditions to create an accurate
+              representation of the existing ground.
+            </p>
+
+            <div class="service-points">
+              <span>Contours</span>
+              <span>Spot Levels</span>
+              <span>Terrain Mapping</span>
+              <span>Existing Features</span>
+              <span>Site Plans</span>
+            </div>
+			
+			<a class="service-learn-more" href="topographical-survey.html">
+              Learn More <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <article class="service-detail">
+
+          <div class="service-detail-number">03</div>
+
+          <div>
+
+            <h3>GNSS / RTK Survey</h3>
+
+            <p>
+              High-accuracy positioning and coordinate collection using
+              GNSS RTK technology for control points, mapping,
+              georeferencing and large-area survey applications.
+            </p>
+
+            <div class="service-points">
+              <span>RTK Positioning</span>
+              <span>Control Points</span>
+              <span>Coordinates</span>
+              <span>Georeferencing</span>
+              <span>Large Area Survey</span>
+            </div>
+			
+			<a class="service-learn-more" href="gnss-rtk.html">
+              Learn More <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <article class="service-detail">
+
+          <div class="service-detail-number">04</div>
+
+          <div>
+
+            <h3>Total Station Survey</h3>
+
+            <p>
+              Precise angular and distance measurements for detailed
+              site surveys, construction work, alignment, setting out
+              and engineering applications.
+            </p>
+
+            <div class="service-points">
+              <span>Site Survey</span>
+              <span>Construction Layout</span>
+              <span>Setting Out</span>
+              <span>Alignment</span>
+              <span>Detailed Measurement</span>
+            </div>
+			
+			<a class="service-learn-more" href="total-station.html">
+              Learn More <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <article class="service-detail">
+
+          <div class="service-detail-number">05</div>
+
+          <div>
+
+            <h3>Drone Survey & Photogrammetry</h3>
+
+            <p>
+              Aerial data collection for efficient mapping of large
+              areas, generating orthomosaics, terrain models and
+              three-dimensional project information.
+            </p>
+
+            <div class="service-points">
+              <span>Aerial Mapping</span>
+              <span>Orthomosaic</span>
+              <span>Photogrammetry</span>
+              <span>DTM</span>
+              <span>3D Models</span>
+            </div>
+			
+			<a class="service-learn-more" href="drone-survey.html">
+              Learn More <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <article class="service-detail">
+
+          <div class="service-detail-number">06</div>
+
+          <div>
+
+            <h3>CAD & 3D Mapping</h3>
+
+            <p>
+              Conversion of field survey data into clear digital
+              drawings, plans, sections and three-dimensional models
+              suitable for design, planning and documentation.
+            </p>
+
+            <div class="service-points">
+              <span>CAD Drawings</span>
+              <span>Contour Plans</span>
+              <span>Sections</span>
+              <span>Surface Models</span>
+              <span>3D Mapping</span>
+            </div>
+			
+			<a class="service-learn-more" href="cad-3d-mapping.html">
+              Learn More <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <article class="service-detail">
+
+          <div class="service-detail-number">07</div>
+
+          <div>
+
+            <h3>Earthwork Quantity</h3>
+
+            <p>
+              Survey-based calculation of excavation, filling and
+              earthwork quantities using measured ground surfaces and
+              digital terrain data.
+            </p>
+
+            <div class="service-points">
+              <span>Cut & Fill</span>
+              <span>Excavation</span>
+              <span>Volume Calculation</span>
+              <span>Stockpile Volume</span>
+              <span>Surface Comparison</span>
+            </div>
+			
+			<a class="service-learn-more" href="earthwork-quantity.html">
+              Learn More <span>→</span>
+            </a>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         DELIVERABLE PROCESS
+         ======================================================= -->
+
+    <section class="deliverables">
+
+      <div class="deliverables-inner">
+
+        <p class="eyebrow">FROM FIELD TO FINAL OUTPUT</p>
+
+        <h2>
+          One survey.
+          <span>Multiple deliverables.</span>
+        </h2>
+
+        <div class="deliverable-flow">
+
+          <div class="deliverable-step">
+            <b>01 / FIELD</b>
+            <h3>Measurement</h3>
+            <p>
+              Survey observations and spatial data are collected
+              accurately on site.
+            </p>
+          </div>
+
+          <div class="deliverable-step">
+            <b>02 / PROCESS</b>
+            <h3>Data Processing</h3>
+            <p>
+              Field observations are checked, organized and processed
+              into usable survey data.
+            </p>
+          </div>
+
+          <div class="deliverable-step">
+            <b>03 / ANALYSE</b>
+            <h3>Model & Analysis</h3>
+            <p>
+              Surfaces, contours, quantities and other required
+              information are generated.
+            </p>
+          </div>
+
+          <div class="deliverable-step">
+            <b>04 / DELIVER</b>
+            <h3>Final Output</h3>
+            <p>
+              CAD drawings, maps, reports, models and digital
+              deliverables are prepared.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         APPLICATIONS
+         ======================================================= -->
+
+    <section class="section">
+
+      <p class="eyebrow red">WHERE OUR SERVICES ARE USED</p>
+
+      <h2>Supporting projects from ground level up.</h2>
+
+      <div class="applications-grid">
+
+        <article class="application-card">
+          <span>01</span>
+          <strong>Land Development</strong>
+        </article>
+
+        <article class="application-card">
+          <span>02</span>
+          <strong>Construction Projects</strong>
+        </article>
+
+        <article class="application-card">
+          <span>03</span>
+          <strong>Road & Infrastructure</strong>
+        </article>
+
+        <article class="application-card">
+          <span>04</span>
+          <strong>Property & Boundary</strong>
+        </article>
+
+        <article class="application-card">
+          <span>05</span>
+          <strong>Terrain & Site Mapping</strong>
+        </article>
+
+        <article class="application-card">
+          <span>06</span>
+          <strong>Earthwork & Quantity</strong>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         CTA
+         ======================================================= -->
+
+    <section class="services-final-cta">
+
+      <div>
+
+        <p class="eyebrow">HAVE A PROJECT TO SURVEY?</p>
+
+        <h2>
+          Tell us what<br>
+          you need surveyed.
+        </h2>
+
+      </div>
+
+      <div class="services-final-actions">
+
+        <a class="btn btn-light" href="quote.html">
+          Get a Quote →
+        </a>
+
+        <a
+          class="btn btn-light"
+          href="https://wa.me/918057755380"
+          target="_blank"
+          rel="noopener">
+          WhatsApp Us
+        </a>
+
+        <a class="btn btn-light" href="tel:+918057755380">
+          Call Us
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
+  <footer>
+
+    <span>© 2026 SR Associates. All Rights Reserved.</span>
+
+    <span>Accurate Measurement. Solid Foundation.</span>
+
+    <span>landsurveyor.co.in</span>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

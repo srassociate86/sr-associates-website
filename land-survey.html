@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Professional land survey services by SR Associates including boundary survey, plot measurement, demarcation, area calculation and detailed site measurement.">
+
+  <title>Land Survey | SR Associates</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* =========================================================
+       LAND SURVEY PAGE
+       ========================================================= */
+
+    .service-hero {
+      min-height: 68vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(100deg, rgba(0,0,0,.88), rgba(0,0,0,.48)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2000&q=85")
+        center/cover no-repeat;
+      color: #fff;
+    }
+
+    .service-hero-content {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 100px 0;
+    }
+
+    .service-hero h1 {
+      margin: 12px 0 22px;
+      font-size: clamp(48px, 7vw, 86px);
+      line-height: .95;
+      letter-spacing: -2px;
+      max-width: 900px;
+    }
+
+    .service-hero h1 span {
+      color: #d71920;
+    }
+
+    .service-hero-copy {
+      max-width: 680px;
+      font-size: 18px;
+      line-height: 1.75;
+      color: rgba(255,255,255,.84);
+      margin-bottom: 32px;
+    }
+
+    .service-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Intro */
+
+    .service-intro {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .service-intro h2,
+    .service-section h2 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin: 10px 0 20px;
+    }
+
+    .service-intro h2 span,
+    .service-section h2 span {
+      color: #d71920;
+    }
+
+    .service-intro-text p,
+    .service-section > p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 17px;
+      max-width: 850px;
+    }
+
+    /* Feature cards */
+
+    .survey-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 45px;
+    }
+
+    .survey-feature {
+      border: 1px solid #e5e5e5;
+      padding: 32px;
+      min-height: 210px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .survey-feature:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.08);
+    }
+
+    .survey-feature-number {
+      color: #d71920;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .survey-feature h3 {
+      font-size: 21px;
+      margin: 0 0 10px;
+    }
+
+    .survey-feature p {
+      margin: 0;
+      color: #666;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* Image + text */
+
+    .survey-image-section {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .survey-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .survey-image-copy h2 {
+      margin-top: 0;
+    }
+
+    .survey-list {
+      list-style: none;
+      padding: 0;
+      margin: 28px 0 0;
+    }
+
+    .survey-list li {
+      position: relative;
+      padding: 14px 0 14px 28px;
+      border-bottom: 1px solid #e8e8e8;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .survey-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #d71920;
+      font-weight: 700;
+    }
+
+    /* Process */
+
+    .survey-process {
+      background: #171717;
+      color: #fff;
+    }
+
+    .survey-process-inner {
+      width: min(1180px, 92%);
+      margin: auto;
+      padding: 90px 0;
+    }
+
+    .survey-process h2 {
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.05;
+      margin: 10px 0 45px;
+      max-width: 700px;
+    }
+
+    .survey-process h2 span {
+      color: #d71920;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #444;
+    }
+
+    .process-card {
+      background: #171717;
+      padding: 32px 25px;
+    }
+
+    .process-card b {
+      display: block;
+      color: #d71920;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .process-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .process-card p {
+      color: #aaa;
+      line-height: 1.6;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Deliverables */
+
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .deliverable-card {
+      padding: 28px 30px;
+      border-left: 4px solid #d71920;
+      background: #f5f5f5;
+    }
+
+    .deliverable-card h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+    }
+
+    .deliverable-card p {
+      margin: 0;
+      color: #666;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* Gallery */
+
+    .survey-gallery {
+      display: grid;
+      grid-template-columns: 1.4fr .8fr .8fr;
+      gap: 14px;
+      margin-top: 42px;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-large {
+      height: 575px;
+      grid-row: span 2;
+    }
+
+    .gallery-note {
+      margin-top: 14px;
+      color: #888;
+      font-size: 13px;
+    }
+
+    /* CTA */
+
+    .service-final-cta {
+      background: #d71920;
+      color: #fff;
+      padding: 80px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .service-final-cta h2 {
+      margin: 8px 0 0;
+      font-size: clamp(35px, 5vw, 58px);
+      line-height: 1;
+    }
+
+    .service-final-cta .eyebrow {
+      color: rgba(255,255,255,.7);
+    }
+
+    .service-final-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .service-final-actions .btn {
+      white-space: nowrap;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 800px) {
+      .service-hero {
+        min-height: 70vh;
+      }
+
+      .service-hero-content {
+        padding: 75px 0;
+      }
+
+      .service-intro,
+      .survey-image-section {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .survey-features {
+        grid-template-columns: 1fr;
+      }
+
+      .survey-image {
+        height: 360px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .survey-gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery-large {
+        grid-column: span 2;
+        grid-row: auto;
+        height: 400px;
+      }
+
+      .deliverables-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-final-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 65px 5%;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .service-hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .service-hero-copy {
+        font-size: 16px;
+      }
+
+      .process-grid,
+      .survey-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-large {
+        grid-column: auto;
+        height: 300px;
+      }
+
+      .gallery-image {
+        height: 240px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+
+  <header class="site-header">
+
+    <a class="brand" href="index.html" aria-label="SR Associates home">
+      <img src="assets/logo.jpg" alt="SR Associates">
+    </a>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="technology.html">Technology</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a
+      class="nav-whatsapp"
+      href="https://wa.me/918057755380"
+      target="_blank"
+      rel="noopener">
+      WhatsApp
+    </a>
+
+  </header>
+
+
+  <main>
+
+    <!-- =======================================================
+         HERO
+         ======================================================= -->
+
+    <section class="service-hero">
+
+      <div class="service-hero-content">
+
+        <p class="eyebrow">SR ASSOCIATES / LAND SURVEY</p>
+
+        <h1>
+          Land<br>
+          <span>Survey.</span>
+        </h1>
+
+        <p class="service-hero-copy">
+          Accurate land measurement, boundary identification and site
+          documentation for property, development, construction and
+          engineering requirements.
+        </p>
+
+        <div class="service-hero-actions">
+          <a class="btn btn-primary" href="contact.html">
+            Discuss Your Project <b>→</b>
+          </a>
+
+          <a class="btn btn-light" href="services.html">
+            All Services
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         INTRODUCTION
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="service-intro">
+
+        <div>
+          <p class="eyebrow red">LAND SURVEYING</p>
+
+          <h2>
+            Know your land<br>
+            <span>with clarity.</span>
+          </h2>
+        </div>
+
+        <div class="service-intro-text">
+
+          <p>
+            Land surveying provides measured information about a property,
+            its boundaries and its existing physical conditions. At
+            SR Associates, field measurements are organized into clear
+            survey information that can support planning, development,
+            construction and documentation.
+          </p>
+
+          <p>
+            Depending on the project requirement, survey observations can
+            be used for boundary identification, plot measurement,
+            demarcation, area calculation and detailed site measurement.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="survey-features">
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">01 / BOUNDARY</div>
+          <h3>Boundary Survey</h3>
+          <p>
+            Measurement and documentation of property boundaries and
+            relevant site points as required for the project.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">02 / MEASUREMENT</div>
+          <h3>Plot Measurement</h3>
+          <p>
+            Detailed measurement of land dimensions, corners and
+            important physical features of the site.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">03 / AREA</div>
+          <h3>Area Calculation</h3>
+          <p>
+            Calculation of measured site areas from collected survey
+            coordinates and dimensions.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">04 / DEMARCATION</div>
+          <h3>Demarcation</h3>
+          <p>
+            Identification and marking of required points or boundaries
+            on the ground according to project requirements.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">05 / SITE DATA</div>
+          <h3>Existing Site Survey</h3>
+          <p>
+            Collection of existing ground and site information for
+            planning, design and construction activities.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">06 / DATA</div>
+          <h3>Survey Documentation</h3>
+          <p>
+            Organized survey information and drawings prepared from
+            measured field data for practical project use.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         FIELD SURVEY IMAGE
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="survey-image-section">
+
+        <div>
+          <!-- TEST PHOTO: replace URL later with your own site photograph -->
+          <img
+            class="survey-image"
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1400&q=85"
+            alt="Surveyor carrying out field measurement"
+            loading="lazy">
+        </div>
+
+        <div class="survey-image-copy">
+
+          <p class="eyebrow red">ON-SITE MEASUREMENT</p>
+
+          <h2>
+            Field data that<br>
+            <span>supports the site.</span>
+          </h2>
+
+          <p>
+            A land survey begins with accurate field observations. The
+            required points and features are measured on site and then
+            organized into usable survey information.
+          </p>
+
+          <ul class="survey-list">
+            <li>Property and plot dimensions</li>
+            <li>Boundary and corner points</li>
+            <li>Existing site features</li>
+            <li>Measured coordinates and levels where required</li>
+            <li>Area and dimensional information</li>
+            <li>Survey drawings and digital outputs</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PROCESS
+         ======================================================= -->
+
+    <section class="survey-process">
+
+      <div class="survey-process-inner">
+
+        <p class="eyebrow">OUR APPROACH</p>
+
+        <h2>
+          From the ground<br>
+          <span>to the drawing.</span>
+        </h2>
+
+        <div class="process-grid">
+
+          <div class="process-card">
+            <b>01 / PLAN</b>
+            <h3>Understand</h3>
+            <p>
+              We identify the site requirements, survey scope and
+              information needed for the project.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>02 / FIELD</b>
+            <h3>Measure</h3>
+            <p>
+              Required points and physical features are measured
+              systematically at the site.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>03 / PROCESS</b>
+            <h3>Check & Process</h3>
+            <p>
+              Collected observations are organized and processed into
+              usable survey information.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <b>04 / DELIVER</b>
+            <h3>Prepare Output</h3>
+            <p>
+              The required survey drawing, measurements or digital
+              information is prepared for project use.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         DELIVERABLES
+         ======================================================= -->
+
+    <section class="section service-section">
+
+      <p class="eyebrow red">PROJECT OUTPUTS</p>
+
+      <h2>
+        Survey information<br>
+        <span>you can use.</span>
+      </h2>
+
+      <p>
+        Depending on the scope of work, land survey projects can provide
+        measured information and drawings suitable for property,
+        planning, construction and development requirements.
+      </p>
+
+      <div class="deliverables-grid">
+
+        <article class="deliverable-card">
+          <h3>Survey Plan</h3>
+          <p>
+            A clear representation of the surveyed property and relevant
+            measured information.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>Boundary Information</h3>
+          <p>
+            Measured boundary and corner-point information according to
+            the project requirement.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>Area & Dimensions</h3>
+          <p>
+            Calculated area and measured dimensions derived from the
+            collected survey data.
+          </p>
+        </article>
+
+        <article class="deliverable-card">
+          <h3>Digital Survey Data</h3>
+          <p>
+            Coordinates and digital survey information that can support
+            CAD and further project processing.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         APPLICATIONS
+         ======================================================= -->
+
+    <section class="section service-section">
+
+      <p class="eyebrow red">APPLICATIONS</p>
+
+      <h2>
+        Where land surveys<br>
+        <span>are used.</span>
+      </h2>
+
+      <div class="survey-features">
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">01</div>
+          <h3>Property & Boundary</h3>
+          <p>
+            Property measurement, boundary identification and
+            documentation requirements.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">02</div>
+          <h3>Land Development</h3>
+          <p>
+            Existing land information for planning and development
+            projects.
+          </p>
+        </article>
+
+        <article class="survey-feature">
+          <div class="survey-feature-number">03</div>
+          <h3>Construction</h3>
+          <p>
+            Site measurement and survey information supporting
+            construction activities.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =======================================================
+         PHOTO GALLERY
+         ======================================================= -->
+
+    <section class="section">
+
+      <p class="eyebrow red">FIELD WORK</p>
+
+      <h2>
+        Surveying in<br>
+        <span>the field.</span>
+      </h2>
+
+      <div class="survey-gallery">
+
+        <!-- TEST PHOTOS: replace these URLs later with original site photos -->
+
+        <img
+          class="gallery-image gallery-large"
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=85"
+          alt="Construction and surveying site"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1531835551805-16d864c8d311?auto=format&fit=crop&w=1000&q=85"
+          alt="Surveying and construction work"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1000&q=85"
+          alt="Engineering field work"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1000&q=85"
+          alt="Construction project site"
+          loading="lazy">
+
+        <img
+          class="gallery-image"
+          src="https://images.unsplash.com/photo-1590644365607-1c5a0f82c1f0?auto=format&fit=crop&w=1000&q=85"
+          alt="Site measurement and engineering"
+          loading="lazy">
+
+      </div>
+
+      
+
+    </section>
+
+
+    <!-- =======================================================
+         CTA
+         ======================================================= -->
+
+    <section class="service-final-cta">
+
+      <div>
+
+        <p class="eyebrow">HAVE A LAND SURVEY REQUIREMENT?</p>
+
+        <h2>
+          Tell us what<br>
+          you need surveyed.
+        </h2>
+
+      </div>
+
+      <div class="service-final-actions">
+
+        <a class="btn btn-light" href="contact.html">
+          Get a Quote →
+        </a>
+
+        <a
+          class="btn btn-light"
+          href="https://wa.me/918057755380"
+          target="_blank"
+          rel="noopener">
+          WhatsApp Us
+        </a>
+
+        <a class="btn btn-light" href="tel:+918057755380">
+          Call Us
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
+  <footer>
+
+    <span>© 2026 SR Associates. All Rights Reserved.</span>
+
+    <span>Accurate Measurement. Solid Foundation.</span>
+
+    <span>landsurveyor.co.in</span>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
