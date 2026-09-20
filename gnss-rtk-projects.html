@@ -1,0 +1,1771 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="GNSS RTK survey projects by SR Associates - Land Surveyors."
+  >
+
+  <title>GNSS RTK Projects | SR Associates</title>
+
+  <!-- MAIN WEBSITE STYLESHEET -->
+  <link rel="stylesheet" href="styles.css">
+
+
+  <style>
+
+    /* =====================================================
+       GNSS PROJECT PAGE
+       ===================================================== */
+
+    .gnss-project-hero {
+
+      min-height:360px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.90),
+          rgba(0,0,0,.50),
+          rgba(0,0,0,.25)
+        ),
+        url("assets/gnss.jpg") center/cover no-repeat;
+
+      display:flex;
+      align-items:center;
+
+      padding:80px 7%;
+
+      color:#fff;
+
+    }
+
+
+    .gnss-project-hero-content {
+
+      max-width:760px;
+
+    }
+
+
+    .gnss-project-hero h1 {
+
+      margin:15px 0;
+
+      font-size:clamp(40px,6vw,70px);
+
+      line-height:1;
+
+      text-transform:uppercase;
+
+    }
+
+
+    .gnss-project-hero h1 span {
+
+      color:var(--red-bright);
+
+    }
+
+
+    .gnss-project-hero p:not(.eyebrow) {
+
+      max-width:620px;
+
+      color:#ddd;
+
+      font-size:17px;
+
+      line-height:1.7;
+
+    }
+
+
+    /* =====================================================
+       PROJECT GALLERY
+       ===================================================== */
+
+    .gnss-gallery-section {
+
+      background:#f7f7f7;
+
+    }
+
+
+    .gnss-project-grid {
+
+      display:grid;
+
+      grid-template-columns:repeat(3,1fr);
+
+      gap:22px;
+
+      max-width:1200px;
+
+      margin:45px auto 0;
+
+    }
+
+
+    /* =====================================================
+       PROJECT CARD
+       ===================================================== */
+
+    .gnss-project-card {
+
+      background:#fff;
+
+      border:1px solid var(--border);
+
+      border-radius:6px;
+
+      overflow:hidden;
+
+      transition:.25s ease;
+
+    }
+
+
+    .gnss-project-card:hover {
+
+      transform:translateY(-5px);
+
+      box-shadow:
+        0 12px 30px rgba(0,0,0,.12);
+
+      border-color:var(--red);
+
+    }
+
+
+    .gnss-project-card-header {
+
+      cursor:pointer;
+
+    }
+
+
+    .gnss-project-card-main-image {
+
+      width:100%;
+
+      height:230px;
+
+      object-fit:cover;
+
+      display:block;
+
+      transition:.35s ease;
+
+    }
+
+
+    .gnss-project-card:hover
+    .gnss-project-card-main-image {
+
+      transform:scale(1.03);
+
+    }
+
+
+    .gnss-project-content {
+
+      padding:20px;
+
+      text-align:left;
+
+    }
+
+
+    .gnss-project-location {
+
+      display:block;
+
+      color:var(--red);
+
+      font-size:12px;
+
+      font-weight:700;
+
+      letter-spacing:1px;
+
+      margin-bottom:9px;
+
+    }
+
+
+    .gnss-project-content h3 {
+
+      margin:0 0 9px;
+
+      font-size:16px;
+
+      text-transform:uppercase;
+
+    }
+
+
+    .gnss-project-content p {
+
+      margin:0;
+
+      color:#666;
+
+      font-size:13px;
+
+      line-height:1.6;
+
+    }
+
+
+    .view-project {
+
+      display:inline-block;
+
+      margin-top:15px;
+
+      color:var(--red);
+
+      font-size:12px;
+
+      font-weight:800;
+
+      letter-spacing:1px;
+
+      text-transform:uppercase;
+
+    }
+
+
+    /* =====================================================
+       EXPANDED PROJECT
+       ===================================================== */
+
+    .project-details {
+
+      display:none;
+
+      padding:0 20px 22px;
+
+      text-align:left;
+
+    }
+
+
+    .gnss-project-card.expanded {
+
+      grid-column:1 / -1;
+
+      transform:none;
+
+      border-color:var(--red);
+
+    }
+
+
+    .gnss-project-card.expanded
+    .project-details {
+
+      display:block;
+
+    }
+
+
+    .gnss-project-card.expanded
+    .view-project {
+
+      color:#555;
+
+    }
+
+
+    .project-full-description {
+
+      color:#555;
+
+      font-size:14px;
+
+      line-height:1.7;
+
+      margin:5px 0 20px;
+
+    }
+
+
+    /* =====================================================
+       ADDITIONAL PROJECT PHOTOS
+       ===================================================== */
+
+    .project-photo-grid {
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(4,1fr);
+
+      gap:10px;
+
+    }
+
+
+    .project-photo-grid img {
+
+      width:100%;
+
+      height:150px;
+
+      object-fit:cover;
+
+      display:block;
+
+      border-radius:4px;
+
+      cursor:pointer;
+
+      transition:.25s ease;
+
+    }
+
+
+    .project-photo-grid img:hover {
+
+      transform:scale(1.03);
+
+      opacity:.9;
+
+    }
+
+
+    .close-project {
+
+      margin-top:18px;
+
+      padding:10px 18px;
+
+      border:1px solid #ccc;
+
+      background:#fff;
+
+      color:#333;
+
+      border-radius:4px;
+
+      cursor:pointer;
+
+      font-size:12px;
+
+      font-weight:700;
+
+      text-transform:uppercase;
+
+      letter-spacing:.5px;
+
+    }
+
+
+    .close-project:hover {
+
+      border-color:var(--red);
+
+      color:var(--red);
+
+    }
+
+
+    /* =====================================================
+       LIGHTBOX + ZOOM
+       ===================================================== */
+
+    .image-lightbox{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.95);
+      z-index:9999;
+      align-items:center;
+      justify-content:center;
+      padding:70px 80px;
+      overflow:hidden;
+    }
+
+    .image-lightbox.active{display:flex;}
+
+    .lightbox-stage{
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      cursor:grab;
+    }
+
+    .lightbox-stage.dragging{cursor:grabbing;}
+
+    .image-lightbox img{
+      max-width:88vw;
+      max-height:82vh;
+      width:auto;
+      height:auto;
+      object-fit:contain;
+      border-radius:4px;
+      box-shadow:0 20px 60px rgba(0,0,0,.6);
+      transform:scale(1);
+      transform-origin:center center;
+      user-select:none;
+      -webkit-user-drag:none;
+      transition:transform:.15s ease;
+    }
+
+    .lightbox-close{
+      position:absolute;
+      top:18px;
+      right:22px;
+      width:44px;
+      height:44px;
+      border:0;
+      border-radius:50%;
+      background:#fff;
+      color:#111;
+      font-size:25px;
+      cursor:pointer;
+      line-height:44px;
+      z-index:5;
+    }
+
+    .lightbox-close:hover{background:var(--red);color:#fff;}
+
+    .lightbox-arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:52px;
+      height:68px;
+      border:0;
+      border-radius:6px;
+      background:rgba(255,255,255,.16);
+      color:#fff;
+      font-size:52px;
+      line-height:55px;
+      cursor:pointer;
+      z-index:5;
+      transition:.2s ease;
+    }
+
+    .lightbox-arrow:hover{background:var(--red);}
+    .lightbox-prev{left:18px;}
+    .lightbox-next{right:18px;}
+
+    .lightbox-tools{
+      position:absolute;
+      bottom:18px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      z-index:5;
+    }
+
+    .lightbox-tools button{
+      min-width:40px;
+      height:38px;
+      border:0;
+      border-radius:5px;
+      background:rgba(255,255,255,.92);
+      color:#111;
+      font-size:18px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .lightbox-tools button:hover{background:var(--red);color:#fff;}
+
+    .lightbox-counter{
+      min-width:70px;
+      height:38px;
+      padding:0 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:5px;
+      background:rgba(0,0,0,.7);
+      color:#fff;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    @media(max-width:600px){
+      .image-lightbox{padding:60px 50px;}
+      .image-lightbox img{max-width:88vw;max-height:78vh;}
+      .lightbox-arrow{width:40px;height:56px;font-size:40px;line-height:45px;}
+      .lightbox-prev{left:5px;}
+      .lightbox-next{right:5px;}
+      .lightbox-close{top:10px;right:10px;width:40px;height:40px;line-height:40px;}
+      .lightbox-tools{bottom:10px;}
+    }
+
+    /* =====================================================
+       CTA
+       ===================================================== */
+
+    .gnss-project-cta {
+
+      padding:70px 7%;
+
+      background:
+        linear-gradient(
+          110deg,
+          #090909,
+          #311012
+        );
+
+      color:#fff;
+
+      text-align:center;
+
+    }
+
+
+    .gnss-project-cta h2 {
+
+      margin:0 0 12px;
+
+      font-size:38px;
+
+    }
+
+
+    .gnss-project-cta h2 span {
+
+      color:var(--red-bright);
+
+    }
+
+
+    .gnss-project-cta p:not(.eyebrow) {
+
+      max-width:600px;
+
+      margin:0 auto 25px;
+
+      color:#ccc;
+
+      line-height:1.7;
+
+    }
+
+
+    .gnss-project-cta-actions {
+
+      display:flex;
+
+      justify-content:center;
+
+      gap:12px;
+
+      flex-wrap:wrap;
+
+    }
+
+
+    /* =====================================================
+       TABLET
+       ===================================================== */
+
+    @media(max-width:900px) {
+
+      .gnss-project-grid {
+
+        grid-template-columns:repeat(2,1fr);
+
+      }
+
+
+      .gnss-project-card.expanded {
+
+        grid-column:1 / -1;
+
+      }
+
+
+      .project-photo-grid {
+
+        grid-template-columns:repeat(3,1fr);
+
+      }
+
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media(max-width:600px) {
+
+      .gnss-project-hero {
+
+        min-height:320px;
+
+        padding:70px 25px;
+
+      }
+
+
+      .gnss-project-hero h1 {
+
+        font-size:42px;
+
+      }
+
+
+      .gnss-project-grid {
+
+        grid-template-columns:1fr;
+
+      }
+
+
+      .gnss-project-card.expanded {
+
+        grid-column:auto;
+
+      }
+
+
+      .gnss-project-card-main-image {
+
+        height:220px;
+
+      }
+
+
+      .project-photo-grid {
+
+        grid-template-columns:repeat(2,1fr);
+
+      }
+
+
+      .project-photo-grid img {
+
+        height:130px;
+
+      }
+
+
+      .image-lightbox {
+
+        padding:15px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="site-header">
+
+    <a
+      class="brand"
+      href="index.html"
+      aria-label="SR Associates home"
+    >
+
+      <img src="assets/logo.jpg" alt="SR Associates">
+
+    </a>
+
+
+    <button
+      class="menu-toggle"
+      aria-label="Open menu"
+    >
+      ☰
+    </button>
+
+
+    <nav class="nav">
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="services.html">
+        Services
+      </a>
+
+      <a
+        class="active"
+        href="projects.html"
+      >
+        Projects
+      </a>
+
+      <a href="technology.html">
+        Technology
+      </a>
+
+      <a href="about.html">
+        About Us
+      </a>
+
+      <a href="contact.html">
+        Contact
+      </a>
+
+    </nav>
+
+
+    <a
+      class="nav-whatsapp"
+      href="https://wa.me/918057755380"
+      target="_blank"
+      rel="noopener"
+    >
+      WhatsApp
+    </a>
+
+  </header>
+
+
+
+  <main>
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="gnss-project-hero">
+
+      <div class="gnss-project-hero-content">
+
+        <p class="eyebrow">
+          SR ASSOCIATES
+        </p>
+
+        <h1>
+          GNSS <span>RTK Projects</span>
+        </h1>
+
+        <p>
+          Selected GNSS and RTK surveying projects covering
+          land measurement, topographical mapping,
+          construction surveying and high-accuracy
+          field data collection.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PROJECT GALLERY
+         ===================================================== -->
+
+    <section class="section gnss-gallery-section">
+
+      <p class="eyebrow red">
+        PROJECT GALLERY
+      </p>
+
+      <h2>
+        GNSS / RTK Survey Work
+      </h2>
+
+      <p class="section-intro">
+        Click any project to view additional photographs
+        and project information.
+      </p>
+
+
+      <div class="gnss-project-grid">
+
+
+        <!-- =================================================
+             PROJECT 01
+             ================================================= -->
+
+        <article class="gnss-project-card">
+
+          <div
+            class="gnss-project-card-header"
+            onclick="toggleProject(this)"
+          >
+
+            <img class="gnss-project-card-main-image" src="assets/gnss.jpg" alt="GNSS RTK land boundary survey">
+
+            <div class="gnss-project-content">
+
+              <span class="gnss-project-location">
+                UTTARAKHAND
+              </span>
+
+              <h3>
+                Land Boundary Survey
+              </h3>
+
+              <p>
+                GNSS RTK field measurements for land
+                boundary and coordinate collection.
+              </p>
+
+              <span class="view-project">
+                + View Project
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-details">
+
+            <p class="project-full-description">
+              GNSS RTK survey work for accurate boundary
+              measurement, coordinate collection and
+              preparation of survey data for further
+              mapping and documentation.
+            </p>
+
+
+            <div class="project-photo-grid">
+
+              <img src="assets/gnss.jpg" alt="Land boundary survey photo" onclick="openLightbox(this)">
+
+              <img src="assets/gnss1.jpg" alt="GNSS RTK field work" onclick="openLightbox(this)">
+
+              <img src="assets/gnss2.jpg" alt="GNSS survey equipment" onclick="openLightbox(this)">
+
+              <img src="assets/gnss3.jpg" alt="Survey field measurement" onclick="openLightbox(this)">
+			  
+			  <img src="assets/gnss1.jpg" alt="Land boundary survey photo" onclick="openLightbox(this)">
+
+            </div>
+
+
+            <button
+              class="close-project"
+              onclick="closeProject(this)"
+            >
+              − Close Project
+            </button>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 02
+             ================================================= -->
+
+        <article class="gnss-project-card">
+
+          <div
+            class="gnss-project-card-header"
+            onclick="toggleProject(this)"
+          >
+
+            <img class="gnss-project-card-main-image" src="assets/gnss.jpg" alt="GNSS RTK topographical survey">
+
+            <div class="gnss-project-content">
+
+              <span class="gnss-project-location">
+                UTTARAKHAND
+              </span>
+
+              <h3>
+                Topographical Survey
+              </h3>
+
+              <p>
+                Detailed GNSS RTK data collection for
+                terrain and site mapping.
+              </p>
+
+              <span class="view-project">
+                + View Project
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-details">
+
+            <p class="project-full-description">
+              Topographical field survey using GNSS RTK
+              to collect terrain points, levels, existing
+              features and site coordinates for mapping
+              and planning purposes.
+            </p>
+
+
+            <div class="project-photo-grid">
+
+              <img src="assets/gnss.jpg" alt="Topographical survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Terrain survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="GNSS field measurement" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Survey equipment" onclick="openLightbox(this)">
+
+            </div>
+
+
+            <button
+              class="close-project"
+              onclick="closeProject(this)"
+            >
+              − Close Project
+            </button>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 03
+             ================================================= -->
+
+        <article class="gnss-project-card">
+
+          <div
+            class="gnss-project-card-header"
+            onclick="toggleProject(this)"
+          >
+
+            <img class="gnss-project-card-main-image" src="assets/gnss.jpg" alt="GNSS RTK construction survey">
+
+            <div class="gnss-project-content">
+
+              <span class="gnss-project-location">
+                UTTARAKHAND
+              </span>
+
+              <h3>
+                Construction Survey
+              </h3>
+
+              <p>
+                Coordinate-based surveying for construction
+                layout and site control.
+              </p>
+
+              <span class="view-project">
+                + View Project
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-details">
+
+            <p class="project-full-description">
+              GNSS RTK observations used for construction
+              control, coordinate establishment, site
+              measurements and setting out requirements.
+            </p>
+
+
+            <div class="project-photo-grid">
+
+              <img src="assets/gnss.jpg" alt="Construction survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Construction site survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="GNSS construction control" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Site measurement" onclick="openLightbox(this)">
+
+            </div>
+
+
+            <button
+              class="close-project"
+              onclick="closeProject(this)"
+            >
+              − Close Project
+            </button>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 04
+             ================================================= -->
+
+        <article class="gnss-project-card">
+
+          <div
+            class="gnss-project-card-header"
+            onclick="toggleProject(this)"
+          >
+
+            <img class="gnss-project-card-main-image" src="assets/gnss.jpg" alt="GNSS RTK road survey">
+
+            <div class="gnss-project-content">
+
+              <span class="gnss-project-location">
+                UTTARAKHAND
+              </span>
+
+              <h3>
+                Road & Infrastructure Survey
+              </h3>
+
+              <p>
+                GNSS observations for road alignment and
+                infrastructure mapping.
+              </p>
+
+              <span class="view-project">
+                + View Project
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-details">
+
+            <p class="project-full-description">
+              Field coordinate collection for road,
+              infrastructure and alignment-related survey
+              requirements.
+            </p>
+
+
+            <div class="project-photo-grid">
+
+              <img src="assets/gnss.jpg" alt="Road survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Infrastructure survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="GNSS road measurement" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Field survey" onclick="openLightbox(this)">
+
+            </div>
+
+
+            <button
+              class="close-project"
+              onclick="closeProject(this)"
+            >
+              − Close Project
+            </button>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 05
+             ================================================= -->
+
+        <article class="gnss-project-card">
+
+          <div
+            class="gnss-project-card-header"
+            onclick="toggleProject(this)"
+          >
+
+            <img class="gnss-project-card-main-image" src="assets/gnss.jpg" alt="GNSS RTK site survey">
+
+            <div class="gnss-project-content">
+
+              <span class="gnss-project-location">
+                UTTARAKHAND
+              </span>
+
+              <h3>
+                Site Survey
+              </h3>
+
+              <p>
+                Accurate site measurements for planning,
+                design and engineering.
+              </p>
+
+              <span class="view-project">
+                + View Project
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-details">
+
+            <p class="project-full-description">
+              GNSS RTK site survey for collecting accurate
+              positions and field measurements required
+              for planning and engineering work.
+            </p>
+
+
+            <div class="project-photo-grid">
+
+              <img src="assets/gnss.jpg" alt="Site survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="GNSS site measurement" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Survey field work" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="GNSS equipment" onclick="openLightbox(this)">
+
+            </div>
+
+
+            <button
+              class="close-project"
+              onclick="closeProject(this)"
+            >
+              − Close Project
+            </button>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 06
+             ================================================= -->
+
+        <article class="gnss-project-card">
+
+          <div
+            class="gnss-project-card-header"
+            onclick="toggleProject(this)"
+          >
+
+            <img class="gnss-project-card-main-image" src="assets/gnss.jpg" alt="GNSS control point survey">
+
+            <div class="gnss-project-content">
+
+              <span class="gnss-project-location">
+                UTTARAKHAND
+              </span>
+
+              <h3>
+                Survey Control Points
+              </h3>
+
+              <p>
+                Establishment and measurement of GNSS
+                control points.
+              </p>
+
+              <span class="view-project">
+                + View Project
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-details">
+
+            <p class="project-full-description">
+              GNSS control observations for establishing
+              reference points used for subsequent
+              surveying, mapping and project control.
+            </p>
+
+
+            <div class="project-photo-grid">
+
+              <img src="assets/gnss.jpg" alt="GNSS control point" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Control survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Survey monument" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="GNSS observation" onclick="openLightbox(this)">
+
+            </div>
+
+
+            <button
+              class="close-project"
+              onclick="closeProject(this)"
+            >
+              − Close Project
+            </button>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 07
+             ================================================= -->
+
+        <article class="gnss-project-card">
+
+          <div
+            class="gnss-project-card-header"
+            onclick="toggleProject(this)"
+          >
+
+            <img class="gnss-project-card-main-image" src="assets/gnss.jpg" alt="GNSS coordinate survey">
+
+            <div class="gnss-project-content">
+
+              <span class="gnss-project-location">
+                UTTARAKHAND
+              </span>
+
+              <h3>
+                Coordinate Survey
+              </h3>
+
+              <p>
+                High-accuracy coordinate collection for
+                mapping and CAD preparation.
+              </p>
+
+              <span class="view-project">
+                + View Project
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-details">
+
+            <p class="project-full-description">
+              Coordinate survey work using GNSS RTK for
+              accurate point collection and preparation
+              of digital survey information.
+            </p>
+
+
+            <div class="project-photo-grid">
+
+              <img src="assets/gnss.jpg" alt="Coordinate survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="GNSS coordinate collection" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Field coordinates" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Survey work" onclick="openLightbox(this)">
+
+            </div>
+
+
+            <button
+              class="close-project"
+              onclick="closeProject(this)"
+            >
+              − Close Project
+            </button>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 08
+             ================================================= -->
+
+        <article class="gnss-project-card">
+
+          <div
+            class="gnss-project-card-header"
+            onclick="toggleProject(this)"
+          >
+
+            <img class="gnss-project-card-main-image" src="assets/gnss.jpg" alt="GNSS RTK field survey">
+
+            <div class="gnss-project-content">
+
+              <span class="gnss-project-location">
+                UTTARAKHAND
+              </span>
+
+              <h3>
+                Field Survey
+              </h3>
+
+              <p>
+                GNSS RTK observations collected across
+                project sites.
+              </p>
+
+              <span class="view-project">
+                + View Project
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-details">
+
+            <p class="project-full-description">
+              Field GNSS observations collected for
+              accurate mapping, measurements and survey
+              documentation.
+            </p>
+
+
+            <div class="project-photo-grid">
+
+              <img src="assets/gnss.jpg" alt="GNSS field survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Field observation" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="GNSS survey equipment" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Survey measurement" onclick="openLightbox(this)">
+
+            </div>
+
+
+            <button
+              class="close-project"
+              onclick="closeProject(this)"
+            >
+              − Close Project
+            </button>
+
+          </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             PROJECT 09
+             ================================================= -->
+
+        <article class="gnss-project-card">
+
+          <div
+            class="gnss-project-card-header"
+            onclick="toggleProject(this)"
+          >
+
+            <img class="gnss-project-card-main-image" src="assets/gnss.jpg" alt="GNSS digital mapping survey">
+
+            <div class="gnss-project-content">
+
+              <span class="gnss-project-location">
+                UTTARAKHAND
+              </span>
+
+              <h3>
+                Digital Mapping Survey
+              </h3>
+
+              <p>
+                GNSS field data prepared for digital mapping
+                and CAD outputs.
+              </p>
+
+              <span class="view-project">
+                + View Project
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="project-details">
+
+            <p class="project-full-description">
+              GNSS RTK field data collected and organized
+              for digital mapping, CAD drawings and other
+              survey documentation.
+            </p>
+
+
+            <div class="project-photo-grid">
+
+              <img src="assets/gnss.jpg" alt="Digital mapping survey" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="GNSS mapping" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="CAD survey data" onclick="openLightbox(this)">
+              <img src="assets/gnss.jpg" alt="Survey mapping" onclick="openLightbox(this)">
+
+            </div>
+
+
+            <button
+              class="close-project"
+              onclick="closeProject(this)"
+            >
+              − Close Project
+            </button>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CTA
+         ===================================================== -->
+
+    <section class="gnss-project-cta">
+
+      <p class="eyebrow">
+        HAVE A SURVEY PROJECT?
+      </p>
+
+      <h2>
+        Need <span>GNSS RTK Surveying?</span>
+      </h2>
+
+      <p>
+        Contact SR Associates for GNSS RTK surveying,
+        land measurement, topographical surveys and
+        accurate field data collection.
+      </p>
+
+
+      <div class="gnss-project-cta-actions">
+
+        <a
+          class="btn btn-primary"
+          href="tel:+918057755380"
+        >
+          Call Us
+        </a>
+
+
+        <a
+          class="btn btn-light"
+          href="https://wa.me/918057755380"
+          target="_blank"
+          rel="noopener"
+        >
+          WhatsApp Us
+        </a>
+
+
+        <a
+          class="btn btn-light"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=srassociate86@gmail.com"
+          target="_blank"
+          rel="noopener"
+        >
+          Email Us
+        </a>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =====================================================
+       IMAGE LIGHTBOX
+       ===================================================== -->
+
+  <div class="image-lightbox" id="imageLightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close image">×</button>
+    <button class="lightbox-arrow lightbox-prev" onclick="previousPhoto(event)" aria-label="Previous photo">‹</button>
+    <div class="lightbox-stage" id="lightboxStage">
+      <img id="lightboxImage" src="" alt="Project photograph">
+    </div>
+    <button class="lightbox-arrow lightbox-next" onclick="nextPhoto(event)" aria-label="Next photo">›</button>
+    <div class="lightbox-tools">
+      <button onclick="zoomOut(event)" aria-label="Zoom out">−</button>
+      <button onclick="resetZoom(event)" aria-label="Reset zoom">Fit</button>
+      <button onclick="zoomIn(event)" aria-label="Zoom in">+</button>
+      <div class="lightbox-counter" id="lightboxCounter">1 / 4</div>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer>
+
+    <span>
+      © 2026 SR Associates. All Rights Reserved.
+    </span>
+
+    <span>
+      Accurate Measurement. Solid Foundation.
+    </span>
+
+    <span>
+      landsurveyor.co.in
+    </span>
+
+  </footer>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       MOBILE MENU
+       ===================================================== */
+
+    const menuToggle =
+      document.querySelector(".menu-toggle");
+
+    const nav =
+      document.querySelector(".nav");
+
+
+    menuToggle.addEventListener(
+      "click",
+      function () {
+
+        nav.classList.toggle("open");
+
+      }
+    );
+
+
+
+    /* =====================================================
+       PROJECT EXPAND / COLLAPSE
+       ===================================================== */
+
+    function toggleProject(header) {
+
+      const card =
+        header.closest(".gnss-project-card");
+
+      const currentlyExpanded =
+        card.classList.contains("expanded");
+
+
+      /* Close all other projects */
+
+      document
+        .querySelectorAll(".gnss-project-card")
+        .forEach(function(project) {
+
+          project.classList.remove("expanded");
+
+        });
+
+
+      /* Open selected project */
+
+      if (!currentlyExpanded) {
+
+        card.classList.add("expanded");
+
+        setTimeout(function() {
+
+          card.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+          });
+
+        },100);
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       CLOSE PROJECT
+       ===================================================== */
+
+    function closeProject(button) {
+
+      const card =
+        button.closest(".gnss-project-card");
+
+      card.classList.remove("expanded");
+
+    }
+
+
+
+    /* =====================================================
+       IMAGE LIGHTBOX + SLIDESHOW + ZOOM
+       ===================================================== */
+
+    let currentPhotoIndex=0;
+    let currentProjectPhotos=[];
+    let zoomLevel=1;
+    let dragStartX=0;
+    let dragStartY=0;
+    let imageX=0;
+    let imageY=0;
+
+    function openLightbox(clickedImage){
+      const projectCard=clickedImage.closest(".gnss-project-card");
+      if(!projectCard)return;
+      const photos=projectCard.querySelectorAll(".project-photo-grid img");
+      currentProjectPhotos=Array.from(photos).map(img=>({src:img.src,alt:img.alt}));
+      currentPhotoIndex=Array.from(photos).indexOf(clickedImage);
+      if(currentPhotoIndex<0)currentPhotoIndex=0;
+      resetZoom();
+      showCurrentPhoto();
+      document.getElementById("imageLightbox").classList.add("active");
+      document.body.style.overflow="hidden";
+    }
+
+    function showCurrentPhoto(){
+      if(!currentProjectPhotos.length)return;
+      const photo=currentProjectPhotos[currentPhotoIndex];
+      const image=document.getElementById("lightboxImage");
+      image.src=photo.src;
+      image.alt=photo.alt;
+      document.getElementById("lightboxCounter").textContent=(currentPhotoIndex+1)+" / "+currentProjectPhotos.length;
+      resetImagePosition();
+    }
+
+    function nextPhoto(event){
+      if(event)event.stopPropagation();
+      if(!currentProjectPhotos.length)return;
+      currentPhotoIndex=(currentPhotoIndex+1)%currentProjectPhotos.length;
+      zoomLevel=1;
+      showCurrentPhoto();
+    }
+
+    function previousPhoto(event){
+      if(event)event.stopPropagation();
+      if(!currentProjectPhotos.length)return;
+      currentPhotoIndex=(currentPhotoIndex-1+currentProjectPhotos.length)%currentProjectPhotos.length;
+      zoomLevel=1;
+      showCurrentPhoto();
+    }
+
+    function zoomIn(event){
+      if(event)event.stopPropagation();
+      zoomLevel=Math.min(3,zoomLevel+.25);
+      applyImageTransform();
+    }
+
+    function zoomOut(event){
+      if(event)event.stopPropagation();
+      zoomLevel=Math.max(1,zoomLevel-.25);
+      applyImageTransform();
+    }
+
+    function resetZoom(event){
+      if(event)event.stopPropagation();
+      zoomLevel=1;
+      resetImagePosition();
+      applyImageTransform();
+    }
+
+    function resetImagePosition(){
+      imageX=0;
+      imageY=0;
+    }
+
+    function applyImageTransform(){
+      const image=document.getElementById("lightboxImage");
+      image.style.transform="translate("+imageX+"px,"+imageY+"px) scale("+zoomLevel+")";
+    }
+
+    function closeLightbox(event){
+      if(event&&event.target&&event.target.id!=="imageLightbox")return;
+      document.getElementById("imageLightbox").classList.remove("active");
+      document.body.style.overflow="";
+      currentProjectPhotos=[];
+      currentPhotoIndex=0;
+      zoomLevel=1;
+      resetImagePosition();
+    }
+
+    document.addEventListener("keydown",function(event){
+      const lightbox=document.getElementById("imageLightbox");
+      if(!lightbox.classList.contains("active"))return;
+      if(event.key==="ArrowRight"){event.preventDefault();nextPhoto(event);}
+      if(event.key==="ArrowLeft"){event.preventDefault();previousPhoto(event);}
+      if(event.key==="Escape"){event.preventDefault();closeLightbox();}
+      if(event.key==="+"||event.key==="="){event.preventDefault();zoomIn(event);}
+      if(event.key==="-"){event.preventDefault();zoomOut(event);}
+      if(event.key==="0"){event.preventDefault();resetZoom(event);}
+    });
+
+    document.getElementById("lightboxImage").addEventListener("wheel",function(event){
+      event.preventDefault();
+      if(event.deltaY<0)zoomIn(event);
+      else zoomOut(event);
+    },{passive:false});
+
+    document.getElementById("lightboxImage").addEventListener("dblclick",function(event){
+      event.stopPropagation();
+      if(zoomLevel===1)zoomLevel=2;
+      else zoomLevel=1;
+      applyImageTransform();
+    });
+
+    const lightboxStage=document.getElementById("lightboxStage");
+
+    lightboxStage.addEventListener("mousedown",function(event){
+      if(zoomLevel<=1)return;
+      lightboxStage.classList.add("dragging");
+      dragStartX=event.clientX-imageX;
+      dragStartY=event.clientY-imageY;
+    });
+
+    document.addEventListener("mousemove",function(event){
+      if(!lightboxStage.classList.contains("dragging"))return;
+      imageX=event.clientX-dragStartX;
+      imageY=event.clientY-dragStartY;
+      applyImageTransform();
+    });
+
+    document.addEventListener("mouseup",function(){
+      lightboxStage.classList.remove("dragging");
+    });
+
+  </script>
+
+
+</body>
+
+</html>
+```

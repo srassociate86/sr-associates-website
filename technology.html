@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="SR Associates uses GNSS RTK, total station, drone photogrammetry, CAD and 3D mapping technology for professional surveying and mapping.">
+
+  <title>Technology | SR Associates - Land Surveyors</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+
+    /* =========================================
+       TECHNOLOGY PAGE
+    ========================================= */
+
+    .tech-hero {
+      min-height: 72vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.88) 0%,
+          rgba(0,0,0,.62) 45%,
+          rgba(0,0,0,.18) 100%
+        ),
+        url("assets/drone.jpg") center/cover no-repeat;
+    }
+
+    .tech-hero-content {
+      width: min(1180px, 90%);
+      margin: auto;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tech-hero h1 {
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: .95;
+      margin: 15px 0 25px;
+      letter-spacing: -3px;
+    }
+
+    .tech-hero h1 span {
+      color: #e53935;
+    }
+
+    .tech-hero-copy {
+      max-width: 650px;
+      font-size: 19px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.85);
+    }
+
+
+    /* TECHNOLOGY SHOWCASE */
+
+    .tech-showcase {
+      width: min(1180px, 90%);
+      margin: 100px auto;
+    }
+
+    .tech-heading {
+      max-width: 700px;
+      margin-bottom: 50px;
+    }
+
+    .tech-heading h2 {
+      font-size: clamp(38px, 5vw, 60px);
+      line-height: 1;
+      margin: 12px 0 20px;
+    }
+
+    .tech-heading p {
+      color: #666;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+
+    /* LARGE IMAGE CARDS */
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .tech-card {
+      position: relative;
+      min-height: 480px;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #111;
+      color: white;
+    }
+
+    .tech-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      transition: transform .7s ease;
+    }
+
+    .tech-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .tech-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.9),
+          rgba(0,0,0,.05) 65%
+        );
+    }
+
+    .tech-card-content {
+      position: absolute;
+      z-index: 2;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px;
+    }
+
+    .tech-number {
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: #e53935;
+      font-weight: 700;
+    }
+
+    .tech-card h3 {
+      font-size: 29px;
+      margin: 10px 0;
+    }
+
+    .tech-card p {
+      color: rgba(255,255,255,.8);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+
+    /* FEATURE SECTIONS */
+
+    .tech-feature {
+      width: min(1180px, 90%);
+      margin: 130px auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .tech-feature.reverse .tech-feature-image {
+      order: 2;
+    }
+
+    .tech-feature.reverse .tech-feature-content {
+      order: 1;
+    }
+
+    .tech-feature-image {
+      height: 520px;
+      overflow: hidden;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    .tech-feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+
+    .tech-feature-image:hover img {
+      transform: scale(1.04);
+    }
+
+    .tech-feature-content h2 {
+      font-size: clamp(36px, 4vw, 55px);
+      line-height: 1;
+      margin: 12px 0 25px;
+    }
+
+    .tech-feature-content p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .tech-list {
+      margin-top: 25px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tech-list li {
+      padding: 13px 0;
+      border-bottom: 1px solid #ddd;
+      font-weight: 600;
+    }
+
+    .tech-list li::before {
+      content: "✓";
+      color: #e53935;
+      margin-right: 12px;
+    }
+
+
+    /* CAD / 3D VISUAL */
+
+    .cad-banner {
+      width: min(1180px, 90%);
+      margin: 120px auto;
+      min-height: 470px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.9),
+          rgba(0,0,0,.35)
+        ),
+        url("assets/cad-3d.jpg") center/cover no-repeat;
+    }
+
+    .cad-content {
+      color: white;
+      max-width: 650px;
+      padding: 60px;
+    }
+
+    .cad-content h2 {
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1;
+      margin: 15px 0 20px;
+    }
+
+    .cad-content p {
+      color: rgba(255,255,255,.8);
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+
+    /* WORKFLOW */
+
+    .tech-workflow {
+      background: #111;
+      color: white;
+      padding: 110px 0;
+    }
+
+    .workflow-inner {
+      width: min(1180px, 90%);
+      margin: auto;
+    }
+
+    .workflow-inner h2 {
+      font-size: clamp(38px, 5vw, 60px);
+      max-width: 700px;
+      line-height: 1;
+      margin: 15px 0 60px;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #333;
+    }
+
+    .workflow-item {
+      background: #111;
+      padding: 35px;
+      min-height: 230px;
+    }
+
+    .workflow-item b {
+      font-size: 40px;
+      color: #e53935;
+    }
+
+    .workflow-item h3 {
+      margin: 25px 0 10px;
+      font-size: 21px;
+    }
+
+    .workflow-item p {
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tech-card {
+        min-height: 420px;
+      }
+
+      .tech-feature {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        margin: 90px auto;
+      }
+
+      .tech-feature.reverse .tech-feature-image {
+        order: 1;
+      }
+
+      .tech-feature.reverse .tech-feature-content {
+        order: 2;
+      }
+
+      .tech-feature-image {
+        height: 380px;
+      }
+
+      .cad-content {
+        padding: 35px;
+      }
+
+      .workflow-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tech-hero {
+        min-height: 650px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="site-header">
+
+  <a class="brand" href="index.html">
+    <img src="assets/logo.jpg" alt="SR Associates">
+  </a>
+
+  <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+  <nav class="nav">
+
+    <a href="index.html">Home</a>
+
+    <a href="services.html">Services</a>
+
+    <a href="projects.html">Projects</a>
+
+    <a class="active" href="technology.html">Technology</a>
+
+    <a href="about.html">About Us</a>
+
+    <a href="contact.html">Contact</a>
+
+  </nav>
+
+  <a class="nav-whatsapp"
+     href="https://wa.me/918057755380"
+     target="_blank"
+     rel="noopener">
+     WhatsApp
+  </a>
+
+</header>
+
+
+
+<main>
+
+
+<!-- HERO -->
+
+<section class="tech-hero">
+
+  <div class="tech-hero-content">
+
+    <p class="eyebrow">
+      SURVEY TECHNOLOGY
+    </p>
+
+    <h1>
+      Technology.<br>
+      <span>Precision.</span><br>
+      Data.
+    </h1>
+
+    <p class="tech-hero-copy">
+      Modern surveying technology helps us capture accurate field data,
+      understand terrain and transform measurements into reliable digital
+      information for planning, construction and development.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- INTRO -->
+
+<section class="tech-showcase">
+
+  <div class="tech-heading">
+
+    <p class="eyebrow red">
+      OUR TECHNOLOGY
+    </p>
+
+    <h2>
+      Tools built for the real world.
+    </h2>
+
+    <p>
+      From satellite positioning to aerial mapping, we use a combination
+      of modern surveying technologies to collect, process and deliver
+      project data efficiently.
+    </p>
+
+  </div>
+
+
+  <div class="tech-grid">
+
+
+    <!-- GNSS -->
+
+    <article class="tech-card">
+
+      <img src="assets/gnss.jpg"
+           alt="GNSS RTK surveying equipment">
+
+      <div class="tech-card-content">
+
+        <span class="tech-number">
+          01 / POSITIONING
+        </span>
+
+        <h3>
+          GNSS / RTK
+        </h3>
+
+        <p>
+          High-accuracy satellite positioning for coordinates,
+          control points, topographical surveys and field mapping.
+        </p>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- TOTAL STATION -->
+
+    <article class="tech-card">
+
+      <img src="assets/total-station.jpg"
+           alt="Total station surveying equipment">
+
+      <div class="tech-card-content">
+
+        <span class="tech-number">
+          02 / MEASUREMENT
+        </span>
+
+        <h3>
+          Total Station
+        </h3>
+
+        <p>
+          Precise angle and distance measurement for construction,
+          topographical and detailed engineering surveys.
+        </p>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- DRONE -->
+
+    <article class="tech-card">
+
+      <img src="assets/drone.jpg"
+           alt="Drone surveying and mapping">
+
+      <div class="tech-card-content">
+
+        <span class="tech-number">
+          03 / AERIAL MAPPING
+        </span>
+
+        <h3>
+          Drone Survey
+        </h3>
+
+        <p>
+          Aerial imagery and photogrammetry for orthomosaics,
+          terrain models and 3D mapping.
+        </p>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+
+<!-- GNSS FEATURE -->
+
+<section class="tech-feature">
+
+  <div class="tech-feature-image">
+
+    <img src="assets/gnss.jpg"
+         alt="GNSS RTK field survey">
+
+  </div>
+
+
+  <div class="tech-feature-content">
+
+    <p class="eyebrow red">
+      01 / GNSS & RTK
+    </p>
+
+    <h2>
+      Know exactly where you are.
+    </h2>
+
+    <p>
+      GNSS surveying allows survey points to be positioned using satellite
+      observations. RTK workflows can provide highly precise real-time
+      positioning when suitable correction data and field conditions are
+      available.
+    </p>
+
+    <ul class="tech-list">
+
+      <li>Coordinate & control point collection</li>
+
+      <li>Topographical point survey</li>
+
+      <li>Construction layout</li>
+
+      <li>RTK field data collection</li>
+
+    </ul>
+
+  </div>
+
+</section>
+
+
+
+<!-- TOTAL STATION FEATURE -->
+
+<section class="tech-feature reverse">
+
+  <div class="tech-feature-image">
+
+    <img src="assets/total-station.jpg"
+         alt="Total station field surveying">
+
+  </div>
+
+
+  <div class="tech-feature-content">
+
+    <p class="eyebrow red">
+      02 / TOTAL STATION
+    </p>
+
+    <h2>
+      Precision from line of sight.
+    </h2>
+
+    <p>
+      Total stations combine angular and distance measurements to determine
+      precise positions in the field. They remain particularly useful where
+      line-of-sight measurements are required or satellite visibility is
+      limited.
+    </p>
+
+    <ul class="tech-list">
+
+      <li>Detailed topographical surveys</li>
+
+      <li>Construction setting out</li>
+
+      <li>Building and structure surveys</li>
+
+      <li>Precise distance and angle measurement</li>
+
+    </ul>
+
+  </div>
+
+</section>
+
+
+
+<!-- DRONE FEATURE -->
+
+<section class="tech-feature">
+
+  <div class="tech-feature-image">
+
+    <img src="assets/drone.jpg"
+         alt="Drone photogrammetry survey">
+
+  </div>
+
+
+  <div class="tech-feature-content">
+
+    <p class="eyebrow red">
+      03 / DRONE PHOTOGRAMMETRY
+    </p>
+
+    <h2>
+      See the entire site from above.
+    </h2>
+
+    <p>
+      Drone imagery can cover large areas efficiently. Photogrammetric
+      processing converts overlapping aerial photographs into measurable
+      digital mapping products.
+    </p>
+
+    <ul class="tech-list">
+
+      <li>Orthomosaic mapping</li>
+
+      <li>Digital terrain models</li>
+
+      <li>Elevation information</li>
+
+      <li>3D reconstruction</li>
+
+    </ul>
+
+  </div>
+
+</section>
+
+
+
+<!-- CAD / 3D -->
+
+<section class="cad-banner">
+
+  <div class="cad-content">
+
+    <p class="eyebrow">
+      04 / DIGITAL MAPPING
+    </p>
+
+    <h2>
+      From survey points to 3D data.
+    </h2>
+
+    <p>
+      Field observations and aerial data can be transformed into CAD
+      drawings, contours, surfaces, profiles, sections and 3D terrain
+      information for project planning and analysis.
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- WORKFLOW -->
+
+<section class="tech-workflow">
+
+  <div class="workflow-inner">
+
+    <p class="eyebrow">
+      FIELD TO DIGITAL
+    </p>
+
+    <h2>
+      One connected surveying workflow.
+    </h2>
+
+
+    <div class="workflow-grid">
+
+
+      <div class="workflow-item">
+
+        <b>01</b>
+
+        <h3>
+          Capture
+        </h3>
+
+        <p>
+          GNSS, total station and drone systems collect field information.
+        </p>
+
+      </div>
+
+
+      <div class="workflow-item">
+
+        <b>02</b>
+
+        <h3>
+          Control
+        </h3>
+
+        <p>
+          Survey control, coordinates and observations are checked.
+        </p>
+
+      </div>
+
+
+      <div class="workflow-item">
+
+        <b>03</b>
+
+        <h3>
+          Process
+        </h3>
+
+        <p>
+          Field data and imagery are processed into digital information.
+        </p>
+
+      </div>
+
+
+      <div class="workflow-item">
+
+        <b>04</b>
+
+        <h3>
+          Deliver
+        </h3>
+
+        <p>
+          CAD drawings, maps, surfaces and other project outputs are prepared.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- CTA -->
+
+<section class="cta" id="contact">
+
+  <div>
+
+    <p class="eyebrow">
+      HAVE A PROJECT TO SURVEY?
+    </p>
+
+    <h2>
+      Let's work together.<br>
+      <span>Measure with confidence.</span>
+    </h2>
+
+  </div>
+
+
+  <div class="cta-actions">
+
+    <a class="btn btn-primary"
+       href="tel:+918057755380">
+       Call Us
+    </a>
+
+    <a class="btn btn-light"
+       href="https://wa.me/918057755380"
+       target="_blank"
+       rel="noopener">
+       WhatsApp Us
+    </a>
+
+    <a class="btn btn-light"
+       href="https://mail.google.com/mail/?view=cm&fs=1&to=srassociate86@gmail.com"
+       target="_blank"
+       rel="noopener">
+       Email Us
+    </a>
+
+  </div>
+
+
+  <div class="contact-meta">
+
+    <span>
+      📍 Shyampur, Rishikesh, Uttarakhand 249204
+    </span>
+
+    <span>
+      ✉ srassociate86@gmail.com
+    </span>
+
+    <span>
+      ☎ +91 80577 55380, 9012167169, 7500570426
+    </span>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+  <span>
+    © 2026 SR Associates. All Rights Reserved.
+  </span>
+
+  <span>
+    Accurate Measurement. Solid Foundation.
+  </span>
+
+  <span>
+    landsurveyor.co.in
+  </span>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

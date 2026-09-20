@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About SR Associates, land surveyors based in Shyampur, Rishikesh, Uttarakhand, providing land, topographical, GNSS RTK, total station, drone mapping and CAD survey services.">
+  <title>About Us | SR Associates | Land Surveyors</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .about-hero {
+      position: relative;
+      min-height: 58vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 7vw 80px;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.82), rgba(0,0,0,.42)),
+        url("assets/gnss.jpg") center/cover no-repeat;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .about-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+
+    .about-hero h1 {
+      font-size: clamp(44px, 6vw, 78px);
+      line-height: .98;
+      margin: 12px 0 24px;
+    }
+
+    .about-hero h1 span {
+      color: #e53935;
+    }
+
+    .about-hero-copy {
+      max-width: 650px;
+      font-size: 18px;
+      line-height: 1.7;
+      opacity: .92;
+    }
+
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-intro h2,
+    .about-section h2 {
+      margin-top: 0;
+    }
+
+    .about-intro p,
+    .about-section p {
+      line-height: 1.8;
+    }
+
+    .about-image {
+      min-height: 390px;
+      border-radius: 4px;
+      background: url("assets/total-station.jpg") center/cover no-repeat;
+    }
+
+    .about-facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 50px;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .about-fact {
+      padding: 30px 20px;
+      border-right: 1px solid #ddd;
+    }
+
+    .about-fact:last-child {
+      border-right: 0;
+    }
+
+    .about-fact strong {
+      display: block;
+      font-size: 34px;
+      margin-bottom: 7px;
+    }
+
+    .about-fact span {
+      display: block;
+      font-weight: 700;
+    }
+
+    .about-fact small {
+      display: block;
+      margin-top: 5px;
+      opacity: .7;
+    }
+
+    .about-values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 35px;
+    }
+
+    .about-value {
+      padding: 30px;
+      background: #f5f5f5;
+      border-top: 3px solid #e53935;
+    }
+
+    .about-value h3 {
+      margin-top: 0;
+    }
+
+    .about-value p {
+      margin-bottom: 0;
+    }
+
+    .about-process {
+      background: #111;
+      color: #fff;
+    }
+
+    .about-process .eyebrow {
+      color: #fff;
+    }
+
+    .about-process h2 {
+      max-width: 700px;
+    }
+
+    .about-process-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 25px;
+      margin-top: 45px;
+    }
+
+    .about-process-step {
+      border-top: 1px solid rgba(255,255,255,.35);
+      padding-top: 22px;
+    }
+
+    .about-process-step b {
+      color: #e53935;
+      font-size: 28px;
+    }
+
+    .about-process-step h3 {
+      margin: 18px 0 8px;
+    }
+
+    .about-process-step p {
+      color: rgba(255,255,255,.72);
+    }
+
+    .about-cta {
+      text-align: center;
+    }
+
+    .about-cta .section-intro {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 1000px) {
+      .about-process-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 850px) {
+      .about-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .about-facts {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-fact:nth-child(2) {
+        border-right: 0;
+      }
+
+      .about-fact:nth-child(-n+2) {
+        border-bottom: 1px solid #ddd;
+      }
+
+      .about-values,
+      .about-process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .about-hero {
+        min-height: 55vh;
+        padding: 80px 6vw 60px;
+      }
+
+      .about-facts,
+      .about-values,
+      .about-process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-fact {
+        border-right: 0;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .about-fact:last-child {
+        border-bottom: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="SR Associates home">
+      <img src="assets/logo.jpg" alt="SR Associates">
+    </a>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="technology.html">Technology</a>
+      <a class="active" href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <a class="nav-whatsapp" href="https://wa.me/918057755380" target="_blank" rel="noopener">WhatsApp</a>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="about-hero">
+      <div class="about-hero-content">
+        <p class="eyebrow">ABOUT SR ASSOCIATES</p>
+        <h1>Precision Surveying.<br><span>Reliable Data.</span></h1>
+        <p class="about-hero-copy">
+          Precision Surveying. Reliable Data. Practical Solutions.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- WHO WE ARE -->
+    <section class="section about-section">
+      <div class="about-intro">
+        <div>
+          <p class="eyebrow red">WHO WE ARE</p>
+          <h2>Precision surveying backed by experience and modern technology.</h2>
+
+          <p>
+            At <strong>SR Associates,</strong> we are a land surveying and geospatial
+            service provider based in <strong>Rishikesh, Uttarakhand, India</strong>,
+            providing professional surveying solutions for land development,
+            construction, infrastructure and mapping projects.
+          </p>
+
+          <p>
+            With surveying experience dating back to <strong>2013</strong>,
+            we combine field expertise with modern surveying technology to
+            deliver accurate and useful spatial data for our clients.
+          </p>
+        </div>
+
+        <div class="about-image" aria-label="Surveying with Total Station"></div>
+      </div>
+
+      <div class="about-facts">
+        <div class="about-fact">
+          <strong>2013</strong>
+          <span>Experience</span>
+          <small>Surveying experience since 2013</small>
+        </div>
+
+        <div class="about-fact">
+          <strong>RTK</strong>
+          <span>Modern Technology</span>
+          <small>High-accuracy positioning</small>
+        </div>
+
+        <div class="about-fact">
+          <strong>FIELD</strong>
+          <span>Expertise</span>
+          <small>Practical field data collection</small>
+        </div>
+
+        <div class="about-fact">
+          <strong>CAD</strong>
+          <span>Digital Deliverables</span>
+          <small>Clear project outputs</small>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- WHAT WE DO -->
+    <section class="section about-section">
+      <p class="eyebrow red">WHAT WE DO</p>
+      <h2>Our Surveying Services</h2>
+
+      <p class="section-intro">
+        Our services cover a wide range of land and site surveying requirements.
+      </p>
+
+      <div class="about-values">
+        <article class="about-value">
+          <h3>Land & Boundary Surveys</h3>
+          <p>Land, property, boundary and plot survey requirements.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Topographical Surveys</h3>
+          <p>Detailed terrain mapping, contours, levels and site information.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>GNSS RTK Surveys</h3>
+          <p>High-precision positioning, control points and coordinate collection.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Total Station Surveys</h3>
+          <p>Precise measurements, detail surveys and construction-related work.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Drone & Aerial Surveying</h3>
+          <p>Aerial mapping, terrain documentation, orthomosaics and 3D models.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>CAD Mapping & 3D Survey Data</h3>
+          <p>Professional survey drawings, plans, contours, surfaces and digital outputs.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Earthwork Quantity</h3>
+          <p>Cut-and-fill calculations, excavation quantities and volume analysis.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Digital Survey Plans & Mapping</h3>
+          <p>Clear digital plans and mapping outputs for project requirements.</p>
+        </article>
+      </div>
+
+      <p class="section-intro" style="margin-top:35px;">
+        Our work can range from small individual land surveys to detailed
+        topographical and engineering survey projects.
+      </p>
+    </section>
+
+
+    <!-- OUR APPROACH -->
+    <section class="section about-section">
+      <div class="about-intro">
+        <div class="about-image" style="background-image:url('assets/drone.jpg');"></div>
+
+        <div>
+          <p class="eyebrow red">OUR APPROACH</p>
+          <h2>From field measurements to practical project information.</h2>
+
+          <p>
+            We believe that a good survey is more than simply collecting
+            coordinates. The field data needs to be accurate, properly checked,
+            organized and presented in a form that can be directly used for
+            planning, design, construction and decision-making.
+          </p>
+
+          <p>
+            Our surveying workflow combines:
+          </p>
+
+          <p>
+            <strong>Field Survey → Data Collection → Quality Checking →
+            CAD / Mapping → Final Deliverables</strong>
+          </p>
+
+          <p>
+            We use modern GNSS RTK and Total Station equipment along with
+            digital CAD and mapping workflows to produce clear and practical
+            survey deliverables.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TECHNOLOGY & EXPERTISE -->
+    <section class="section about-section">
+      <p class="eyebrow red">TECHNOLOGY & EXPERTISE</p>
+      <h2>Modern surveying technology for detailed spatial information.</h2>
+
+      <p class="section-intro">
+        Modern surveying technology allows us to collect detailed spatial
+        information efficiently, even on complex sites.
+      </p>
+
+      <div class="about-values">
+        <article class="about-value">
+          <h3>GNSS RTK</h3>
+          <p>
+            For high-precision positioning, control points, coordinate
+            collection and detailed site surveys.
+          </p>
+        </article>
+
+        <article class="about-value">
+          <h3>Total Station</h3>
+          <p>
+            For precise measurements, detail surveys, construction-related
+            work and areas where satellite positioning may be limited.
+          </p>
+        </article>
+
+        <article class="about-value">
+          <h3>Drone Surveying</h3>
+          <p>
+            For aerial mapping, terrain documentation, orthomosaics,
+            3D models and large-area data collection.
+          </p>
+        </article>
+
+        <article class="about-value">
+          <h3>CAD & Digital Mapping</h3>
+          <p>
+            For converting field observations into professional survey
+            drawings, plans, contours, surface data and other digital
+            deliverables.
+          </p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- SERVING PROJECTS -->
+    <section class="section about-section">
+      <p class="eyebrow red">SERVING DIFFERENT REQUIREMENTS</p>
+      <h2>Survey information for a wide range of projects.</h2>
+
+      <p class="section-intro">
+        Every project has different surveying requirements. We work with
+        clients to understand the purpose of the survey and provide the
+        appropriate combination of field data, drawings and digital information.
+      </p>
+
+      <div class="about-values">
+        <article class="about-value">
+          <h3>Land Owners</h3>
+          <p>Land, property, boundary and mapping requirements.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Builders & Contractors</h3>
+          <p>Survey information for construction and development projects.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Engineers & Architects</h3>
+          <p>Accurate site information to support planning and design.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Infrastructure Projects</h3>
+          <p>Survey data for infrastructure and site development requirements.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Property Development</h3>
+          <p>Surveying and mapping support for development projects.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Construction Sites</h3>
+          <p>Field measurements, levels and project survey requirements.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Road & Earthwork Projects</h3>
+          <p>Terrain, quantity, cut-and-fill and volume-related information.</p>
+        </article>
+
+        <article class="about-value">
+          <h3>Mapping & Planning</h3>
+          <p>Digital survey data, plans, mapping and project outputs.</p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- COMMITMENT -->
+    <section class="section about-section">
+      <div class="about-intro">
+        <div>
+          <p class="eyebrow red">OUR COMMITMENT</p>
+          <h2>Accurate measurements. Dependable data. Clear deliverables.</h2>
+
+          <p>
+            At SR Associates, our focus is on providing
+            <strong>accurate field measurements, dependable survey data and
+            clear deliverables.</strong>
+          </p>
+
+          <p>
+            We aim to make survey information easy to understand and useful
+            for the next stage of your project, whether that means planning,
+            design, construction, documentation or quantity calculation.
+          </p>
+        </div>
+
+        <div class="about-image" style="background-image:url('assets/gnss.jpg');"></div>
+      </div>
+    </section>
+
+
+    <!-- COMPANY SUMMARY -->
+    <section class="section about-section">
+      <p class="eyebrow red">SR ASSOCIATES</p>
+      <h2>Land Surveyors & Geospatial Services</h2>
+
+      <p class="section-intro">
+        <strong>Land Surveyors | GNSS RTK | Total Station | Drone Survey |
+        CAD & 3D Mapping</strong>
+      </p>
+
+      <p class="section-intro">
+        <strong>Based in Shyampur, Rishikesh, Uttarakhand, India</strong>
+      </p>
+    </section>
+
+
+    <!-- CTA -->
+    <section class="cta about-cta">
+      <div>
+        <p class="eyebrow">NEED A SURVEY?</p>
+        <h2>Let's work together.<br><span>Get accurate results.</span></h2>
+
+        <p class="section-intro">
+          Tell us about your site and surveying requirements. We can discuss
+          the appropriate survey method and provide a quotation for your project.
+        </p>
+      </div>
+
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="tel:+918057755380">Call Us</a>
+
+        <a class="btn btn-light"
+           href="https://wa.me/918057755380"
+           target="_blank"
+           rel="noopener">WhatsApp Us</a>
+
+        <a class="btn btn-light"
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=srassociate86@gmail.com"
+           target="_blank"
+           rel="noopener">Email Us</a>
+      </div>
+
+      <div class="contact-meta">
+        <span>📍 Shyampur, Rishikesh, Uttarakhand 249204</span>
+        <span>✉ srassociate86@gmail.com</span>
+        <span>☎ +91 80577 55380, 9012167169, 7500570426</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 SR Associates. All Rights Reserved.</span>
+    <span>Accurate Measurement. Solid Foundation.</span>
+    <span>landsurveyor.co.in</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
