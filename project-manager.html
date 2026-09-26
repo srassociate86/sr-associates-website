@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SR Associates Project Manager</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;color:#181818}.top{background:#111;color:#fff;padding:22px 5%;display:flex;justify-content:space-between;align-items:center;gap:20px}.top h1{margin:0;font-size:22px}.top span{color:#e31b23;font-size:12px;font-weight:700}.wrap{max-width:1100px;margin:25px auto;padding:0 18px}.panel{background:#fff;border:1px solid #ddd;border-radius:8px;padding:22px;margin-bottom:18px}.panel h2{margin:0 0 16px;font-size:19px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}label{font-size:12px;font-weight:700;display:block;margin-bottom:5px}input,select,textarea{width:100%;padding:11px;border:1px solid #ccc;border-radius:5px;font:inherit}textarea{min-height:100px;resize:vertical}.full{grid-column:1/-1}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}button{border:0;border-radius:5px;padding:11px 16px;cursor:pointer;font-weight:700}.primary{background:#d71920;color:#fff}.dark{background:#111;color:#fff}.light{background:#eee}.danger{background:#b00020;color:#fff}.status{padding:12px;background:#f1f1f1;border-radius:5px;margin-top:12px;white-space:pre-line}.small{font-size:12px;color:#666;line-height:1.5}.token-note{background:#fff7df;border-left:4px solid #d89b00;padding:12px;font-size:12px;line-height:1.5}.project-list{display:grid;gap:10px}.item{border:1px solid #ddd;border-radius:6px;padding:12px;display:flex;justify-content:space-between;gap:10px;align-items:center}.item strong{display:block}.item small{color:#777}.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.thumb{position:relative;width:105px}.thumb img{width:105px;height:75px;object-fit:cover;border-radius:4px;border:1px solid #ddd}.thumb button{position:absolute;right:2px;top:2px;width:24px;height:24px;padding:0;border-radius:50%;background:#b00020;color:#fff}.photo-row{display:flex;gap:8px;align-items:center;border:1px solid #ddd;padding:8px;border-radius:5px;margin-top:8px}.photo-row img{width:65px;height:50px;object-fit:cover}.hidden{display:none!important}@media(max-width:700px){.grid{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="top"><div><span>SR ASSOCIATES</span><h1>Project Manager</h1></div><div>GitHub-based website updater</div></div>
+<div class="wrap">
+<div class="panel">
+<h2>1. GitHub Connection</h2>
+<div class="grid">
+<div><label>GitHub Username / Owner</label><input id="owner" placeholder="your-github-username"></div>
+<div><label>Repository Name</label><input id="repo" placeholder="sr-associates-website"></div>
+<div class="full"><label>Fine-grained GitHub Token</label><input id="token" type="password" placeholder="Paste token here"></div>
+</div>
+<div class="token-note"><b>Security:</b> the token is used only in this browser session and is not written into the project files. Do not paste it into any HTML or JSON file. Use a fine-grained token restricted to this repository with Contents: Read and write.</div>
+<div class="actions"><button class="dark" onclick="testConnection()">Test Connection</button><button class="light" onclick="loadFromGitHub()">Load Current Projects</button></div>
+<div id="connectionStatus" class="status">Not connected.</div>
+</div>
+
+<div class="panel">
+<h2>2. Add / Edit Project</h2>
+<input id="editId" type="hidden">
+<div class="grid">
+<div><label>Section</label><select id="type"><option value="latest">Latest Project</option><option value="completed">Completed Project</option><option value="sample">Sample</option></select></div>
+<div><label>Category</label><input id="category" placeholder="GNSS / RTK SURVEY"></div>
+<div><label>Project Title</label><input id="title" placeholder="High Accuracy Field Survey"></div>
+<div><label>Location</label><input id="location" placeholder="Uttarakhand"></div>
+<div><label>Year</label><input id="year" placeholder="2026"></div>
+<div><label>Visibility</label><select id="visible"><option value="true">Visible</option><option value="false">Hidden</option></select></div>
+<div><label>Recent Highlight</label><select id="highlight"><option value="false">No</option><option value="true">Yes, show in slideshow</option></select></div>
+<div class="full"><label>Short Description</label><textarea id="shortDescription" placeholder="Short text shown with the project."></textarea></div>
+<div class="full"><label>Full Project Information</label><textarea id="description" placeholder="Detailed project information shown when a visitor opens the project."></textarea></div>
+<div class="full"><label>Add Photos</label><input id="photos" type="file" accept="image/*" multiple><div class="small">Select 4–5 web-ready photos for a normal project. New photos are stored under assets/projects/.</div><div id="newPhotos" class="thumbs"></div></div>
+</div>
+<div id="existingPhotos" class="thumbs"></div>
+<div class="actions"><button class="primary" onclick="saveProject()">Save Project Locally</button><button class="dark" onclick="publishAll()">Publish Changes to GitHub</button><button class="light" onclick="clearForm()">New Project</button></div>
+<div id="editStatus" class="status">No unsaved changes.</div>
+</div>
+
+<div class="panel">
+<h2>3. Existing Projects</h2>
+<div class="small">Edit project information, hide a project, remove a project, or remove photos. Removing a project does not delete shared legacy images such as assets/gnss.jpg. Photos uploaded by this manager can be deleted from GitHub when you publish.</div>
+<div id="projectList" class="project-list" style="margin-top:14px"></div>
+</div>
+</div>
+
+<script>
+let projects=[];let originalPublished=null;let removedPhotos=[];
+const $=id=>document.getElementById(id);
+const bool=id=>$(id).value==="true";
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
+function cfg(){return {owner:$("owner").value.trim(),repo:$("repo").value.trim(),token:$("token").value.trim()};}
+function headers(){return {Authorization:"Bearer "+cfg().token,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"}}
+function status(msg){$("connectionStatus").textContent=msg}
+function editStatus(msg){$("editStatus").textContent=msg}
+$("owner").value=localStorage.getItem("sr_owner")||"";$("repo").value=localStorage.getItem("sr_repo")||"";
+$("owner").addEventListener("change",()=>localStorage.setItem("sr_owner",$("owner").value.trim()));$("repo").addEventListener("change",()=>localStorage.setItem("sr_repo",$("repo").value.trim()));
+async function api(path,opts={}){const r=await fetch("https://api.github.com"+path,{...opts,headers:{...headers(),...(opts.headers||{})}});let j=null;try{j=await r.json()}catch{}if(!r.ok)throw new Error(j?.message||("GitHub API error "+r.status));return j}
+async function testConnection(){try{if(!cfg().owner||!cfg().repo||!cfg().token)throw new Error("Enter GitHub owner, repository and token.");const j=await api(`/repos/${encodeURIComponent(cfg().owner)}/${encodeURIComponent(cfg().repo)}`);status(`Connected to ${j.full_name}\nDefault branch: ${j.default_branch}`)}catch(e){status("Connection failed: "+e.message)}}
+async function getFile(path){return api(`/repos/${encodeURIComponent(cfg().owner)}/${encodeURIComponent(cfg().repo)}/contents/${path}`)}
+function b64utf8(str){return btoa(unescape(encodeURIComponent(str)))}
+function fileToBase64(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result.split(",")[1]);r.onerror=reject;r.readAsDataURL(file)})}
+async function loadFromGitHub(){try{if(!cfg().token)throw new Error("Enter your token first.");const f=await getFile("projects-data.json");const data=JSON.parse(decodeURIComponent(escape(atob(f.content.replace(/\n/g,"")))));projects=data.projects||[];originalPublished=projects.map(x=>JSON.parse(JSON.stringify(x)));removedPhotos=[];renderList();status("Loaded "+projects.length+" projects from GitHub.");}catch(e){status("Load failed: "+e.message)}}
+function renderList(){const el=$("projectList");if(!projects.length){el.innerHTML="<div class='small'>No projects loaded yet. Click Load Current Projects.</div>";return}el.innerHTML=projects.map(p=>`<div class="item"><div><strong>${esc(p.title)}</strong><small>${esc(p.type)} • ${esc(p.category)}${p.location?" • "+esc(p.location):""} • ${p.photos?.length||0} photo(s)}${p.visible===false?" • HIDDEN":""}</small></div><div class="actions"><button class="light" onclick="editProject('${esc(p.id)}')">Edit</button><button class="danger" onclick="removeProject('${esc(p.id)}')">Remove</button></div></div>`).join("")}
+function clearForm(){["editId","category","title","location","year","shortDescription","description"].forEach(id=>$(id).value="");$("type").value="latest";$("visible").value="true";$("highlight").value="false";$("photos").value="";$("existingPhotos").innerHTML="";$("newPhotos").innerHTML="";removedPhotos=[];editStatus("New project.")}
+function editProject(id){const p=projects.find(x=>x.id===id);if(!p)return;$("editId").value=p.id;$("type").value=p.type;$("category").value=p.category||"";$("title").value=p.title||"";$("location").value=p.location||"";$("year").value=p.year||"";$("visible").value=String(p.visible!==false);$("highlight").value=String(p.highlight===true);$("shortDescription").value=p.shortDescription||"";$("description").value=p.description||"";$("photos").value="";$("newPhotos").innerHTML="";removedPhotos=[];$("existingPhotos").innerHTML=(p.photos||[]).map((ph,i)=>`<div class="thumb"><img src="${esc(ph.path)}" alt=""><button title="Remove" onclick="markPhotoRemoved('${esc(p.id)}',${i})">×</button></div>`).join("");editStatus("Editing: "+p.title)}
+function markPhotoRemoved(id,index){const p=projects.find(x=>x.id===id);if(!p||!p.photos[index])return;removedPhotos.push(p.photos[index]);p.photos.splice(index,1);editProject(p.id)}
+$("photos").addEventListener("change",()=>{$("newPhotos").innerHTML=[...$("photos").files].map(f=>`<div class="thumb"><img src="${URL.createObjectURL(f)}" alt=""><div class="small">${esc(f.name)}</div></div>`).join("")});
+function makeId(){return "p-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,7)}
+function saveProject(){const title=$("title").value.trim();if(!title){editStatus("Project title is required.");return}let id=$("editId").value||makeId();let p=projects.find(x=>x.id===id);if(!p){p={id,photos:[]};projects.push(p)}Object.assign(p,{type:$("type").value,category:$("category").value.trim()||"SURVEY PROJECT",title,location:$("location").value.trim(),year:$("year").value.trim(),visible:bool("visible"),highlight:bool("highlight"),shortDescription:$("shortDescription").value.trim(),description:$("description").value.trim()});p._newFiles=[...$("photos").files];$("editId").value=id;renderList();editStatus("Saved locally. Click Publish Changes to GitHub when ready.");}
+async function putFile(path,contentBase64,message,sha){const body={message,content:contentBase64};if(sha)body.sha=sha;return api(`/repos/${encodeURIComponent(cfg().owner)}/${encodeURIComponent(cfg().repo)}/contents/${path}`,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})}
+async function deleteFile(path,sha,message){return api(`/repos/${encodeURIComponent(cfg().owner)}/${encodeURIComponent(cfg().repo)}/contents/${path}`,{method:"DELETE",headers:{"Content-Type":"application/json"},body:JSON.stringify({message,sha})})}
+async function publishAll(){try{const c=cfg();if(!c.owner||!c.repo||!c.token)throw new Error("Enter GitHub owner, repository and token.");status("Publishing...");const data={version:2,projects:projects.map(p=>{const q={...p};delete q._newFiles;return q})};
+for(const p of projects){const files=p._newFiles||[];if(files.length){const dir=`assets/projects/${p.id}`;for(const file of files){const b64=await fileToBase64(file);const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");const path=`${dir}/${Date.now()}-${safe}`;const result=await putFile(path,b64,`Add project photo: ${p.title}`);p.photos=p.photos||[];p.photos.push({path,alt:p.title,managed:true,sha:result.content.sha});}delete p._newFiles}}
+for(const ph of removedPhotos){if(ph.managed&&ph.sha){try{await deleteFile(ph.path,ph.sha,"Remove project photo")}catch(e){console.warn(e)}}}
+const current=await getFile("projects-data.json");await putFile("projects-data.json",b64utf8(JSON.stringify({version:2,projects},null,2)),"Update projects data",current.sha);
+originalPublished=projects.map(x=>JSON.parse(JSON.stringify(x)));removedPhotos=[];projects.forEach(p=>delete p._newFiles);renderList();status("Published successfully. Open your GitHub Pages website after GitHub finishes updating.");editStatus("All changes published.");}
+catch(e){status("Publish failed: "+e.message);editStatus("Publish failed. Check the GitHub token permissions and repository.");}}
+renderList();
+</script>
+</body></html>

@@ -1,0 +1,195 @@
+{
+  "version": 2,
+  "projects": [
+    {
+      "id": "latest-gnss-rtk",
+      "type": "latest",
+      "category": "GNSS / RTK SURVEY",
+      "title": "GNSS / RTK SURVEY",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "High-accuracy GNSS RTK field surveying.",
+      "description": "GNSS / RTK surveying project. Add project-specific details here from the Project Manager.",
+      "visible": true,
+      "highlight": true,
+      "photos": [
+        {
+          "path": "assets/gnss.jpg",
+          "alt": "GNSS RTK surveying",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "latest-construction",
+      "type": "latest",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "CONSTRUCTION SURVEY",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Construction and engineering survey work.",
+      "description": "Construction survey project. Add project-specific details here from the Project Manager.",
+      "visible": true,
+      "highlight": true,
+      "photos": [
+        {
+          "path": "assets/total-station.jpg",
+          "alt": "Total station surveying",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "latest-drone",
+      "type": "latest",
+      "category": "DRONE SURVEY & MAPPING",
+      "title": "DRONE SURVEY & MAPPING",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Aerial mapping and photogrammetry work.",
+      "description": "Drone survey and mapping project. Add project-specific details here from the Project Manager.",
+      "visible": true,
+      "highlight": true,
+      "photos": [
+        {
+          "path": "assets/drone.jpg",
+          "alt": "Drone mapping",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "completed-topographical",
+      "type": "completed",
+      "category": "TOPOGRAPHICAL SURVEY",
+      "title": "TOPOGRAPHICAL SURVEY",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Terrain, levels, contours and detailed site mapping.",
+      "description": "Completed topographical survey project.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/gnss.jpg",
+          "alt": "Topographical survey",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "completed-construction",
+      "type": "completed",
+      "category": "BUILDING / CONSTRUCTION SURVEY",
+      "title": "BUILDING / CONSTRUCTION SURVEY",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Building and construction survey work.",
+      "description": "Completed building / construction survey project.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/total-station.jpg",
+          "alt": "Construction survey",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "completed-aerial",
+      "type": "completed",
+      "category": "AERIAL MAPPING",
+      "title": "AERIAL MAPPING",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Aerial survey, mapping and photogrammetry outputs.",
+      "description": "Completed aerial mapping project.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/drone.jpg",
+          "alt": "Aerial mapping",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "sample-gnss",
+      "type": "sample",
+      "category": "GNSS / RTK",
+      "title": "GNSS / RTK",
+      "location": "",
+      "year": "",
+      "shortDescription": "High-accuracy coordinate collection and field data.",
+      "description": "Example of GNSS / RTK survey output.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/gnss.jpg",
+          "alt": "GNSS survey sample",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "sample-total-station",
+      "type": "sample",
+      "category": "TOTAL STATION",
+      "title": "TOTAL STATION",
+      "location": "",
+      "year": "",
+      "shortDescription": "Precise observations for construction and engineering.",
+      "description": "Example of total station survey output.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/total-station.jpg",
+          "alt": "Total station survey sample",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "sample-drone",
+      "type": "sample",
+      "category": "DRONE MAPPING",
+      "title": "DRONE MAPPING",
+      "location": "",
+      "year": "",
+      "shortDescription": "Aerial survey, mapping and photogrammetry outputs.",
+      "description": "Example of drone mapping output.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/drone.jpg",
+          "alt": "Drone mapping sample",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "sample-topographical",
+      "type": "sample",
+      "category": "TOPOGRAPHICAL",
+      "title": "TOPOGRAPHICAL",
+      "location": "",
+      "year": "",
+      "shortDescription": "Terrain, levels, contours and detailed site mapping.",
+      "description": "Example of topographical survey output.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/survey-hero.jpg",
+          "alt": "Topographical survey sample",
+          "managed": false
+        }
+      ]
+    }
+  ]
+}
