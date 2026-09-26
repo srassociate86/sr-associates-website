@@ -210,6 +210,32 @@
       "highlight": true,
       "shortDescription": "test test",
       "description": "full information test"
+    },
+    {
+      "id": "p-muik3pk6-ak2if",
+      "photos": [
+        {
+          "path": "assets/projects/p-muik3pk6-ak2if/1790437239978-1000229616.jpg",
+          "alt": "Planet survey",
+          "managed": true,
+          "sha": "8bf21b1cc7c570931061c997277e055dfddc2eeb"
+        },
+        {
+          "path": "assets/projects/p-muik3pk6-ak2if/1790437245430-1000229214.jpg",
+          "alt": "Planet survey",
+          "managed": true,
+          "sha": "f40519a1a87887ae46f1244d44f0adffc017d087"
+        }
+      ],
+      "type": "completed",
+      "category": "Land Surveying in Mars",
+      "title": "Planet survey",
+      "location": "Saur mandal 420",
+      "year": "2026",
+      "visible": true,
+      "highlight": true,
+      "shortDescription": "Test project",
+      "description": "Details here"
     }
   ]
 }
