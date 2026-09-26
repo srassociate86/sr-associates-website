@@ -190,6 +190,26 @@
           "managed": false
         }
       ]
+    },
+    {
+      "id": "p-muifk89g-ju3mx",
+      "photos": [
+        {
+          "path": "assets/projects/p-muifk89g-ju3mx/1790429615807-banner.jpg",
+          "alt": "test project",
+          "managed": true,
+          "sha": "d757527fc6f4f7a5781e118c5e2060572e31c431"
+        }
+      ],
+      "type": "sample",
+      "category": "rtk survey",
+      "title": "test project",
+      "location": "खड़कमाफ",
+      "year": "2026",
+      "visible": true,
+      "highlight": true,
+      "shortDescription": "test test",
+      "description": "full information test"
     }
   ]
 }
