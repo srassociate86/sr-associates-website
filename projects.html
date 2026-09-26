@@ -18,6 +18,26 @@
 @media(max-width:720px){.projects-page-hero{min-height:350px;padding:70px 25px}.projects-page-hero h1{font-size:44px}.projects-page-hero p:not(.eyebrow){font-size:16px}.slide{height:350px}.slide-caption{left:20px;bottom:25px}.slide-caption h3{font-size:20px}.dynamic-grid{grid-template-columns:1fr 1fr}.sample-grid{grid-template-columns:1fr 1fr}.sample-card img{height:150px}.projects-cta{padding:55px 20px}.projects-cta h2{font-size:32px}.modal-gallery{grid-template-columns:1fr 1fr}}
 @media(max-width:500px){.dynamic-grid,.sample-grid{grid-template-columns:1fr}.sample-card img{height:200px}.slider-button{width:38px;height:38px;font-size:20px}.modal-gallery{grid-template-columns:1fr}}
 </style>
+
+<style>
+.admin-login-link{
+  display:inline-block;
+  margin-left:10px;
+  padding:7px 12px;
+  border:1px solid #555;
+  border-radius:4px;
+  color:#aaa;
+  text-decoration:none;
+  font-size:11px;
+  transition:.2s ease;
+}
+.admin-login-link:hover{
+  color:#fff;
+  border-color:#d71920;
+  background:#d71920;
+}
+</style>
+
 </head>
 <body>
 <header class="site-header">
@@ -46,7 +66,12 @@
 
 <div class="project-modal" id="projectModal" role="dialog" aria-modal="true"><div class="project-modal-box"><button class="modal-close" onclick="closeProject()" aria-label="Close">×</button><h2 class="modal-title" id="modalTitle"></h2><div class="modal-meta" id="modalMeta"></div><p class="modal-description" id="modalDescription"></p><div class="modal-gallery" id="modalGallery"></div></div></div>
 
-<footer><span>© 2026 SR Associates. All Rights Reserved.</span><span>Accurate Measurement. Solid Foundation.</span><span>landsurveyor.co.in</span></footer>
+<footer>
+<span>© 2026 SR Associates. All Rights Reserved.</span>
+<span>Accurate Measurement. Solid Foundation.</span>
+<span>landsurveyor.co.in</span>
+<a href="project-manager.html" class="admin-login-link">Admin Login</a>
+</footer>
 
 <script>
 const menuToggle=document.querySelector(".menu-toggle"),nav=document.querySelector(".nav"); if(menuToggle) menuToggle.addEventListener("click",()=>nav.classList.toggle("open"));
