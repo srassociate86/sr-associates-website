@@ -81,7 +81,7 @@
 <div id="newPhotos" class="thumbs"></div></div>
 </div>
 <div id="existingPhotos" class="thumbs"></div>
-<div class="actions"><button class="primary" onclick="saveProject()">Save Project Locally</button><button class="dark" onclick="publishAll()">Publish Changes to GitHub</button><button class="light" onclick="clearForm()">New Project</button></div>
+<div class="actions"><button class="primary" onclick="saveProject()">Save Project Locally</button><button class="dark" onclick="publishAll()">Publish Changes to GitHub</button><button class="light" id="cancelEditBtn" onclick="cancelEdit()" style="display:none">Cancel Editing</button><button class="light" onclick="clearForm()">New Project</button></div>
 <div id="editStatus" class="status">No unsaved changes.</div>
 </div>
 
@@ -93,7 +93,7 @@
 </div>
 
 <script>
-let projects=[];let originalPublished=null;let removedPhotos=[];let selectedFiles=[];let preparedFiles=[];
+let projects=[];let originalPublished=null;let removedPhotos=[];let selectedFiles=[];let preparedFiles=[];let editBackup=null;
 const $=id=>document.getElementById(id);
 const bool=id=>$(id).value==="true";
 function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));}
@@ -121,8 +121,45 @@ function logout(){sessionStorage.removeItem("sr_admin_connected");projects=[];or
 
 function renderList(){const el=$("projectList");if(!projects.length){el.innerHTML="<div class='small'>No projects loaded yet. Click Load Current Projects.</div>";return}el.innerHTML=projects.map(p=>`<div class="item"><div><strong>${esc(p.title)}</strong><small>${esc(p.type)} • ${esc(p.category)}${p.location?" • "+esc(p.location):""} • ${p.photos?.length||0} photo(s)}${p.visible===false?" • HIDDEN":""}</small></div><div class="actions"><button type="button" class="light" onclick="editProject('${esc(p.id)}')">Edit</button><button type="button" class="danger" onclick="removeProject('${esc(p.id)}')">Remove</button></div></div>`).join("")}
 function removeProject(id){const p=projects.find(x=>x.id===id);if(!p)return;if(!confirm("Remove "+p.title+" from the project list? This will take effect on the website when you publish changes."))return;projects=projects.filter(x=>x.id!==id);if($("editId").value===id)clearForm();renderList();editStatus("Project removed locally. Click Publish Changes to apply it.");}
-function clearForm(){["editId","category","title","location","year","shortDescription","description"].forEach(id=>$(id).value="");$("type").value="latest";$("visible").value="true";$("highlight").value="false";$("photos").value="";$("existingPhotos").innerHTML="";$("newPhotos").innerHTML="";selectedFiles=[];preparedFiles=[];removedPhotos=[];$("compressYes").checked=true;editStatus("New project.")}
-function editProject(id){const p=projects.find(x=>x.id===id);if(!p){editStatus("Project not found.");return;}$("editId").value=p.id;$("type").value=p.type;$("category").value=p.category||"";$("title").value=p.title||"";$("location").value=p.location||"";$("year").value=p.year||"";$("visible").value=String(p.visible!==false);$("highlight").value=String(p.highlight===true);$("shortDescription").value=p.shortDescription||"";$("description").value=p.description||"";$("photos").value="";$("newPhotos").innerHTML="";selectedFiles=[];preparedFiles=[];removedPhotos=[];$("compressYes").checked=true;$("existingPhotos").innerHTML=(p.photos||[]).map((ph,i)=>`<div class="thumb"><img src="${esc(ph.path)}" alt=""><button title="Remove" onclick="markPhotoRemoved('${esc(p.id)}',${i})">×</button></div>`).join("");editStatus("Editing: "+p.title);$("editorPanel").scrollIntoView({behavior:"smooth",block:"start"})}
+function clearForm(){
+["editId","category","title","location","year","shortDescription","description"].forEach(id=>$(id).value="");
+$("type").value="latest";$("visible").value="true";$("highlight").value="false";
+$("photos").value="";$("existingPhotos").innerHTML="";$("newPhotos").innerHTML="";
+selectedFiles=[];preparedFiles=[];removedPhotos=[];editBackup=null;
+$("compressYes").checked=true;
+$("cancelEditBtn").style.display="none";
+editStatus("New project.");
+}
+
+function editProject(id){
+const p=projects.find(x=>x.id===id);
+if(!p){editStatus("Project not found.");return;}
+editBackup=JSON.parse(JSON.stringify(p));
+$("editId").value=p.id;$("type").value=p.type;$("category").value=p.category||"";
+$("title").value=p.title||"";$("location").value=p.location||"";$("year").value=p.year||"";
+$("visible").value=String(p.visible!==false);$("highlight").value=String(p.highlight===true);
+$("shortDescription").value=p.shortDescription||"";$("description").value=p.description||"";
+$("photos").value="";$("newPhotos").innerHTML="";selectedFiles=[];preparedFiles=[];removedPhotos=[];
+$("compressYes").checked=true;
+$("existingPhotos").innerHTML=(p.photos||[]).map((ph,i)=>`<div class="thumb"><img src="${esc(ph.path)}" alt=""><button title="Remove" onclick="markPhotoRemoved('${esc(p.id)}',${i})">×</button></div>`).join("");
+$("cancelEditBtn").style.display="inline-block";
+editStatus("Editing: "+p.title);
+$("editorPanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function cancelEdit(){
+if(!editBackup){clearForm();return;}
+const current=projects.find(x=>x.id===editBackup.id);
+if(current){
+current.type=editBackup.type;current.category=editBackup.category;current.title=editBackup.title;current.location=editBackup.location;current.year=editBackup.year;
+current.visible=editBackup.visible;current.highlight=editBackup.highlight;current.shortDescription=editBackup.shortDescription;current.description=editBackup.description;
+current.photos=JSON.parse(JSON.stringify(editBackup.photos||[]));
+delete current._newFiles;
+}
+removedPhotos=[];editBackup=null;renderList();clearForm();editStatus("Editing cancelled. No changes were saved.");
+$("editorPanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
 function markPhotoRemoved(id,index){const p=projects.find(x=>x.id===id);if(!p||!p.photos[index])return;removedPhotos.push(p.photos[index]);p.photos.splice(index,1);renderExistingPhotos(p);editStatus("Photo marked for removal. Click Publish Changes to apply it.")}
 function renderExistingPhotos(p){$("existingPhotos").innerHTML=(p.photos||[]).map((ph,i)=>`<div class="thumb"><img src="${esc(ph.path)}" alt=""><button title="Remove" onclick="markPhotoRemoved('${esc(p.id)}',${i})">×</button></div>`).join("")} 
 $("photos").addEventListener("change",async()=>{selectedFiles=[...$("photos").files];preparedFiles=[];renderNewPhotos();if(selectedFiles.length){editStatus("Preparing photos...");await preparePhotos();editStatus(`${selectedFiles.length} photo(s) ready. Click Save Project Locally.`)}});document.querySelectorAll("input[name=photoMode]").forEach(r=>r.addEventListener("change",async()=>{if(!selectedFiles.length)return;editStatus("Preparing photos...");await preparePhotos();editStatus(`${selectedFiles.length} photo(s) ready with ${photoMode()==="compress"?"compression":"original files"}.`)}));
