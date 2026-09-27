@@ -15,7 +15,7 @@
 .hero-project-slideshow{
   position:absolute;
   inset:0;
-  z-index:0;
+  z-index:1;
   overflow:hidden;
 }
 
@@ -36,6 +36,7 @@
 }
 
 .hero-project-caption{
+  display:none;
   position:absolute;
   right:7%;
   bottom:55px;
@@ -73,16 +74,6 @@
   margin-bottom:9px;
 }
 
-.hero-project-link{
-  display:inline-block;
-  color:#fff;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:.7px;
-  text-transform:uppercase;
-  border-bottom:1px solid rgba(255,255,255,.6);
-  padding-bottom:2px;
-}
 
 .hero-project-arrow{
   position:absolute;
@@ -136,7 +127,7 @@
 }
 
 /* Keep the existing dark overlay and all hero text above the photographs. */
-.hero .hero-overlay{z-index:1}
+.hero .hero-overlay{z-index:2; pointer-events:none}
 .hero .hero-content{z-index:3}
 .hero .hero-features{z-index:6}
 
@@ -389,13 +380,8 @@
   function updateCaption(){
     const p=slides[current]?.data;
     if(!p) return;
-    caption.innerHTML=`
-      <span class="hero-project-category">${esc(p.category || 'RECENT PROJECT')}</span>
-      <strong>${esc(p.title || 'Survey Project')}</strong>
-      ${p.location ? `<small>${esc(p.location)}${p.year ? ' • '+esc(p.year) : ''}</small>` : ''}
-      <a class="hero-project-link" href="${projectLink(p)}">View Project →</a>
-    `;
-    caption.hidden=false;
+    caption.innerHTML='';
+    caption.hidden=true;
   }
 
   function show(index,manual=false){
@@ -418,8 +404,23 @@
   prev.addEventListener('click',()=>show(current-1,true));
   next.addEventListener('click',()=>show(current+1,true));
 
+  // Clicking anywhere on the slideshow opens the current project.
+  // Navigation arrows and dots remain interactive controls.
+  slideshow.style.cursor='pointer';
+  slideshow.addEventListener('click',(event)=>{
+    if(event.target.closest('.hero-project-arrow, .hero-project-dot')) return;
+    const p=slides[current]?.data;
+    if(p) window.location.href=projectLink(p);
+  });
+
   slideshow.addEventListener('mouseenter',()=>clearInterval(timer));
   slideshow.addEventListener('mouseleave',()=>{if(slides.length>1)start()});
+  caption.style.cursor='pointer';
+  caption.addEventListener('click',()=>{
+    const p=slides[current]?.data;
+    if(p) window.location.href=projectLink(p);
+  });
+
   caption.addEventListener('mouseenter',()=>clearInterval(timer));
   caption.addEventListener('mouseleave',()=>{if(slides.length>1)start()});
 
