@@ -2,13 +2,45 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SR Associates Project Manager</title>
+<title>SR Associates Project Manager | SR Associates</title>
+<link rel="stylesheet" href="styles.css">
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;color:#181818}.top{background:#111;color:#fff;padding:22px 5%;display:flex;justify-content:space-between;align-items:center;gap:20px}.top h1{margin:0;font-size:22px}.top span{color:#e31b23;font-size:12px;font-weight:700}.wrap{max-width:1100px;margin:25px auto;padding:0 18px}.panel{background:#fff;border:1px solid #ddd;border-radius:8px;padding:22px;margin-bottom:18px}.panel h2{margin:0 0 16px;font-size:19px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}label{font-size:12px;font-weight:700;display:block;margin-bottom:5px}input,select,textarea{width:100%;padding:11px;border:1px solid #ccc;border-radius:5px;font:inherit}textarea{min-height:100px;resize:vertical}.full{grid-column:1/-1}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}button{border:0;border-radius:5px;padding:11px 16px;cursor:pointer;font-weight:700}.primary{background:#d71920;color:#fff}.dark{background:#111;color:#fff}.light{background:#eee}.danger{background:#b00020;color:#fff}.status{padding:12px;background:#f1f1f1;border-radius:5px;margin-top:12px;white-space:pre-line}.admin-only{display:none!important}.small{font-size:12px;color:#666;line-height:1.5}.token-note{background:#fff7df;border-left:4px solid #d89b00;padding:12px;font-size:12px;line-height:1.5}.project-list{display:grid;gap:10px}.item{border:1px solid #ddd;border-radius:6px;padding:12px;display:flex;justify-content:space-between;gap:10px;align-items:center}.item strong{display:block}.item small{color:#777}.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.thumb{position:relative;width:105px}.thumb img{width:105px;height:75px;object-fit:cover;border-radius:4px;border:1px solid #ddd}.thumb button{position:absolute;right:2px;top:2px;width:24px;height:24px;padding:0;border-radius:50%;background:#b00020;color:#fff}.photo-row{display:flex;gap:8px;align-items:center;border:1px solid #ddd;padding:8px;border-radius:5px;margin-top:8px}.photo-row img{width:65px;height:50px;object-fit:cover}.hidden{display:none!important}.photo-options{margin-top:8px;padding:12px;border:1px solid #ddd;border-radius:6px;background:#fafafa}.photo-choice{display:flex;gap:20px;flex-wrap:wrap}.photo-choice label{font-size:13px;font-weight:400;margin:0}.photo-choice input{width:auto;margin-right:5px}.photo-meta{font-size:11px;color:#666;margin-top:3px}.saving{opacity:.7}@media(max-width:700px){.grid{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;color:#181818}.manager-bar{background:#111;color:#fff;padding:18px 4.5%;display:flex;justify-content:space-between;align-items:center;gap:20px}.manager-bar h1{margin:2px 0 0;font-size:22px}.manager-eyebrow{color:#df1b20;font-size:12px;font-weight:800;letter-spacing:1.2px}.manager-state{display:flex;align-items:center;gap:10px}.manager-state #loginState{color:#fff;font-size:12px;font-weight:700}.manager-state .light{background:#fff;color:#171717}.wrap{max-width:1100px;margin:25px auto;padding:0 18px}.panel{background:#fff;border:1px solid #ddd;border-radius:8px;padding:22px;margin-bottom:18px}.panel h2{margin:0 0 16px;font-size:19px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}label{font-size:12px;font-weight:700;display:block;margin-bottom:5px}input,select,textarea{width:100%;padding:11px;border:1px solid #ccc;border-radius:5px;font:inherit}textarea{min-height:100px;resize:vertical}.full{grid-column:1/-1}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}button{border:0;border-radius:5px;padding:11px 16px;cursor:pointer;font-weight:700}.primary{background:#d71920;color:#fff}.dark{background:#111;color:#fff}.light{background:#eee}.danger{background:#b00020;color:#fff}.status{padding:12px;background:#f1f1f1;border-radius:5px;margin-top:12px;white-space:pre-line}.admin-only{display:none!important}.small{font-size:12px;color:#666;line-height:1.5}.token-note{background:#fff7df;border-left:4px solid #d89b00;padding:12px;font-size:12px;line-height:1.5}.project-list{display:grid;gap:10px}.item{border:1px solid #ddd;border-radius:6px;padding:12px;display:flex;justify-content:space-between;gap:10px;align-items:center}.item strong{display:block}.item small{color:#777}.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.thumb{position:relative;width:105px}.thumb img{width:105px;height:75px;object-fit:cover;border-radius:4px;border:1px solid #ddd}.thumb button{position:absolute;right:2px;top:2px;width:24px;height:24px;padding:0;border-radius:50%;background:#b00020;color:#fff}.photo-row{display:flex;gap:8px;align-items:center;border:1px solid #ddd;padding:8px;border-radius:5px;margin-top:8px}.photo-row img{width:65px;height:50px;object-fit:cover}.hidden{display:none!important}.photo-options{margin-top:8px;padding:12px;border:1px solid #ddd;border-radius:6px;background:#fafafa}.photo-choice{display:flex;gap:20px;flex-wrap:wrap}.photo-choice label{font-size:13px;font-weight:400;margin:0}.photo-choice input{width:auto;margin-right:5px}.photo-meta{font-size:11px;color:#666;margin-top:3px}.saving{opacity:.7}@media(max-width:720px){
+  .grid{grid-template-columns:1fr}
+  .manager-bar{padding:16px 20px;align-items:flex-start;flex-direction:column}
+  .manager-state{width:100%;justify-content:space-between}
+  .wrap{margin-top:18px}
+}
 </style>
 </head>
 <body>
-<div class="top"><div><span>SR ASSOCIATES</span><h1>Project Manager</h1></div><div><span id="loginState">Login required</span> <button id="logoutBtn" class="light admin-only" style="margin-left:10px" onclick="logout()">Log Out</button></div></div>
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="SR Associates home">
+    <img src="assets/logo.jpg" alt="SR Associates">
+  </a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu" type="button">☰</button>
+  <nav class="nav" id="siteNav">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a class="active" href="projects.html">Projects</a>
+    <a href="technology.html">Technology</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <a class="nav-whatsapp" href="https://wa.me/918057755380" target="_blank" rel="noopener">WhatsApp</a>
+</header>
+
+<div class="manager-bar">
+  <div>
+    <span class="manager-eyebrow">SR ASSOCIATES</span>
+    <h1>Project Manager</h1>
+  </div>
+  <div class="manager-state">
+    <span id="loginState">Login required</span>
+    <button id="logoutBtn" class="light admin-only" type="button" onclick="logout()">Log Out</button>
+  </div>
+</div>
+
 <div class="wrap">
 <div class="panel">
 <h2>1. GitHub Connection</h2>
@@ -102,5 +134,15 @@ originalPublished=projects.map(x=>JSON.parse(JSON.stringify(x)));removedPhotos=[
 catch(e){status("Publish failed: "+e.message);editStatus("Publish failed. Check the GitHub token permissions and repository.");}}
 showAdminWorkspace(false);
 renderList();
+</script>
+<script>
+document.getElementById("menuToggle")?.addEventListener("click", function(){
+  document.getElementById("siteNav")?.classList.toggle("open");
+});
+document.querySelectorAll("#siteNav a").forEach(function(link){
+  link.addEventListener("click", function(){
+    document.getElementById("siteNav")?.classList.remove("open");
+  });
+});
 </script>
 </body></html>
