@@ -251,6 +251,30 @@
           "alt": "Land survey",
           "managed": true,
           "sha": "1bececba72dd09d1bcbacacc5a8177f92634b7d1"
+        },
+        {
+          "path": "assets/projects/p-muj9nr5x-dhy9t/1790485687939-100_4172.jpg",
+          "alt": "Land survey",
+          "managed": true,
+          "sha": "6342fe9c6f4700963fdfb09bba9d96bdc0f83717"
+        },
+        {
+          "path": "assets/projects/p-muj9nr5x-dhy9t/1790485690589-100_4249.jpg",
+          "alt": "Land survey",
+          "managed": true,
+          "sha": "7229638819c4170752c2976dc241e7e71bdecaa0"
+        },
+        {
+          "path": "assets/projects/p-muj9nr5x-dhy9t/1790485692951-100_4260.jpg",
+          "alt": "Land survey",
+          "managed": true,
+          "sha": "9e618b7f910653bbb4948fcd84db4467912f9e9c"
+        },
+        {
+          "path": "assets/projects/p-muj9nr5x-dhy9t/1790485694478-100_4263.jpg",
+          "alt": "Land survey",
+          "managed": true,
+          "sha": "890691de1eee5242c1a158362dc6678d16ab92b1"
         }
       ],
       "type": "completed",
@@ -261,8 +285,7 @@
       "visible": true,
       "highlight": true,
       "shortDescription": "Test 3",
-      "description": "Details test 3",
-      "_newFiles": []
+      "description": "Details test 3"
     }
   ]
 }
