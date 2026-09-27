@@ -243,6 +243,71 @@
     }
 
 
+
+    /* =========================================================
+       INLINE SERVICE ACCORDION
+       ========================================================= */
+    .service-points span {
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+      user-select: none;
+    }
+
+    .service-points span:hover,
+    .service-points span.active {
+      background: #171717;
+      color: #fff;
+    }
+
+    .service-inline-detail {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      margin-top: 0;
+      transition: grid-template-rows .32s ease, opacity .22s ease, margin-top .32s ease;
+    }
+
+    .service-inline-detail > div {
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .service-inline-detail.open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      margin-top: 22px;
+    }
+
+    .service-inline-detail-box {
+      padding: 22px 24px;
+      border-left: 3px solid #d71920;
+      background: #f7f7f7;
+    }
+
+    .service-inline-detail-box strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+      color: #171717;
+    }
+
+    .service-inline-detail-box p {
+      margin: 0 !important;
+      color: #666;
+      line-height: 1.7;
+      max-width: 850px;
+    }
+
+    .service-detail > div:last-child > .service-learn-more {
+      display: none;
+    }
+
+    @media (max-width: 520px) {
+      .service-inline-detail-box {
+        padding: 18px;
+      }
+    }
+
     /* Learn More links */
 
     .service-learn-more {
@@ -381,7 +446,7 @@
 
         <h1>
           Surveying<br>
-          <span>Services.</span>
+          <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Services." data-detail="Information about services. as part of the survey service, prepared according to the project scope and site requirements.">Services.</span>
         </h1>
 
         <p class="services-hero-copy">
@@ -444,18 +509,23 @@
             </p>
 
             <div class="service-points">
-              <span>Boundary Survey</span>
-              <span>Plot Measurement</span>
-              <span>Area Calculation</span>
-              <span>Demarcation</span>
-              <span>Site Measurement</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Boundary Survey" data-detail="Survey and documentation of the property boundary, including total area, boundary length, ground levels/elevations along the boundary and relevant site points required for the project.">Boundary Survey</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Plot Measurement" data-detail="Detailed measurement of plot dimensions, corners and important physical features to establish clear site geometry and dimensional information.">Plot Measurement</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Area Calculation" data-detail="Calculation of the measured site area from collected survey coordinates and dimensions, with the result organized for practical property and project use.">Area Calculation</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Demarcation" data-detail="Identification and marking of required property points or boundaries on the ground according to the available project information and survey requirements.">Demarcation</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Site Measurement" data-detail="Collection of existing site dimensions, features and measured points to support planning, design, construction and documentation.">Site Measurement</span>
             </div>
 
-            <a class="service-learn-more" href="land-survey.html">
-              Learn More <span>→</span>
-            </a>
-
-          </div>
+          
+            <div class="service-inline-detail" aria-hidden="true">
+              <div>
+                <div class="service-inline-detail-box">
+                  <strong></strong>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+</div>
 
         </article>
 
@@ -475,18 +545,23 @@
             </p>
 
             <div class="service-points">
-              <span>Contours</span>
-              <span>Spot Levels</span>
-              <span>Terrain Mapping</span>
-              <span>Existing Features</span>
-              <span>Site Plans</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Contours" data-detail="Contour information representing changes in ground elevation across the site, useful for understanding terrain and preparing planning or design information.">Contours</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Spot Levels" data-detail="Measured elevation points distributed across the survey area to describe existing ground levels and local changes in terrain.">Spot Levels</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Terrain Mapping" data-detail="Survey data showing the existing shape and elevation characteristics of the surveyed area for terrain understanding and project planning.">Terrain Mapping</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Existing Features" data-detail="Measurement and documentation of relevant natural and man-made features present on the site, such as roads, structures and visible site elements.">Existing Features</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Site Plans" data-detail="Clear plan drawings combining measured site features and elevation information into a usable representation of existing conditions.">Site Plans</span>
             </div>
-			
-			<a class="service-learn-more" href="topographical-survey.html">
-              Learn More <span>→</span>
-            </a>
 
-          </div>
+          
+            <div class="service-inline-detail" aria-hidden="true">
+              <div>
+                <div class="service-inline-detail-box">
+                  <strong></strong>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+</div>
 
         </article>
 
@@ -506,18 +581,23 @@
             </p>
 
             <div class="service-points">
-              <span>RTK Positioning</span>
-              <span>Control Points</span>
-              <span>Coordinates</span>
-              <span>Georeferencing</span>
-              <span>Large Area Survey</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="RTK Positioning" data-detail="Real-time corrected GNSS positioning for collecting accurate field coordinates where suitable correction services and field conditions are available.">RTK Positioning</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Control Points" data-detail="Establishment or observation of survey control points used as project references for mapping, construction and related survey work.">Control Points</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Coordinates" data-detail="Collection and organization of point coordinates for survey mapping, measurement, CAD processing and project reference.">Coordinates</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Georeferencing" data-detail="Positioning survey or mapping information within the coordinate reference system and project reference framework required.">Georeferencing</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Large Area Survey" data-detail="Efficient coordinate collection across larger sites and areas where GNSS positioning is suitable and satellite visibility supports the workflow.">Large Area Survey</span>
             </div>
-			
-			<a class="service-learn-more" href="gnss-rtk.html">
-              Learn More <span>→</span>
-            </a>
 
-          </div>
+          
+            <div class="service-inline-detail" aria-hidden="true">
+              <div>
+                <div class="service-inline-detail-box">
+                  <strong></strong>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+</div>
 
         </article>
 
@@ -537,18 +617,23 @@
             </p>
 
             <div class="service-points">
-              <span>Site Survey</span>
-              <span>Construction Layout</span>
-              <span>Setting Out</span>
-              <span>Alignment</span>
-              <span>Detailed Measurement</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Site Survey" data-detail="Collection of measured points and existing site features for a detailed representation of project conditions.">Site Survey</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Construction Layout" data-detail="Transfer of required design or project points to the ground for construction-related activities using the appropriate survey reference.">Construction Layout</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Setting Out" data-detail="Establishment of required construction points, lines and references on the ground according to available project data.">Setting Out</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Alignment" data-detail="Establishment and checking of lines, points and alignments for roads, structures or other project elements according to project requirements.">Alignment</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Detailed Measurement" data-detail="Electronic measurement of angles and distances for required survey points and site features using controlled total-station observations.">Detailed Measurement</span>
             </div>
-			
-			<a class="service-learn-more" href="total-station.html">
-              Learn More <span>→</span>
-            </a>
 
-          </div>
+          
+            <div class="service-inline-detail" aria-hidden="true">
+              <div>
+                <div class="service-inline-detail-box">
+                  <strong></strong>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+</div>
 
         </article>
 
@@ -568,18 +653,24 @@
             </p>
 
             <div class="service-points">
-              <span>Aerial Mapping</span>
-              <span>Orthomosaic</span>
-              <span>Photogrammetry</span>
-              <span>DTM</span>
-              <span>3D Models</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Aerial Mapping" data-detail="Drone-based aerial data collection for efficient mapping of larger areas and capturing detailed spatial information.">Aerial Mapping</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Orthomosaic" data-detail="Processed aerial imagery corrected for perspective and terrain effects to create a measurable image representation of the surveyed area.">Orthomosaic</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Photogrammetry" data-detail="Processing of overlapping aerial photographs to derive spatial measurements, imagery, surfaces and three-dimensional project information.">Photogrammetry</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="DTM" data-detail="Digital terrain information representing the ground surface and supporting terrain analysis, contours and earthwork-related workflows.">DTM</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="3D Models" data-detail="Three-dimensional representation generated from survey or photogrammetric data for visualization, measurement and project analysis.">3D Models</span>
+			  <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Points Cloud" data-detail="Dense three-dimensional point data representing surveyed surfaces and features for mapping, modelling and further processing.">Points Cloud</span>
             </div>
-			
-			<a class="service-learn-more" href="drone-survey.html">
-              Learn More <span>→</span>
-            </a>
 
-          </div>
+          
+            <div class="service-inline-detail" aria-hidden="true">
+              <div>
+                <div class="service-inline-detail-box">
+                  <strong></strong>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+</div>
 
         </article>
 
@@ -599,18 +690,23 @@
             </p>
 
             <div class="service-points">
-              <span>CAD Drawings</span>
-              <span>Contour Plans</span>
-              <span>Sections</span>
-              <span>Surface Models</span>
-              <span>3D Mapping</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="CAD Drawings" data-detail="Conversion and organization of survey information into clear CAD drawings suitable for planning, design and documentation.">CAD Drawings</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Contour Plans" data-detail="CAD-based plans showing contour information and ground-elevation patterns derived from surveyed terrain data.">Contour Plans</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Sections" data-detail="Cross sections or longitudinal sections prepared from survey data to represent changes in ground profile along selected lines.">Sections</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Surface Models" data-detail="Digital surface information created from surveyed points for terrain analysis, visualization and quantity calculations.">Surface Models</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="3D Mapping" data-detail="Three-dimensional mapping using survey data to represent terrain, structures and other measured project features.">3D Mapping</span>
             </div>
-			
-			<a class="service-learn-more" href="cad-3d-mapping.html">
-              Learn More <span>→</span>
-            </a>
 
-          </div>
+          
+            <div class="service-inline-detail" aria-hidden="true">
+              <div>
+                <div class="service-inline-detail-box">
+                  <strong></strong>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+</div>
 
         </article>
 
@@ -630,18 +726,25 @@
             </p>
 
             <div class="service-points">
-              <span>Cut & Fill</span>
-              <span>Excavation</span>
-              <span>Volume Calculation</span>
-              <span>Stockpile Volume</span>
-              <span>Surface Comparison</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Cut & Fill" data-detail="Calculation of areas and volumes where existing ground is above or below required project levels.">Cut & Fill</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Excavation" data-detail="Survey-based assessment of excavation requirements using measured ground conditions, formation levels and calculated depths.">Excavation</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Volume Calculation" data-detail="Calculation of earthwork volumes from surveyed points, digital surfaces or defined project areas.">Volume Calculation</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Stockpile Volume" data-detail="Survey-based assessment of stockpile or material-storage volumes using measured surface information.">Stockpile Volume</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Surface Comparison" data-detail="Comparison of existing and required surfaces to identify elevation differences and corresponding cut or fill requirements.">Surface Comparison</span>
+			  <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Cross Sections" data-detail="Sectional profiles showing ground conditions across selected lines, supporting quantity calculations, design checks and earthwork assessment.">Cross Sections</span>
+			  <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Longitudinal Section" data-detail="Profile information along a selected alignment showing changes in ground elevation for planning, design and earthwork work.">Longitudinal Section</span>
             </div>
-			
-			<a class="service-learn-more" href="earthwork-quantity.html">
-              Learn More <span>→</span>
-            </a>
 
-          </div>
+          
+            <div class="service-inline-detail" aria-hidden="true">
+              <div>
+                <div class="service-inline-detail-box">
+                  <strong></strong>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+</div>
 
         </article>
 
@@ -663,7 +766,7 @@
 
         <h2>
           One survey.
-          <span>Multiple deliverables.</span>
+          <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Multiple deliverables." data-detail="Information about multiple deliverables. as part of the survey service, prepared according to the project scope and site requirements.">Multiple deliverables.</span>
         </h2>
 
         <div class="deliverable-flow">
@@ -724,32 +827,32 @@
       <div class="applications-grid">
 
         <article class="application-card">
-          <span>01</span>
+          <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="01" data-detail="Information about 01 as part of the survey service, prepared according to the project scope and site requirements.">01</span>
           <strong>Land Development</strong>
         </article>
 
         <article class="application-card">
-          <span>02</span>
+          <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="02" data-detail="Information about 02 as part of the survey service, prepared according to the project scope and site requirements.">02</span>
           <strong>Construction Projects</strong>
         </article>
 
         <article class="application-card">
-          <span>03</span>
+          <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="03" data-detail="Information about 03 as part of the survey service, prepared according to the project scope and site requirements.">03</span>
           <strong>Road & Infrastructure</strong>
         </article>
 
         <article class="application-card">
-          <span>04</span>
+          <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="04" data-detail="Information about 04 as part of the survey service, prepared according to the project scope and site requirements.">04</span>
           <strong>Property & Boundary</strong>
         </article>
 
         <article class="application-card">
-          <span>05</span>
+          <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="05" data-detail="Information about 05 as part of the survey service, prepared according to the project scope and site requirements.">05</span>
           <strong>Terrain & Site Mapping</strong>
         </article>
 
         <article class="application-card">
-          <span>06</span>
+          <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="06" data-detail="Information about 06 as part of the survey service, prepared according to the project scope and site requirements.">06</span>
           <strong>Earthwork & Quantity</strong>
         </article>
 
@@ -806,14 +909,87 @@
 
   <footer>
 
-    <span>© 2026 SR Associates. All Rights Reserved.</span>
+    <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="© 2026 SR Associates. All Rights Reserved." data-detail="Information about © 2026 sr associates. all rights reserved. as part of the survey service, prepared according to the project scope and site requirements.">© 2026 SR Associates. All Rights Reserved.</span>
 
-    <span>Accurate Measurement. Solid Foundation.</span>
+    <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Accurate Measurement. Solid Foundation." data-detail="Information about accurate measurement. solid foundation. as part of the survey service, prepared according to the project scope and site requirements.">Accurate Measurement. Solid Foundation.</span>
 
-    <span>landsurveyor.co.in</span>
+    <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="landsurveyor.co.in" data-detail="Information about landsurveyor.co.in as part of the survey service, prepared according to the project scope and site requirements.">landsurveyor.co.in</span>
 
   </footer>
 
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const triggers = document.querySelectorAll(".service-point-trigger");
+      const serviceCards = document.querySelectorAll(".service-detail");
+
+      function closeAll(exceptCard) {
+        serviceCards.forEach(card => {
+          if (card === exceptCard) return;
+          const panel = card.querySelector(".service-inline-detail");
+          card.querySelectorAll(".service-point-trigger").forEach(t => {
+            t.classList.remove("active");
+            t.setAttribute("aria-expanded", "false");
+          });
+          if (panel) {
+            panel.classList.remove("open");
+            panel.setAttribute("aria-hidden", "true");
+          }
+        });
+      }
+
+      function toggle(trigger) {
+        const card = trigger.closest(".service-detail");
+        const panel = card.querySelector(".service-inline-detail");
+        const title = panel.querySelector("strong");
+        const text = panel.querySelector("p");
+        const isOpen = trigger.classList.contains("active");
+
+        closeAll(card);
+
+        if (isOpen) {
+          trigger.classList.remove("active");
+          trigger.setAttribute("aria-expanded", "false");
+          panel.classList.remove("open");
+          panel.setAttribute("aria-hidden", "true");
+          return;
+        }
+
+        card.querySelectorAll(".service-point-trigger").forEach(t => {
+          t.classList.remove("active");
+          t.setAttribute("aria-expanded", "false");
+        });
+
+        trigger.classList.add("active");
+        trigger.setAttribute("aria-expanded", "true");
+        title.textContent = trigger.dataset.detailTitle;
+        text.textContent = trigger.dataset.detail;
+        panel.classList.add("open");
+        panel.setAttribute("aria-hidden", "false");
+      }
+
+      triggers.forEach(trigger => {
+        trigger.addEventListener("click", function (event) {
+          event.stopPropagation();
+          toggle(trigger);
+        });
+
+        trigger.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggle(trigger);
+          }
+        });
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!event.target.closest(".service-detail")) {
+          closeAll(null);
+        }
+      });
+    });
+  </script>
 
   <script src="script.js"></script>
 
