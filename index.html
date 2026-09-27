@@ -6,6 +6,165 @@
   <meta name="description" content="SR Associates - Land Surveyors providing land, topographical, GNSS RTK, total station, drone mapping and CAD survey services.">
   <title>SR Associates | Land Surveyors</title>
   <link rel="stylesheet" href="styles.css">
+
+<style>
+/* =========================================================
+   HERO PROJECT SLIDESHOW
+   Uses Recent Highlight projects from projects-data.json
+   ========================================================= */
+.hero-project-slideshow{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+}
+
+.hero-project-slide{
+  position:absolute;
+  inset:0;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  opacity:0;
+  transform:scale(1.04);
+  transition:opacity 1s ease, transform 6s ease;
+}
+
+.hero-project-slide.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+.hero-project-caption{
+  position:absolute;
+  right:7%;
+  bottom:55px;
+  z-index:4;
+  max-width:360px;
+  padding:14px 18px;
+  background:rgba(0,0,0,.62);
+  border-left:3px solid var(--red);
+  backdrop-filter:blur(5px);
+  color:#fff;
+  opacity:1;
+  transition:opacity .35s ease;
+}
+
+.hero-project-caption .hero-project-category{
+  display:block;
+  margin-bottom:5px;
+  color:#ff4549;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.2px;
+}
+
+.hero-project-caption strong{
+  display:block;
+  font-size:18px;
+  line-height:1.2;
+  margin-bottom:4px;
+}
+
+.hero-project-caption small{
+  display:block;
+  color:#ddd;
+  font-size:12px;
+  margin-bottom:9px;
+}
+
+.hero-project-link{
+  display:inline-block;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.7px;
+  text-transform:uppercase;
+  border-bottom:1px solid rgba(255,255,255,.6);
+  padding-bottom:2px;
+}
+
+.hero-project-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:5;
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.45);
+  background:rgba(0,0,0,.38);
+  color:#fff;
+  border-radius:50%;
+  font-size:25px;
+  line-height:1;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.hero-project-arrow:hover{
+  background:rgba(201,21,25,.9);
+  border-color:rgba(201,21,25,.9);
+}
+
+.hero-project-arrow.prev{left:28px}
+.hero-project-arrow.next{right:28px}
+
+.hero-project-dots{
+  position:absolute;
+  right:7%;
+  bottom:28px;
+  z-index:5;
+  display:flex;
+  gap:7px;
+}
+
+.hero-project-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  border:0;
+  padding:0;
+  background:rgba(255,255,255,.45);
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.hero-project-dot.active{
+  width:22px;
+  border-radius:5px;
+  background:#fff;
+}
+
+/* Keep the existing dark overlay and all hero text above the photographs. */
+.hero .hero-overlay{z-index:1}
+.hero .hero-content{z-index:3}
+.hero .hero-features{z-index:6}
+
+@media(max-width:720px){
+  .hero-project-caption{
+    left:25px;
+    right:25px;
+    bottom:92px;
+    max-width:none;
+  }
+
+  .hero-project-arrow{
+    width:36px;
+    height:36px;
+    font-size:21px;
+  }
+
+  .hero-project-arrow.prev{left:12px}
+  .hero-project-arrow.next{right:12px}
+
+  .hero-project-dots{
+    left:25px;
+    right:auto;
+    bottom:65px;
+  }
+}
+</style>
+
 </head>
 <body>
   <header class="site-header">
@@ -27,6 +186,17 @@
   <main>
     <section class="hero" id="home">
       <div class="hero-image"></div>
+
+      <div class="hero-project-slideshow" id="heroProjectSlideshow" aria-label="Recent project highlights">
+        <!-- Recent Highlight projects are loaded automatically from projects-data.json. -->
+      </div>
+
+      <button class="hero-project-arrow prev" id="heroPrev" type="button" aria-label="Previous project">‹</button>
+      <button class="hero-project-arrow next" id="heroNext" type="button" aria-label="Next project">›</button>
+
+      <div class="hero-project-caption" id="heroProjectCaption" hidden></div>
+      <div class="hero-project-dots" id="heroProjectDots" aria-label="Project slides"></div>
+
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <p class="eyebrow">SR ASSOCIATES</p>
@@ -148,6 +318,129 @@
     <span>Accurate Measurement. Solid Foundation.</span>
     <span>landsurveyor.co.in</span>
   </footer>
+
+
+<script>
+/* =========================================================
+   HOME HERO PROJECT SLIDESHOW
+   Loads projects marked "Recent Highlight" in the Project Manager.
+   The main hero text remains unchanged.
+   ========================================================= */
+(function(){
+  const slideshow = document.getElementById('heroProjectSlideshow');
+  const caption = document.getElementById('heroProjectCaption');
+  const dots = document.getElementById('heroProjectDots');
+  const prev = document.getElementById('heroPrev');
+  const next = document.getElementById('heroNext');
+  if(!slideshow || !caption || !dots) return;
+
+  const fallback = [
+    {id:'latest-gnss-rtk',title:'GNSS / RTK SURVEY',category:'HIGH ACCURACY FIELD SURVEY',location:'Uttarakhand',photo:'assets/gnss.jpg'},
+    {id:'latest-construction',title:'CONSTRUCTION SURVEY',category:'TOTAL STATION FIELD WORK',location:'Uttarakhand',photo:'assets/total-station.jpg'},
+    {id:'latest-drone',title:'DRONE SURVEY & MAPPING',category:'AERIAL MAPPING & PHOTOGRAMMETRY',location:'Uttarakhand',photo:'assets/drone.jpg'},
+    {id:'completed-topographical',title:'TOPOGRAPHICAL SURVEY',category:'FIELD MEASUREMENT & MAPPING',location:'Uttarakhand',photo:'assets/survey-hero.jpg'}
+  ];
+
+  let slides=[];
+  let current=0;
+  let timer=null;
+
+  function esc(value){
+    return String(value ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+
+  function projectLink(p){
+    // Hash is harmless on the existing projects page and lets a future
+    // project-page script open a specific project without changing this link.
+    return 'projects.html#project-' + encodeURIComponent(p.id || '');
+  }
+
+  function makeSlides(items){
+    slideshow.innerHTML='';
+    dots.innerHTML='';
+    slides=items.filter(p=>p && p.photo).map((p,i)=>{
+      const el=document.createElement('div');
+      el.className='hero-project-slide' + (i===0?' active':'');
+      el.style.backgroundImage=`url("${String(p.photo).replace(/"/g,'\\"')}")`;
+      slideshow.appendChild(el);
+
+      const dot=document.createElement('button');
+      dot.type='button';
+      dot.className='hero-project-dot' + (i===0?' active':'');
+      dot.setAttribute('aria-label','Show project '+(i+1));
+      dot.addEventListener('click',()=>show(i,true));
+      dots.appendChild(dot);
+      return {data:p,el,dot};
+    });
+
+    prev.hidden=slides.length<2;
+    next.hidden=slides.length<2;
+    dots.hidden=slides.length<2;
+
+    if(slides.length){
+      current=0;
+      updateCaption();
+      if(slides.length>1) start();
+    }else{
+      caption.hidden=true;
+    }
+  }
+
+  function updateCaption(){
+    const p=slides[current]?.data;
+    if(!p) return;
+    caption.innerHTML=`
+      <span class="hero-project-category">${esc(p.category || 'RECENT PROJECT')}</span>
+      <strong>${esc(p.title || 'Survey Project')}</strong>
+      ${p.location ? `<small>${esc(p.location)}${p.year ? ' • '+esc(p.year) : ''}</small>` : ''}
+      <a class="hero-project-link" href="${projectLink(p)}">View Project →</a>
+    `;
+    caption.hidden=false;
+  }
+
+  function show(index,manual=false){
+    if(!slides.length) return;
+    current=(index+slides.length)%slides.length;
+    slides.forEach((s,i)=>{
+      s.el.classList.toggle('active',i===current);
+      s.dot.classList.toggle('active',i===current);
+    });
+    updateCaption();
+    if(manual) restart();
+  }
+
+  function start(){
+    clearInterval(timer);
+    timer=setInterval(()=>show(current+1),6500);
+  }
+  function restart(){start()}
+
+  prev.addEventListener('click',()=>show(current-1,true));
+  next.addEventListener('click',()=>show(current+1,true));
+
+  slideshow.addEventListener('mouseenter',()=>clearInterval(timer));
+  slideshow.addEventListener('mouseleave',()=>{if(slides.length>1)start()});
+  caption.addEventListener('mouseenter',()=>clearInterval(timer));
+  caption.addEventListener('mouseleave',()=>{if(slides.length>1)start()});
+
+  async function loadHighlights(){
+    try{
+      const response=await fetch('projects-data.json?v='+Date.now(),{cache:'no-store'});
+      if(!response.ok) throw new Error('Project data unavailable');
+      const data=await response.json();
+      const highlights=(data.projects||[])
+        .filter(p=>p && p.visible!==false && p.highlight===true && Array.isArray(p.photos) && p.photos.length)
+        .map(p=>({...p,photo:p.photos[0]?.path}))
+        .filter(p=>p.photo);
+      makeSlides(highlights.length ? highlights : fallback);
+    }catch(e){
+      makeSlides(fallback);
+    }
+  }
+
+  loadHighlights();
+})();
+</script>
 
   <script src="script.js"></script>
 </body>
