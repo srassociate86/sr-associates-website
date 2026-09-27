@@ -228,14 +228,15 @@
         }
       ],
       "type": "completed",
-      "category": "Land Surveying in Mars",
+      "category": "CONSTRUCTION SURVEY",
       "title": "Planet survey",
       "location": "Saur mandal 420",
       "year": "2026",
       "visible": true,
       "highlight": true,
       "shortDescription": "Test project",
-      "description": "Details here"
+      "description": "Details here",
+      "_newFiles": []
     },
     {
       "id": "p-muj9nr5x-dhy9t",
