@@ -253,7 +253,7 @@
           "sha": "1bececba72dd09d1bcbacacc5a8177f92634b7d1"
         }
       ],
-      "type": "latest",
+      "type": "completed",
       "category": "SURVEY PROJECT",
       "title": "Land survey",
       "location": "",
@@ -261,7 +261,8 @@
       "visible": true,
       "highlight": true,
       "shortDescription": "Test 3",
-      "description": "Details test 3"
+      "description": "Details test 3",
+      "_newFiles": []
     }
   ]
 }
