@@ -59,7 +59,11 @@
 <input id="editId" type="hidden">
 <div class="grid">
 <div><label>Section</label><select id="type"><option value="latest">Latest Project</option><option value="completed">Completed Project</option><option value="sample">Sample</option></select></div>
-<div><label>Category</label><input id="category" placeholder="GNSS / RTK SURVEY"></div>
+<div><label>Category</label><select id="category">
+<option value="GNSS / RTK SURVEY">GNSS / RTK SURVEY</option>
+<option value="CONSTRUCTION SURVEY">CONSTRUCTION SURVEY</option>
+<option value="DRONE SURVEY & MAPPING">DRONE SURVEY &amp; MAPPING</option>
+</select></div>
 <div><label>Project Title</label><input id="title" placeholder="High Accuracy Field Survey"></div>
 <div><label>Location</label><input id="location" placeholder="Uttarakhand"></div>
 <div><label>Year</label><input id="year" placeholder="2026"></div>
@@ -123,7 +127,7 @@ function markPhotoRemoved(id,index){const p=projects.find(x=>x.id===id);if(!p||!
 function renderExistingPhotos(p){$("existingPhotos").innerHTML=(p.photos||[]).map((ph,i)=>`<div class="thumb"><img src="${esc(ph.path)}" alt=""><button title="Remove" onclick="markPhotoRemoved('${esc(p.id)}',${i})">×</button></div>`).join("")} 
 $("photos").addEventListener("change",async()=>{selectedFiles=[...$("photos").files];preparedFiles=[];renderNewPhotos();if(selectedFiles.length){editStatus("Preparing photos...");await preparePhotos();editStatus(`${selectedFiles.length} photo(s) ready. Click Save Project Locally.`)}});document.querySelectorAll("input[name=photoMode]").forEach(r=>r.addEventListener("change",async()=>{if(!selectedFiles.length)return;editStatus("Preparing photos...");await preparePhotos();editStatus(`${selectedFiles.length} photo(s) ready with ${photoMode()==="compress"?"compression":"original files"}.`)}));
 function makeId(){return "p-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,7)}
-function saveProject(){const title=$("title").value.trim();if(!title){editStatus("Project title is required.");return}let id=$("editId").value||makeId();let p=projects.find(x=>x.id===id);if(!p){p={id,photos:[]};projects.push(p)}Object.assign(p,{type:$("type").value,category:$("category").value.trim()||"SURVEY PROJECT",title,location:$("location").value.trim(),year:$("year").value.trim(),visible:bool("visible"),highlight:bool("highlight"),shortDescription:$("shortDescription").value.trim(),description:$("description").value.trim()});p._newFiles=[...preparedFiles];$("editId").value=id;renderList();editStatus("Saved locally. Click Publish Changes to GitHub when ready.");}
+function saveProject(){const title=$("title").value.trim();if(!title){editStatus("Project title is required.");return}let id=$("editId").value||makeId();let p=projects.find(x=>x.id===id);if(!p){p={id,photos:[]};projects.push(p)}Object.assign(p,{type:$("type").value,category:$("category").value,title,location:$("location").value.trim(),year:$("year").value.trim(),visible:bool("visible"),highlight:bool("highlight"),shortDescription:$("shortDescription").value.trim(),description:$("description").value.trim()});p._newFiles=[...preparedFiles];$("editId").value=id;renderList();editStatus("Saved locally. Click Publish Changes to GitHub when ready.");}
 async function putFile(path,contentBase64,message,sha){const body={message,content:contentBase64};if(sha)body.sha=sha;return api(`/repos/${encodeURIComponent(cfg().owner)}/${encodeURIComponent(cfg().repo)}/contents/${path}`,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)})}
 async function deleteFile(path,sha,message){return api(`/repos/${encodeURIComponent(cfg().owner)}/${encodeURIComponent(cfg().repo)}/contents/${path}`,{method:"DELETE",headers:{"Content-Type":"application/json"},body:JSON.stringify({message,sha})})}
 async function publishAll(){try{const c=cfg();if(!c.owner||!c.repo||!c.token)throw new Error("Enter GitHub owner, repository and token.");status("Publishing...");const data={version:2,projects:projects.map(p=>{const q={...p};delete q._newFiles;return q})};
