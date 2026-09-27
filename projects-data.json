@@ -262,20 +262,6 @@
       "highlight": true,
       "shortDescription": "Test 3",
       "description": "Details test 3"
-    },
-    {
-      "id": "p-muja3ypl-zqxwg",
-      "photos": [],
-      "type": "completed",
-      "category": "Drone Survey",
-      "title": "Khunkhar survey",
-      "location": "Rishikesh",
-      "year": "2026",
-      "visible": true,
-      "highlight": true,
-      "shortDescription": "Test 4",
-      "description": "Details test 4",
-      "_newFiles": []
     }
   ]
 }
