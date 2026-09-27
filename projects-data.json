@@ -2,17 +2,30 @@
   "version": 2,
   "projects": [
     {
-      "id": "p-mujieo1e-1tgv9",
-      "photos": [],
+      "id": "p-mujiv7e5-2wzv8",
+      "photos": [
+        {
+          "path": "assets/projects/p-mujiv7e5-2wzv8/1790495629123-IMG_5573.jpg",
+          "alt": "Dgps Rtk survey",
+          "managed": true,
+          "sha": "59494415b767fcde5e4ad2a87cf892038de2b3d0"
+        },
+        {
+          "path": "assets/projects/p-mujiv7e5-2wzv8/1790495632303-IMG_5548.jpg",
+          "alt": "Dgps Rtk survey",
+          "managed": true,
+          "sha": "53bf3c203181b82484354366ff2d599c955bbe47"
+        }
+      ],
       "type": "latest",
       "category": "GNSS / RTK SURVEY",
-      "title": "Dgps Land survey",
-      "location": "Bhogpur talla rishikesh uttrakhand",
+      "title": "Dgps Rtk survey",
+      "location": "Bhogpur Talla",
       "year": "",
       "visible": true,
       "highlight": true,
-      "shortDescription": "Discription",
-      "description": "No fill"
+      "shortDescription": "Survey at bhogpur Talla",
+      "description": "Surveying at bhogpur talla Rishikesh using dgps and Total station"
     }
   ]
 }
