@@ -236,6 +236,32 @@
       "highlight": true,
       "shortDescription": "Test project",
       "description": "Details here"
+    },
+    {
+      "id": "p-muj9nr5x-dhy9t",
+      "photos": [
+        {
+          "path": "assets/projects/p-muj9nr5x-dhy9t/1790480164335-1000227529.jpg",
+          "alt": "Land survey",
+          "managed": true,
+          "sha": "9f8e330d8a2d82619d0d0c890ef8e60698ca69e3"
+        },
+        {
+          "path": "assets/projects/p-muj9nr5x-dhy9t/1790480168134-1000224615.jpg",
+          "alt": "Land survey",
+          "managed": true,
+          "sha": "1bececba72dd09d1bcbacacc5a8177f92634b7d1"
+        }
+      ],
+      "type": "latest",
+      "category": "SURVEY PROJECT",
+      "title": "Land survey",
+      "location": "",
+      "year": "",
+      "visible": true,
+      "highlight": true,
+      "shortDescription": "Test 3",
+      "description": "Details test 3"
     }
   ]
 }
