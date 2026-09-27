@@ -349,6 +349,36 @@
   align-items: center;
   justify-content: center;
 }
+
+/* Keep WhatsApp and Call Us inside the screen on mobile */
+@media (max-width: 720px) {
+  .site-header .nav-whatsapp,
+  .site-header > .btn.btn-primary {
+    height: 36px;
+    min-height: 36px;
+    padding: 0 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .site-header {
+    gap: 7px;
+  }
+
+  .site-header .brand {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .site-header .brand img {
+    max-width: 115px;
+    height: auto;
+  }
+
+  .site-header .menu-toggle {
+    flex-shrink: 0;
+  }
+}
 </style>
 
 </head>
