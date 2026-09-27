@@ -154,6 +154,177 @@
     bottom:65px;
   }
 }
+
+/* =========================================================
+   DYNAMIC CATEGORY PROJECT SLIDESHOWS
+   Reads project photos from projects-data.json.
+   ========================================================= */
+.category-project-grid{
+  align-items:stretch;
+}
+
+.category-project-card{
+  position:relative;
+  height:320px;
+  min-height:320px;
+  overflow:hidden;
+  cursor:pointer;
+  background:#111;
+  color:#fff;
+  isolation:isolate;
+}
+
+.category-project-slides{
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+
+.category-project-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  transform:scale(1.03);
+  transition:opacity .65s ease, transform 5.5s ease;
+}
+
+.category-project-slide.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+.category-project-overlay{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.42) 45%,rgba(0,0,0,.08) 100%);
+  pointer-events:none;
+}
+
+.category-project-info{
+  position:absolute;
+  left:22px;
+  right:22px;
+  bottom:22px;
+  z-index:4;
+  color:#fff;
+  pointer-events:none;
+}
+
+.category-project-info b{
+  display:block;
+  color:var(--red-bright,#ff4549);
+  font-size:12px;
+  letter-spacing:1.2px;
+  margin-bottom:5px;
+}
+
+.category-project-info span{
+  display:block;
+  color:#eee;
+  font-size:13px;
+  line-height:1.45;
+}
+
+.category-project-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:5;
+  width:36px;
+  height:36px;
+  padding:0;
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:50%;
+  background:rgba(0,0,0,.42);
+  color:#fff;
+  font-size:24px;
+  line-height:32px;
+  opacity:0;
+  transition:.2s ease;
+}
+
+.category-project-card:hover .category-project-arrow{
+  opacity:1;
+}
+
+.category-project-arrow:hover{
+  background:var(--red,#c91519);
+  border-color:var(--red,#c91519);
+}
+
+.category-project-arrow.prev{left:12px}
+.category-project-arrow.next{right:12px}
+
+.category-project-dots{
+  position:absolute;
+  right:18px;
+  bottom:22px;
+  z-index:5;
+  display:flex;
+  gap:5px;
+  align-items:center;
+}
+
+.category-project-dot{
+  width:6px;
+  height:6px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.5);
+  cursor:pointer;
+}
+
+.category-project-dot.active{
+  width:18px;
+  border-radius:4px;
+  background:#fff;
+}
+
+.category-project-empty{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  text-align:center;
+  color:#bbb;
+  background:#171717;
+  font-size:13px;
+}
+
+@media(max-width:720px){
+  .category-project-card{
+    height:280px;
+    min-height:280px;
+  }
+
+  .category-project-arrow{
+    opacity:1;
+    width:32px;
+    height:32px;
+    font-size:21px;
+    line-height:28px;
+  }
+
+  .category-project-info{
+    left:17px;
+    right:17px;
+    bottom:17px;
+  }
+
+  .category-project-dots{
+    right:15px;
+    bottom:18px;
+  }
+}
+
 </style>
 
 </head>
@@ -228,29 +399,41 @@
   <h2>Surveying the Real World</h2>
   <p class="section-intro">From field observations to precise digital outputs.</p>
 
-  <div class="project-grid">
-    <article class="project-card">
-      <img src="assets/gnss.jpg" alt="GNSS survey equipment">
-      <div>
-        <b>TOPOGRAPHICAL SURVEY</b>
-        <span>Uttarakhand</span>
+  <div class="project-grid category-project-grid" id="categoryProjectGrid">
+    <article class="project-card category-project-card" data-category="GNSS / RTK SURVEY">
+      <div class="category-project-slides" aria-label="GNSS / RTK Survey projects"></div>
+      <div class="category-project-overlay"></div>
+      <button class="category-project-arrow prev" type="button" aria-label="Previous GNSS / RTK project">‹</button>
+      <button class="category-project-arrow next" type="button" aria-label="Next GNSS / RTK project">›</button>
+      <div class="category-project-info">
+        <b>GNSS / RTK SURVEY</b>
+        <span class="category-project-meta">Loading projects...</span>
       </div>
+      <div class="category-project-dots" aria-label="GNSS / RTK project slides"></div>
     </article>
 
-    <article class="project-card">
-      <img src="assets/total-station.jpg" alt="Total station survey">
-      <div>
+    <article class="project-card category-project-card" data-category="CONSTRUCTION SURVEY">
+      <div class="category-project-slides" aria-label="Construction Survey projects"></div>
+      <div class="category-project-overlay"></div>
+      <button class="category-project-arrow prev" type="button" aria-label="Previous construction project">‹</button>
+      <button class="category-project-arrow next" type="button" aria-label="Next construction project">›</button>
+      <div class="category-project-info">
         <b>CONSTRUCTION SURVEY</b>
-        <span>Uttarakhand</span>
+        <span class="category-project-meta">Loading projects...</span>
       </div>
+      <div class="category-project-dots" aria-label="Construction project slides"></div>
     </article>
 
-    <article class="project-card">
-      <img src="assets/drone.jpg" alt="Drone mapping">
-      <div>
+    <article class="project-card category-project-card" data-category="DRONE SURVEY & MAPPING">
+      <div class="category-project-slides" aria-label="Drone Survey & Mapping projects"></div>
+      <div class="category-project-overlay"></div>
+      <button class="category-project-arrow prev" type="button" aria-label="Previous drone project">‹</button>
+      <button class="category-project-arrow next" type="button" aria-label="Next drone project">›</button>
+      <div class="category-project-info">
         <b>DRONE SURVEY & MAPPING</b>
-        <span>Uttarakhand</span>
+        <span class="category-project-meta">Loading projects...</span>
       </div>
+      <div class="category-project-dots" aria-label="Drone project slides"></div>
     </article>
   </div>
 
@@ -440,6 +623,213 @@
   }
 
   loadHighlights();
+})();
+</script>
+
+
+<script>
+/* =========================================================
+   HOME CATEGORY PROJECT SLIDESHOWS
+   Each homepage card is populated automatically from
+   projects-data.json using the Project Manager categories.
+   ========================================================= */
+(function(){
+  const cards = document.querySelectorAll('.category-project-card');
+  if(!cards.length) return;
+
+  const fallback = {
+    'GNSS / RTK SURVEY': 'assets/gnss.jpg',
+    'CONSTRUCTION SURVEY': 'assets/total-station.jpg',
+    'DRONE SURVEY & MAPPING': 'assets/drone.jpg'
+  };
+
+  const states = [];
+
+  function esc(value){
+    return String(value ?? '').replace(/[&<>'"]/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'
+    }[c]));
+  }
+
+  function projectLink(id){
+    return 'projects.html#project-' + encodeURIComponent(id || '');
+  }
+
+  function getPhotos(projects, category){
+    const result = [];
+
+    projects
+      .filter(p => p && p.visible !== false && p.category === category)
+      .forEach(p => {
+        (Array.isArray(p.photos) ? p.photos : []).forEach(photo => {
+          if(photo && photo.path){
+            result.push({
+              path: photo.path,
+              title: p.title || category,
+              location: p.location || '',
+              year: p.year || '',
+              id: p.id || ''
+            });
+          }
+        });
+      });
+
+    return result;
+  }
+
+  function makeCard(card, photos){
+    const category = card.dataset.category;
+    const slidesEl = card.querySelector('.category-project-slides');
+    const dotsEl = card.querySelector('.category-project-dots');
+    const metaEl = card.querySelector('.category-project-meta');
+    const prev = card.querySelector('.category-project-arrow.prev');
+    const next = card.querySelector('.category-project-arrow.next');
+
+    const state = {
+      card,
+      category,
+      photos,
+      current: 0,
+      timer: null,
+      slides: [],
+      dots: []
+    };
+
+    states.push(state);
+
+    slidesEl.innerHTML = '';
+    dotsEl.innerHTML = '';
+
+    if(!photos.length){
+      const fallbackSlide = document.createElement('div');
+      fallbackSlide.className = 'category-project-slide active';
+      fallbackSlide.style.backgroundImage = `url("${fallback[category] || 'assets/survey-hero.jpg'}")`;
+      slidesEl.appendChild(fallbackSlide);
+
+      metaEl.textContent = 'No projects added yet';
+      prev.hidden = true;
+      next.hidden = true;
+      dotsEl.hidden = true;
+      return state;
+    }
+
+    state.slides = photos.map((photo, index) => {
+      const slide = document.createElement('div');
+      slide.className = 'category-project-slide' + (index === 0 ? ' active' : '');
+      slide.style.backgroundImage = `url("${String(photo.path).replace(/"/g,'\\"')}")`;
+      slide.setAttribute('role','img');
+      slide.setAttribute('aria-label', photo.title);
+      slidesEl.appendChild(slide);
+
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'category-project-dot' + (index === 0 ? ' active' : '');
+      dot.setAttribute('aria-label','Show photo ' + (index + 1) + ' of ' + photos.length);
+      dot.addEventListener('click', function(event){
+        event.stopPropagation();
+        show(state, index, true);
+      });
+      dotsEl.appendChild(dot);
+
+      return slide;
+    });
+
+    state.dots = [...dotsEl.children];
+
+    prev.hidden = photos.length < 2;
+    next.hidden = photos.length < 2;
+    dotsEl.hidden = photos.length < 2;
+
+    function updateMeta(){
+      const photo = state.photos[state.current];
+      if(!photo) return;
+      const details = [photo.location, photo.year].filter(Boolean).join(' • ');
+      metaEl.textContent = photo.title + (details ? ' • ' + details : '');
+    }
+
+    state.updateMeta = updateMeta;
+    updateMeta();
+
+    prev.addEventListener('click', function(event){
+      event.stopPropagation();
+      show(state, state.current - 1, true);
+    });
+
+    next.addEventListener('click', function(event){
+      event.stopPropagation();
+      show(state, state.current + 1, true);
+    });
+
+    card.addEventListener('click', function(){
+      const photo = state.photos[state.current];
+      if(photo && photo.id) window.location.href = projectLink(photo.id);
+    });
+
+    card.addEventListener('mouseenter', function(){
+      clearInterval(state.timer);
+    });
+
+    card.addEventListener('mouseleave', function(){
+      if(state.photos.length > 1) start(state);
+    });
+
+    if(photos.length > 1) start(state);
+    return state;
+  }
+
+  function show(state, index, manual){
+    if(!state.photos.length || !state.slides.length) return;
+
+    state.current = (index + state.photos.length) % state.photos.length;
+
+    state.slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === state.current);
+    });
+
+    state.dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === state.current);
+    });
+
+    state.updateMeta();
+
+    if(manual) start(state);
+  }
+
+  function start(state){
+    clearInterval(state.timer);
+    if(state.photos.length > 1){
+      state.timer = setInterval(() => show(state, state.current + 1, false), 4500);
+    }
+  }
+
+  async function loadCategorySlideshows(){
+    try{
+      const response = await fetch('projects-data.json?v=' + Date.now(), {
+        cache:'no-store'
+      });
+
+      if(!response.ok) throw new Error('Project data unavailable');
+
+      const data = await response.json();
+      const projects = Array.isArray(data.projects) ? data.projects : [];
+
+      cards.forEach(card => {
+        const category = card.dataset.category;
+        const photos = getPhotos(projects, category);
+        makeCard(card, photos);
+      });
+
+    }catch(error){
+      console.error('Could not load project slideshows:', error);
+
+      cards.forEach(card => {
+        const category = card.dataset.category;
+        makeCard(card, []);
+      });
+    }
+  }
+
+  loadCategorySlideshows();
 })();
 </script>
 
