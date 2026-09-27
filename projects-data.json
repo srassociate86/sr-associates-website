@@ -265,20 +265,7 @@
     },
     {
       "id": "p-muja3ypl-zqxwg",
-      "photos": [
-        {
-          "path": "assets/projects/p-muja3ypl-zqxwg/1790480919835-1000228034.jpg",
-          "alt": "Khunkhar survey",
-          "managed": true,
-          "sha": "9c05483881f24ada2d0c97c0e0af4fca1380fa7c"
-        },
-        {
-          "path": "assets/projects/p-muja3ypl-zqxwg/1790480924231-1000227842.jpg",
-          "alt": "Khunkhar survey",
-          "managed": true,
-          "sha": "85c550b94fe1e7177a4c3a60aa7d5dc09b29b276"
-        }
-      ],
+      "photos": [],
       "type": "completed",
       "category": "Drone Survey",
       "title": "Khunkhar survey",
@@ -287,7 +274,8 @@
       "visible": true,
       "highlight": true,
       "shortDescription": "Test 4",
-      "description": "Details test 4"
+      "description": "Details test 4",
+      "_newFiles": []
     }
   ]
 }
