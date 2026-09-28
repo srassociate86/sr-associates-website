@@ -106,6 +106,28 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-09-28"
+    },
+    {
+      "id": "p-mulch5r0-1kom0",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-09-03/total-station-construction/1790605828284-1000229153.jpg",
+          "alt": "Survey at Malakhunti",
+          "managed": true,
+          "sha": "e3c21ef1002c1d6fa6a2cbbbcb95aebd617a6297",
+          "highlightUntil": "2026-10-02"
+        }
+      ],
+      "type": "project",
+      "category": "TOTAL STATION / CONSTRUCTION",
+      "title": "Survey at Malakhunti",
+      "date": "2026-09-03",
+      "location": "Malakhunti",
+      "shortDescription": "Column Marking at Malakhunti",
+      "description": "",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-09-28"
     }
   ],
   "slides": []
