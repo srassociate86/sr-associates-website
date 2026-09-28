@@ -80,6 +80,28 @@
       "description": "Survey by drone and dgps",
       "date": "2026-09-18",
       "highlightDays": 30
+    },
+    {
+      "id": "p-mulblrvd-hjoc9",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-09-18/gnss-rtk/1790604364324-DSC01902.jpg",
+          "alt": "Land Survey near Shivpuri",
+          "managed": true,
+          "sha": "891694cc66021cdd31b1b1f5ce97d2547fd79801",
+          "highlightUntil": "2026-10-17"
+        }
+      ],
+      "type": "project",
+      "category": "GNSS / RTK",
+      "title": "Land Survey near Shivpuri",
+      "date": "2026-09-18",
+      "location": "Shivpuri, Uttarakhand",
+      "shortDescription": "Short text test",
+      "description": "Long text test",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-09-28"
     }
   ],
   "slides": []
