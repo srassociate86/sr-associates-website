@@ -23,6 +23,77 @@
 .photo-nav:hover{background:var(--red)}
 .photo-nav.prev{left:12px}.photo-nav.next{right:12px}
 @media(max-width:900px){.photo-gallery{grid-template-columns:repeat(3,1fr)}}
+
+/* FULL-SCREEN PHOTO LIGHTBOX */
+.project-modal{
+  background:rgba(0,0,0,.88) !important;
+  padding:0 !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.project-modal-box{
+  background:transparent !important;
+  width:100vw !important;
+  max-width:none !important;
+  height:100vh !important;
+  max-height:none !important;
+  overflow:visible !important;
+  border-radius:0 !important;
+  padding:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+.modal-close{
+  right:24px !important;
+  top:18px !important;
+  color:#fff !important;
+  font-size:38px !important;
+  z-index:20 !important;
+}
+.modal-title{
+  color:#fff !important;
+  margin:0 55px 4px !important;
+  text-align:center !important;
+  font-size:24px !important;
+}
+.modal-meta{
+  color:#ccc !important;
+  margin:0 55px 8px !important;
+  text-align:center !important;
+}
+.modal-description{
+  color:#ddd !important;
+  max-width:900px !important;
+  max-height:18vh !important;
+  overflow:auto !important;
+  margin:0 25px 14px !important;
+  text-align:center !important;
+  line-height:1.6 !important;
+}
+.photo-viewer{
+  width:min(94vw,1400px) !important;
+  height:min(76vh,820px) !important;
+  min-height:0 !important;
+  margin:0 !important;
+  background:transparent !important;
+  border-radius:0 !important;
+}
+.photo-viewer img{
+  width:100% !important;
+  height:100% !important;
+  max-height:none !important;
+  object-fit:contain !important;
+}
+@media(max-width:720px){
+  .modal-title{font-size:19px !important;margin-left:45px !important;margin-right:45px !important}
+  .modal-meta{font-size:12px !important}
+  .modal-description{max-height:20vh !important;font-size:13px !important}
+  .photo-viewer{width:96vw !important;height:64vh !important}
+  .modal-close{right:14px !important;top:8px !important}
+}
+
 @media(max-width:720px){.photo-gallery{grid-template-columns:repeat(2,1fr);gap:10px}.photo-card img{height:190px}.photo-card-caption{padding:12px}.photo-card-caption h3{font-size:14px}.photo-viewer{min-height:240px}.photo-nav{width:38px;height:38px;font-size:22px}}
 @media(max-width:500px){.photo-gallery{grid-template-columns:1fr 1fr}.photo-card img{height:165px}}
 
@@ -65,11 +136,13 @@ function openPhoto(index){
   document.getElementById('projectModal').classList.add('open');document.body.style.overflow='hidden'
 }
 function showPhoto(index){const count=galleryItems.length;if(!count)return;currentPhotoIndex=(index+count)%count;openPhoto(currentPhotoIndex)}
-function closeProject(){document.getElementById('projectModal').classList.remove('open');document.body.style.overflow=''}document.getElementById('projectModal').addEventListener('click',e=>{if(e.target.id==='projectModal')closeProject()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProject();if(document.getElementById('projectModal').classList.contains('open')){if(e.key==='ArrowLeft')showPhoto(currentPhotoIndex-1);if(e.key==='ArrowRight')showPhoto(currentPhotoIndex+1)}});
+function closeProject(){document.getElementById('projectModal').classList.remove('open');document.body.style.overflow=''}document.getElementById('projectModal').addEventListener('click',e=>{
+  if(e.target.id==='projectModal')closeProject();
+});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProject();if(document.getElementById('projectModal').classList.contains('open')){if(e.key==='ArrowLeft')showPhoto(currentPhotoIndex-1);if(e.key==='ArrowRight')showPhoto(currentPhotoIndex+1)}});
 function buildGalleryItems(){
   const projects=allProjects.filter(p=>p.type!=='sample'&&(currentFilter==='ALL'||p.category===currentFilter)).slice().sort((a,b)=>String(projectDate(b)).localeCompare(String(projectDate(a))));
   const items=[];
-  projects.forEach(p=>(p.photos||[]).forEach(ph=>items.push({path:ph.path,alt:ph.alt||p.title,title:p.title||'Survey Work',description:p.shortDescription||p.description||'',location:p.location||'',date:projectDate(p)})));
+  projects.forEach(p=>(p.photos||[]).forEach(ph=>items.push({path:ph.path,alt:ph.alt||p.title,title:p.title||'Survey Work',description:p.description||p.shortDescription||'',location:p.location||'',date:projectDate(p)})));
   return items
 }
 function renderProjects(){
@@ -84,7 +157,7 @@ function renderSamples(){
 }
 function openSamplePhoto(id){
   const p=allProjects.find(x=>x.id===id);if(!p||!p.photos?.length)return;
-  galleryItems=p.photos.map(ph=>({path:ph.path,alt:ph.alt||p.title,title:p.title||'Sample',description:p.shortDescription||p.description||'',location:p.location||'',date:projectDate(p)}));
+  galleryItems=p.photos.map(ph=>({path:ph.path,alt:ph.alt||p.title,title:p.title||'Sample',description:p.description||p.shortDescription||'',location:p.location||'',date:projectDate(p)}));
   openPhoto(0)
 }
 document.querySelectorAll('#projectFilter button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('#projectFilter button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.dataset.filter;renderProjects()}));
