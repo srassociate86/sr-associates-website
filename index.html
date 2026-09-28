@@ -386,7 +386,7 @@
 <body>
   <header class="site-header">
     <a class="brand" href="#home" aria-label="SR Associates home">
-      <img src="assets/logo.jpg" alt="SR Associates">
+      <img src="assets/logo.jpg" alt="SR Associates Land Surveyors Logo" width="150" height="50">
     </a>
     <button class="menu-toggle" aria-label="Open menu">☰</button>
     <nav class="nav">
@@ -669,7 +669,7 @@
 
   async function loadHighlights(){
     try{
-      const response=await fetch('projects-data.json?v='+Date.now(),{cache:'no-store'});
+      const response=await fetch('projects-data.json');
       if(!response.ok) throw new Error('Project data unavailable');
       const data=await response.json();
       const highlights=(data.projects||[])
@@ -864,9 +864,7 @@
 
   async function loadCategorySlideshows(){
     try{
-      const response = await fetch('projects-data.json?v=' + Date.now(), {
-        cache:'no-store'
-      });
+      const response = await fetch('projects-data.json');
 
       if(!response.ok) throw new Error('Project data unavailable');
 
