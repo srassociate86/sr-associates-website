@@ -24,6 +24,11 @@
 .photo-nav.prev{left:12px}.photo-nav.next{right:12px}
 @media(max-width:900px){.photo-gallery{grid-template-columns:repeat(3,1fr)}}
 
+
+.photo-viewer{
+  touch-action:pan-y;
+}
+
 /* FULL-SCREEN PHOTO LIGHTBOX */
 .project-modal{
   background:rgba(0,0,0,.88) !important;
@@ -122,6 +127,8 @@ function renderHighlights(){const items=activeHighlights(),slides=document.getEl
 function showSlide(i){const slides=document.getElementById('slides'),dots=document.querySelectorAll('.slider-dot'),count=slides.children.length;if(!count)return;currentSlide=(i+count)%count;slides.style.transform='translateX(-'+currentSlide*100+'%)';dots.forEach((d,n)=>d.classList.toggle('active',n===currentSlide))}function changeSlide(d){showSlide(currentSlide+d)}
 function openPhoto(index){
   const item=galleryItems[index];if(!item)return;
+  const modal=document.getElementById('projectModal');
+  const wasOpen=modal.classList.contains('open');
   currentPhotoIndex=index;
   document.getElementById('modalTitle').textContent=item.title||'';
   document.getElementById('modalMeta').textContent=[dateLabel(item.date),item.location].filter(Boolean).join(' • ');
@@ -133,12 +140,49 @@ function openPhoto(index){
     const next=document.createElement('button');next.className='photo-nav next';next.innerHTML='›';next.setAttribute('aria-label','Next photo');next.onclick=e=>{e.stopPropagation();showPhoto(currentPhotoIndex+1)};
     g.appendChild(prev);g.appendChild(next);
   }
-  document.getElementById('projectModal').classList.add('open');document.body.style.overflow='hidden'
+  if(!wasOpen){
+    history.pushState({photoLightbox:true},'',window.location.href.split('#')[0]+'#photo-viewer');
+  }
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
 }
 function showPhoto(index){const count=galleryItems.length;if(!count)return;currentPhotoIndex=(index+count)%count;openPhoto(currentPhotoIndex)}
-function closeProject(){document.getElementById('projectModal').classList.remove('open');document.body.style.overflow=''}document.getElementById('projectModal').addEventListener('click',e=>{
-  if(e.target.id==='projectModal')closeProject();
-});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProject();if(document.getElementById('projectModal').classList.contains('open')){if(e.key==='ArrowLeft')showPhoto(currentPhotoIndex-1);if(e.key==='ArrowRight')showPhoto(currentPhotoIndex+1)}});
+function closeProject(fromHistory=false){
+  const modal=document.getElementById('projectModal');
+  if(!modal.classList.contains('open'))return;
+  modal.classList.remove('open');
+  document.body.style.overflow='';
+  if(!fromHistory && window.location.hash==='#photo-viewer')history.back();
+}
+document.getElementById('projectModal').addEventListener('click',e=>{
+  if(!e.target.closest('.photo-viewer') && !e.target.closest('.modal-close'))closeProject();
+});
+window.addEventListener('popstate',()=>{
+  if(document.getElementById('projectModal').classList.contains('open'))closeProject(true);
+});
+
+let touchStartX=0,touchStartY=0;
+document.getElementById('modalGallery').addEventListener('touchstart',e=>{
+  if(e.touches.length!==1)return;
+  touchStartX=e.touches[0].clientX;
+  touchStartY=e.touches[0].clientY;
+},{passive:true});
+document.getElementById('modalGallery').addEventListener('touchend',e=>{
+  if(!document.getElementById('projectModal').classList.contains('open')||e.changedTouches.length!==1)return;
+  const dx=e.changedTouches[0].clientX-touchStartX;
+  const dy=e.changedTouches[0].clientY-touchStartY;
+  if(Math.abs(dx)<50||Math.abs(dx)<=Math.abs(dy))return;
+  if(dx<0)showPhoto(currentPhotoIndex+1);
+  else showPhoto(currentPhotoIndex-1);
+},{passive:true});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeProject();
+  if(document.getElementById('projectModal').classList.contains('open')){
+    if(e.key==='ArrowLeft')showPhoto(currentPhotoIndex-1);
+    if(e.key==='ArrowRight')showPhoto(currentPhotoIndex+1);
+  }
+});
+
 function buildGalleryItems(){
   const projects=allProjects.filter(p=>p.type!=='sample'&&(currentFilter==='ALL'||p.category===currentFilter)).slice().sort((a,b)=>String(projectDate(b)).localeCompare(String(projectDate(a))));
   const items=[];
