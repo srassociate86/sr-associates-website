@@ -26,6 +26,26 @@
       "highlight": true,
       "shortDescription": "Survey at bhogpur Talla",
       "description": "Surveying at bhogpur talla Rishikesh using dgps and Total station"
+    },
+    {
+      "id": "p-mukrxqwh-ab40b",
+      "photos": [
+        {
+          "path": "assets/projects/p-mukrxqwh-ab40b/1790571330677-1000230743.jpg",
+          "alt": "Tital Station Survey",
+          "managed": true,
+          "sha": "c8fbb1d16f4eba322ef39cb85ac7b05ac6e2cfe7"
+        }
+      ],
+      "type": "completed",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Tital Station Survey",
+      "location": "Rishikesh",
+      "year": "",
+      "visible": true,
+      "highlight": true,
+      "shortDescription": "",
+      "description": ""
     }
   ]
 }
