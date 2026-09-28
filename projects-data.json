@@ -37,17 +37,15 @@
           "sha": "c8fbb1d16f4eba322ef39cb85ac7b05ac6e2cfe7"
         }
       ],
-      "type": "project",
-      "category": "TOTAL STATION / CONSTRUCTION",
-      "title": "Total Station Survey",
+      "type": "completed",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Tital Station Survey",
       "location": "Rishikesh",
       "year": "",
       "visible": true,
       "highlight": true,
-      "shortDescription": "short description text test",
-      "description": "full description text test",
-      "date": "2026-09-28",
-      "highlightDays": 30
+      "shortDescription": "",
+      "description": ""
     },
     {
       "id": "p-muksn5qh-1nbkm",
@@ -71,15 +69,17 @@
           "sha": "8f16d31dece23c98a43806a3cdc05516af68a077"
         }
       ],
-      "type": "latest",
-      "category": "DRONE SURVEY & MAPPING",
+      "type": "project",
+      "category": "DRONE",
       "title": "Drone and dgps digital survey",
       "location": "Shivpuri uttrakhand",
       "year": "",
       "visible": true,
       "highlight": true,
       "shortDescription": "Digital topographical survey at shivpuri Uttrakhand using drone dgps",
-      "description": "Survey by drone and dgps"
+      "description": "Survey by drone and dgps",
+      "date": "2026-09-18",
+      "highlightDays": 30
     }
   ],
   "slides": []
