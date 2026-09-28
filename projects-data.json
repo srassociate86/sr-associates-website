@@ -39,15 +39,17 @@
           "sha": "c8fbb1d16f4eba322ef39cb85ac7b05ac6e2cfe7"
         }
       ],
-      "type": "completed",
-      "category": "CONSTRUCTION SURVEY",
-      "title": "Tital Station Survey",
+      "type": "project",
+      "category": "TOTAL STATION / CONSTRUCTION",
+      "title": "Total Station Survey",
       "location": "Rishikesh",
       "year": "",
       "visible": true,
       "highlight": true,
-      "shortDescription": "",
-      "description": ""
+      "shortDescription": "short text",
+      "description": "long text",
+      "date": "2026-09-28",
+      "highlightDays": 30
     },
     {
       "id": "p-muksn5qh-1nbkm",
