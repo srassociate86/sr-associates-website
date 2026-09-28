@@ -803,8 +803,20 @@
   function getPhotos(projects, category){
     const result = [];
 
+    // The Project Manager now uses these three exact categories:
+    // GNSS / RTK, TOTAL STATION / CONSTRUCTION, DRONE.
+    // Keep the existing homepage card wording unchanged, but map each
+    // card to the corresponding Project Manager category.
+    const categoryMap = {
+      'GNSS / RTK SURVEY': ['GNSS / RTK', 'GNSS / RTK SURVEY'],
+      'CONSTRUCTION SURVEY': ['TOTAL STATION / CONSTRUCTION', 'CONSTRUCTION SURVEY'],
+      'DRONE SURVEY & MAPPING': ['DRONE', 'DRONE SURVEY & MAPPING']
+    };
+
+    const allowedCategories = categoryMap[category] || [category];
+
     projects
-      .filter(p => p && p.visible !== false && p.category === category)
+      .filter(p => p && p.visible !== false && allowedCategories.includes(p.category))
       .forEach(p => {
         (Array.isArray(p.photos) ? p.photos : []).forEach(photo => {
           if(photo && photo.path){
