@@ -8,42 +8,23 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 .projects-page-hero{min-height:420px;background:linear-gradient(90deg,rgba(0,0,0,.92),rgba(0,0,0,.55),rgba(0,0,0,.25)),url("assets/survey-hero.jpg") center/cover no-repeat;display:flex;align-items:center;padding:80px 7%;position:relative;overflow:hidden}.projects-page-hero-content{max-width:760px}.projects-page-hero h1{margin:15px 0;font-size:clamp(42px,6vw,76px);line-height:.98;color:#fff;text-transform:uppercase}.projects-page-hero h1 span{color:var(--red-bright)}.projects-page-hero p:not(.eyebrow){max-width:600px;color:#ccc;font-size:18px;line-height:1.7}.highlights{background:#fff}.project-slider{max-width:1200px;margin:45px auto 0;position:relative;overflow:hidden;border-radius:6px;background:#111}.slides{display:flex;transition:transform .5s ease}.slide{min-width:100%;height:500px;position:relative;overflow:hidden}.slide img{width:100%;height:100%;object-fit:cover;display:block}.slide::after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.9))}.slide-caption{position:absolute;left:35px;bottom:30px;z-index:2;color:#fff;text-align:left}.slide-caption span{display:block;color:var(--red-bright);font-size:12px;font-weight:800;letter-spacing:1.5px;margin-bottom:8px}.slide-caption h3{margin:0;font-size:26px;text-transform:uppercase}.slider-button{position:absolute;top:50%;transform:translateY(-50%);width:45px;height:45px;border:0;background:rgba(0,0,0,.65);color:#fff;font-size:25px;cursor:pointer;z-index:5}.slider-button:hover{background:var(--red)}.slider-prev{left:15px}.slider-next{right:15px}.slider-dots{position:absolute;bottom:18px;right:25px;z-index:5;display:flex;gap:8px}.slider-dot{width:9px;height:9px;border-radius:50%;border:0;background:#aaa;cursor:pointer;padding:0}.slider-dot.active{background:var(--red-bright)}.project-section{background:#f7f7f7}.project-section.white{background:#fff}.project-filter{max-width:1200px;margin:30px auto 0;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.project-filter button{border:1px solid #ccc;background:#fff;color:#333;border-radius:30px;padding:9px 15px;font-weight:700;font-size:12px;cursor:pointer}.project-filter button.active,.project-filter button:hover{background:var(--red);border-color:var(--red);color:#fff}.date-break{max-width:1200px;margin:48px auto 20px;border-bottom:1px solid #ddd;padding-bottom:10px}.date-break:first-child{margin-top:40px}.date-break span{font-size:13px;letter-spacing:1.8px;font-weight:800;color:var(--red)}.project-card{max-width:1200px;margin:0 auto 30px;background:#fff;border:1px solid #e2e2e2;border-radius:7px;overflow:hidden}.project-card-head{padding:22px 24px 15px}.project-card-head b{display:block;color:var(--red);font-size:11px;letter-spacing:1.4px;margin-bottom:6px}.project-card-head h3{margin:0 0 6px;font-size:24px;text-transform:uppercase}.project-card-head p{margin:0;color:#666;line-height:1.65}.project-meta{font-size:12px;color:#888;margin-top:7px}.project-photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:0 5px 5px}.project-photo-grid img{width:100%;height:210px;object-fit:cover;display:block;cursor:pointer}.samples-section{background:#fff}.sample-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1200px;margin:40px auto 0}.sample-card{background:#fff;border:1px solid var(--border);overflow:hidden;border-radius:6px;transition:.25s ease;cursor:pointer}.sample-card:hover{transform:translateY(-5px);border-color:var(--red);box-shadow:0 12px 28px rgba(0,0,0,.10)}.sample-card img{width:100%;height:190px;object-fit:cover;display:block}.sample-card-content{padding:17px;text-align:left}.sample-card-content b{display:block;color:var(--red);font-size:11px;letter-spacing:1.2px;margin-bottom:6px}.sample-card-content h3{margin:0 0 6px;font-size:15px;text-transform:uppercase}.sample-card-content p{margin:0;color:#666;font-size:12px;line-height:1.5}.empty-projects{max-width:1200px;margin:40px auto 0;padding:35px;text-align:center;color:#777;border:1px dashed #ccc}.projects-cta{padding:70px 7%;background:linear-gradient(110deg,#090909,#311012);color:#fff;text-align:center}.projects-cta h2{margin:0 0 12px;font-size:40px;color:#fff}.projects-cta h2 span{color:var(--red-bright)}.projects-cta p{color:#ccc;max-width:600px;margin:0 auto 28px;line-height:1.7}.projects-cta-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.project-modal{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:9999;display:none;align-items:center;justify-content:center;padding:25px}.project-modal.open{display:flex}.project-modal-box{background:#fff;width:min(1000px,96vw);max-height:92vh;overflow:auto;border-radius:8px;position:relative;padding:28px}.modal-close{position:absolute;right:16px;top:12px;border:0;background:none;font-size:32px;cursor:pointer}.modal-title{margin:0 45px 5px;text-transform:uppercase}.modal-meta{color:#777;margin-bottom:18px}.modal-description{color:#555;line-height:1.7;white-space:pre-line}.modal-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.modal-gallery img{width:100%;height:180px;object-fit:cover;border-radius:4px;cursor:pointer}.modal-empty{padding:20px;background:#f5f5f5;color:#777}
-/* FIX: Prevent global homepage .project-card styles from
-   covering the project title/content on this page. */
-.project-section .project-card{
-  height:auto;
-  position:relative;
-}
-.project-section .project-card::after{
-  display:none;
-}
-.project-section .project-card-head{
-  position:relative !important;
-  bottom:auto !important;
-  left:auto !important;
-  color:#171717 !important;
-  z-index:2 !important;
-  text-align:left !important;
-}
-.project-section .project-card-head b,
-.project-section .project-card-head h3,
-.project-section .project-card-head p,
-.project-section .project-card-head .project-meta{
-  position:static !important;
-}
-.project-section .project-card-head b{
-  color:var(--red) !important;
-}
-.project-section .project-card-head h3{
-  color:#171717 !important;
-}
-.project-section .project-card-head p{
-  color:#666 !important;
-}
-.project-section .project-photo-grid{
-  position:relative;
-  z-index:1;
-}
+/* PROJECT PHOTO GALLERY */
+.photo-gallery{max-width:1200px;margin:40px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.photo-card{background:#fff;border:1px solid #e2e2e2;border-radius:7px;overflow:hidden;cursor:pointer;transition:.25s ease}
+.photo-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.10)}
+.photo-card img{width:100%;height:210px;object-fit:cover;display:block}
+.photo-card-caption{padding:14px 15px 16px;text-align:left}
+.photo-card-caption h3{margin:0 0 6px;font-size:15px;line-height:1.3;text-transform:uppercase;color:#171717}
+.photo-card-caption p{margin:0;color:#666;font-size:12px;line-height:1.5}
+.photo-card-caption .photo-date{margin-top:8px;color:#999;font-size:11px}
+.photo-viewer{display:flex;align-items:center;justify-content:center;position:relative;margin-top:20px;background:#111;border-radius:6px;min-height:300px;overflow:hidden}
+.photo-viewer img{width:100%;max-height:68vh;object-fit:contain;display:block}
+.photo-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:28px;cursor:pointer;z-index:3}
+.photo-nav:hover{background:var(--red)}
+.photo-nav.prev{left:12px}.photo-nav.next{right:12px}
+@media(max-width:900px){.photo-gallery{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.photo-gallery{grid-template-columns:repeat(2,1fr);gap:10px}.photo-card img{height:190px}.photo-card-caption{padding:12px}.photo-card-caption h3{font-size:14px}.photo-viewer{min-height:240px}.photo-nav{width:38px;height:38px;font-size:22px}}
+@media(max-width:500px){.photo-gallery{grid-template-columns:1fr 1fr}.photo-card img{height:165px}}
 
 @media(max-width:720px){.projects-page-hero{min-height:350px;padding:70px 25px}.projects-page-hero h1{font-size:44px}.projects-page-hero p:not(.eyebrow){font-size:16px}.slide{height:350px}.slide-caption{left:20px;bottom:25px}.slide-caption h3{font-size:20px}.project-photo-grid{grid-template-columns:repeat(2,1fr)}.project-photo-grid img{height:170px}.sample-grid{grid-template-columns:1fr 1fr}.projects-cta{padding:55px 20px}.projects-cta h2{font-size:32px}.modal-gallery{grid-template-columns:1fr 1fr}}@media(max-width:500px){.project-photo-grid{grid-template-columns:1fr}.project-photo-grid img{height:220px}.sample-grid{grid-template-columns:1fr}.slider-button{width:38px;height:38px;font-size:20px}.modal-gallery{grid-template-columns:1fr}}
 </style>
@@ -53,14 +34,14 @@
 <main>
 <section class="projects-page-hero"><div class="projects-page-hero-content"><p class="eyebrow">SR ASSOCIATES</p><h1>Our <span>Projects</span></h1><p>Explore our surveying work, field projects and digital mapping outputs covering land surveying, GNSS RTK, topographical surveys, construction surveying and drone mapping.</p></div></section>
 <section class="section highlights"><p class="eyebrow red">RECENT HIGHLIGHTS</p><h2>Our Work in the Field</h2><p class="section-intro">A selection of recent surveying and mapping activities carried out by SR Associates.</p><div class="project-slider"><div class="slides" id="slides"></div><button class="slider-button slider-prev" onclick="changeSlide(-1)" aria-label="Previous highlight">‹</button><button class="slider-button slider-next" onclick="changeSlide(1)" aria-label="Next highlight">›</button><div class="slider-dots" id="sliderDots"></div></div></section>
-<section class="section project-section"><p class="eyebrow red">PROJECTS</p><h2>Survey Work</h2><p class="section-intro">Selected examples of our recent field surveying and mapping activities.</p><div class="project-filter" id="projectFilter"><button class="active" data-filter="ALL">ALL</button><button data-filter="GNSS / RTK">GNSS / RTK</button><button data-filter="TOTAL STATION / CONSTRUCTION">TOTAL STATION / CONSTRUCTION</button><button data-filter="DRONE">DRONE</button></div><div id="projectsContainer"></div></section>
+<section class="section project-section"><p class="eyebrow red">PROJECTS</p><h2>Survey Work</h2><p class="section-intro">Selected examples of our recent field surveying and mapping activities.</p><div class="project-filter" id="projectFilter"><button class="active" data-filter="ALL">ALL</button><button data-filter="GNSS / RTK">GNSS / RTK</button><button data-filter="TOTAL STATION / CONSTRUCTION">TOTAL STATION / CONSTRUCTION</button><button data-filter="DRONE">DRONE</button></div><div class="photo-gallery" id="projectsContainer"></div></section>
 <section class="section samples-section"><p class="eyebrow red">SAMPLES</p><h2>Survey & Mapping Outputs</h2><p class="section-intro">Examples of the type of survey data, maps and digital outputs that can be prepared for projects.</p><div class="sample-grid" id="sampleGrid"></div></section>
 <section class="projects-cta"><p class="eyebrow">HAVE A PROJECT TO SURVEY?</p><h2>Let's work together.<br><span>Get accurate results.</span></h2><p>Contact SR Associates for land surveying, GNSS RTK, total station, construction surveying, drone mapping and digital survey services.</p><div class="projects-cta-actions"><a class="btn btn-primary" href="tel:+918057755380">Call Us</a><a class="btn btn-light" href="https://wa.me/918057755380" target="_blank" rel="noopener">WhatsApp Us</a><a class="btn btn-light" href="https://mail.google.com/mail/?view=cm&fs=1&to=srassociate86@gmail.com" target="_blank" rel="noopener">Email Us</a></div></section>
 </main>
-<div class="project-modal" id="projectModal" role="dialog" aria-modal="true"><div class="project-modal-box"><button class="modal-close" onclick="closeProject()" aria-label="Close">×</button><h2 class="modal-title" id="modalTitle"></h2><div class="modal-meta" id="modalMeta"></div><p class="modal-description" id="modalDescription"></p><div class="modal-gallery" id="modalGallery"></div></div></div>
+<div class="project-modal" id="projectModal" role="dialog" aria-modal="true"><div class="project-modal-box"><button class="modal-close" onclick="closeProject()" aria-label="Close">×</button><h2 class="modal-title" id="modalTitle"></h2><div class="modal-meta" id="modalMeta"></div><p class="modal-description" id="modalDescription"></p><div class="photo-viewer" id="modalGallery"></div></div></div>
 <footer><span>© 2026 SR Associates. All Rights Reserved.</span><span>Accurate Measurement. Solid Foundation.</span><span>landsurveyor.co.in</span><a href="project-manager.html" class="admin-login-link">Admin Login</a></footer>
 <script>
-const menuToggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav');if(menuToggle)menuToggle.addEventListener('click',()=>nav.classList.toggle('open'));let allProjects=[],allSlides=[],currentSlide=0,slideTimer=null,currentFilter='ALL';
+const menuToggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav');if(menuToggle)menuToggle.addEventListener('click',()=>nav.classList.toggle('open'));let allProjects=[],allSlides=[],galleryItems=[],currentPhotoIndex=0,currentSlide=0,slideTimer=null,currentFilter='ALL';
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 function projectDate(p){return p.date||p.year||''}
 function dateLabel(v){if(!v)return 'DATE NOT SET';const d=new Date(v.length===4?v+'-01-01':v+'T00:00:00');return d.toLocaleDateString('en-IN',{day:'2-digit',month:'long',year:'numeric'}).toUpperCase()}
@@ -68,11 +49,44 @@ function isActive(date,days,until){const today=new Date();today.setHours(0,0,0,0
 function activeHighlights(){const out=[];allProjects.forEach(p=>{if(!p.highlight||!p.photos?.length||!isActive(p.highlightStarted||projectDate(p),p.highlightDays||30))return;p.photos.forEach(ph=>out.push({path:ph.path,title:p.title,category:p.category,date:projectDate(p)}))});allSlides.forEach(s=>{if(s.path&&isActive(s.addedOn||s.date,s.days||30,s.expiresOn))out.push({path:s.path,title:'Field Work',category:s.category,date:s.date})});return out}
 function renderHighlights(){const items=activeHighlights(),slides=document.getElementById('slides'),dots=document.getElementById('sliderDots');slides.innerHTML='';dots.innerHTML='';currentSlide=0;if(!items.length){slides.innerHTML='<div class="slide"><img src="assets/survey-hero.jpg" alt="Surveying"><div class="slide-caption"><span>SR ASSOCIATES</span><h3>Survey & Mapping Work</h3></div></div>';return}items.forEach((x,i)=>{slides.insertAdjacentHTML('beforeend','<div class="slide"><img src="'+esc(x.path)+'" alt="'+esc(x.title)+'"><div class="slide-caption"><span>'+esc(x.category)+'</span><h3>'+esc(x.title)+(x.date?' • '+esc(dateLabel(x.date)):'')+'</h3></div></div>');const dot=document.createElement('button');dot.className='slider-dot'+(i===0?' active':'');dot.setAttribute('aria-label','Go to highlight '+(i+1));dot.onclick=()=>showSlide(i);dots.appendChild(dot)});showSlide(0);clearInterval(slideTimer);if(items.length>1)slideTimer=setInterval(()=>changeSlide(1),5000)}
 function showSlide(i){const slides=document.getElementById('slides'),dots=document.querySelectorAll('.slider-dot'),count=slides.children.length;if(!count)return;currentSlide=(i+count)%count;slides.style.transform='translateX(-'+currentSlide*100+'%)';dots.forEach((d,n)=>d.classList.toggle('active',n===currentSlide))}function changeSlide(d){showSlide(currentSlide+d)}
-function openProject(id){const p=allProjects.find(x=>x.id===id);if(!p)return;document.getElementById('modalTitle').textContent=p.title;document.getElementById('modalMeta').textContent=[dateLabel(projectDate(p)),p.category,p.location].filter(Boolean).join(' • ');document.getElementById('modalDescription').textContent=p.description||p.shortDescription||'';const g=document.getElementById('modalGallery');g.innerHTML='';(p.photos||[]).forEach(ph=>{const img=document.createElement('img');img.src=ph.path;img.alt=ph.alt||p.title;img.onclick=()=>window.open(ph.path,'_blank');g.appendChild(img)});if(!g.children.length)g.innerHTML='<div class="modal-empty">No project photos have been added yet.</div>';document.getElementById('projectModal').classList.add('open');document.body.style.overflow='hidden'}
-function closeProject(){document.getElementById('projectModal').classList.remove('open');document.body.style.overflow=''}document.getElementById('projectModal').addEventListener('click',e=>{if(e.target.id==='projectModal')closeProject()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProject()});
-function projectCard(p){const photos=(p.photos||[]);const thumbs=photos.map(ph=>'<img src="'+esc(ph.path)+'" alt="'+esc(ph.alt||p.title)+'" onclick="openProject(\''+esc(p.id)+'\')">').join('');return '<article class="project-card"><div class="project-card-head"><b>'+esc(p.category||'SURVEY PROJECT')+'</b><h3>'+esc(p.title)+'</h3><div class="project-meta">'+esc(p.location||'')+'</div><p>'+esc(p.shortDescription||p.description||'')+'</p></div><div class="project-photo-grid">'+(thumbs||'<div class="empty-projects">No project photos have been added yet.</div>')+'</div></article>'}
-function renderProjects(){const box=document.getElementById('projectsContainer');const items=allProjects.filter(p=>(p.type!=='sample')&&(currentFilter==='ALL'||p.category===currentFilter)).slice().sort((a,b)=>String(projectDate(b)).localeCompare(String(projectDate(a))));if(!items.length){box.innerHTML='<div class="empty-projects">No projects have been added yet.</div>';return}let html='',last='';items.forEach(p=>{const d=projectDate(p);if(d!==last){html+='<div class="date-break"><span>'+esc(dateLabel(d))+'</span></div>';last=d}html+=projectCard(p)});box.innerHTML=html}
-function renderSamples(){const box=document.getElementById('sampleGrid'),items=allProjects.filter(p=>p.type==='sample').slice().sort((a,b)=>String(projectDate(b)).localeCompare(String(projectDate(a))));if(!items.length){box.innerHTML='<div class="empty-projects">No samples have been added yet.</div>';return}box.innerHTML=items.map(p=>{const img=p.photos?.[0]?.path||'assets/survey-hero.jpg';return '<article class="sample-card" onclick="openProject(\''+esc(p.id)+'\')"><img src="'+esc(img)+'" alt="'+esc(p.title)+'"><div class="sample-card-content"><b>'+esc(p.category||'SAMPLE')+'</b><h3>'+esc(p.title)+'</h3><p>'+esc(p.shortDescription||p.description||'')+'</p></div></article>'}).join('')}
+function openPhoto(index){
+  const item=galleryItems[index];if(!item)return;
+  currentPhotoIndex=index;
+  document.getElementById('modalTitle').textContent=item.title||'';
+  document.getElementById('modalMeta').textContent=[dateLabel(item.date),item.location].filter(Boolean).join(' • ');
+  document.getElementById('modalDescription').textContent=item.description||'';
+  const g=document.getElementById('modalGallery');g.innerHTML='';
+  const img=document.createElement('img');img.src=item.path;img.alt=item.alt||item.title||'Survey photo';g.appendChild(img);
+  if(galleryItems.length>1){
+    const prev=document.createElement('button');prev.className='photo-nav prev';prev.innerHTML='‹';prev.setAttribute('aria-label','Previous photo');prev.onclick=e=>{e.stopPropagation();showPhoto(currentPhotoIndex-1)};
+    const next=document.createElement('button');next.className='photo-nav next';next.innerHTML='›';next.setAttribute('aria-label','Next photo');next.onclick=e=>{e.stopPropagation();showPhoto(currentPhotoIndex+1)};
+    g.appendChild(prev);g.appendChild(next);
+  }
+  document.getElementById('projectModal').classList.add('open');document.body.style.overflow='hidden'
+}
+function showPhoto(index){const count=galleryItems.length;if(!count)return;currentPhotoIndex=(index+count)%count;openPhoto(currentPhotoIndex)}
+function closeProject(){document.getElementById('projectModal').classList.remove('open');document.body.style.overflow=''}document.getElementById('projectModal').addEventListener('click',e=>{if(e.target.id==='projectModal')closeProject()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProject();if(document.getElementById('projectModal').classList.contains('open')){if(e.key==='ArrowLeft')showPhoto(currentPhotoIndex-1);if(e.key==='ArrowRight')showPhoto(currentPhotoIndex+1)}});
+function buildGalleryItems(){
+  const projects=allProjects.filter(p=>p.type!=='sample'&&(currentFilter==='ALL'||p.category===currentFilter)).slice().sort((a,b)=>String(projectDate(b)).localeCompare(String(projectDate(a))));
+  const items=[];
+  projects.forEach(p=>(p.photos||[]).forEach(ph=>items.push({path:ph.path,alt:ph.alt||p.title,title:p.title||'Survey Work',description:p.shortDescription||p.description||'',location:p.location||'',date:projectDate(p)})));
+  return items
+}
+function renderProjects(){
+  const box=document.getElementById('projectsContainer');galleryItems=buildGalleryItems();
+  if(!galleryItems.length){box.innerHTML='<div class="empty-projects">No projects have been added yet.</div>';return}
+  box.innerHTML=galleryItems.map((x,i)=>'<article class="photo-card" onclick="openPhoto('+i+')"><img src="'+esc(x.path)+'" alt="'+esc(x.alt)+'"><div class="photo-card-caption"><h3>'+esc(x.title)+'</h3><p>'+esc(x.description)+'</p>'+(x.date?'<div class="photo-date">'+esc(dateLabel(x.date))+'</div>':'')+'</div></article>').join('')
+}
+function renderSamples(){
+  const box=document.getElementById('sampleGrid'),items=allProjects.filter(p=>p.type==='sample').slice().sort((a,b)=>String(projectDate(b)).localeCompare(String(projectDate(a))));
+  if(!items.length){box.innerHTML='<div class="empty-projects">No samples have been added yet.</div>';return}
+  box.innerHTML=items.map(p=>{const img=p.photos?.[0]?.path||'assets/survey-hero.jpg';return '<article class="sample-card" onclick="openSamplePhoto(\''+esc(p.id)+'\')"><img src="'+esc(img)+'" alt="'+esc(p.title)+'"><div class="sample-card-content"><b>'+esc(p.category||'SAMPLE')+'</b><h3>'+esc(p.title)+'</h3><p>'+esc(p.shortDescription||p.description||'')+'</p></div></article>'}).join('')
+}
+function openSamplePhoto(id){
+  const p=allProjects.find(x=>x.id===id);if(!p||!p.photos?.length)return;
+  galleryItems=p.photos.map(ph=>({path:ph.path,alt:ph.alt||p.title,title:p.title||'Sample',description:p.shortDescription||p.description||'',location:p.location||'',date:projectDate(p)}));
+  openPhoto(0)
+}
 document.querySelectorAll('#projectFilter button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('#projectFilter button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.dataset.filter;renderProjects()}));
 async function loadProjects(){try{const r=await fetch('projects-data.json');if(!r.ok)throw new Error('HTTP '+r.status);const data=await r.json();allProjects=data.projects||[];allSlides=data.slides||[];renderHighlights();renderProjects();renderSamples()}catch(e){console.error(e);document.getElementById('projectsContainer').innerHTML='<div class="empty-projects">Project data could not be loaded. Please open this page through your GitHub Pages website.</div>'}}loadProjects();
 </script>
