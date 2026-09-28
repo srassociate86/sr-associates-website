@@ -128,6 +128,63 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-09-28"
+    },
+    {
+      "id": "p-muldp5sk-n5iv1",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607881226-1000228014.jpg",
+          "alt": "Malakhunti",
+          "managed": true,
+          "sha": "389466472823b8025f78070b04b712f3c0ba48a5",
+          "highlightUntil": "2026-10-02"
+        },
+        {
+          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607887413-1000228018.jpg",
+          "alt": "Malakhunti",
+          "managed": true,
+          "sha": "28e22b08a8988c8c92d4f2645c2b27879ba928d4",
+          "highlightUntil": "2026-10-02"
+        },
+        {
+          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607893463-1000227845.jpg",
+          "alt": "Malakhunti",
+          "managed": true,
+          "sha": "d4a6dc46201c4f594c2b6aa25b3986e63da17d2a",
+          "highlightUntil": "2026-10-02"
+        },
+        {
+          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607896022-1000228014.jpg",
+          "alt": "Malakhunti",
+          "managed": true,
+          "sha": "389466472823b8025f78070b04b712f3c0ba48a5",
+          "highlightUntil": "2026-10-02"
+        },
+        {
+          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607903550-1000228018.jpg",
+          "alt": "Malakhunti",
+          "managed": true,
+          "sha": "28e22b08a8988c8c92d4f2645c2b27879ba928d4",
+          "highlightUntil": "2026-10-02"
+        },
+        {
+          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607909150-1000227845.jpg",
+          "alt": "Malakhunti",
+          "managed": true,
+          "sha": "d4a6dc46201c4f594c2b6aa25b3986e63da17d2a",
+          "highlightUntil": "2026-10-02"
+        }
+      ],
+      "type": "project",
+      "category": "TOTAL STATION / CONSTRUCTION",
+      "title": "Malakhunti",
+      "date": "2026-09-03",
+      "location": "Malakhunti",
+      "shortDescription": "",
+      "description": "",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-09-28"
     }
   ],
   "slides": []
