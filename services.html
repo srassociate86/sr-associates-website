@@ -554,17 +554,66 @@
               representation of the existing ground.
             </p>
 
-            <div class="service-points">
-              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Contours" data-detail="Contour information representing changes in ground elevation across the site, useful for understanding terrain and preparing planning or design information.">Contours</span>
-              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Spot Levels" data-detail="Measured elevation points distributed across the survey area to describe existing ground levels and local changes in terrain.">Spot Levels</span>
-              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Terrain Mapping" data-detail="Survey data showing the existing shape and elevation characteristics of the surveyed area for terrain understanding and project planning.">Terrain Mapping</span>
-              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Existing Features" data-detail="Measurement and documentation of relevant natural and man-made features present on the site, such as roads, structures and visible site elements.">Existing Features</span>
-              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Site Plans" data-detail="Clear plan drawings combining measured site features and elevation information into a usable representation of existing conditions.">Site Plans</span>
-			  <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Can be provided" data-detail="All visible features including major structures, building footprints, tin sheds, site and terrace boundaries, terrace heights, walls, fencing, retaining/breast walls, platforms, steps, roads, paths, trails, gates, paved areas, drains, manholes, wells, culverts and other site features.
+           <div class="service-points">
+  <span class="service-point-trigger"
+        tabindex="0"
+        role="button"
+        aria-expanded="false"
+        data-detail-title="Contours"
+        data-detail="Contour information representing changes in ground elevation across the site, useful for understanding terrain and preparing planning or design information.">
+    Contours
+  </span>
 
-Natural terrain features including slopes, ridges, valleys, depressions, gullies, ravines, rock outcrops and seasonal drains. Existing utility and service lines, electric and telephone poles, drainage features, contours and spot levels at required intervals, with additional levels at significant terrain changes. Major trees and other relevant natural or man-made features are also recorded.">Items of Work</span>
-            </div>
+  <span class="service-point-trigger"
+        tabindex="0"
+        role="button"
+        aria-expanded="false"
+        data-detail-title="Spot Levels"
+        data-detail="Measured elevation points distributed across the survey area to describe existing ground levels and local changes in terrain.">
+    Spot Levels
+  </span>
 
+  <span class="service-point-trigger"
+        tabindex="0"
+        role="button"
+        aria-expanded="false"
+        data-detail-title="Terrain Mapping"
+        data-detail="Survey data showing the existing shape and elevation characteristics of the surveyed area for terrain understanding and project planning.">
+    Terrain Mapping
+  </span>
+
+  <span class="service-point-trigger"
+        tabindex="0"
+        role="button"
+        aria-expanded="false"
+        data-detail-title="Existing Features"
+        data-detail="Measurement and documentation of relevant natural and man-made features present on the site, such as roads, structures and visible site elements.">
+    Existing Features
+  </span>
+
+  <span class="service-point-trigger"
+        tabindex="0"
+        role="button"
+        aria-expanded="false"
+        data-detail-title="Site Plans"
+        data-detail="Clear plan drawings combining measured site features and elevation information into a usable representation of existing conditions.">
+    Site Plans
+  </span>
+
+  <span class="service-point-trigger"
+        tabindex="0"
+        role="button"
+        aria-expanded="false"
+        data-detail-title="Typical Scope of Work"
+        data-detail="<strong>A typical topographical survey may include:</strong><br><br>
+<strong>Site Features:</strong> Major structures, building footprints, tin sheds, site and terrace boundaries, terrace heights, walls, fencing, retaining/breast walls, platforms, steps, roads, paths, trails, gates, paved areas, drains, manholes, wells, culverts and other relevant site features.<br><br>
+<strong>Terrain &amp; Natural Features:</strong> Slopes, ridges, valleys, depressions, gullies, ravines, rock outcrops, seasonal drains and other relevant natural features.<br><br>
+<strong>Utilities &amp; Drainage:</strong> Existing utility and service lines, electric and telephone poles, drainage features and other visible services.<br><br>
+<strong>Levels &amp; Contours:</strong> Contours and spot levels at required intervals, with additional levels at significant changes in terrain.<br><br>
+<strong>Vegetation:</strong> Major trees and other relevant natural or man-made features.">
+    Typical Scope of Work
+  </span>
+</div>
           
             <div class="service-inline-detail" aria-hidden="true">
               <div>
@@ -977,7 +1026,7 @@ Natural terrain features including slopes, ridges, valleys, depressions, gullies
         trigger.classList.add("active");
         trigger.setAttribute("aria-expanded", "true");
         title.textContent = trigger.dataset.detailTitle;
-        text.textContent = trigger.dataset.detail;
+        text.innerHTML = trigger.dataset.detail;
         panel.classList.add("open");
         panel.setAttribute("aria-hidden", "false");
       }
