@@ -185,6 +185,32 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-09-28"
+    },
+    {
+      "id": "p-mupelr92-rygqz",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790851267079-1000231590.jpg",
+          "alt": "Topographical DGPS Survey in Auni Village",
+          "managed": true,
+          "sha": "999427abae283feb422d73c287bbc7bf3dfbc8ab"
+        },
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790851269506-1000231587.jpg",
+          "alt": "Topographical DGPS Survey in Auni Village",
+          "managed": true,
+          "sha": "2475852a33142a03600cb32da186295a60bf7444"
+        }
+      ],
+      "type": "project",
+      "category": "GNSS / RTK",
+      "title": "Topographical DGPS Survey in Auni Village",
+      "date": "2026-10-01",
+      "location": "Narendranagar",
+      "shortDescription": "Short text",
+      "description": "Long text",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
