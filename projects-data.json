@@ -233,6 +233,28 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-01"
+    },
+    {
+      "id": "p-mupg0ttc-37wpf",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790853656102-1000231583.jpg",
+          "alt": "site photo testing 2",
+          "managed": true,
+          "sha": "88e21dda10d294b8ab544e585a609c031880f30f",
+          "highlightUntil": "2026-10-30"
+        }
+      ],
+      "type": "project",
+      "category": "GNSS / RTK",
+      "title": "site photo testing 2",
+      "date": "2026-10-01",
+      "location": "narendranagar",
+      "shortDescription": "Short text",
+      "description": "Long text",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-01"
     }
   ],
   "slides": []
