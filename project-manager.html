@@ -138,91 +138,141 @@ async function optimizePhoto(file){
   if(!blob)throw new Error('Could not compress '+file.name);
 
   /*
-    Canvas creates a new JPEG and normally removes EXIF.
-    Instead of rebuilding EXIF with a library, copy the original
-    JPEG EXIF APP1 segment byte-for-byte into the new JPEG.
-    This preserves the camera's original GPS rationals, GPS refs,
-    GPS date/time, camera information and other EXIF fields exactly.
+    Canvas removes EXIF. Rebuild the metadata on the new JPEG, but
+    explicitly preserve the GPS values from the ORIGINAL file.
+    The phone photo used by SR Associates stores GPS as:
+      Latitude  = degrees/minutes/seconds rationals
+      Longitude = degrees/minutes/seconds rationals
+      Ref       = N/S and E/W
+    We copy those values explicitly instead of relying on a complete
+    EXIF dump, which can corrupt some phone GPS fields.
   */
-  const originalBytes=new Uint8Array(await file.arrayBuffer());
-  const compressedBytes=new Uint8Array(await blob.arrayBuffer());
-  const exifSegment=extractExifApp1(originalBytes);
-
-  let finalBytes=compressedBytes;
-  if(exifSegment){
-    const cleanCompressed=removeExifApp1(compressedBytes);
-    finalBytes=new Uint8Array(2+exifSegment.length+cleanCompressed.length-2);
-    finalBytes.set(cleanCompressed.slice(0,2),0); // JPEG SOI
-    finalBytes.set(exifSegment,2);                // original EXIF unchanged
-    finalBytes.set(cleanCompressed.slice(2),2+exifSegment.length);
+  if(typeof piexif==='undefined'){
+    throw new Error('Metadata library could not be loaded.');
   }
 
-  if(exifSegment && !extractExifApp1(finalBytes)){
-    throw new Error('Could not preserve original EXIF metadata for '+file.name);
+  const originalData=await fileToDataURL(file);
+  const compressedData=await blobToDataURL(blob);
+  const originalExif=piexif.load(originalData);
+
+  const gps=originalExif.GPS || {};
+  const hasGps = gps[piexif.GPSIFD.GPSLatitude] &&
+                 gps[piexif.GPSIFD.GPSLongitude] &&
+                 gps[piexif.GPSIFD.GPSLatitudeRef] &&
+                 gps[piexif.GPSIFD.GPSLongitudeRef];
+
+  if(!hasGps){
+    throw new Error('Original photo does not contain valid GPS coordinates.');
+  }
+
+  /* Start from a clean EXIF structure and copy common camera/date fields. */
+  const outExif={
+    '0th':{},
+    'Exif':{},
+    'GPS':{},
+    'Interop':{},
+    '1st':{},
+    'thumbnail':null
+  };
+
+  const copyIfPresent=(group,tag)=>{
+    if(originalExif[group] && originalExif[group][tag]!==undefined){
+      outExif[group][tag]=originalExif[group][tag];
+    }
+  };
+
+  /* Basic camera and image information. */
+  [
+    piexif.ImageIFD.Make,
+    piexif.ImageIFD.Model,
+    piexif.ImageIFD.Orientation,
+    piexif.ImageIFD.XResolution,
+    piexif.ImageIFD.YResolution,
+    piexif.ImageIFD.ResolutionUnit,
+    piexif.ImageIFD.Software,
+    piexif.ImageIFD.DateTime,
+    piexif.ImageIFD.YCbCrPositioning
+  ].forEach(tag=>copyIfPresent('0th',tag));
+
+  /* Common EXIF capture information. */
+  [
+    piexif.ExifIFD.ExposureTime,
+    piexif.ExifIFD.FNumber,
+    piexif.ExifIFD.ExposureProgram,
+    piexif.ExifIFD.ISOSpeedRatings,
+    piexif.ExifIFD.ExifVersion,
+    piexif.ExifIFD.DateTimeOriginal,
+    piexif.ExifIFD.DateTimeDigitized,
+    piexif.ExifIFD.OffsetTime,
+    piexif.ExifIFD.OffsetTimeOriginal,
+    piexif.ExifIFD.FocalLength,
+    piexif.ExifIFD.FocalLengthIn35mmFilm,
+    piexif.ExifIFD.Flash,
+    piexif.ExifIFD.MeteringMode,
+    piexif.ExifIFD.WhiteBalance,
+    piexif.ExifIFD.SceneCaptureType,
+    piexif.ExifIFD.PixelXDimension,
+    piexif.ExifIFD.PixelYDimension
+  ].forEach(tag=>copyIfPresent('Exif',tag));
+
+  /* Explicitly copy the GPS fields that contain the actual position. */
+  [
+    piexif.GPSIFD.GPSLatitudeRef,
+    piexif.GPSIFD.GPSLatitude,
+    piexif.GPSIFD.GPSLongitudeRef,
+    piexif.GPSIFD.GPSLongitude,
+    piexif.GPSIFD.GPSAltitudeRef,
+    piexif.GPSIFD.GPSAltitude,
+    piexif.GPSIFD.GPSTimeStamp,
+    piexif.GPSIFD.GPSDateStamp
+  ].forEach(tag=>{
+    if(gps[tag]!==undefined) outExif.GPS[tag]=gps[tag];
+  });
+
+  const exifBytes=piexif.dump(outExif);
+  const finalData=piexif.insert(exifBytes,compressedData);
+  const finalBlob=dataURLToBlob(finalData);
+
+  /* Verify that the output still contains the SAME GPS coordinates. */
+  const verify=piexif.load(finalData).GPS || {};
+  const same = JSON.stringify(verify[piexif.GPSIFD.GPSLatitude]) === JSON.stringify(gps[piexif.GPSIFD.GPSLatitude]) &&
+               JSON.stringify(verify[piexif.GPSIFD.GPSLongitude]) === JSON.stringify(gps[piexif.GPSIFD.GPSLongitude]) &&
+               verify[piexif.GPSIFD.GPSLatitudeRef] === gps[piexif.GPSIFD.GPSLatitudeRef] &&
+               verify[piexif.GPSIFD.GPSLongitudeRef] === gps[piexif.GPSIFD.GPSLongitudeRef];
+
+  if(!same){
+    throw new Error('GPS verification failed for '+file.name+'. The original coordinates were not preserved.');
   }
 
   const base=file.name.replace(/\.[^.]+$/i,'').replace(/[^a-zA-Z0-9._-]/g,'_')||'photo';
-  return new File([finalBytes],base+'.jpg',{type:'image/jpeg',lastModified:Date.now()});
+  return new File([finalBlob],base+'.jpg',{type:'image/jpeg',lastModified:Date.now()});
 }
 
-function extractExifApp1(bytes){
-  if(bytes.length<4 || bytes[0]!==0xff || bytes[1]!==0xd8)return null;
-  let p=2;
-  while(p+4<=bytes.length){
-    if(bytes[p]!==0xff){p++;continue;}
-    while(p<bytes.length && bytes[p]===0xff)p++;
-    if(p>=bytes.length)return null;
-    const marker=bytes[p++];
-    if(marker===0xda || marker===0xd9)return null;
-    if(marker===0xd8 || (marker>=0xd0 && marker<=0xd7) || marker===0x01)continue;
-    if(p+2>bytes.length)return null;
-    const len=(bytes[p]<<8)|bytes[p+1];
-    if(len<2 || p+len>bytes.length)return null;
-    if(marker===0xe1 && len>=8 &&
-       bytes[p+2]===0x45 && bytes[p+3]===0x78 && bytes[p+4]===0x69 &&
-       bytes[p+5]===0x66 && bytes[p+6]===0x00 && bytes[p+7]===0x00){
-      return bytes.slice(p-2,p+len);
-    }
-    p+=len;
-  }
-  return null;
+function fileToDataURL(file){
+  return new Promise((resolve,reject)=>{
+    const r=new FileReader();
+    r.onload=()=>resolve(r.result);
+    r.onerror=reject;
+    r.readAsDataURL(file);
+  });
 }
 
-function removeExifApp1(bytes){
-  if(bytes.length<4 || bytes[0]!==0xff || bytes[1]!==0xd8)return bytes;
-  const parts=[bytes.slice(0,2)];
-  let p=2;
-  while(p+4<=bytes.length){
-    const markerStart=p;
-    if(bytes[p]!==0xff){
-      parts.push(bytes.slice(p));
-      break;
-    }
-    while(p<bytes.length && bytes[p]===0xff)p++;
-    if(p>=bytes.length){parts.push(bytes.slice(markerStart));break;}
-    const marker=bytes[p++];
-    if(marker===0xda || marker===0xd9){
-      parts.push(bytes.slice(markerStart));
-      break;
-    }
-    if(marker===0xd8 || (marker>=0xd0 && marker<=0xd7) || marker===0x01){
-      parts.push(bytes.slice(markerStart,p));
-      continue;
-    }
-    if(p+2>bytes.length){parts.push(bytes.slice(markerStart));break;}
-    const len=(bytes[p]<<8)|bytes[p+1];
-    if(len<2 || p+len>bytes.length){parts.push(bytes.slice(markerStart));break;}
-    const segment=bytes.slice(markerStart,p+len);
-    const isExif=marker===0xe1 && len>=8 &&
-      bytes[p+2]===0x45 && bytes[p+3]===0x78 && bytes[p+4]===0x69 &&
-      bytes[p+5]===0x66 && bytes[p+6]===0x00 && bytes[p+7]===0x00;
-    if(!isExif)parts.push(segment);
-    p+=len;
-  }
-  let total=0;for(const part of parts)total+=part.length;
-  const out=new Uint8Array(total);let o=0;
-  for(const part of parts){out.set(part,o);o+=part.length;}
-  return out;
+function blobToDataURL(blob){
+  return new Promise((resolve,reject)=>{
+    const r=new FileReader();
+    r.onload=()=>resolve(r.result);
+    r.onerror=reject;
+    r.readAsDataURL(blob);
+  });
+}
+
+function dataURLToBlob(dataURL){
+  const parts=dataURL.split(',');
+  const mime=(parts[0].match(/:(.*?);/)||[])[1]||'image/jpeg';
+  const bin=atob(parts[1]);
+  const bytes=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+  return new Blob([bytes],{type:mime});
 }
 
 async function prepareProjectPhotos(){const out=[];for(const f of selectedFiles){if(photoMode()==='compress'){try{out.push(await optimizePhoto(f))}catch(e){out.push(f)}}else out.push(f)}preparedFiles=out;renderProjectNewPhotos()}
