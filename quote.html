@@ -178,6 +178,48 @@
         letter-spacing: -1px;
       }
     }
+
+    /* Match site-wide header buttons */
+    .site-header .nav-whatsapp,
+    .site-header > .btn.btn-primary {
+      height: 42px;
+      min-height: 42px;
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 720px) {
+      .site-header .nav-whatsapp,
+      .site-header > .btn.btn-primary {
+        height: 36px;
+        min-height: 36px;
+        padding: 0 10px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .site-header {
+        gap: 7px;
+      }
+
+      .site-header .brand {
+        flex-shrink: 1;
+        min-width: 0;
+      }
+
+      .site-header .brand img {
+        max-width: 115px;
+        height: auto;
+      }
+
+      .site-header .menu-toggle {
+        flex-shrink: 0;
+      }
+    }
+
   </style>
 </head>
 
@@ -207,6 +249,8 @@
       rel="noopener">
       WhatsApp
     </a>
+
+    <a class="btn btn-primary" href="tel:+918057755380">Call Us</a>
 
   </header>
 
@@ -282,24 +326,7 @@
             <label for="details">Project Details / Requirements</label>
             <textarea id="details" name="details" placeholder="Tell us about the area, approximate size, purpose of survey, required deliverables, or anything else that may help us understand the project."></textarea>
           </div>
-
-          <div class="form-group full">
-            <label for="sitePhotos">Site Photos <small style="color:#777;font-weight:400;">(Optional)</small></label>
-            <input
-              type="file"
-              id="sitePhotos"
-              name="sitePhotos"
-              accept="image/*"
-              multiple>
-            <small style="color:#777;line-height:1.5;">
-              You can upload one or more photos of the site, access road, existing structures,
-              boundaries, or surrounding area.
-            </small>
-            <div id="photoPreview" style="display:none;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-top:12px;"></div>
-            <div id="photoCount" style="margin-top:8px;color:#777;font-size:12px;"></div>
-          </div>
-
-        </div>
+</div>
 
         <p class="quote-note">
           By submitting this form, the information will be prepared as a WhatsApp enquiry
@@ -338,38 +365,7 @@
   <script src="script.js"></script>
 
   <script>
-    const photoInput = document.getElementById("sitePhotos");
-    const photoPreview = document.getElementById("photoPreview");
-    const photoCount = document.getElementById("photoCount");
-
-    photoInput.addEventListener("change", function() {
-      photoPreview.innerHTML = "";
-      photoCount.textContent = "";
-
-      const files = Array.from(photoInput.files || []);
-
-      if (!files.length) {
-        photoPreview.style.display = "none";
-        return;
-      }
-
-      files.forEach(function(file) {
-        if (!file.type.startsWith("image/")) return;
-
-        const wrapper = document.createElement("div");
-        wrapper.style.cssText =
-          "aspect-ratio:1/1;overflow:hidden;border:1px solid #ddd;background:#f5f5f5;";
-
-        const img = document.createElement("img");
-        img.src = URL.createObjectURL(file);
-        img.alt = file.name;
-        img.style.cssText = "width:100%;height:100%;object-fit:cover;display:block;";
-
-        wrapper.appendChild(img);
-        photoPreview.appendChild(wrapper);
-      });
-
-      photoPreview.style.display = "grid";
+photoPreview.style.display = "grid";
       photoCount.textContent =
         files.length + (files.length === 1 ? " photo selected." : " photos selected.");
     });
@@ -383,8 +379,6 @@
       const service = document.getElementById("service").value || "Other / Not Sure";
       const location = document.getElementById("location").value.trim();
       const details = document.getElementById("details").value.trim();
-      const photos = Array.from(photoInput.files || []);
-
       let message =
         "Hello SR Associates, I would like to request a quote.%0A%0A" +
         "Name: " + encodeURIComponent(name) + "%0A" +
@@ -392,9 +386,6 @@
         "Email: " + encodeURIComponent(email || "Not provided") + "%0A" +
         "Service: " + encodeURIComponent(service) + "%0A" +
         "Project Location: " + encodeURIComponent(location) + "%0A" +
-        "Site Photos: " + encodeURIComponent(
-          photos.length ? photos.length + " photo(s) selected" : "None"
-        ) + "%0A" +
         "Project Details: " + encodeURIComponent(details || "Not provided");
 
       window.open("https://wa.me/918057755380?text=" + message, "_blank");
