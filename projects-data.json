@@ -393,6 +393,49 @@
       "description": "22",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-mupk3sxj-t3din",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790860508695-IMG_5671.jpg",
+          "alt": "Site survey at auni village narendra nagar",
+          "managed": true,
+          "sha": "28a53eb3c72cf208f4ebe4b57d39154e9c563c82",
+          "highlightUntil": "2026-10-30"
+        },
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790860512436-IMG_5674.jpg",
+          "alt": "Site survey at auni village narendra nagar",
+          "managed": true,
+          "sha": "3ce41b310a71cf3f2eddc430e9b8fc1140a2d534",
+          "highlightUntil": "2026-10-30"
+        },
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790860514894-IMG_5677.jpg",
+          "alt": "Site survey at auni village narendra nagar",
+          "managed": true,
+          "sha": "db274b20e9465718521c0f74b9bcc5647e2e72d5",
+          "highlightUntil": "2026-10-30"
+        },
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790860518342-IMG_5666.jpg",
+          "alt": "Site survey at auni village narendra nagar",
+          "managed": true,
+          "sha": "4cd9d9e3567ad8f7f08e7ec94cb94b40d244f401",
+          "highlightUntil": "2026-10-30"
+        }
+      ],
+      "type": "project",
+      "category": "GNSS / RTK",
+      "title": "Site survey at auni village narendra nagar",
+      "date": "2026-10-01",
+      "location": "",
+      "shortDescription": "Auni site survey",
+      "description": "Auni",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-01"
     }
   ],
   "slides": []
