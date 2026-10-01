@@ -68,7 +68,7 @@
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/piexifjs@1.0.6/piexif.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/exifr/dist/lite.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exifr/dist/full.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/exifreader/dist/exif-reader.js"></script>
 </head>
 <body>
@@ -125,126 +125,121 @@ function fileToBase64(file){return new Promise((resolve,reject)=>{const r=new Fi
 function formatBytes(bytes){if(bytes<1024)return bytes+' B';if(bytes<1024*1024)return (bytes/1024).toFixed(0)+' KB';return (bytes/1024/1024).toFixed(2)+' MB'}
 function photoMode(){return document.querySelector('input[name=photoMode]:checked')?.value||'compress'}
 function loadImage(file){return new Promise((resolve,reject)=>{const img=new Image(),url=URL.createObjectURL(file);img.onload=()=>{URL.revokeObjectURL(url);resolve(img)};img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('Could not read image: '+file.name))};img.src=url})}
-function readU16(view,offset,little){return view.getUint16(offset,little)}
-function readU32(view,offset,little){return view.getUint32(offset,little)}
-function readAscii(view,offset,count){let out='';for(let i=0;i<count;i++)out+=String.fromCharCode(view.getUint8(offset+i));return out.replace(/\0/g,'').trim()}
-function tiffTypeSize(type){return ({1:1,2:1,3:2,4:4,5:8,7:1,9:4,10:8})[type]||0}
-function readTiffValue(view,tiffStart,type,count,valueOffset,little){
-  const size=tiffTypeSize(type)*count;
-  const dataOffset=size<=4?valueOffset:(tiffStart+readU32(view,valueOffset,little));
-  if(type===2||type===7) return readAscii(view,dataOffset,count);
-  if(type===3){const a=[];for(let i=0;i<count;i++)a.push(readU16(view,dataOffset+i*2,little));return a.length===1?a[0]:a;}
-  if(type===4){const a=[];for(let i=0;i<count;i++)a.push(readU32(view,dataOffset+i*4,little));return a.length===1?a[0]:a;}
-  if(type===5){const a=[];for(let i=0;i<count;i++){const n=readU32(view,dataOffset+i*8,little),d=readU32(view,dataOffset+i*8+4,little);a.push(d?n/d:NaN)}return a;}
-  return null;
-}
-async function readJpegGps(file){
-  const buf=await file.arrayBuffer(),view=new DataView(buf);let pos=2;
-  if(view.getUint16(0)!==0xFFD8) throw new Error('Not a JPEG file.');
-  while(pos+4<=view.byteLength){
-    if(view.getUint8(pos)!==0xFF){pos++;continue;}
-    while(pos<view.byteLength&&view.getUint8(pos)===0xFF)pos++;
-    const marker=view.getUint8(pos++);
-    if(marker===0xDA||marker===0xD9) break;
-    if(pos+2>view.byteLength) break;
-    const segLen=view.getUint16(pos);if(segLen<2||pos+segLen>view.byteLength) break;
-    if(marker===0xE1&&segLen>=8){
-      const exif=readAscii(view,pos+2,6);
-      if(exif==='Exif'){
-        const tiffStart=pos+8;
-        const byteOrder=readU16(view,tiffStart,false);
-        const little=byteOrder===0x4949;
-        if((little?0x4949:0x4D4D)!==byteOrder){pos+=segLen;continue;}
-        if(readU16(view,tiffStart+2,little)!==42){pos+=segLen;continue;}
-        const ifd0=tiffStart+readU32(view,tiffStart+4,little);
-        const n=readU16(view,ifd0,little);
-        let gpsPtr=null;
-        for(let i=0;i<n;i++){
-          const e=ifd0+2+i*12;if(e+12>view.byteLength)break;
-          const tag=readU16(view,e,little),type=readU16(view,e+2,little),count=readU32(view,e+4,little);
-          if(tag===0x8825) gpsPtr=readTiffValue(view,tiffStart,type,count,e+8,little);
-        }
-        if(gpsPtr!==null){
-          const gpsIfd=tiffStart+Number(gpsPtr),gn=readU16(view,gpsIfd,little);
-          let latRef='',lonRef='',lat=null,lon=null;
-          for(let i=0;i<gn;i++){
-            const e=gpsIfd+2+i*12;if(e+12>view.byteLength)break;
-            const tag=readU16(view,e,little),type=readU16(view,e+2,little),count=readU32(view,e+4,little),v=readTiffValue(view,tiffStart,type,count,e+8,little);
-            if(tag===1)latRef=String(v||'').toUpperCase();
-            if(tag===2)lat=v;
-            if(tag===3)lonRef=String(v||'').toUpperCase();
-            if(tag===4)lon=v;
-          }
-          const dms=v=>Array.isArray(v)&&v.length>=3&&v.every(Number.isFinite)?Math.abs(v[0])+v[1]/60+v[2]/3600:NaN;
-          const latitude=dms(lat),longitude=dms(lon);
-          if(Number.isFinite(latitude)&&Number.isFinite(longitude)&&latitude<=90&&longitude<=180&&!(latitude===0&&longitude===0)){
-            return {latitude:latRef==='S'?-latitude:latitude,longitude:lonRef==='W'?-longitude:longitude,source:'Direct JPEG EXIF'};
-          }
-        }
-      }
-    }
-    pos+=segLen;
+async function readGpsWithExifr(file){
+  if(!window.exifr || typeof window.exifr.gps!=='function'){
+    throw new Error('GPS reader library did not load. Please reload the page with an internet connection.');
   }
-  return null;
+  let g=null;
+  try{ g=await window.exifr.gps(file); }catch(e){ throw new Error('EXIF GPS read failed: '+(e?.message||e)); }
+  const lat=Number(g?.latitude), lon=Number(g?.longitude);
+  if(!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180||(lat===0&&lon===0)){
+    throw new Error('The original JPEG did not expose valid GPS coordinates to the browser.');
+  }
+  return {latitude:lat,longitude:lon};
 }
 
 async function optimizePhoto(file){
-  if(!/\.jpe?g$/i.test(file.name) && file.type !== 'image/jpeg') throw new Error('Only JPEG photos are supported for GPS-preserving compression.');
-  if(typeof piexif==='undefined') throw new Error('PiexifJS did not load. Check internet access and reload the page.');
-
-  let gpsInfo=null;
-  const gpsSources=[];
-  try{gpsInfo=await readJpegGps(file);if(gpsInfo)gpsSources.push(gpsInfo.source)}catch(e){gpsSources.push('Direct EXIF error: '+(e?.message||e));}
-
-  if(!gpsInfo && typeof ExifReader!=='undefined'){
-    try{const tags=await ExifReader.load(file,{expanded:true}),g=tags?.gps,lat=Number(g?.Latitude),lon=Number(g?.Longitude);if(Number.isFinite(lat)&&Number.isFinite(lon)&&Math.abs(lat)<=90&&Math.abs(lon)<=180&&!(lat===0&&lon===0))gpsInfo={latitude:lat,longitude:lon,source:'ExifReader'};}catch(e){gpsSources.push('ExifReader error: '+(e?.message||e));}
+  if(!/\.jpe?g$/i.test(file.name) && file.type!=='image/jpeg'){
+    throw new Error('Only JPEG photos are supported for GPS-preserving compression.');
   }
-  if(!gpsInfo && typeof exifr!=='undefined'){
-    try{const g=typeof exifr.gps==='function'?await exifr.gps(file):await exifr.parse(file,{gps:true});const lat=Number(g?.latitude),lon=Number(g?.longitude);if(Number.isFinite(lat)&&Number.isFinite(lon)&&Math.abs(lat)<=90&&Math.abs(lon)<=180&&!(lat===0&&lon===0))gpsInfo={latitude:lat,longitude:lon,source:'ExifR'};}catch(e){gpsSources.push('ExifR error: '+(e?.message||e));}
+  if(typeof piexif==='undefined'){
+    throw new Error('PiexifJS did not load. Please reload the page with an internet connection.');
   }
-  if(!gpsInfo) throw new Error('Could not extract valid GPS coordinates from '+file.name+'. '+gpsSources.join(' | '));
 
-  const img=await loadImage(file),max=1600,scale=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight)),w=Math.max(1,Math.round(img.naturalWidth*scale)),h=Math.max(1,Math.round(img.naturalHeight*scale)),canvas=document.createElement('canvas');
-  canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(img,0,0,w,h);
-  const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.85));if(!blob)throw new Error('Could not compress '+file.name);
+  const gps=await readGpsWithExifr(file);
+  const img=await loadImage(file);
+  const max=1600;
+  const scale=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));
+  const w=Math.max(1,Math.round(img.naturalWidth*scale));
+  const h=Math.max(1,Math.round(img.naturalHeight*scale));
+  const canvas=document.createElement('canvas');
+  canvas.width=w; canvas.height=h;
+  const ctx=canvas.getContext('2d');
+  if(!ctx) throw new Error('Could not create image canvas.');
+  ctx.drawImage(img,0,0,w,h);
 
-  const originalData=await fileToDataURL(file),compressedData=await blobToDataURL(blob),originalExif=piexif.load(originalData),originalGps=originalExif.GPS||{};
+  const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.85));
+  if(!blob) throw new Error('Could not compress '+file.name);
+
+  const originalData=await fileToDataURL(file);
+  const compressedData=await blobToDataURL(blob);
+  const originalExif=piexif.load(originalData);
+  const originalGps=originalExif.GPS||{};
   const outExif={'0th':{},'Exif':{},'GPS':{},'Interop':{},'1st':{},'thumbnail':null};
-  const copyIfPresent=(group,tag)=>{if(originalExif[group]?.[tag]!==undefined)outExif[group][tag]=originalExif[group][tag]};
-  [piexif.ImageIFD.Make,piexif.ImageIFD.Model,piexif.ImageIFD.Orientation,piexif.ImageIFD.XResolution,piexif.ImageIFD.YResolution,piexif.ImageIFD.ResolutionUnit,piexif.ImageIFD.Software,piexif.ImageIFD.DateTime,piexif.ImageIFD.YCbCrPositioning].forEach(t=>copyIfPresent('0th',t));
-  [piexif.ExifIFD.ExposureTime,piexif.ExifIFD.FNumber,piexif.ExifIFD.ExposureProgram,piexif.ExifIFD.ISOSpeedRatings,piexif.ExifIFD.ExifVersion,piexif.ExifIFD.DateTimeOriginal,piexif.ExifIFD.DateTimeDigitized,piexif.ExifIFD.OffsetTime,piexif.ExifIFD.OffsetTimeOriginal,piexif.ExifIFD.FocalLength,piexif.ExifIFD.FocalLengthIn35mmFilm,piexif.ExifIFD.Flash,piexif.ExifIFD.MeteringMode,piexif.ExifIFD.WhiteBalance,piexif.ExifIFD.SceneCaptureType,piexif.ExifIFD.PixelXDimension,piexif.ExifIFD.PixelYDimension].forEach(t=>copyIfPresent('Exif',t));
-  outExif.GPS[piexif.GPSIFD.GPSLatitudeRef]=gpsInfo.latitude<0?'S':'N';
-  outExif.GPS[piexif.GPSIFD.GPSLatitude]=piexif.GPSHelper.degToDmsRational(Math.abs(gpsInfo.latitude));
-  outExif.GPS[piexif.GPSIFD.GPSLongitudeRef]=gpsInfo.longitude<0?'W':'E';
-  outExif.GPS[piexif.GPSIFD.GPSLongitude]=piexif.GPSHelper.degToDmsRational(Math.abs(gpsInfo.longitude));
-  [piexif.GPSIFD.GPSAltitudeRef,piexif.GPSIFD.GPSAltitude,piexif.GPSIFD.GPSTimeStamp,piexif.GPSIFD.GPSDateStamp].forEach(t=>{if(originalGps[t]!==undefined)outExif.GPS[t]=originalGps[t]});
+  const copyIfPresent=(group,tag)=>{
+    if(originalExif[group] && originalExif[group][tag]!==undefined) outExif[group][tag]=originalExif[group][tag];
+  };
+
+  [piexif.ImageIFD.Make,piexif.ImageIFD.Model,piexif.ImageIFD.Orientation,
+   piexif.ImageIFD.XResolution,piexif.ImageIFD.YResolution,piexif.ImageIFD.ResolutionUnit,
+   piexif.ImageIFD.Software,piexif.ImageIFD.DateTime,piexif.ImageIFD.YCbCrPositioning]
+   .forEach(t=>copyIfPresent('0th',t));
+
+  [piexif.ExifIFD.ExposureTime,piexif.ExifIFD.FNumber,piexif.ExifIFD.ExposureProgram,
+   piexif.ExifIFD.ISOSpeedRatings,piexif.ExifIFD.ExifVersion,piexif.ExifIFD.DateTimeOriginal,
+   piexif.ExifIFD.DateTimeDigitized,piexif.ExifIFD.OffsetTime,piexif.ExifIFD.OffsetTimeOriginal,
+   piexif.ExifIFD.FocalLength,piexif.ExifIFD.FocalLengthIn35mmFilm,piexif.ExifIFD.Flash,
+   piexif.ExifIFD.MeteringMode,piexif.ExifIFD.WhiteBalance,piexif.ExifIFD.SceneCaptureType,
+   piexif.ExifIFD.PixelXDimension,piexif.ExifIFD.PixelYDimension]
+   .forEach(t=>copyIfPresent('Exif',t));
+
+  // GPS comes from the dedicated EXIF reader, not from canvas or the compressed image.
+  outExif.GPS[piexif.GPSIFD.GPSLatitudeRef]=gps.latitude<0?'S':'N';
+  outExif.GPS[piexif.GPSIFD.GPSLatitude]=piexif.GPSHelper.degToDmsRational(Math.abs(gps.latitude));
+  outExif.GPS[piexif.GPSIFD.GPSLongitudeRef]=gps.longitude<0?'W':'E';
+  outExif.GPS[piexif.GPSIFD.GPSLongitude]=piexif.GPSHelper.degToDmsRational(Math.abs(gps.longitude));
+
+  // Preserve GPS time/date/altitude when available, but never use them for the coordinates.
+  [piexif.GPSIFD.GPSAltitudeRef,piexif.GPSIFD.GPSAltitude,
+   piexif.GPSIFD.GPSTimeStamp,piexif.GPSIFD.GPSDateStamp]
+   .forEach(t=>{if(originalGps[t]!==undefined) outExif.GPS[t]=originalGps[t];});
 
   const finalData=piexif.insert(piexif.dump(outExif),compressedData);
-  const verified=await readJpegGps(dataURLToBlob(finalData));
-  if(!verified || Math.abs(verified.latitude-gpsInfo.latitude)>0.000001 || Math.abs(verified.longitude-gpsInfo.longitude)>0.000001) throw new Error('GPS verification failed. Extracted '+gpsInfo.latitude.toFixed(7)+', '+gpsInfo.longitude.toFixed(7)+' but the compressed JPEG did not retain those coordinates.');
+  const finalBlob=dataURLToBlob(finalData);
+
+  // Verify the exact JPEG that will be uploaded.
+  const verified=await window.exifr.gps(finalBlob);
+  const vlat=Number(verified?.latitude), vlon=Number(verified?.longitude);
+  if(!Number.isFinite(vlat)||!Number.isFinite(vlon)||
+     Math.abs(vlat-gps.latitude)>0.000001||Math.abs(vlon-gps.longitude)>0.000001){
+    throw new Error('GPS verification failed after compression. Expected '+gps.latitude.toFixed(7)+', '+gps.longitude.toFixed(7)+'.');
+  }
 
   const base=file.name.replace(/\.[^.]+$/i,'').replace(/[^a-zA-Z0-9._-]/g,'_')||'photo';
-  return {file:new File([dataURLToBlob(finalData)],base+'.jpg',{type:'image/jpeg',lastModified:Date.now()}),gpsText:'📍 '+file.name+': '+verified.latitude.toFixed(7)+', '+verified.longitude.toFixed(7)+' ✓ GPS verified'};
+  return {
+    file:new File([finalBlob],base+'.jpg',{type:'image/jpeg',lastModified:Date.now()}),
+    gpsText:'📍 '+file.name+': '+vlat.toFixed(7)+', '+vlon.toFixed(7)+' ✓ GPS verified'
+  };
 }
 
 async function prepareProjectPhotos(){
   const out=[],messages=[];
   for(const f of selectedFiles){
     if(photoMode()==='compress'){
-      try{const prepared=await optimizePhoto(f);out.push(prepared.file);messages.push(prepared.gpsText)}
-      catch(e){out.push(f);messages.push('❌ '+f.name+': '+(e?.message||e))}
+      try{
+        const prepared=await optimizePhoto(f);
+        out.push(prepared.file);
+        messages.push(prepared.gpsText+' • '+formatBytes(f.size)+' → '+formatBytes(prepared.file.size));
+      }catch(e){
+        // Do NOT silently substitute the original. That was making it look like compression had failed.
+        // Keep this slot empty so the photo cannot be published without passing preparation.
+        out.push(null);
+        messages.push('❌ '+f.name+': '+(e?.message||e));
+      }
     }else out.push(f);
   }
   preparedFiles=out;
   renderProjectNewPhotos();
-  if(messages.length) editStatus(messages.join('\n'));
+  const failed=out.filter(x=>!x).length;
+  editStatus(messages.join('\n')+(failed?'\n\n❌ '+failed+' photo(s) were not prepared and cannot be published.':''));
+  return failed===0;
 }
 function renderProjectNewPhotos(){$('newPhotos').innerHTML=selectedFiles.map((f,i)=>{const p=preparedFiles[i]||f;return '<div class="thumb"><img src="'+URL.createObjectURL(f)+'" alt=""><div class="photo-meta">'+esc(f.name)+'<br>'+formatBytes(f.size)+' → '+formatBytes(p.size)+'</div></div>'}).join('')}
 $('photos').addEventListener('change',async()=>{
   selectedFiles=[...$('photos').files];preparedFiles=[];renderProjectNewPhotos();
   if(selectedFiles.length){
     editStatus('Preparing photos...');
-    try{await prepareProjectPhotos();editStatus(selectedFiles.length+' photo(s) ready.');}
+    try{await prepareProjectPhotos();}
     catch(e){editStatus(e?.message||String(e));}
   }
 });document.querySelectorAll('input[name=photoMode]').forEach(r=>r.addEventListener('change',async()=>{if(selectedFiles.length)await prepareProjectPhotos()}));
@@ -255,7 +250,7 @@ function logout(){sessionStorage.removeItem('sr_admin_connected');projects=[];sl
 function makeId(prefix){return prefix+'-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7)}
 function renderList(){const el=$('projectList');if(!projects.length){el.innerHTML='<div class="small">No projects or samples loaded yet.</div>';return}el.innerHTML=projects.map(p=>'<div class="item"><div><strong>'+esc(p.title)+'</strong><small>'+esc(p.type==='sample'?'SAMPLE':'PROJECT')+' • '+esc(p.category||'')+' • '+esc(p.date||p.year||'')+(p.location?' • '+esc(p.location):'')+' • '+(p.photos?.length||0)+' photo(s)</small></div><div class="actions"><button type="button" class="light" onclick="editProject(\''+esc(p.id)+'\')">Edit</button><button type="button" class="danger" onclick="removeProject(\''+esc(p.id)+'\')">Remove</button></div></div>').join('')}
 function clearForm(){['editId','title','location','shortDescription','description'].forEach(id=>$(id).value='');$('type').value='project';$('category').value='GNSS / RTK';$('date').value=localDateISO();$('photos').value='';$('existingPhotos').innerHTML='';$('newPhotos').innerHTML='';selectedFiles=[];preparedFiles=[];removedPhotos=[];editBackup=null;document.querySelector('input[name=highlight][value=false]').checked=true;$('highlightDays').value='30';$('cancelEditBtn').style.display='none';editStatus('New project.')}
-function saveProject(){const title=$('title').value.trim();if(!title){editStatus('Project title is required.');return}const id=$('editId').value||makeId('p');let p=projects.find(x=>x.id===id);if(!p){p={id,photos:[]};projects.push(p)}const highlight=document.querySelector('input[name=highlight]:checked')?.value==='true';const wasHighlight=p.highlight===true;Object.assign(p,{type:$('type').value,category:$('category').value,title,date:$('date').value||localDateISO(),location:$('location').value.trim(),shortDescription:$('shortDescription').value.trim(),description:$('description').value.trim(),highlight,highlightDays:Number($('highlightDays').value||30)});if(highlight&&!wasHighlight)p.highlightStarted=localDateISO();if(!highlight)delete p.highlightStarted;p._newFiles=[...preparedFiles];$('editId').value=id;renderList();editStatus('Saved locally. Click Publish Changes to GitHub.')}
+function saveProject(){const title=$('title').value.trim();if(!title){editStatus('Project title is required.');return}const id=$('editId').value||makeId('p');let p=projects.find(x=>x.id===id);if(!p){p={id,photos:[]};projects.push(p)}const highlight=document.querySelector('input[name=highlight]:checked')?.value==='true';const wasHighlight=p.highlight===true;Object.assign(p,{type:$('type').value,category:$('category').value,title,date:$('date').value||localDateISO(),location:$('location').value.trim(),shortDescription:$('shortDescription').value.trim(),description:$('description').value.trim(),highlight,highlightDays:Number($('highlightDays').value||30)});if(highlight&&!wasHighlight)p.highlightStarted=localDateISO();if(!highlight)delete p.highlightStarted;if(photoMode()==='compress' && preparedFiles.some(f=>!f)){editStatus('❌ Cannot save this project yet. One or more photos failed GPS-preserving compression. Fix the photo preparation error first.');return;}p._newFiles=[...preparedFiles];$('editId').value=id;renderList();editStatus('Saved locally. Click Publish Changes to GitHub.')}
 function editProject(id){const p=projects.find(x=>x.id===id);if(!p)return;editBackup=JSON.parse(JSON.stringify(p));$('editId').value=p.id;$('type').value=p.type==='sample'?'sample':'project';$('category').value=p.category||'GNSS / RTK';$('title').value=p.title||'';$('date').value=p.date||p.year||localDateISO();$('location').value=p.location||'';$('shortDescription').value=p.shortDescription||'';$('description').value=p.description||'';document.querySelector('input[name=highlight][value='+(p.highlight?'true':'false')+']').checked=true;$('highlightDays').value=String(p.highlightDays||30);$('photos').value='';selectedFiles=[];preparedFiles=[];$('newPhotos').innerHTML='';$('existingPhotos').innerHTML=(p.photos||[]).map((ph,i)=>'<div class="thumb"><img src="'+esc(ph.path)+'" alt=""><button title="Remove" onclick="markPhotoRemoved(\''+esc(p.id)+'\','+i+')">×</button></div>').join('');$('cancelEditBtn').style.display='inline-block';editStatus('Editing: '+p.title);$('editorPanel').scrollIntoView({behavior:'smooth',block:'start'})}
 function cancelEdit(){if(!editBackup){clearForm();return}const i=projects.findIndex(x=>x.id===editBackup.id);if(i>=0)projects[i]=editBackup;removedPhotos=[];editBackup=null;clearForm();renderList();editStatus('Editing cancelled.')}
 function markPhotoRemoved(id,index){const p=projects.find(x=>x.id===id);if(!p?.photos?.[index])return;removedPhotos.push(p.photos[index]);p.photos.splice(index,1);$('existingPhotos').innerHTML=(p.photos||[]).map((ph,i)=>'<div class="thumb"><img src="'+esc(ph.path)+'" alt=""><button title="Remove" onclick="markPhotoRemoved(\''+esc(p.id)+'\','+i+')">×</button></div>').join('');editStatus('Photo marked for removal. Publish to apply.')}
