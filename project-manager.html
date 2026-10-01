@@ -90,7 +90,7 @@
 <div class="full"><label>Location <span style="font-weight:400;color:#888">(optional)</span></label><input id="location" placeholder="Uttarakhand"></div>
 <div class="full"><label>Short Description</label><textarea id="shortDescription" placeholder="Short text shown with the project."></textarea></div>
 <div class="full"><label>Full Project Information</label><textarea id="description" placeholder="Detailed project information shown when a visitor opens the project."></textarea></div>
-<div class="full"><label>Project Photos</label><input id="photos" type="file" accept="image/*" multiple>
+<div class="full"><label>Project Photos</label><input id="photos" type="file" accept=".jpg,.jpeg,image/jpeg" multiple>
 <div class="photo-options"><label style="margin:0 0 8px">Photo upload</label><div class="photo-choice"><label><input type="radio" name="photoMode" id="compressYes" value="compress" checked> Compress & resize</label><label><input type="radio" name="photoMode" id="compressNo" value="original"> Upload original</label></div><div class="small" style="margin-top:8px">Compressed photos are limited to 1600 px on the longest side and JPEG quality 85%. The original EXIF block is copied unchanged, including GPS/date/camera information.</div></div><div id="newPhotos" class="thumbs"></div></div>
 <div class="full"><label>Recent Highlights</label><div class="photo-options"><div class="photo-choice"><label><input type="radio" name="highlight" value="false" checked> No</label><label><input type="radio" name="highlight" value="true"> Add project photos to slideshow</label></div><div class="grid" style="margin-top:10px"><div><label>Highlight duration</label><select id="highlightDays"><option value="20">20 days</option><option value="30" selected>30 days</option><option value="60">60 days</option></select></div></div><div class="highlight-note">The project remains on the Projects page permanently. After the selected number of days, its photos automatically stop appearing in Recent Highlights. They are not deleted.</div></div></div>
 </div>
@@ -101,11 +101,13 @@
 <div class="panel admin-only" id="slideshowPanel">
 <h2>3. Add Slideshow-Only Photos</h2>
 <div class="small">Use this for a photo you want in Recent Highlights but do not want attached to a project. It will automatically leave the slideshow after the selected duration.</div>
-<div class="grid" style="margin-top:14px"><div><label>Category</label><select id="slideCategory"><option value="GNSS / RTK">GNSS / RTK</option><option value="TOTAL STATION / CONSTRUCTION">TOTAL STATION / CONSTRUCTION</option><option value="DRONE">DRONE</option></select></div><div><label>Date</label><input id="slideDate" type="date"></div><div><label>Slideshow duration</label><select id="slideDays"><option value="20">20 days</option><option value="30" selected>30 days</option><option value="60">60 days</option></select></div><div><label>Photos</label><input id="slidePhotos" type="file" accept="image/*" multiple></div></div><div id="slideNewPhotos" class="thumbs"></div><div class="actions"><button class="primary" onclick="saveSlideshowPhotos()">Save Slideshow Photos Locally</button><button class="dark" onclick="publishAll()">Publish Changes to GitHub</button></div><div id="slideStatus" class="status">No slideshow-only photos added.</div>
+<div class="grid" style="margin-top:14px"><div><label>Category</label><select id="slideCategory"><option value="GNSS / RTK">GNSS / RTK</option><option value="TOTAL STATION / CONSTRUCTION">TOTAL STATION / CONSTRUCTION</option><option value="DRONE">DRONE</option></select></div><div><label>Date</label><input id="slideDate" type="date"></div><div><label>Slideshow duration</label><select id="slideDays"><option value="20">20 days</option><option value="30" selected>30 days</option><option value="60">60 days</option></select></div><div><label>Photos</label><input id="slidePhotos" type="file" accept=".jpg,.jpeg,image/jpeg" multiple></div></div><div id="slideNewPhotos" class="thumbs"></div><div class="actions"><button class="primary" onclick="saveSlideshowPhotos()">Save Slideshow Photos Locally</button><button class="dark" onclick="publishAll()">Publish Changes to GitHub</button></div><div id="slideStatus" class="status">No slideshow-only photos added.</div>
 </div>
 
 <div class="panel admin-only" id="projectsPanel"><h2>4. Existing Projects & Samples</h2><div class="small">Projects are displayed chronologically on the website. Samples remain in their separate Samples section. There is no visibility setting because anything you publish is intended to be public.</div><div id="projectList" class="project-list" style="margin-top:14px"></div></div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/exifr/dist/lite.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/piexifjs@1.0.6/piexif.js"></script>
 <script>
 let projects=[],slides=[],removedPhotos=[],selectedFiles=[],preparedFiles=[],editBackup=null,slideSelectedFiles=[],slidePreparedFiles=[];
 const $=id=>document.getElementById(id);
@@ -123,6 +125,28 @@ function formatBytes(bytes){if(bytes<1024)return bytes+' B';if(bytes<1024*1024)r
 function photoMode(){return document.querySelector('input[name=photoMode]:checked')?.value||'compress'}
 function loadImage(file){return new Promise((resolve,reject)=>{const img=new Image(),url=URL.createObjectURL(file);img.onload=()=>{URL.revokeObjectURL(url);resolve(img)};img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('Could not read image: '+file.name))};img.src=url})}
 async function optimizePhoto(file){
+  if(!/^image\/jpe?g$/i.test(file.type) && !/\.(jpe?g)$/i.test(file.name)){
+    throw new Error(file.name+' is not a JPEG. iPhone HEIC/HEIF photos must be converted to JPEG before upload.');
+  }
+
+  if(typeof exifr==='undefined' || typeof piexif==='undefined'){
+    throw new Error('Photo metadata libraries could not be loaded. Check your internet connection and reload the page.');
+  }
+
+  /*
+    Read GPS directly from the ORIGINAL File before canvas touches it.
+    ExifR returns decimal coordinates and is designed to parse browser File objects.
+    This avoids relying on the browser's image picker/canvas to preserve GPS.
+  */
+  const gpsInfo=await exifr.gps(file);
+  const latitude=Number(gpsInfo?.latitude),
+        longitude=Number(gpsInfo?.longitude);
+
+  if(!Number.isFinite(latitude) || !Number.isFinite(longitude) ||
+     Math.abs(latitude)>90 || Math.abs(longitude)>180){
+    throw new Error('No valid GPS coordinates were found in '+file.name+'.');
+  }
+
   const img=await loadImage(file),
         max=1600,
         scale=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight)),
@@ -137,43 +161,17 @@ async function optimizePhoto(file){
   const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.85));
   if(!blob)throw new Error('Could not compress '+file.name);
 
-  /*
-    Canvas removes EXIF. Rebuild the metadata on the new JPEG, but
-    explicitly preserve the GPS values from the ORIGINAL file.
-    The phone photo used by SR Associates stores GPS as:
-      Latitude  = degrees/minutes/seconds rationals
-      Longitude = degrees/minutes/seconds rationals
-      Ref       = N/S and E/W
-    We copy those values explicitly instead of relying on a complete
-    EXIF dump, which can corrupt some phone GPS fields.
-  */
-  if(typeof piexif==='undefined'){
-    throw new Error('Metadata library could not be loaded.');
-  }
-
-  const originalData=await fileToDataURL(file);
-  const compressedData=await blobToDataURL(blob);
-  const originalExif=piexif.load(originalData);
-
-  const gps=originalExif.GPS || {};
-  const hasGps = gps[piexif.GPSIFD.GPSLatitude] &&
-                 gps[piexif.GPSIFD.GPSLongitude] &&
-                 gps[piexif.GPSIFD.GPSLatitudeRef] &&
-                 gps[piexif.GPSIFD.GPSLongitudeRef];
-
-  if(!hasGps){
-    throw new Error('Original photo does not contain valid GPS coordinates.');
-  }
-
-  /* Start from a clean EXIF structure and copy common camera/date fields. */
-  const outExif={
-    '0th':{},
-    'Exif':{},
-    'GPS':{},
-    'Interop':{},
-    '1st':{},
-    'thumbnail':null
-  };
+  const originalData=await fileToDataURL(file),
+        compressedData=await blobToDataURL(blob),
+        originalExif=piexif.load(originalData),
+        outExif={
+          '0th':{},
+          'Exif':{},
+          'GPS':{},
+          'Interop':{},
+          '1st':{},
+          'thumbnail':null
+        };
 
   const copyIfPresent=(group,tag)=>{
     if(originalExif[group] && originalExif[group][tag]!==undefined){
@@ -181,11 +179,10 @@ async function optimizePhoto(file){
     }
   };
 
-  /* Basic camera and image information. */
+  /* Camera and basic image information. Canvas has already applied orientation. */
   [
     piexif.ImageIFD.Make,
     piexif.ImageIFD.Model,
-    piexif.ImageIFD.Orientation,
     piexif.ImageIFD.XResolution,
     piexif.ImageIFD.YResolution,
     piexif.ImageIFD.ResolutionUnit,
@@ -210,44 +207,44 @@ async function optimizePhoto(file){
     piexif.ExifIFD.Flash,
     piexif.ExifIFD.MeteringMode,
     piexif.ExifIFD.WhiteBalance,
-    piexif.ExifIFD.SceneCaptureType,
-    piexif.ExifIFD.PixelXDimension,
-    piexif.ExifIFD.PixelYDimension
+    piexif.ExifIFD.SceneCaptureType
   ].forEach(tag=>copyIfPresent('Exif',tag));
 
-  /* Explicitly copy the GPS fields that contain the actual position. */
+  /*
+    Write GPS from decimal coordinates ourselves. This is the critical part:
+    the GPS is reconstructed from the values read from the original photo,
+    rather than copying browser/parser-specific GPS arrays.
+  */
+  outExif.GPS[piexif.GPSIFD.GPSLatitudeRef]=latitude<0?'S':'N';
+  outExif.GPS[piexif.GPSIFD.GPSLatitude]=piexif.GPSHelper.degToDmsRational(Math.abs(latitude));
+  outExif.GPS[piexif.GPSIFD.GPSLongitudeRef]=longitude<0?'W':'E';
+  outExif.GPS[piexif.GPSIFD.GPSLongitude]=piexif.GPSHelper.degToDmsRational(Math.abs(longitude));
+
+  /* Preserve altitude/time/date when available from the original EXIF. */
   [
-    piexif.GPSIFD.GPSLatitudeRef,
-    piexif.GPSIFD.GPSLatitude,
-    piexif.GPSIFD.GPSLongitudeRef,
-    piexif.GPSIFD.GPSLongitude,
     piexif.GPSIFD.GPSAltitudeRef,
     piexif.GPSIFD.GPSAltitude,
     piexif.GPSIFD.GPSTimeStamp,
-    piexif.GPSIFD.GPSDateStamp
-  ].forEach(tag=>{
-    if(gps[tag]!==undefined) outExif.GPS[tag]=gps[tag];
-  });
+    piexif.GPSIFD.GPSDateStamp,
+    piexif.GPSIFD.GPSProcessingMethod
+  ].forEach(tag=>copyIfPresent('GPS',tag));
 
-  const exifBytes=piexif.dump(outExif);
-  const finalData=piexif.insert(exifBytes,compressedData);
-  const finalBlob=dataURLToBlob(finalData);
+  const exifBytes=piexif.dump(outExif),
+        finalData=piexif.insert(exifBytes,compressedData),
+        finalBlob=dataURLToBlob(finalData),
+        finalFile=new File([finalBlob],file.name.replace(/\.[^.]+$/i,'')+'.jpg',{type:'image/jpeg',lastModified:Date.now()}),
+        verify=await exifr.gps(finalFile),
+        vLat=Number(verify?.latitude),
+        vLon=Number(verify?.longitude);
 
-  /* Verify that the output still contains the SAME GPS coordinates. */
-  const verify=piexif.load(finalData).GPS || {};
-  const same = JSON.stringify(verify[piexif.GPSIFD.GPSLatitude]) === JSON.stringify(gps[piexif.GPSIFD.GPSLatitude]) &&
-               JSON.stringify(verify[piexif.GPSIFD.GPSLongitude]) === JSON.stringify(gps[piexif.GPSIFD.GPSLongitude]) &&
-               verify[piexif.GPSIFD.GPSLatitudeRef] === gps[piexif.GPSIFD.GPSLatitudeRef] &&
-               verify[piexif.GPSIFD.GPSLongitudeRef] === gps[piexif.GPSIFD.GPSLongitudeRef];
-
-  if(!same){
-    throw new Error('GPS verification failed for '+file.name+'. The original coordinates were not preserved.');
+  /* Verify the final JPEG independently using ExifR. */
+  if(!Number.isFinite(vLat) || !Number.isFinite(vLon) ||
+     Math.abs(vLat-latitude)>0.00001 || Math.abs(vLon-longitude)>0.00001){
+    throw new Error('GPS verification failed for '+file.name+'. The compressed JPEG does not contain the original coordinates.');
   }
 
-  const base=file.name.replace(/\.[^.]+$/i,'').replace(/[^a-zA-Z0-9._-]/g,'_')||'photo';
-  return new File([finalBlob],base+'.jpg',{type:'image/jpeg',lastModified:Date.now()});
+  return finalFile;
 }
-
 function fileToDataURL(file){
   return new Promise((resolve,reject)=>{
     const r=new FileReader();
@@ -275,9 +272,23 @@ function dataURLToBlob(dataURL){
   return new Blob([bytes],{type:mime});
 }
 
-async function prepareProjectPhotos(){const out=[];for(const f of selectedFiles){if(photoMode()==='compress'){try{out.push(await optimizePhoto(f))}catch(e){out.push(f)}}else out.push(f)}preparedFiles=out;renderProjectNewPhotos()}
+async function prepareProjectPhotos(){
+  const out=[];
+  const errors=[];
+  for(const f of selectedFiles){
+    if(photoMode()==='compress'){
+      try{out.push(await optimizePhoto(f))}
+      catch(e){errors.push(f.name+': '+e.message);out.push(f)}
+    }else out.push(f);
+  }
+  preparedFiles=out;
+  renderProjectNewPhotos();
+  if(errors.length){
+    editStatus('Photo preparation failed for '+errors.length+' photo(s):\n'+errors.join('\n'));
+  }
+}
 function renderProjectNewPhotos(){$('newPhotos').innerHTML=selectedFiles.map((f,i)=>{const p=preparedFiles[i]||f;return '<div class="thumb"><img src="'+URL.createObjectURL(f)+'" alt=""><div class="photo-meta">'+esc(f.name)+'<br>'+formatBytes(f.size)+' → '+formatBytes(p.size)+'</div></div>'}).join('')}
-$('photos').addEventListener('change',async()=>{selectedFiles=[...$('photos').files];preparedFiles=[];renderProjectNewPhotos();if(selectedFiles.length){editStatus('Preparing photos...');await prepareProjectPhotos();editStatus(selectedFiles.length+' photo(s) ready.')}});document.querySelectorAll('input[name=photoMode]').forEach(r=>r.addEventListener('change',async()=>{if(selectedFiles.length)await prepareProjectPhotos()}));
+$('photos').addEventListener('change',async()=>{selectedFiles=[...$('photos').files];preparedFiles=[];renderProjectNewPhotos();if(selectedFiles.length){editStatus('Preparing photos and preserving GPS...');await prepareProjectPhotos();if(!$('editStatus').textContent.startsWith('Photo preparation failed'))editStatus(selectedFiles.length+' photo(s) ready with GPS preserved.')}});document.querySelectorAll('input[name=photoMode]').forEach(r=>r.addEventListener('change',async()=>{if(selectedFiles.length)await prepareProjectPhotos()}));
 async function testConnection(){try{if(!cfg().owner||!cfg().repo||!cfg().token)throw new Error('Enter GitHub owner, repository and token.');const j=await api('/repos/'+encodeURIComponent(cfg().owner)+'/'+encodeURIComponent(cfg().repo));status('Connected to '+j.full_name+'\nDefault branch: '+j.default_branch);sessionStorage.setItem('sr_admin_connected','true');showAdminWorkspace(true);await loadFromGitHub()}catch(e){sessionStorage.removeItem('sr_admin_connected');showAdminWorkspace(false);status('Connection failed: '+e.message)}}
 async function loadFromGitHub(){try{const f=await getFile('projects-data.json');const data=JSON.parse(decodeURIComponent(escape(atob(f.content.replace(/\n/g,'')))));projects=data.projects||[];slides=data.slides||[];removedPhotos=[];renderList();status('Loaded '+projects.length+' projects and '+slides.length+' slideshow photos.')}catch(e){status('Load failed: '+e.message)}}
 function showAdminWorkspace(show){['editorPanel','slideshowPanel','projectsPanel','logoutBtn'].forEach(id=>$(id).classList.toggle('admin-only',!show));$('loginState').textContent=show?'Connected':'Login required'}
