@@ -255,6 +255,26 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-01"
+    },
+    {
+      "id": "p-mupgcvg7-brjx2",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790854210983-1000231107.jpg",
+          "alt": "title test",
+          "managed": true,
+          "sha": "affca4ceb28c820a98de5046be7d15bddb0e968a"
+        }
+      ],
+      "type": "project",
+      "category": "GNSS / RTK",
+      "title": "title test",
+      "date": "2026-10-01",
+      "location": "narendrangr",
+      "shortDescription": "Short text",
+      "description": "Long text",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
