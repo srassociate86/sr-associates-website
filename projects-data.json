@@ -361,6 +361,38 @@
       "description": "",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-mupjmg9n-fi31y",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790859696577-1000231587.jpg",
+          "alt": "T3st title final",
+          "managed": true,
+          "sha": "2475852a33142a03600cb32da186295a60bf7444"
+        },
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790859702554-1000231584.jpg",
+          "alt": "T3st title final",
+          "managed": true,
+          "sha": "c05369861b73e0622ecfda6a6ba2b4a8660be2f2"
+        },
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790859707120-1000231583.jpg",
+          "alt": "T3st title final",
+          "managed": true,
+          "sha": "872f5a14512aad502d1b4c1aa79af2876381ff93"
+        }
+      ],
+      "type": "project",
+      "category": "GNSS / RTK",
+      "title": "T3st title final",
+      "date": "2026-10-01",
+      "location": "Rishikesh",
+      "shortDescription": "11",
+      "description": "22",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
