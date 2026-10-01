@@ -69,6 +69,7 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/piexifjs@1.0.6/piexif.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/exifr/dist/lite.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exifreader/dist/exif-reader.js"></script>
 </head>
 <body>
 <header class="site-header">
@@ -93,7 +94,7 @@
 <div class="full"><label>Short Description</label><textarea id="shortDescription" placeholder="Short text shown with the project."></textarea></div>
 <div class="full"><label>Full Project Information</label><textarea id="description" placeholder="Detailed project information shown when a visitor opens the project."></textarea></div>
 <div class="full"><label>Project Photos</label><input id="photos" type="file" accept=".jpg,.jpeg,image/jpeg" multiple>
-<div class="photo-options"><label style="margin:0 0 8px">Photo upload</label><div class="photo-choice"><label><input type="radio" name="photoMode" id="compressYes" value="compress" checked> Compress & resize</label><label><input type="radio" name="photoMode" id="compressNo" value="original"> Upload original</label></div><div class="small" style="margin-top:8px">Compressed photos are limited to 1600 px on the longest side and JPEG quality 85%. The original EXIF block is copied unchanged, including GPS/date/camera information.</div></div><div id="newPhotos" class="thumbs"></div></div>
+<div class="photo-options"><label style="margin:0 0 8px">Photo upload</label><div class="photo-choice"><label><input type="radio" name="photoMode" id="compressYes" value="compress" checked> Compress & resize</label><label><input type="radio" name="photoMode" id="compressNo" value="original"> Upload original</label></div><div class="small" style="margin-top:8px">Compressed photos are limited to 1600 px on the longest side and JPEG quality 85%. GPS is read from the original JPEG, written into the compressed JPEG, and verified before upload.</div></div><div id="newPhotos" class="thumbs"></div></div>
 <div class="full"><label>Recent Highlights</label><div class="photo-options"><div class="photo-choice"><label><input type="radio" name="highlight" value="false" checked> No</label><label><input type="radio" name="highlight" value="true"> Add project photos to slideshow</label></div><div class="grid" style="margin-top:10px"><div><label>Highlight duration</label><select id="highlightDays"><option value="20">20 days</option><option value="30" selected>30 days</option><option value="60">60 days</option></select></div></div><div class="highlight-note">The project remains on the Projects page permanently. After the selected number of days, its photos automatically stop appearing in Recent Highlights. They are not deleted.</div></div></div>
 </div>
 <div id="existingPhotos" class="thumbs"></div>
@@ -148,22 +149,42 @@ async function optimizePhoto(file){
   const compressedData=await blobToDataURL(blob);
 
   /*
-     Read GPS in two ways. ExifR is used first because it reads GPS
-     directly from the browser File object. PiexifJS is the fallback
-     and also supplies the original EXIF fields we want to preserve.
+     Read the ORIGINAL file before canvas processing.
+     ExifReader is the primary GPS reader because its expanded GPS group
+     returns ready-to-use decimal Latitude / Longitude values.
+     ExifR and PiexifJS remain fallbacks.
   */
-  let latitude=null,longitude=null;
-  let gpsReadError='';
+  let latitude=null, longitude=null;
+  const gpsSources=[];
 
   try{
-    if(typeof exifr!=='undefined' && typeof exifr.gps==='function'){
-      const g=await exifr.gps(file);
-      if(g && Number.isFinite(Number(g.latitude)) && Number.isFinite(Number(g.longitude))){
-        latitude=Number(g.latitude);
-        longitude=Number(g.longitude);
+    if(typeof ExifReader!=='undefined' && typeof ExifReader.load==='function'){
+      const tags=await ExifReader.load(file,{expanded:true});
+      const g=tags && tags.gps;
+      const lat=Number(g?.Latitude);
+      const lon=Number(g?.Longitude);
+      if(Number.isFinite(lat)&&Number.isFinite(lon)&&Math.abs(lat)<=90&&Math.abs(lon)<=180&&!(lat===0&&lon===0)){
+        latitude=lat;
+        longitude=lon;
+        gpsSources.push('ExifReader');
       }
     }
-  }catch(e){gpsReadError=e?.message||String(e)}
+  }catch(e){gpsSources.push('ExifReader error: '+(e?.message||e));}
+
+  try{
+    if(latitude===null && typeof exifr!=='undefined'){
+      let g=null;
+      if(typeof exifr.gps==='function') g=await exifr.gps(file);
+      if(!g && typeof exifr.parse==='function') g=await exifr.parse(file,{gps:true});
+      const lat=Number(g?.latitude ?? g?.Latitude ?? g?.GPSLatitude);
+      const lon=Number(g?.longitude ?? g?.Longitude ?? g?.GPSLongitude);
+      if(Number.isFinite(lat)&&Number.isFinite(lon)&&Math.abs(lat)<=90&&Math.abs(lon)<=180&&!(lat===0&&lon===0)){
+        latitude=lat;
+        longitude=lon;
+        gpsSources.push('ExifR');
+      }
+    }
+  }catch(e){gpsSources.push('ExifR error: '+(e?.message||e));}
 
   let originalExif;
   try{
@@ -173,37 +194,47 @@ async function optimizePhoto(file){
   }
 
   const gps=originalExif.GPS||{};
-  const latTag=gps[piexif.GPSIFD.GPSLatitude];
-  const lonTag=gps[piexif.GPSIFD.GPSLongitude];
-  const latRef=gps[piexif.GPSIFD.GPSLatitudeRef];
-  const lonRef=gps[piexif.GPSIFD.GPSLongitudeRef];
 
-  /* Piexif fallback if ExifR did not return decimal coordinates. */
-  function rationalValue(v){
-    if(Array.isArray(v) && v.length>=2){
-      const n=Number(v[0]),d=Number(v[1]);
-      return d ? n/d : 0;
+  /* Final fallback: decode PiexifJS GPS values if another reader did not. */
+  if(latitude===null || longitude===null){
+    const latTag=gps[piexif.GPSIFD.GPSLatitude];
+    const lonTag=gps[piexif.GPSIFD.GPSLongitude];
+    const latRef=gps[piexif.GPSIFD.GPSLatitudeRef];
+    const lonRef=gps[piexif.GPSIFD.GPSLongitudeRef];
+
+    function rationalValue(v){
+      if(Array.isArray(v)&&v.length>=2){
+        const n=Number(v[0]),d=Number(v[1]);
+        return d ? n/d : NaN;
+      }
+      if(v && typeof v==='object'){
+        const n=Number(v.numerator ?? v.num ?? v[0]);
+        const d=Number(v.denominator ?? v.den ?? v[1]);
+        if(Number.isFinite(n)&&Number.isFinite(d)&&d!==0) return n/d;
+      }
+      return Number(v);
     }
-    return Number(v);
-  }
-  function dmsToDecimal(v,ref){
-    if(!Array.isArray(v)||v.length<3) return NaN;
-    const deg=rationalValue(v[0]),min=rationalValue(v[1]),sec=rationalValue(v[2]);
-    let d=Math.abs(deg)+(min/60)+(sec/3600);
-    if(String(ref||'').toUpperCase()==='S'||String(ref||'').toUpperCase()==='W') d=-d;
-    return d;
+    function dmsToDecimal(v,ref){
+      if(!Array.isArray(v)||v.length<3) return NaN;
+      const deg=rationalValue(v[0]),min=rationalValue(v[1]),sec=rationalValue(v[2]);
+      if(!Number.isFinite(deg)||!Number.isFinite(min)||!Number.isFinite(sec)) return NaN;
+      let d=Math.abs(deg)+(min/60)+(sec/3600);
+      if(String(ref||'').toUpperCase()==='S'||String(ref||'').toUpperCase()==='W') d=-d;
+      return d;
+    }
+    const a=dmsToDecimal(latTag,latRef), b=dmsToDecimal(lonTag,lonRef);
+    if(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a)<=90&&Math.abs(b)<=180&&!(a===0&&b===0)){
+      latitude=a;
+      longitude=b;
+      gpsSources.push('PiexifJS');
+    }
   }
 
   if(latitude===null || longitude===null){
-    const a=dmsToDecimal(latTag,latRef), b=dmsToDecimal(lonTag,lonRef);
-    if(Number.isFinite(a)&&Number.isFinite(b)){latitude=a;longitude=b;}
+    throw new Error('Could not extract valid GPS coordinates from '+file.name+'. No non-zero latitude/longitude was returned by the metadata readers.');
   }
 
-  if(latitude===null || longitude===null || Math.abs(latitude)>90 || Math.abs(longitude)>180){
-    throw new Error('No valid GPS coordinates were found in '+file.name+'. Piexif GPS tags were '+(latTag?'found':'not found')+'; ExifR '+(gpsReadError||'did not return coordinates')+'.');
-  }
-
-  /* Build fresh EXIF and explicitly write the GPS coordinates. */
+  /* Build fresh EXIF and explicitly write the extracted coordinates. */
   const outExif={'0th':{},'Exif':{},'GPS':{},'Interop':{},'1st':{},'thumbnail':null};
   const copyIfPresent=(group,tag)=>{
     if(originalExif[group] && originalExif[group][tag]!==undefined) outExif[group][tag]=originalExif[group][tag];
@@ -218,9 +249,10 @@ async function optimizePhoto(file){
   [
     piexif.ExifIFD.ExposureTime,piexif.ExifIFD.FNumber,piexif.ExifIFD.ExposureProgram,
     piexif.ExifIFD.ISOSpeedRatings,piexif.ExifIFD.ExifVersion,piexif.ExifIFD.DateTimeOriginal,
-    piexif.ExifIFD.DateTimeDigitized,piexif.ExifIFD.FocalLength,piexif.ExifIFD.FocalLengthIn35mmFilm,
-    piexif.ExifIFD.Flash,piexif.ExifIFD.MeteringMode,piexif.ExifIFD.WhiteBalance,
-    piexif.ExifIFD.SceneCaptureType,piexif.ExifIFD.PixelXDimension,piexif.ExifIFD.PixelYDimension
+    piexif.ExifIFD.DateTimeDigitized,piexif.ExifIFD.OffsetTime,piexif.ExifIFD.OffsetTimeOriginal,
+    piexif.ExifIFD.FocalLength,piexif.ExifIFD.FocalLengthIn35mmFilm,piexif.ExifIFD.Flash,
+    piexif.ExifIFD.MeteringMode,piexif.ExifIFD.WhiteBalance,piexif.ExifIFD.SceneCaptureType,
+    piexif.ExifIFD.PixelXDimension,piexif.ExifIFD.PixelYDimension
   ].forEach(tag=>copyIfPresent('Exif',tag));
 
   outExif.GPS[piexif.GPSIFD.GPSLatitudeRef]=latitude<0?'S':'N';
@@ -235,15 +267,30 @@ async function optimizePhoto(file){
 
   const finalData=piexif.insert(piexif.dump(outExif),compressedData);
   const verify=piexif.load(finalData).GPS||{};
-  const vlat=dmsToDecimal(verify[piexif.GPSIFD.GPSLatitude],verify[piexif.GPSIFD.GPSLatitudeRef]);
-  const vlon=dmsToDecimal(verify[piexif.GPSIFD.GPSLongitude],verify[piexif.GPSIFD.GPSLongitudeRef]);
+
+  function rationalValue2(v){
+    if(Array.isArray(v)&&v.length>=2){const n=Number(v[0]),d=Number(v[1]);return d?n/d:NaN;}
+    return Number(v);
+  }
+  function dmsToDecimal2(v,ref){
+    if(!Array.isArray(v)||v.length<3)return NaN;
+    const deg=rationalValue2(v[0]),min=rationalValue2(v[1]),sec=rationalValue2(v[2]);
+    if(!Number.isFinite(deg)||!Number.isFinite(min)||!Number.isFinite(sec))return NaN;
+    let d=Math.abs(deg)+min/60+sec/3600;
+    if(String(ref||'').toUpperCase()==='S'||String(ref||'').toUpperCase()==='W')d=-d;
+    return d;
+  }
+  const vlat=dmsToDecimal2(verify[piexif.GPSIFD.GPSLatitude],verify[piexif.GPSIFD.GPSLatitudeRef]);
+  const vlon=dmsToDecimal2(verify[piexif.GPSIFD.GPSLongitude],verify[piexif.GPSIFD.GPSLongitudeRef]);
   if(!Number.isFinite(vlat)||!Number.isFinite(vlon)||Math.abs(vlat-latitude)>0.000001||Math.abs(vlon-longitude)>0.000001){
-    throw new Error('GPS verification failed for '+file.name+'.');
+    throw new Error('GPS verification failed for '+file.name+'. Extracted '+latitude.toFixed(7)+', '+longitude.toFixed(7)+' but the compressed JPEG did not retain the same coordinates.');
   }
 
   const finalBlob=dataURLToBlob(finalData);
   const base=file.name.replace(/\.[^.]+$/i,'').replace(/[^a-zA-Z0-9._-]/g,'_')||'photo';
-  return new File([finalBlob],base+'.jpg',{type:'image/jpeg',lastModified:Date.now()});
+  const result=new File([finalBlob],base+'.jpg',{type:'image/jpeg',lastModified:Date.now()});
+  result.gpsInfo={latitude,longitude,source:gpsSources.join(' + ')||'metadata'};
+  return result;
 }
 function fileToDataURL(file){
   return new Promise((resolve,reject)=>{
@@ -273,15 +320,21 @@ function dataURLToBlob(dataURL){
 }
 
 async function prepareProjectPhotos(){
-  const out=[]; const errors=[];
+  const out=[]; const errors=[]; const gpsMessages=[];
   for(const f of selectedFiles){
     if(photoMode()==='compress'){
-      try{out.push(await optimizePhoto(f));}
-      catch(e){errors.push(f.name+': '+(e?.message||e));out.push(f);}
+      try{
+        const prepared=await optimizePhoto(f);
+        out.push(prepared);
+        if(prepared.gpsInfo){
+          gpsMessages.push('📍 '+f.name+': '+prepared.gpsInfo.latitude.toFixed(7)+', '+prepared.gpsInfo.longitude.toFixed(7));
+        }
+      }catch(e){errors.push(f.name+': '+(e?.message||e));out.push(f);}
     }else out.push(f);
   }
   preparedFiles=out;renderProjectNewPhotos();
   if(errors.length) throw new Error('Photo preparation failed for '+errors.length+' photo(s):\n'+errors.join('\n'));
+  if(gpsMessages.length) editStatus(gpsMessages.join('\n')+'\n✓ GPS verified in compressed JPEG.');
 }
 function renderProjectNewPhotos(){$('newPhotos').innerHTML=selectedFiles.map((f,i)=>{const p=preparedFiles[i]||f;return '<div class="thumb"><img src="'+URL.createObjectURL(f)+'" alt=""><div class="photo-meta">'+esc(f.name)+'<br>'+formatBytes(f.size)+' → '+formatBytes(p.size)+'</div></div>'}).join('')}
 $('photos').addEventListener('change',async()=>{
