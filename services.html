@@ -405,6 +405,34 @@
         font-size: 12px;
       }
     }
+  /* Match the Home page header buttons */
+  .site-header .nav-whatsapp,
+  .site-header > .btn.btn-primary {
+    height: 42px;
+    min-height: 42px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .site-header .nav-whatsapp,
+    .site-header > .btn.btn-primary {
+      height: 36px;
+      min-height: 36px;
+      width: 70px;
+      padding: 0 8px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .site-header { gap: 7px; }
+    .site-header .brand { flex-shrink: 1; min-width: 0; }
+    .site-header .brand img { max-width: 115px; height: auto; }
+    .site-header .menu-toggle { flex-shrink: 0; }
+  }
   </style>
 </head>
 
@@ -438,6 +466,8 @@
       rel="noopener">
       WhatsApp
     </a>
+
+    <a class="btn btn-primary" href="tel:+918057755380">Call Us</a>
 
   </header>
 

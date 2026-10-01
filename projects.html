@@ -140,10 +140,56 @@
 @media(max-width:500px){.photo-gallery{grid-template-columns:1fr 1fr}.photo-card img{height:165px}}
 
 @media(max-width:720px){.projects-page-hero{min-height:350px;padding:70px 25px}.projects-page-hero h1{font-size:44px}.projects-page-hero p:not(.eyebrow){font-size:16px}.slide{height:350px}.slide-caption{left:20px;bottom:25px}.slide-caption h3{font-size:20px}.project-photo-grid{grid-template-columns:repeat(2,1fr)}.project-photo-grid img{height:170px}.sample-grid{grid-template-columns:1fr 1fr}.projects-cta{padding:55px 20px}.projects-cta h2{font-size:32px}.modal-gallery{grid-template-columns:1fr 1fr}}@media(max-width:500px){.project-photo-grid{grid-template-columns:1fr}.project-photo-grid img{height:220px}.sample-grid{grid-template-columns:1fr}.slider-button{width:38px;height:38px;font-size:20px}.modal-gallery{grid-template-columns:1fr}}
+
+/* Match Index page header buttons */
+.site-header .nav-whatsapp,
+.site-header > .btn.btn-primary {
+  height: 42px;
+  min-height: 42px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 720px) {
+  .site-header .nav-whatsapp,
+  .site-header > .btn.btn-primary {
+    height: 36px;
+    min-height: 36px;
+    padding: 0 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    gap: 7px;
+  }
+
+  .site-header .brand {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .site-header .brand img {
+    max-width: 115px;
+    height: auto;
+  }
+
+  .site-header .menu-toggle {
+    flex-shrink: 0;
+  }
+}
+
 </style>
 </head>
 <body>
-<header class="site-header"><a class="brand" href="./" aria-label="SR Associates home"><img src="assets/logo.jpg" alt="SR Associates Land Surveyors Logo" width="150" height="50"></a><button class="menu-toggle" aria-label="Open menu">☰</button><nav class="nav"><a href="./">Home</a><a href="services.html">Services</a><a class="active" href="projects.html">Projects</a><a href="technology.html">Technology</a><a href="about.html">About Us</a><a href="contact.html">Contact</a></nav><a class="nav-whatsapp" href="https://wa.me/918057755380" target="_blank" rel="noopener">WhatsApp</a></header>
+<header class="site-header"><a class="brand" href="./" aria-label="SR Associates home"><img src="assets/logo.jpg" alt="SR Associates Land Surveyors Logo" width="150" height="50"></a><button class="menu-toggle" aria-label="Open menu">☰</button><nav class="nav"><a href="./">Home</a><a href="services.html">Services</a><a class="active" href="projects.html">Projects</a><a href="technology.html">Technology</a><a href="about.html">About Us</a><a href="contact.html">Contact</a></nav>
+<a class="nav-whatsapp" href="https://wa.me/918057755380" target="_blank" rel="noopener">WhatsApp</a>
+<a class="btn btn-primary" href="tel:+918057755380">Call Us</a>
+</header>
 <main>
 <section class="projects-page-hero"><div class="projects-page-hero-content"><p class="eyebrow">SR ASSOCIATES</p><h1>Our <span>Projects</span></h1><p>Explore our surveying work, field projects and digital mapping outputs covering land surveying, GNSS RTK, topographical surveys, construction surveying and drone mapping.</p></div></section>
 <section class="section highlights"><p class="eyebrow red">RECENT HIGHLIGHTS</p><h2>Our Work in the Field</h2><p class="section-intro">A selection of recent surveying and mapping activities carried out by SR Associates.</p><div class="project-slider"><div class="slides" id="slides"></div><button class="slider-button slider-prev" onclick="changeSlide(-1)" aria-label="Previous highlight">‹</button><button class="slider-button slider-next" onclick="changeSlide(1)" aria-label="Next highlight">›</button><div class="slider-dots" id="sliderDots"></div></div></section>

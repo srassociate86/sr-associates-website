@@ -171,6 +171,49 @@
       margin-right: auto;
     }
 
+    /* HEADER BUTTONS - MATCH INDEX / PROJECTS / TECHNOLOGY */
+
+    .site-header .nav-whatsapp,
+    .site-header > .btn.btn-primary {
+      height: 42px;
+      min-height: 42px;
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 720px) {
+      .site-header .nav-whatsapp,
+      .site-header > .btn.btn-primary {
+        height: 36px;
+        min-height: 36px;
+        padding: 0 10px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .site-header {
+        gap: 7px;
+      }
+
+      .site-header .brand {
+        flex-shrink: 1;
+        min-width: 0;
+      }
+
+      .site-header .brand img {
+        max-width: 115px;
+        height: auto;
+      }
+
+      .site-header .menu-toggle {
+        flex-shrink: 0;
+      }
+    }
+
+
     @media (max-width: 1000px) {
       .about-process-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -243,6 +286,7 @@
     </nav>
 
     <a class="nav-whatsapp" href="https://wa.me/918057755380" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn-primary" href="tel:+918057755380">Call Us</a>
   </header>
 
   <main>
@@ -580,8 +624,12 @@
 
       <div class="contact-meta">
         <span>📍 Shyampur, Rishikesh, Uttarakhand 249204</span>
-        <span>✉ srassociate86@gmail.com</span>
-        <span>☎ +91 80577 55380, 9012167169, 7500570426</span>
+        <span>✉ <a href="mailto:srassociate86@gmail.com">srassociate86@gmail.com</a></span>
+        <span>☎
+          <a href="tel:+918057755380">+91 80577 55380</a>,
+          <a href="tel:+919012167169">+91 90121 67169</a>,
+          <a href="tel:+917500570426">+91 75005 70426</a>
+        </span>
       </div>
     </section>
 
