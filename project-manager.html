@@ -94,7 +94,7 @@
 <div class="full"><label>Short Description</label><textarea id="shortDescription" placeholder="Short text shown with the project."></textarea></div>
 <div class="full"><label>Full Project Information</label><textarea id="description" placeholder="Detailed project information shown when a visitor opens the project."></textarea></div>
 <div class="full"><label>Project Photos</label><input id="photos" type="file" accept=".jpg,.jpeg,image/jpeg" multiple>
-<div class="photo-options"><label style="margin:0 0 8px">Photo upload</label><div class="photo-choice"><label><input type="radio" name="photoMode" id="compressYes" value="compress" checked> Compress & resize</label><label><input type="radio" name="photoMode" id="compressNo" value="original"> Upload original</label></div><div class="small" style="margin-top:8px">Compressed photos are limited to 1600 px on the longest side and JPEG quality 85%. GPS/location metadata is read from the original JPEG, written into the compressed JPEG, and verified before upload. Other EXIF metadata may be reduced during compression; choose “Upload original” if you need every metadata field preserved.</div></div><div id="newPhotos" class="thumbs"></div></div>
+<div class="photo-options"><label style="margin:0 0 8px">Photo upload</label><div class="photo-choice"><label><input type="radio" name="photoMode" id="compressYes" value="compress" checked> Compress & resize</label><label><input type="radio" name="photoMode" id="compressNo" value="original"> Upload original</label></div><div class="small" style="margin-top:8px">Compressed photos are limited to 1600 px on the longest side and JPEG quality 85%. All original metadata (GPS location, altitude, camera/lens details, timestamps, etc.) is carried over to the compressed JPEG. GPS is additionally re-verified before upload.</div></div><div id="newPhotos" class="thumbs"></div></div>
 <div class="full"><label>Recent Highlights</label><div class="photo-options"><div class="photo-choice"><label><input type="radio" name="highlight" value="false" checked> No</label><label><input type="radio" name="highlight" value="true"> Add project photos to slideshow</label></div><div class="grid" style="margin-top:10px"><div><label>Highlight duration</label><select id="highlightDays"><option value="20">20 days</option><option value="30" selected>30 days</option><option value="60">60 days</option></select></div></div><div class="highlight-note">The project remains on the Projects page permanently. After the selected number of days, its photos automatically stop appearing in Recent Highlights. They are not deleted.</div></div></div>
 </div>
 <div id="existingPhotos" class="thumbs"></div>
@@ -234,36 +234,34 @@ async function optimizePhoto(file){
     throw new Error('Could not extract valid GPS coordinates from '+file.name+'. No non-zero latitude/longitude was returned by the metadata readers.');
   }
 
-  /* Build fresh EXIF and explicitly write the extracted coordinates. */
-  const outExif={'0th':{},'Exif':{},'GPS':{},'Interop':{},'1st':{},'thumbnail':null};
-  const copyIfPresent=(group,tag)=>{
-    if(originalExif[group] && originalExif[group][tag]!==undefined) outExif[group][tag]=originalExif[group][tag];
-  };
-
-  [
-    piexif.ImageIFD.Make,piexif.ImageIFD.Model,piexif.ImageIFD.Orientation,
-    piexif.ImageIFD.XResolution,piexif.ImageIFD.YResolution,piexif.ImageIFD.ResolutionUnit,
-    piexif.ImageIFD.Software,piexif.ImageIFD.DateTime,piexif.ImageIFD.YCbCrPositioning
-  ].forEach(tag=>copyIfPresent('0th',tag));
-
-  [
-    piexif.ExifIFD.ExposureTime,piexif.ExifIFD.FNumber,piexif.ExifIFD.ExposureProgram,
-    piexif.ExifIFD.ISOSpeedRatings,piexif.ExifIFD.ExifVersion,piexif.ExifIFD.DateTimeOriginal,
-    piexif.ExifIFD.DateTimeDigitized,piexif.ExifIFD.OffsetTime,piexif.ExifIFD.OffsetTimeOriginal,
-    piexif.ExifIFD.FocalLength,piexif.ExifIFD.FocalLengthIn35mmFilm,piexif.ExifIFD.Flash,
-    piexif.ExifIFD.MeteringMode,piexif.ExifIFD.WhiteBalance,piexif.ExifIFD.SceneCaptureType,
-    piexif.ExifIFD.PixelXDimension,piexif.ExifIFD.PixelYDimension
-  ].forEach(tag=>copyIfPresent('Exif',tag));
+  /*
+     Keep the ENTIRE original EXIF block - camera make/model, lens data,
+     exposure settings, GPS altitude/speed/direction/satellites/DOP/
+     processing method, timestamps, artist/copyright fields, Interop
+     data, everything - instead of copying a hand-picked subset of tags.
+     Only three things are deliberately changed for the compressed file:
+       1. GPS latitude/longitude are overwritten with the verified
+          decimal values extracted above, guarding against a corrupt or
+          unusually-encoded original GPS tag.
+       2. PixelXDimension/PixelYDimension are updated to the new,
+          resized dimensions - leaving the original values in place
+          would mis-describe the compressed image.
+       3. The embedded thumbnail is dropped, since it still reflects the
+          image at its original size and would be stale/misleading.
+  */
+  const outExif=originalExif;
 
   outExif.GPS[piexif.GPSIFD.GPSLatitudeRef]=latitude<0?'S':'N';
   outExif.GPS[piexif.GPSIFD.GPSLatitude]=piexif.GPSHelper.degToDmsRational(Math.abs(latitude));
   outExif.GPS[piexif.GPSIFD.GPSLongitudeRef]=longitude<0?'W':'E';
   outExif.GPS[piexif.GPSIFD.GPSLongitude]=piexif.GPSHelper.degToDmsRational(Math.abs(longitude));
 
-  if(gps[piexif.GPSIFD.GPSAltitude]!==undefined) outExif.GPS[piexif.GPSIFD.GPSAltitude]=gps[piexif.GPSIFD.GPSAltitude];
-  if(gps[piexif.GPSIFD.GPSAltitudeRef]!==undefined) outExif.GPS[piexif.GPSIFD.GPSAltitudeRef]=gps[piexif.GPSIFD.GPSAltitudeRef];
-  if(gps[piexif.GPSIFD.GPSTimeStamp]!==undefined) outExif.GPS[piexif.GPSIFD.GPSTimeStamp]=gps[piexif.GPSIFD.GPSTimeStamp];
-  if(gps[piexif.GPSIFD.GPSDateStamp]!==undefined) outExif.GPS[piexif.GPSIFD.GPSDateStamp]=gps[piexif.GPSIFD.GPSDateStamp];
+  outExif.Exif=outExif.Exif||{};
+  outExif.Exif[piexif.ExifIFD.PixelXDimension]=w;
+  outExif.Exif[piexif.ExifIFD.PixelYDimension]=h;
+
+  outExif['1st']={};
+  outExif.thumbnail=null;
 
   const finalData=piexif.insert(piexif.dump(outExif),compressedData);
   const verify=piexif.load(finalData).GPS||{};
