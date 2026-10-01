@@ -295,6 +295,26 @@
       "description": "Long text",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-muphhtxh-crjqg",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790856123998-1000230776.jpg",
+          "alt": "Test title 3",
+          "managed": true,
+          "sha": "69c1cb56486f1cbfc21d2906cb7cc3e83ef9a294"
+        }
+      ],
+      "type": "project",
+      "category": "GNSS / RTK",
+      "title": "Test title 3",
+      "date": "2026-10-01",
+      "location": "Rishikesh",
+      "shortDescription": "Short",
+      "description": "Long",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
