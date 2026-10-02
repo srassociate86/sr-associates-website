@@ -914,7 +914,7 @@ footer{
 
 .page-hero {
   min-height: 420px;
-  background: #111;
+  background: url("assets/survey-hero.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   padding: 80px 7%;

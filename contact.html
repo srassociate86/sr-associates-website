@@ -186,11 +186,9 @@
               <h3>Email</h3>
 
               <p>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=srassociate86@gmail.com"
-                   target="_blank"
-                   rel="noopener">
-                  srassociate86@gmail.com
-                </a>
+                <a href="mailto:srassociate86@gmail.com?subject=Survey%20Enquiry&body=Hello,%20I%20would%20like%20to%20enquire%20about%20your%20survey%20services.">
+					srassociate86@gmail.com
+				</a>
               </p>
             </div>
 
@@ -240,26 +238,7 @@
           </p>
 
 
-          <form
-            class="contact-form"
-            action="https://mail.google.com/mail/"
-            method="get"
-            target="_blank">
-
-            <input
-              type="hidden"
-              name="view"
-              value="cm">
-
-            <input
-              type="hidden"
-              name="fs"
-              value="1">
-
-            <input
-              type="hidden"
-              name="to"
-              value="srassociate86@gmail.com">
+          <form class="contact-form" id="contactForm">
 
 
             <div class="form-row">
@@ -471,13 +450,7 @@
           WhatsApp Us
         </a>
 
-        <a
-          class="btn btn-light"
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=srassociate86@gmail.com"
-          target="_blank"
-          rel="noopener">
-          Email Us
-        </a>
+        <a class="btn btn-light" href="mailto:srassociate86@gmail.com?subject=Survey%20Enquiry&body=Hello,%20I%20would%20like%20to%20enquire%20about%20your%20survey%20services.">Email Us</a>
 
       </div>
 
@@ -488,9 +461,7 @@
           📍 Shyampur, Rishikesh, Uttarakhand 249204
         </span>
 
-        <span>
-          ✉ <a href="mailto:srassociate86@gmail.com">srassociate86@gmail.com</a>
-        </span>
+        <span>✉ <a href="mailto:srassociate86@gmail.com?subject=Survey%20Enquiry&body=Hello,%20I%20would%20like%20to%20enquire%20about%20your%20survey%20services.">srassociate86@gmail.com</a></span>
 
         <span>
           ☎
@@ -523,6 +494,36 @@
 
   </footer>
 
+
+  <script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const service = document.getElementById("service").value || "Not specified";
+  const location = document.getElementById("location").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  const subject = "Survey Enquiry";
+
+  const body =
+    "Hello SR Associates,%0A%0A" +
+    "I would like to enquire about your survey services.%0A%0A" +
+    "Name: " + encodeURIComponent(name) + "%0A" +
+    "Phone: " + encodeURIComponent(phone) + "%0A" +
+    "Email: " + encodeURIComponent(email || "Not provided") + "%0A" +
+    "Service Required: " + encodeURIComponent(service) + "%0A" +
+    "Project Location: " + encodeURIComponent(location || "Not provided") + "%0A" +
+    "Project Details: " + encodeURIComponent(message);
+
+  window.location.href =
+    "mailto:srassociate84@gmail.com?subject=" +
+    encodeURIComponent(subject) +
+    "&body=" + body;
+});
+</script>
 
   <script src="script.js"></script>
 
