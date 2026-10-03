@@ -233,6 +233,42 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-03"
+    },
+    {
+      "id": "p-mus9yaow-bklzl",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-03/drone/1791024851192-1000230252.jpg",
+          "alt": "Drone survey",
+          "managed": true,
+          "sha": "b230adcfad05ef15be84e4bfe5c2eaa90240e06d",
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/drone/1791024855630-1000229335.jpg",
+          "alt": "Drone survey",
+          "managed": true,
+          "sha": "0e102df8f15c243125a2fe373d9f1383f4e7da4d",
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/drone/1791024859465-1000229214.jpg",
+          "alt": "Drone survey",
+          "managed": true,
+          "sha": "138e7b70bfde89c72013c6c3241c9fb9abb27ed7",
+          "highlightUntil": "2026-11-01"
+        }
+      ],
+      "type": "project",
+      "category": "DRONE",
+      "title": "Drone survey",
+      "date": "2026-10-03",
+      "location": "Rishikesh",
+      "shortDescription": "Short",
+      "description": "Long",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-03"
     }
   ],
   "slides": []
