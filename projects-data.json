@@ -1,11 +1,11 @@
 {
-  "version": 2,
+  "version": 4,
   "projects": [
     {
-		"id": "latest-gnss-rtk",
-		"type": "latest",
-		"category": "DGPS / GNSS / RTK SURVEY",
-		"title": "DGPS / GNSS / RTK SURVEY",
+      "id": "latest-gnss-rtk",
+      "type": "latest",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "DGPS / GNSS / RTK SURVEY",
       "location": "Uttarakhand",
       "year": "",
       "shortDescription": "High-accuracy GNSS RTK field surveying.",
@@ -117,9 +117,9 @@
     },
     {
       "id": "sample-gnss",
-		"type": "sample",
-		"category": "DGPS / GNSS / RTK",
-		"title": "DGPS / GNSS / RTK",
+      "type": "sample",
+      "category": "DGPS / GNSS / RTK",
+      "title": "DGPS / GNSS / RTK",
       "location": "",
       "year": "",
       "shortDescription": "High-accuracy coordinate collection and field data.",
@@ -190,6 +190,36 @@
           "managed": false
         }
       ]
+    },
+    {
+      "id": "p-mus9vc8d-sqabh",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791024714087-1000231590.jpg",
+          "alt": "Dgps survey",
+          "managed": true,
+          "sha": "999427abae283feb422d73c287bbc7bf3dfbc8ab",
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791024718672-1000231587.jpg",
+          "alt": "Dgps survey",
+          "managed": true,
+          "sha": "2475852a33142a03600cb32da186295a60bf7444",
+          "highlightUntil": "2026-11-01"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK",
+      "title": "Dgps survey",
+      "date": "2026-10-03",
+      "location": "Rishikesh",
+      "shortDescription": "Short",
+      "description": "Long",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-03"
     }
-  ]
+  ],
+  "slides": []
 }
