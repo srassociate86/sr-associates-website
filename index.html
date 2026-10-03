@@ -192,6 +192,11 @@
   transform:scale(1.03);
   transition:opacity .65s ease, transform 5.5s ease;
 }
+.category-project-slide.sample-slide{
+  background-size:contain;
+  background-color:#fff;
+}
+
 
 .category-project-slide.active{
   opacity:1;
@@ -775,215 +780,143 @@
 <script>
 /* =========================================================
    HOME CATEGORY PROJECT SLIDESHOWS
-   Each homepage card is populated automatically from
-   projects-data.json using the Project Manager categories.
+   Each homepage card combines:
+   1) normal projects in that category,
+   2) slideshow-only photos in that category,
+   3) a random selection of drawing samples from all categories.
    ========================================================= */
 (function(){
-  const cards = document.querySelectorAll('.category-project-card');
-  if(!cards.length) return;
+  const cards=document.querySelectorAll('.category-project-card');
+  if(!cards.length)return;
 
-  const fallback = {
-    'DGPS / GNSS / RTK SURVEY': 'assets/gnss.jpg',
-    'CONSTRUCTION SURVEY': 'assets/total-station.jpg',
-    'DRONE SURVEY & MAPPING': 'assets/drone.jpg'
+  const fallback={
+    'DGPS / GNSS / RTK SURVEY':'assets/gnss.jpg',
+    'CONSTRUCTION SURVEY':'assets/total-station.jpg',
+    'DRONE SURVEY & MAPPING':'assets/drone.jpg'
   };
 
-  const states = [];
+  const categoryMap={
+    'DGPS / GNSS / RTK SURVEY':['DGPS / GNSS / RTK','DGPS / GNSS / RTK SURVEY'],
+    'CONSTRUCTION SURVEY':['TOTAL STATION / CONSTRUCTION','CONSTRUCTION SURVEY'],
+    'DRONE SURVEY & MAPPING':['DRONE','DRONE SURVEY & MAPPING']
+  };
 
-  function esc(value){
-    return String(value ?? '').replace(/[&<>'"]/g, c => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'
-    }[c]));
-  }
+  const states=[];
+  function esc(value){return String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+  function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
+  function projectLink(id){return 'projects.html#project-'+encodeURIComponent(id||'');}
 
-  function projectLink(id){
-    return 'projects.html#project-' + encodeURIComponent(id || '');
-  }
+  function getCategoryItems(projects,slides,drawings,category){
+    const allowed=categoryMap[category]||[category];
+    const result=[];
 
-  function getPhotos(projects, category){
-    const result = [];
-
-    // The Project Manager now uses these three exact categories:
-// DGPS / GNSS / RTK, TOTAL STATION / CONSTRUCTION, DRONE.
-// Keep the existing homepage card wording unchanged, but map each
-// card to the corresponding Project Manager category.
-const categoryMap = {
-  'DGPS / GNSS / RTK SURVEY': ['DGPS / GNSS / RTK', 'DGPS / GNSS / RTK SURVEY'],
-  'CONSTRUCTION SURVEY': ['TOTAL STATION / CONSTRUCTION', 'CONSTRUCTION SURVEY'],
-  'DRONE SURVEY & MAPPING': ['DRONE', 'DRONE SURVEY & MAPPING']
-};
-
-    const allowedCategories = categoryMap[category] || [category];
-
-    projects
-      .filter(p => p && p.visible !== false && allowedCategories.includes(p.category))
-      .forEach(p => {
-        (Array.isArray(p.photos) ? p.photos : []).forEach(photo => {
-          if(photo && photo.path){
-            result.push({
-              path: photo.path,
-              title: p.title || category,
-              location: p.location || '',
-              year: p.year || '',
-              id: p.id || ''
-            });
-          }
-        });
+    projects.filter(p=>p&&p.visible!==false&&allowed.includes(p.category)).forEach(p=>{
+      (Array.isArray(p.photos)?p.photos:[]).forEach(photo=>{
+        if(photo&&photo.path)result.push({path:photo.path,title:p.title||category,location:p.location||'',year:p.year||p.date||'',id:p.id||'',kind:'project'});
       });
+    });
 
-    return result;
+    slides.filter(s=>s&&s.path&&s.category&&allowed.includes(s.category)).forEach(s=>{
+      result.push({path:s.path,title:s.title||'Field Work',location:'',year:s.date||'',id:'',kind:'slideshow'});
+    });
+
+    // Samples are intentionally NOT category filtered. Each homepage card
+    // gets a random selection from the complete Drawing Samples collection.
+    shuffle(drawings.filter(d=>d&&d.visible!==false&&d.image)).slice(0,2).forEach(d=>{
+      result.push({path:d.image,title:d.title||'Drawing Sample',location:d.location||'',year:d.date||'',id:d.id||'',kind:'sample'});
+    });
+
+    return shuffle(result);
   }
 
-  function makeCard(card, photos){
-    const category = card.dataset.category;
-    const slidesEl = card.querySelector('.category-project-slides');
-    const dotsEl = card.querySelector('.category-project-dots');
-    const metaEl = card.querySelector('.category-project-meta');
-    const prev = card.querySelector('.category-project-arrow.prev');
-    const next = card.querySelector('.category-project-arrow.next');
-
-    const state = {
-      card,
-      category,
-      photos,
-      current: 0,
-      timer: null,
-      slides: [],
-      dots: []
-    };
-
+  function makeCard(card,photos){
+    const category=card.dataset.category;
+    const slidesEl=card.querySelector('.category-project-slides');
+    const dotsEl=card.querySelector('.category-project-dots');
+    const metaEl=card.querySelector('.category-project-meta');
+    const prev=card.querySelector('.category-project-arrow.prev');
+    const next=card.querySelector('.category-project-arrow.next');
+    const state={card,category,photos,current:0,timer:null,slides:[],dots:[]};
     states.push(state);
-
-    slidesEl.innerHTML = '';
-    dotsEl.innerHTML = '';
+    slidesEl.innerHTML='';dotsEl.innerHTML='';
 
     if(!photos.length){
-      const fallbackSlide = document.createElement('div');
-      fallbackSlide.className = 'category-project-slide active';
-      fallbackSlide.style.backgroundImage = `url("${fallback[category] || 'assets/survey-hero.jpg'}")`;
+      const fallbackSlide=document.createElement('div');
+      fallbackSlide.className='category-project-slide active';
+      fallbackSlide.style.backgroundImage=`url("${fallback[category]||'assets/survey-hero.jpg'}")`;
       slidesEl.appendChild(fallbackSlide);
-
-      metaEl.textContent = 'No projects added yet';
-      prev.hidden = true;
-      next.hidden = true;
-      dotsEl.hidden = true;
+      metaEl.textContent='No projects added yet';
+      prev.hidden=true;next.hidden=true;dotsEl.hidden=true;
       return state;
     }
 
-    state.slides = photos.map((photo, index) => {
-      const slide = document.createElement('div');
-      slide.className = 'category-project-slide' + (index === 0 ? ' active' : '');
-      slide.style.backgroundImage = `url("${String(photo.path).replace(/"/g,'\\"')}")`;
+    state.slides=photos.map((photo,index)=>{
+      const slide=document.createElement('div');
+      slide.className='category-project-slide'+(photo.kind==='sample'?' sample-slide':'')+(index===0?' active':'');
+      slide.style.backgroundImage=`url("${String(photo.path).replace(/"/g,'\\"')}")`;
       slide.setAttribute('role','img');
-      slide.setAttribute('aria-label', photo.title);
+      slide.setAttribute('aria-label',photo.title);
       slidesEl.appendChild(slide);
 
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'category-project-dot' + (index === 0 ? ' active' : '');
-      dot.setAttribute('aria-label','Show photo ' + (index + 1) + ' of ' + photos.length);
-      dot.addEventListener('click', function(event){
-        event.stopPropagation();
-        show(state, index, true);
-      });
+      const dot=document.createElement('button');
+      dot.type='button';dot.className='category-project-dot'+(index===0?' active':'');
+      dot.setAttribute('aria-label','Show photo '+(index+1)+' of '+photos.length);
+      dot.addEventListener('click',event=>{event.stopPropagation();show(state,index,true)});
       dotsEl.appendChild(dot);
-
       return slide;
     });
-
-    state.dots = [...dotsEl.children];
-
-    prev.hidden = photos.length < 2;
-    next.hidden = photos.length < 2;
-    dotsEl.hidden = photos.length < 2;
+    state.dots=[...dotsEl.children];
+    prev.hidden=photos.length<2;next.hidden=photos.length<2;dotsEl.hidden=photos.length<2;
 
     function updateMeta(){
-      const photo = state.photos[state.current];
-      if(!photo) return;
-      const details = [photo.location, photo.year].filter(Boolean).join(' • ');
-      metaEl.textContent = photo.title + (details ? ' • ' + details : '');
+      const photo=state.photos[state.current];if(!photo)return;
+      const kindLabel=photo.kind==='sample'?'DRAWING SAMPLE':photo.kind==='slideshow'?'RECENT FIELD WORK':category;
+      const details=[photo.location,photo.year].filter(Boolean).join(' • ');
+      metaEl.textContent=kindLabel+' • '+photo.title+(details?' • '+details:'');
     }
+    state.updateMeta=updateMeta;updateMeta();
 
-    state.updateMeta = updateMeta;
-    updateMeta();
-
-    prev.addEventListener('click', function(event){
-      event.stopPropagation();
-      show(state, state.current - 1, true);
+    prev.addEventListener('click',event=>{event.stopPropagation();show(state,state.current-1,true)});
+    next.addEventListener('click',event=>{event.stopPropagation();show(state,state.current+1,true)});
+    card.addEventListener('click',()=>{
+      const photo=state.photos[state.current];
+      if(!photo)return;
+      if(photo.kind==='sample')window.location.href='drawings.html';
+      else if(photo.kind==='project'&&photo.id)window.location.href=projectLink(photo.id);
+      else window.location.href='projects.html';
     });
-
-    next.addEventListener('click', function(event){
-      event.stopPropagation();
-      show(state, state.current + 1, true);
-    });
-
-    card.addEventListener('click', function(){
-      const photo = state.photos[state.current];
-      if(photo && photo.id) window.location.href = projectLink(photo.id);
-    });
-
-    card.addEventListener('mouseenter', function(){
-      clearInterval(state.timer);
-    });
-
-    card.addEventListener('mouseleave', function(){
-      if(state.photos.length > 1) start(state);
-    });
-
-    if(photos.length > 1) start(state);
+    card.addEventListener('mouseenter',()=>clearInterval(state.timer));
+    card.addEventListener('mouseleave',()=>{if(state.photos.length>1)start(state)});
+    if(photos.length>1)start(state);
     return state;
   }
 
-  function show(state, index, manual){
-    if(!state.photos.length || !state.slides.length) return;
-
-    state.current = (index + state.photos.length) % state.photos.length;
-
-    state.slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === state.current);
-    });
-
-    state.dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === state.current);
-    });
-
+  function show(state,index,manual){
+    if(!state.photos.length||!state.slides.length)return;
+    state.current=(index+state.photos.length)%state.photos.length;
+    state.slides.forEach((slide,i)=>slide.classList.toggle('active',i===state.current));
+    state.dots.forEach((dot,i)=>dot.classList.toggle('active',i===state.current));
     state.updateMeta();
-
-    if(manual) start(state);
+    if(manual)start(state);
   }
 
-  function start(state){
-    clearInterval(state.timer);
-    if(state.photos.length > 1){
-      state.timer = setInterval(() => show(state, state.current + 1, false), 4500);
-    }
-  }
+  function start(state){clearInterval(state.timer);if(state.photos.length>1)state.timer=setInterval(()=>show(state,state.current+1,false),4500)}
 
   async function loadCategorySlideshows(){
     try{
-      const response = await fetch('projects-data.json');
-
-      if(!response.ok) throw new Error('Project data unavailable');
-
-      const data = await response.json();
-      const projects = Array.isArray(data.projects) ? data.projects : [];
-
-      cards.forEach(card => {
-        const category = card.dataset.category;
-        const photos = getPhotos(projects, category);
-        makeCard(card, photos);
-      });
-
+      const [projectResponse,drawingResponse]=await Promise.all([fetch('projects-data.json'),fetch('drawings-data.json')]);
+      if(!projectResponse.ok)throw new Error('Project data unavailable');
+      const data=await projectResponse.json();
+      const drawingData=drawingResponse.ok?await drawingResponse.json():{drawings:[]};
+      const projects=Array.isArray(data.projects)?data.projects:[];
+      const slides=Array.isArray(data.slides)?data.slides:[];
+      const drawings=Array.isArray(drawingData.drawings)?drawingData.drawings:[];
+      cards.forEach(card=>makeCard(card,getCategoryItems(projects,slides,drawings,card.dataset.category)));
     }catch(error){
-      console.error('Could not load project slideshows:', error);
-
-      cards.forEach(card => {
-        const category = card.dataset.category;
-        makeCard(card, []);
-      });
+      console.error('Could not load project/drawing slideshows:',error);
+      cards.forEach(card=>makeCard(card,[]));
     }
   }
-
   loadCategorySlideshows();
 })();
 </script>
