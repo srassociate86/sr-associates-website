@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Survey drawing samples from SR Associates including topographical plans, boundary survey drawings, construction layouts, CAD drawings and earthwork plans.">
+<title>Drawing Samples | SR Associates - Land Surveyors</title>
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* =========================================================
+   DRAWING SAMPLES PAGE
+   ========================================================= */
+
+.drawings-page-hero{
+  min-height:420px;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.94),rgba(0,0,0,.62),rgba(0,0,0,.25)),
+    url("assets/survey-hero.jpg") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  padding:80px 7%;
+  position:relative;
+  overflow:hidden;
+}
+.drawings-page-hero-content{max-width:780px}
+.drawings-page-hero h1{
+  margin:15px 0;
+  font-size:clamp(42px,6vw,76px);
+  line-height:.98;
+  color:#fff;
+  text-transform:uppercase;
+}
+.drawings-page-hero h1 span{color:var(--red-bright)}
+.drawings-page-hero p:not(.eyebrow){
+  max-width:650px;
+  color:#ccc;
+  font-size:18px;
+  line-height:1.7;
+}
+
+.drawings-section{background:#f7f7f7}
+
+.drawing-intro{
+  max-width:800px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.drawing-filter{
+  max-width:1200px;
+  margin:32px auto 0;
+  display:flex;
+  justify-content:flex-end;
+  position:relative;
+}
+
+.drawing-filter-toggle{
+  min-width:100px;
+  height:40px;
+  padding:0 15px;
+  border:1px solid #ccc;
+  background:#fff;
+  color:#333;
+  border-radius:20px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.8px;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.drawing-filter-toggle:hover,
+.drawing-filter-toggle[aria-expanded="true"]{
+  background:var(--red);
+  border-color:var(--red);
+  color:#fff;
+}
+
+.drawing-filter-menu{
+  position:absolute;
+  right:0;
+  top:50px;
+  z-index:20;
+  display:none;
+  min-width:250px;
+  padding:7px;
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:8px;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+}
+.drawing-filter-menu.open{display:block}
+.drawing-filter-menu button{
+  display:block;
+  width:100%;
+  border:0;
+  background:#fff;
+  color:#333;
+  text-align:left;
+  border-radius:5px;
+  padding:10px 12px;
+  font-weight:700;
+  font-size:12px;
+  cursor:pointer;
+}
+.drawing-filter-menu button:hover,
+.drawing-filter-menu button.active{
+  background:var(--red);
+  color:#fff;
+}
+
+.drawing-list{
+  max-width:1200px;
+  margin:40px auto 0;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+}
+
+.drawing-card{
+  background:#fff;
+  border:1px solid #e1e1e1;
+  border-radius:7px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.25s ease;
+}
+.drawing-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--red);
+  box-shadow:0 12px 28px rgba(0,0,0,.10);
+}
+
+.drawing-preview{
+  background:#e9e9e9;
+  min-height:310px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px;
+}
+.drawing-preview img{
+  width:100%;
+  height:310px;
+  object-fit:contain;
+  display:block;
+  background:#fff;
+}
+
+.drawing-card-content{
+  padding:17px 18px 19px;
+  text-align:left;
+}
+.drawing-card-content b{
+  display:block;
+  color:var(--red);
+  font-size:11px;
+  letter-spacing:1.3px;
+  margin-bottom:7px;
+}
+.drawing-card-content h3{
+  margin:0 0 7px;
+  font-size:18px;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+.drawing-card-content p{
+  margin:0;
+  color:#666;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.empty-drawings{
+  grid-column:1/-1;
+  padding:55px 25px;
+  text-align:center;
+  color:#777;
+  border:1px dashed #ccc;
+  background:#fff;
+}
+.empty-drawings strong{
+  display:block;
+  color:#333;
+  font-size:18px;
+  margin-bottom:8px;
+}
+.empty-drawings span{
+  display:block;
+  font-size:13px;
+  line-height:1.6;
+}
+
+/* CTA - MATCH PROJECT GALLERY */
+.projects-cta{
+  padding:70px 7%;
+  background:linear-gradient(110deg,#090909,#311012);
+  color:#fff;
+  text-align:center;
+}
+.projects-cta h2{
+  margin:0 0 12px;
+  font-size:40px;
+  color:#fff;
+}
+.projects-cta h2 span{color:var(--red-bright)}
+.projects-cta p{
+  color:#ccc;
+  max-width:600px;
+  margin:0 auto 28px;
+  line-height:1.7;
+}
+.projects-cta-actions{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+/* FULL-SCREEN DRAWING VIEWER */
+.drawing-modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:none;
+  background:rgba(0,0,0,.92);
+  align-items:center;
+  justify-content:center;
+}
+.drawing-modal.open{display:flex}
+
+.drawing-modal-box{
+  width:100vw;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.drawing-close{
+  position:absolute;
+  right:24px;
+  top:16px;
+  z-index:20;
+  width:45px;
+  height:45px;
+  border:0;
+  background:rgba(0,0,0,.55);
+  color:#fff;
+  border-radius:50%;
+  font-size:32px;
+  cursor:pointer;
+}
+.drawing-close:hover{background:var(--red)}
+
+.drawing-modal-title{
+  color:#fff;
+  margin:0 70px 4px;
+  text-align:center;
+  font-size:22px;
+  text-transform:uppercase;
+}
+.drawing-modal-meta{
+  color:#ccc;
+  margin:0 55px 12px;
+  text-align:center;
+  font-size:12px;
+}
+
+.drawing-viewer{
+  width:min(94vw,1500px);
+  height:min(82vh,900px);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  touch-action:none;
+  background:#111;
+}
+
+.drawing-viewer img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  user-select:none;
+  -webkit-user-drag:none;
+  transform-origin:center center;
+  will-change:transform;
+  cursor:default;
+  transition:transform .28s ease,opacity .22s ease;
+}
+.drawing-viewer img.zoomable{cursor:grab}
+.drawing-viewer.is-panning img{
+  cursor:grabbing;
+  transition:none;
+}
+
+.drawing-nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:46px;
+  height:46px;
+  border:0;
+  border-radius:50%;
+  background:rgba(0,0,0,.65);
+  color:#fff;
+  font-size:28px;
+  cursor:pointer;
+  z-index:5;
+}
+.drawing-nav:hover{background:var(--red)}
+.drawing-nav.prev{left:12px}
+.drawing-nav.next{right:12px}
+
+.drawing-zoom{
+  position:absolute;
+  left:50%;
+  bottom:14px;
+  transform:translateX(-50%);
+  z-index:6;
+  display:flex;
+  gap:7px;
+}
+.drawing-zoom button{
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:50%;
+  background:rgba(0,0,0,.70);
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+}
+.drawing-zoom button:hover{background:var(--red)}
+
+@media(max-width:900px){
+  .drawing-list{grid-template-columns:1fr}
+}
+
+@media(max-width:720px){
+  .projects-cta{
+    padding:55px 20px;
+  }
+  .projects-cta h2{
+    font-size:32px;
+  }
+
+  .drawings-page-hero{
+    min-height:350px;
+    padding:70px 25px;
+  }
+  .drawings-page-hero h1{font-size:44px}
+  .drawings-page-hero p:not(.eyebrow){font-size:16px}
+  .drawing-preview{min-height:250px}
+  .drawing-preview img{height:250px}
+  .drawing-modal-title{
+    font-size:18px;
+    margin-left:50px;
+    margin-right:50px;
+  }
+  .drawing-modal-meta{font-size:11px}
+  .drawing-viewer{
+    width:96vw;
+    height:70vh;
+  }
+  .drawing-close{
+    right:14px;
+    top:8px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a class="brand" href="./" aria-label="SR Associates home">
+    <img src="assets/logo.jpg" alt="SR Associates Land Surveyors Logo" width="150" height="50">
+  </a>
+
+  <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+  <nav class="nav">
+    <a href="./">Home</a>
+    <a href="services.html">Services</a>
+    <a href="projects.html">Project Gallery</a>
+    <a class="active" href="drawings.html">Drawing Samples</a>
+    <a href="technology.html">Technology</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <a class="nav-whatsapp"
+     href="https://wa.me/918057755380"
+     target="_blank"
+     rel="noopener">WhatsApp</a>
+
+  <a class="btn btn-primary" href="tel:+918057755380">Call Us</a>
+</header>
+
+<main>
+
+<section class="drawings-page-hero">
+  <div class="drawings-page-hero-content">
+    <p class="eyebrow">SR ASSOCIATES</p>
+    <h1>Drawing <span>Samples</span></h1>
+    <p>
+      Explore examples of survey drawings and digital plans prepared from
+      field survey data, including topographical plans, boundary surveys,
+      construction layouts, CAD drawings and earthwork outputs.
+    </p>
+  </div>
+</section>
+
+<section class="section drawings-section">
+  <div class="drawing-intro">
+    <p class="eyebrow red">SURVEY DRAWINGS</p>
+    <h2>Technical drawings from field data.</h2>
+    <p class="section-intro">
+      Sample drawings can be viewed in detail to inspect survey information,
+      dimensions, annotations, contours, coordinates and other drawing content.
+    </p>
+  </div>
+
+  <div class="drawing-filter">
+    <button class="drawing-filter-toggle"
+            id="drawingFilterToggle"
+            type="button"
+            aria-label="Filter drawing samples"
+            aria-expanded="false"
+            aria-controls="drawingFilterMenu">
+      <span>FILTER</span>
+    </button>
+
+    <div class="drawing-filter-menu" id="drawingFilterMenu">
+      <button class="active" data-filter="ALL">All Drawings</button>
+      <button data-filter="TOPOGRAPHICAL">Topographical</button>
+      <button data-filter="BOUNDARY">Boundary / Land Survey</button>
+      <button data-filter="CONSTRUCTION">Construction / Layout</button>
+      <button data-filter="CAD">CAD Drawings</button>
+      <button data-filter="EARTHWORK">Earthwork / Cut & Fill</button>
+    </div>
+  </div>
+
+  <div class="drawing-list" id="drawingList">
+    <div class="empty-drawings">
+      <strong>Drawing samples will be added soon.</strong>
+      <span>
+        Survey drawing examples will be displayed here as they are added.
+      </span>
+    </div>
+  </div>
+</section>
+
+<section class="projects-cta">
+  <p class="eyebrow">NEED A SURVEY DRAWING?</p>
+  <h2>Let's turn field data<br><span>into clear information.</span></h2>
+  <p>
+    Contact SR Associates for survey drawings, CAD plans, topographical
+    mapping, construction layouts and other digital survey deliverables.
+  </p>
+  <div class="projects-cta-actions">
+    <a class="btn btn-primary" href="tel:+918057755380">Call Us</a>
+    <a class="btn btn-light" href="https://wa.me/918057755380" target="_blank" rel="noopener">WhatsApp Us</a>
+    <a class="btn btn-light" href="mailto:srassociate86@gmail.com?subject=Survey%20Drawing%20Enquiry&body=Hello,%20I%20would%20like%20to%20enquire%20about%20survey%20drawings.">Email Us</a>
+  </div>
+</section>
+
+</main>
+
+<div class="drawing-modal" id="drawingModal" role="dialog" aria-modal="true">
+  <div class="drawing-modal-box">
+    <button class="drawing-close" id="drawingClose" aria-label="Close">×</button>
+    <h2 class="drawing-modal-title" id="drawingTitle"></h2>
+    <div class="drawing-modal-meta" id="drawingMeta"></div>
+
+    <div class="drawing-viewer" id="drawingViewer"></div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 SR Associates. All Rights Reserved.</span>
+  <span>Accurate Measurement. Solid Foundation.</span>
+  <span>landsurveyor.co.in</span>
+  <a href="project-manager.html" class="admin-login-link">Admin Login</a>
+</footer>
+
+<script>
+/* =========================================================
+   SHARED MOBILE MENU
+   ========================================================= */
+const menuToggle=document.querySelector('.menu-toggle');
+const nav=document.querySelector('.nav');
+if(menuToggle)menuToggle.addEventListener('click',()=>nav.classList.toggle('open'));
+
+/* =========================================================
+   DRAWING DATA
+   Add drawings to drawings-data.json.
+   ========================================================= */
+let allDrawings=[];
+let filteredDrawings=[];
+let currentDrawingIndex=0;
+
+function esc(s){
+  return String(s??'').replace(/[&<>"']/g,m=>({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[m]));
+}
+
+function renderDrawings(){
+  const box=document.getElementById('drawingList');
+
+  filteredDrawings=allDrawings.filter(d=>
+    d && d.visible!==false &&
+    (currentFilter==='ALL' || d.category===currentFilter)
+  );
+
+  if(!filteredDrawings.length){
+    box.innerHTML='<div class="empty-drawings"><strong>No drawing samples have been added yet.</strong><span>Drawing examples for this category will appear here when they are added.</span></div>';
+    return;
+  }
+
+  box.innerHTML=filteredDrawings.map((d,i)=>`
+    <article class="drawing-card" onclick="openDrawing(${i})">
+      <div class="drawing-preview">
+        <img src="${esc(d.image)}"
+             alt="${esc(d.alt||d.title||'Survey drawing sample')}"
+             loading="lazy">
+      </div>
+      <div class="drawing-card-content">
+        <b>${esc(d.categoryLabel||d.category||'SURVEY DRAWING')}</b>
+        <h3>${esc(d.title||'Survey Drawing')}</h3>
+        <p>${esc(d.description||'')}</p>
+      </div>
+    </article>
+  `).join('');
+}
+
+/* =========================================================
+   DRAWING VIEWER
+   ========================================================= */
+let drawingScale=1,drawingX=0,drawingY=0;
+let touchStartX=0,touchStartY=0,touchLastX=0,touchLastY=0;
+let pinchStartDistance=0,pinchStartScale=1,touchMode='';
+let mousePanActive=false,mousePanLastX=0,mousePanLastY=0;
+
+function applyDrawingTransform(){
+  const img=document.querySelector('#drawingViewer img');
+  if(!img)return;
+  img.style.transform=
+    'translate3d('+drawingX+'px,'+drawingY+'px,0) scale('+drawingScale+')';
+  img.classList.toggle('zoomable',drawingScale>1);
+}
+
+function zoomDrawing(amount,event){
+  if(event)event.stopPropagation();
+
+  const viewer=document.getElementById('drawingViewer');
+  const img=viewer.querySelector('img');
+  if(!viewer||!img)return;
+
+  const oldScale=drawingScale;
+  const newScale=Math.min(5,Math.max(1,oldScale+amount));
+  if(newScale===oldScale)return;
+
+  /* Keep the mouse position as the zoom focus on desktop. */
+  if(event && event.clientX!=null && event.clientY!=null){
+    const rect=viewer.getBoundingClientRect();
+    const cursorX=event.clientX-rect.left-rect.width/2;
+    const cursorY=event.clientY-rect.top-rect.height/2;
+    const ratio=newScale/oldScale;
+    drawingX=cursorX-(cursorX-drawingX)*ratio;
+    drawingY=cursorY-(cursorY-drawingY)*ratio;
+  }
+
+  drawingScale=newScale;
+  if(drawingScale===1){
+    drawingX=0;
+    drawingY=0;
+  }
+  applyDrawingTransform();
+}
+
+function resetDrawingZoom(event){
+  if(event)event.stopPropagation();
+  drawingScale=1;
+  drawingX=0;
+  drawingY=0;
+  applyDrawingTransform();
+}
+
+function openDrawing(index){
+  if(!filteredDrawings.length)return;
+
+  currentDrawingIndex=(index+filteredDrawings.length)%filteredDrawings.length;
+  const d=filteredDrawings[currentDrawingIndex];
+  const modal=document.getElementById('drawingModal');
+  const viewer=document.getElementById('drawingViewer');
+
+  drawingScale=1;
+  drawingX=0;
+  drawingY=0;
+
+  document.getElementById('drawingTitle').textContent=d.title||'Survey Drawing';
+  document.getElementById('drawingMeta').textContent=
+    [d.categoryLabel||d.category,d.date,d.location].filter(Boolean).join(' • ');
+
+  viewer.innerHTML='';
+
+  const img=document.createElement('img');
+  img.src=d.image;
+  img.alt=d.alt||d.title||'Survey drawing sample';
+  img.draggable=false;
+  viewer.appendChild(img);
+
+  if(filteredDrawings.length>1){
+    const prev=document.createElement('button');
+    prev.className='drawing-nav prev';
+    prev.innerHTML='‹';
+    prev.setAttribute('aria-label','Previous drawing');
+    prev.onclick=e=>{
+      e.stopPropagation();
+      showDrawing(currentDrawingIndex-1);
+    };
+
+    const next=document.createElement('button');
+    next.className='drawing-nav next';
+    next.innerHTML='›';
+    next.setAttribute('aria-label','Next drawing');
+    next.onclick=e=>{
+      e.stopPropagation();
+      showDrawing(currentDrawingIndex+1);
+    };
+
+    viewer.appendChild(prev);
+    viewer.appendChild(next);
+  }
+
+  const zoom=document.createElement('div');
+  zoom.className='drawing-zoom';
+  zoom.innerHTML=
+    '<button type="button" aria-label="Zoom out" onclick="zoomDrawing(-0.25,event)">−</button>'+
+    '<button type="button" aria-label="Reset zoom" onclick="resetDrawingZoom(event)">↺</button>'+
+    '<button type="button" aria-label="Zoom in" onclick="zoomDrawing(0.25,event)">+</button>';
+  viewer.appendChild(zoom);
+
+  applyDrawingTransform();
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function showDrawing(index){
+  if(!filteredDrawings.length)return;
+  openDrawing((index+filteredDrawings.length)%filteredDrawings.length);
+}
+
+function closeDrawing(){
+  document.getElementById('drawingModal').classList.remove('open');
+  document.body.style.overflow='';
+  endMousePan();
+}
+
+document.getElementById('drawingClose').addEventListener('click',closeDrawing);
+
+document.getElementById('drawingModal').addEventListener('click',e=>{
+  if(e.target===document.getElementById('drawingModal'))closeDrawing();
+});
+
+/* Mouse-wheel zoom focused on cursor position. */
+document.getElementById('drawingViewer').addEventListener('wheel',e=>{
+  if(e.target.tagName!=='IMG')return;
+  e.preventDefault();
+  zoomDrawing(e.deltaY<0?0.25:-0.25,e);
+},{passive:false});
+
+/* Desktop drag-to-pan. */
+const drawingViewer=document.getElementById('drawingViewer');
+
+drawingViewer.addEventListener('mousedown',e=>{
+  if(e.button!==0 || e.target.tagName!=='IMG' || drawingScale<=1)return;
+  e.preventDefault();
+  mousePanActive=true;
+  mousePanLastX=e.clientX;
+  mousePanLastY=e.clientY;
+  drawingViewer.classList.add('is-panning');
+});
+
+window.addEventListener('mousemove',e=>{
+  if(!mousePanActive)return;
+  e.preventDefault();
+  drawingX+=e.clientX-mousePanLastX;
+  drawingY+=e.clientY-mousePanLastY;
+  mousePanLastX=e.clientX;
+  mousePanLastY=e.clientY;
+  applyDrawingTransform();
+});
+
+function endMousePan(){
+  mousePanActive=false;
+  drawingViewer.classList.remove('is-panning');
+}
+window.addEventListener('mouseup',endMousePan);
+window.addEventListener('blur',endMousePan);
+
+/* Touch pinch, pan and swipe. */
+function touchDistance(a,b){
+  return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);
+}
+
+drawingViewer.addEventListener('touchstart',e=>{
+  if(e.touches.length===2){
+    touchMode='pinch';
+    pinchStartDistance=touchDistance(e.touches[0],e.touches[1]);
+    pinchStartScale=drawingScale;
+    return;
+  }
+
+  if(e.touches.length!==1)return;
+
+  touchStartX=touchLastX=e.touches[0].clientX;
+  touchStartY=touchLastY=e.touches[0].clientY;
+  touchMode=drawingScale>1?'pan':'swipe';
+},{passive:true});
+
+drawingViewer.addEventListener('touchmove',e=>{
+  if(e.touches.length===2){
+    e.preventDefault();
+    const d=touchDistance(e.touches[0],e.touches[1]);
+
+    if(pinchStartDistance>0){
+      drawingScale=Math.min(5,Math.max(1,
+        pinchStartScale*(d/pinchStartDistance)
+      ));
+      if(drawingScale===1){
+        drawingX=0;
+        drawingY=0;
+      }
+      applyDrawingTransform();
+    }
+    touchMode='pinch';
+    return;
+  }
+
+  if(e.touches.length!==1)return;
+
+  const x=e.touches[0].clientX;
+  const y=e.touches[0].clientY;
+  const dx=x-touchStartX;
+
+  if(touchMode==='pan'){
+    e.preventDefault();
+    drawingX+=x-touchLastX;
+    drawingY+=y-touchLastY;
+    touchLastX=x;
+    touchLastY=y;
+    applyDrawingTransform();
+  }else if(touchMode==='swipe'){
+    e.preventDefault();
+    const limited=Math.max(
+      -window.innerWidth*.75,
+      Math.min(window.innerWidth*.75,dx*.75)
+    );
+    const img=drawingViewer.querySelector('img');
+    if(img)img.style.transform='translate3d('+limited+'px,0,0) scale(1)';
+  }
+},{passive:false});
+
+drawingViewer.addEventListener('touchend',e=>{
+  if(touchMode==='pinch' && e.touches.length===1){
+    touchMode=drawingScale>1?'pan':'swipe';
+    touchLastX=e.touches[0].clientX;
+    touchLastY=e.touches[0].clientY;
+    return;
+  }
+
+  if(touchMode==='swipe'){
+    const dx=(e.changedTouches[0]?.clientX||touchStartX)-touchStartX;
+    if(Math.abs(dx)>=70 && filteredDrawings.length>1){
+      showDrawing(currentDrawingIndex+(dx<0?1:-1));
+    }else{
+      applyDrawingTransform();
+    }
+  }
+
+  touchMode='';
+},{passive:true});
+
+/* Double-click toggles 2x zoom. */
+drawingViewer.addEventListener('dblclick',e=>{
+  if(e.target.tagName!=='IMG')return;
+  if(drawingScale>1)resetDrawingZoom(e);
+  else zoomDrawing(1,e);
+});
+
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('drawingModal').classList.contains('open'))return;
+
+  if(e.key==='Escape')closeDrawing();
+  if(e.key==='ArrowLeft')showDrawing(currentDrawingIndex-1);
+  if(e.key==='ArrowRight')showDrawing(currentDrawingIndex+1);
+});
+
+/* =========================================================
+   FILTER
+   ========================================================= */
+let currentFilter='ALL';
+
+const filterToggle=document.getElementById('drawingFilterToggle');
+const filterMenu=document.getElementById('drawingFilterMenu');
+
+filterToggle.addEventListener('click',e=>{
+  e.stopPropagation();
+  const open=filterMenu.classList.toggle('open');
+  filterToggle.setAttribute('aria-expanded',open?'true':'false');
+});
+
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.drawing-filter')){
+    filterMenu.classList.remove('open');
+    filterToggle.setAttribute('aria-expanded','false');
+  }
+});
+
+filterMenu.querySelectorAll('button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    filterMenu.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter=btn.dataset.filter;
+    renderDrawings();
+    filterMenu.classList.remove('open');
+    filterToggle.setAttribute('aria-expanded','false');
+  });
+});
+
+/* =========================================================
+   LOAD DRAWING DATA
+   ========================================================= */
+async function loadDrawings(){
+  try{
+    const r=await fetch('drawings-data.json');
+    if(!r.ok)throw new Error('HTTP '+r.status);
+
+    const data=await r.json();
+    allDrawings=Array.isArray(data.drawings)?data.drawings:[];
+    renderDrawings();
+  }catch(e){
+    console.error(e);
+    renderDrawings();
+  }
+}
+
+loadDrawings();
+</script>
+
+</body>
+</html>
