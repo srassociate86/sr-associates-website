@@ -1,6 +1,40 @@
 {
   "version": 4,
-  "projects": [],
+  "projects": [
+    {
+      "id": "p-musjm911-f8tm0",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791041090830-IMG_20230814_094340.jpg",
+          "alt": "dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791041092377-IMG_20230814_094343.jpg",
+          "alt": "dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791041093409-IMG_20230814_094345.jpg",
+          "alt": "dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK",
+      "title": "dgps title",
+      "date": "2026-10-03",
+      "location": "rishikesh",
+      "shortDescription": "short text",
+      "description": "long text",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-03"
+    }
+  ],
   "slides": [
     {
       "id": "s-musjiw20-64zk6",
