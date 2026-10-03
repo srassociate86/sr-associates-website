@@ -45,6 +45,39 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-03"
+    },
+    {
+      "id": "p-musks4fn-accac",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-03/total-station-construction/1791043047881-img-musksceh-eg6pt-1000231079.jpg",
+          "alt": "Total station title 1",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/total-station-construction/1791043049800-img-musksdvs-khaah-1000229155.jpg",
+          "alt": "Total station title 1",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/total-station-construction/1791043051725-img-musksfd9-20cx1-1000229153.jpg",
+          "alt": "Total station title 1",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        }
+      ],
+      "type": "project",
+      "category": "TOTAL STATION / CONSTRUCTION",
+      "title": "Total station title 1",
+      "date": "2026-10-03",
+      "location": "Rishikesh",
+      "shortDescription": "Short text",
+      "description": "Long text long text",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-03"
     }
   ],
   "slides": [
