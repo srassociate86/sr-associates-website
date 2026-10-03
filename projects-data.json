@@ -45,6 +45,45 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-03"
+    },
+    {
+      "id": "p-musbu3au-7tcis",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-03/total-station-construction/1791028018474-1000229153.jpg",
+          "alt": "Total station title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/total-station-construction/1791028020396-1000229155.jpg",
+          "alt": "Total station title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/total-station-construction/1791028022517-1000227850.jpg",
+          "alt": "Total station title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/total-station-construction/1791028024882-1000227845.jpg",
+          "alt": "Total station title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        }
+      ],
+      "type": "project",
+      "category": "TOTAL STATION / CONSTRUCTION",
+      "title": "Total station title",
+      "date": "2026-10-03",
+      "location": "Rishikesh",
+      "shortDescription": "Short text Short text",
+      "description": "Long text long text long text long text",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-03"
     }
   ],
   "slides": []
