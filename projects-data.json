@@ -301,6 +301,33 @@
       "description": "Long",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-musb5ps3-yfno2",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791026884745-IMG_20250924_112150.jpg",
+          "alt": "dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791026886162-IMG_20251008_122344.jpg",
+          "alt": "dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK",
+      "title": "dgps title",
+      "date": "2026-10-03",
+      "location": "खड़कमाफ",
+      "shortDescription": "short text",
+      "description": "long texts",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-03"
     }
   ],
   "slides": []
