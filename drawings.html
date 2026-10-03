@@ -845,7 +845,7 @@ filterMenu.querySelectorAll('button').forEach(btn=>{
    ========================================================= */
 async function loadDrawings(){
   try{
-    const r=await fetch('drawings-data.json');
+    const r=await fetch('drawings-data.json?v='+Date.now(),{cache:'no-store'});
     if(!r.ok)throw new Error('HTTP '+r.status);
 
     const data=await r.json();

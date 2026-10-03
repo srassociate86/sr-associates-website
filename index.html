@@ -192,11 +192,6 @@
   transform:scale(1.03);
   transition:opacity .65s ease, transform 5.5s ease;
 }
-.category-project-slide.sample-slide{
-  background-size:contain;
-  background-color:#fff;
-}
-
 
 .category-project-slide.active{
   opacity:1;
@@ -646,132 +641,42 @@
 
 <script>
 /* =========================================================
-   HOME HERO PROJECT SLIDESHOW
-   Loads projects marked "Recent Highlight" in the Project Manager.
-   The main hero text remains unchanged.
+   HOME HERO RECENT HIGHLIGHTS
+   Loads highlighted PROJECT photos and SLIDESHOW ONLY photos.
    ========================================================= */
 (function(){
-  const slideshow = document.getElementById('heroProjectSlideshow');
-  const caption = document.getElementById('heroProjectCaption');
-  const dots = document.getElementById('heroProjectDots');
-  const prev = document.getElementById('heroPrev');
-  const next = document.getElementById('heroNext');
-  if(!slideshow || !caption || !dots) return;
-
-  const fallback = [
-    {id:'latest-gnss-rtk',title:'GNSS / RTK SURVEY',category:'HIGH ACCURACY FIELD SURVEY',location:'Uttarakhand',photo:'assets/gnss.jpg'},
-    {id:'latest-construction',title:'CONSTRUCTION SURVEY',category:'TOTAL STATION FIELD WORK',location:'Uttarakhand',photo:'assets/total-station.jpg'},
-    {id:'latest-drone',title:'DRONE SURVEY & MAPPING',category:'AERIAL MAPPING & PHOTOGRAMMETRY',location:'Uttarakhand',photo:'assets/drone.jpg'},
-    {id:'completed-topographical',title:'TOPOGRAPHICAL SURVEY',category:'FIELD MEASUREMENT & MAPPING',location:'Uttarakhand',photo:'assets/survey-hero.jpg'}
+  const slideshow=document.getElementById('heroProjectSlideshow'),caption=document.getElementById('heroProjectCaption'),dots=document.getElementById('heroProjectDots'),prev=document.getElementById('heroPrev'),next=document.getElementById('heroNext');
+  if(!slideshow||!caption||!dots)return;
+  const fallback=[
+    {id:'latest-gnss-rtk',title:'GNSS / RTK SURVEY',category:'HIGH ACCURACY FIELD SURVEY',photo:'assets/gnss.jpg',kind:'fallback'},
+    {id:'latest-construction',title:'CONSTRUCTION SURVEY',category:'TOTAL STATION FIELD WORK',photo:'assets/total-station.jpg',kind:'fallback'},
+    {id:'latest-drone',title:'DRONE SURVEY & MAPPING',category:'AERIAL MAPPING & PHOTOGRAMMETRY',photo:'assets/drone.jpg',kind:'fallback'},
+    {id:'completed-topographical',title:'TOPOGRAPHICAL SURVEY',category:'FIELD MEASUREMENT & MAPPING',photo:'assets/survey-hero.jpg',kind:'fallback'}
   ];
-
-  let slides=[];
-  let current=0;
-  let timer=null;
-
-  function esc(value){
-    return String(value ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-  }
-
-  function projectLink(p){
-    // Hash is harmless on the existing projects page and lets a future
-    // project-page script open a specific project without changing this link.
-    return 'projects.html#project-' + encodeURIComponent(p.id || '');
-  }
-
+  let slides=[],current=0,timer=null;
+  function projectLink(p){return p.kind==='project'?'projects.html#project-'+encodeURIComponent(p.id||''):'projects.html'}
   function makeSlides(items){
-    slideshow.innerHTML='';
-    dots.innerHTML='';
-    slides=items.filter(p=>p && p.photo).map((p,i)=>{
-      const el=document.createElement('div');
-      el.className='hero-project-slide' + (i===0?' active':'');
-      el.style.backgroundImage=`url("${String(p.photo).replace(/"/g,'\\"')}")`;
-      slideshow.appendChild(el);
-
-      const dot=document.createElement('button');
-      dot.type='button';
-      dot.className='hero-project-dot' + (i===0?' active':'');
-      dot.setAttribute('aria-label','Show project '+(i+1));
-      dot.addEventListener('click',()=>show(i,true));
-      dots.appendChild(dot);
-      return {data:p,el,dot};
+    clearInterval(timer);slideshow.innerHTML='';dots.innerHTML='';
+    slides=(items||[]).filter(p=>p&&p.photo).map((p,i)=>{
+      const el=document.createElement('div');el.className='hero-project-slide'+(i===0?' active':'');el.style.backgroundImage=`url("${String(p.photo).replace(/"/g,'\\"')}")`;slideshow.appendChild(el);
+      const dot=document.createElement('button');dot.type='button';dot.className='hero-project-dot'+(i===0?' active':'');dot.setAttribute('aria-label','Show highlight '+(i+1));dot.addEventListener('click',e=>{e.stopPropagation();show(i,true)});dots.appendChild(dot);return {data:p,el,dot};
     });
-
-    prev.hidden=slides.length<2;
-    next.hidden=slides.length<2;
-    dots.hidden=slides.length<2;
-
-    if(slides.length){
-      current=0;
-      updateCaption();
-      if(slides.length>1) start();
-    }else{
-      caption.hidden=true;
-    }
+    prev.hidden=slides.length<2;next.hidden=slides.length<2;dots.hidden=slides.length<2;current=0;caption.hidden=true;
+    if(slides.length>1)start();
   }
-
-  function updateCaption(){
-    const p=slides[current]?.data;
-    if(!p) return;
-    caption.innerHTML='';
-    caption.hidden=true;
-  }
-
-  function show(index,manual=false){
-    if(!slides.length) return;
-    current=(index+slides.length)%slides.length;
-    slides.forEach((s,i)=>{
-      s.el.classList.toggle('active',i===current);
-      s.dot.classList.toggle('active',i===current);
-    });
-    updateCaption();
-    if(manual) restart();
-  }
-
-  function start(){
-    clearInterval(timer);
-    timer=setInterval(()=>show(current+1),6500);
-  }
-  function restart(){start()}
-
-  prev.addEventListener('click',()=>show(current-1,true));
-  next.addEventListener('click',()=>show(current+1,true));
-
-  // Clicking anywhere on the slideshow opens the current project.
-  // Navigation arrows and dots remain interactive controls.
-  slideshow.style.cursor='pointer';
-  slideshow.addEventListener('click',(event)=>{
-    if(event.target.closest('.hero-project-arrow, .hero-project-dot')) return;
-    const p=slides[current]?.data;
-    if(p) window.location.href=projectLink(p);
-  });
-
-  slideshow.addEventListener('mouseenter',()=>clearInterval(timer));
-  slideshow.addEventListener('mouseleave',()=>{if(slides.length>1)start()});
-  caption.style.cursor='pointer';
-  caption.addEventListener('click',()=>{
-    const p=slides[current]?.data;
-    if(p) window.location.href=projectLink(p);
-  });
-
-  caption.addEventListener('mouseenter',()=>clearInterval(timer));
-  caption.addEventListener('mouseleave',()=>{if(slides.length>1)start()});
-
+  function show(index,manual=false){if(!slides.length)return;current=(index+slides.length)%slides.length;slides.forEach((s,i)=>{s.el.classList.toggle('active',i===current);s.dot.classList.toggle('active',i===current)});if(manual)start()}
+  function start(){clearInterval(timer);if(slides.length>1)timer=setInterval(()=>show(current+1),6500)}
+  prev.addEventListener('click',e=>{e.stopPropagation();show(current-1,true)});next.addEventListener('click',e=>{e.stopPropagation();show(current+1,true)});
+  slideshow.style.cursor='pointer';slideshow.addEventListener('click',e=>{if(e.target.closest('.hero-project-arrow,.hero-project-dot'))return;const p=slides[current]?.data;if(p)window.location.href=projectLink(p)});
+  slideshow.addEventListener('mouseenter',()=>clearInterval(timer));slideshow.addEventListener('mouseleave',start);
   async function loadHighlights(){
     try{
-      const response=await fetch('projects-data.json');
-      if(!response.ok) throw new Error('Project data unavailable');
-      const data=await response.json();
-      const highlights=(data.projects||[])
-        .filter(p=>p && p.visible!==false && p.highlight===true && Array.isArray(p.photos) && p.photos.length)
-        .map(p=>({...p,photo:p.photos[0]?.path}))
-        .filter(p=>p.photo);
-      makeSlides(highlights.length ? highlights : fallback);
-    }catch(e){
-      makeSlides(fallback);
-    }
+      const r=await fetch('projects-data.json?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('Project data unavailable');const data=await r.json();const items=[];
+      (data.projects||[]).forEach(p=>{if(!p||p.visible===false||p.highlight!==true)return;(p.photos||[]).forEach(ph=>{if(ph?.path)items.push({id:p.id,title:p.title||'Survey Work',category:p.category||'',photo:ph.path,kind:'project'})})});
+      (data.slides||[]).forEach(s=>{if(!s?.path)return;const startDate=new Date((s.addedOn||s.date||'')+'T00:00:00');const end=new Date(startDate);end.setDate(end.getDate()+Number(s.days||30));if(Number.isNaN(startDate.getTime())||new Date()<end)items.push({id:s.id,title:s.title||'Field Work',category:s.category||'',photo:s.path,kind:'slideshow'})});
+      makeSlides(items.length?items:fallback);
+    }catch(e){console.error('Could not load recent highlights:',e);makeSlides(fallback)}
   }
-
   loadHighlights();
 })();
 </script>
@@ -779,145 +684,48 @@
 
 <script>
 /* =========================================================
-   HOME CATEGORY PROJECT SLIDESHOWS
-   Each homepage card combines:
-   1) normal projects in that category,
-   2) slideshow-only photos in that category,
-   3) a random selection of drawing samples from all categories.
+   HOME CATEGORY SLIDESHOWS
+   PROJECT + matching SLIDESHOW ONLY + random DRAWING SAMPLES.
    ========================================================= */
 (function(){
-  const cards=document.querySelectorAll('.category-project-card');
-  if(!cards.length)return;
-
-  const fallback={
-    'DGPS / GNSS / RTK SURVEY':'assets/gnss.jpg',
-    'CONSTRUCTION SURVEY':'assets/total-station.jpg',
-    'DRONE SURVEY & MAPPING':'assets/drone.jpg'
-  };
-
-  const categoryMap={
-    'DGPS / GNSS / RTK SURVEY':['DGPS / GNSS / RTK','DGPS / GNSS / RTK SURVEY'],
-    'CONSTRUCTION SURVEY':['TOTAL STATION / CONSTRUCTION','CONSTRUCTION SURVEY'],
-    'DRONE SURVEY & MAPPING':['DRONE','DRONE SURVEY & MAPPING']
-  };
-
+  const cards=document.querySelectorAll('.category-project-card');if(!cards.length)return;
+  const fallback={'DGPS / GNSS / RTK SURVEY':'assets/gnss.jpg','CONSTRUCTION SURVEY':'assets/total-station.jpg','DRONE SURVEY & MAPPING':'assets/drone.jpg'};
+  const categoryMap={'DGPS / GNSS / RTK SURVEY':['DGPS / GNSS / RTK','DGPS / GNSS / RTK SURVEY'],'CONSTRUCTION SURVEY':['TOTAL STATION / CONSTRUCTION','CONSTRUCTION SURVEY'],'DRONE SURVEY & MAPPING':['DRONE','DRONE SURVEY & MAPPING']};
   const states=[];
-  function esc(value){return String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
-  function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
-  function projectLink(id){return 'projects.html#project-'+encodeURIComponent(id||'');}
-
-  function getCategoryItems(projects,slides,drawings,category){
-    const allowed=categoryMap[category]||[category];
-    const result=[];
-
-    projects.filter(p=>p&&p.visible!==false&&allowed.includes(p.category)).forEach(p=>{
-      (Array.isArray(p.photos)?p.photos:[]).forEach(photo=>{
-        if(photo&&photo.path)result.push({path:photo.path,title:p.title||category,location:p.location||'',year:p.year||p.date||'',id:p.id||'',kind:'project'});
-      });
-    });
-
-    slides.filter(s=>s&&s.path&&s.category&&allowed.includes(s.category)).forEach(s=>{
-      result.push({path:s.path,title:s.title||'Field Work',location:'',year:s.date||'',id:'',kind:'slideshow'});
-    });
-
-    // Samples are intentionally NOT category filtered. Each homepage card
-    // gets a random selection from the complete Drawing Samples collection.
-    shuffle(drawings.filter(d=>d&&d.visible!==false&&d.image)).slice(0,2).forEach(d=>{
-      result.push({path:d.image,title:d.title||'Drawing Sample',location:d.location||'',year:d.date||'',id:d.id||'',kind:'sample'});
-    });
-
-    return shuffle(result);
+  function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+  function getItems(data,category){
+    const allowed=categoryMap[category]||[category],result=[];
+    (data.projects||[]).filter(p=>p&&p.visible!==false&&allowed.includes(p.category)).forEach(p=>(p.photos||[]).forEach(ph=>{if(ph?.path)result.push({path:ph.path,title:p.title||category,id:p.id||'',kind:'project'})}));
+    (data.slides||[]).filter(s=>{
+      if(!s?.path||!allowed.includes(s.category))return false;
+      const startDate=new Date((s.addedOn||s.date||'')+'T00:00:00'),end=new Date(startDate);end.setDate(end.getDate()+Number(s.days||30));
+      return Number.isNaN(startDate.getTime())||new Date()<end;
+    }).forEach(s=>result.push({path:s.path,title:s.title||'Field Work',id:'',kind:'slideshow'}));
+    shuffle((data.drawings||[]).filter(d=>d&&d.visible!==false&&d.image)).slice(0,2).forEach(d=>result.push({path:d.image,title:d.title||'Survey Drawing Sample',id:'',kind:'sample'}));
+    return result;
   }
-
-  function makeCard(card,photos){
-    const category=card.dataset.category;
-    const slidesEl=card.querySelector('.category-project-slides');
-    const dotsEl=card.querySelector('.category-project-dots');
-    const metaEl=card.querySelector('.category-project-meta');
-    const prev=card.querySelector('.category-project-arrow.prev');
-    const next=card.querySelector('.category-project-arrow.next');
-    const state={card,category,photos,current:0,timer:null,slides:[],dots:[]};
-    states.push(state);
-    slidesEl.innerHTML='';dotsEl.innerHTML='';
-
-    if(!photos.length){
-      const fallbackSlide=document.createElement('div');
-      fallbackSlide.className='category-project-slide active';
-      fallbackSlide.style.backgroundImage=`url("${fallback[category]||'assets/survey-hero.jpg'}")`;
-      slidesEl.appendChild(fallbackSlide);
-      metaEl.textContent='No projects added yet';
-      prev.hidden=true;next.hidden=true;dotsEl.hidden=true;
-      return state;
-    }
-
-    state.slides=photos.map((photo,index)=>{
-      const slide=document.createElement('div');
-      slide.className='category-project-slide'+(photo.kind==='sample'?' sample-slide':'')+(index===0?' active':'');
-      slide.style.backgroundImage=`url("${String(photo.path).replace(/"/g,'\\"')}")`;
-      slide.setAttribute('role','img');
-      slide.setAttribute('aria-label',photo.title);
-      slidesEl.appendChild(slide);
-
-      const dot=document.createElement('button');
-      dot.type='button';dot.className='category-project-dot'+(index===0?' active':'');
-      dot.setAttribute('aria-label','Show photo '+(index+1)+' of '+photos.length);
-      dot.addEventListener('click',event=>{event.stopPropagation();show(state,index,true)});
-      dotsEl.appendChild(dot);
-      return slide;
-    });
-    state.dots=[...dotsEl.children];
-    prev.hidden=photos.length<2;next.hidden=photos.length<2;dotsEl.hidden=photos.length<2;
-
-    function updateMeta(){
-      const photo=state.photos[state.current];if(!photo)return;
-      const kindLabel=photo.kind==='sample'?'DRAWING SAMPLE':photo.kind==='slideshow'?'RECENT FIELD WORK':category;
-      const details=[photo.location,photo.year].filter(Boolean).join(' • ');
-      metaEl.textContent=kindLabel+' • '+photo.title+(details?' • '+details:'');
-    }
-    state.updateMeta=updateMeta;updateMeta();
-
-    prev.addEventListener('click',event=>{event.stopPropagation();show(state,state.current-1,true)});
-    next.addEventListener('click',event=>{event.stopPropagation();show(state,state.current+1,true)});
-    card.addEventListener('click',()=>{
-      const photo=state.photos[state.current];
-      if(!photo)return;
-      if(photo.kind==='sample')window.location.href='drawings.html';
-      else if(photo.kind==='project'&&photo.id)window.location.href=projectLink(photo.id);
-      else window.location.href='projects.html';
-    });
-    card.addEventListener('mouseenter',()=>clearInterval(state.timer));
-    card.addEventListener('mouseleave',()=>{if(state.photos.length>1)start(state)});
-    if(photos.length>1)start(state);
-    return state;
+  function makeCard(card,items){
+    const category=card.dataset.category,slidesEl=card.querySelector('.category-project-slides'),dotsEl=card.querySelector('.category-project-dots'),metaEl=card.querySelector('.category-project-meta'),prev=card.querySelector('.category-project-arrow.prev'),next=card.querySelector('.category-project-arrow.next');
+    const state={card,items,current:0,timer:null,slides:[],dots:[]};states.push(state);slidesEl.innerHTML='';dotsEl.innerHTML='';
+    if(!items.length){const f=document.createElement('div');f.className='category-project-slide active';f.style.backgroundImage=`url("${fallback[category]||'assets/survey-hero.jpg'}")`;slidesEl.appendChild(f);metaEl.textContent='No projects added yet';prev.hidden=true;next.hidden=true;dotsEl.hidden=true;return state}
+    state.slides=items.map((item,i)=>{const el=document.createElement('div');el.className='category-project-slide'+(i===0?' active':'');el.style.backgroundImage=`url("${String(item.path).replace(/"/g,'\\"')}")`;el.setAttribute('role','img');el.setAttribute('aria-label',item.title);if(item.kind==='sample'){el.style.backgroundSize='contain';el.style.backgroundColor='#fff'}slidesEl.appendChild(el);const dot=document.createElement('button');dot.type='button';dot.className='category-project-dot'+(i===0?' active':'');dot.setAttribute('aria-label','Show photo '+(i+1)+' of '+items.length);dot.addEventListener('click',e=>{e.stopPropagation();show(state,i,true)});dotsEl.appendChild(dot);return el});
+    state.dots=[...dotsEl.children];prev.hidden=items.length<2;next.hidden=items.length<2;dotsEl.hidden=items.length<2;
+    state.updateMeta=()=>{const item=state.items[state.current];if(item)metaEl.textContent=item.title+(item.kind==='sample'?' • DRAWING SAMPLE':'')};state.updateMeta();
+    prev.addEventListener('click',e=>{e.stopPropagation();show(state,state.current-1,true)});next.addEventListener('click',e=>{e.stopPropagation();show(state,state.current+1,true)});
+    card.addEventListener('click',()=>{const item=state.items[state.current];if(item?.kind==='project'&&item.id)window.location.href='projects.html#project-'+encodeURIComponent(item.id);else if(item?.kind!=='sample')window.location.href='projects.html'});
+    card.addEventListener('mouseenter',()=>clearInterval(state.timer));card.addEventListener('mouseleave',()=>start(state));if(items.length>1)start(state);return state;
   }
-
-  function show(state,index,manual){
-    if(!state.photos.length||!state.slides.length)return;
-    state.current=(index+state.photos.length)%state.photos.length;
-    state.slides.forEach((slide,i)=>slide.classList.toggle('active',i===state.current));
-    state.dots.forEach((dot,i)=>dot.classList.toggle('active',i===state.current));
-    state.updateMeta();
-    if(manual)start(state);
-  }
-
-  function start(state){clearInterval(state.timer);if(state.photos.length>1)state.timer=setInterval(()=>show(state,state.current+1,false),4500)}
-
-  async function loadCategorySlideshows(){
+  function show(state,index,manual){if(!state.items.length)return;state.current=(index+state.items.length)%state.items.length;state.slides.forEach((s,i)=>s.classList.toggle('active',i===state.current));state.dots.forEach((d,i)=>d.classList.toggle('active',i===state.current));state.updateMeta();if(manual)start(state)}
+  function start(state){clearInterval(state.timer);if(state.items.length>1)state.timer=setInterval(()=>show(state,state.current+1,false),4500)}
+  async function load(){
     try{
-      const [projectResponse,drawingResponse]=await Promise.all([fetch('projects-data.json'),fetch('drawings-data.json')]);
-      if(!projectResponse.ok)throw new Error('Project data unavailable');
-      const data=await projectResponse.json();
-      const drawingData=drawingResponse.ok?await drawingResponse.json():{drawings:[]};
-      const projects=Array.isArray(data.projects)?data.projects:[];
-      const slides=Array.isArray(data.slides)?data.slides:[];
-      const drawings=Array.isArray(drawingData.drawings)?drawingData.drawings:[];
-      cards.forEach(card=>makeCard(card,getCategoryItems(projects,slides,drawings,card.dataset.category)));
-    }catch(error){
-      console.error('Could not load project/drawing slideshows:',error);
-      cards.forEach(card=>makeCard(card,[]));
-    }
+      const [pr,dr]=await Promise.all([fetch('projects-data.json?v='+Date.now(),{cache:'no-store'}),fetch('drawings-data.json?v='+Date.now(),{cache:'no-store'}).catch(()=>null)]);
+      if(!pr.ok)throw new Error('Project data unavailable');const data=await pr.json();data.drawings=[];
+      if(dr&&dr.ok){const dd=await dr.json();data.drawings=Array.isArray(dd.drawings)?dd.drawings:[]}
+      cards.forEach(card=>makeCard(card,getItems(data,card.dataset.category)));
+    }catch(e){console.error('Could not load homepage slideshows:',e);cards.forEach(card=>makeCard(card,[]))}
   }
-  loadCategorySlideshows();
+  load();
 })();
 </script>
 
