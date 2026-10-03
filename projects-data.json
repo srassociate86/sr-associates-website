@@ -269,6 +269,38 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-03"
+    },
+    {
+      "id": "p-mus9zh0d-qy6kg",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791024908482-1000232051.jpg",
+          "alt": "Survey",
+          "managed": true,
+          "sha": "1858278c9f932fdd717e40815f97287f9c8e2f8a"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791024911952-1000232053.jpg",
+          "alt": "Survey",
+          "managed": true,
+          "sha": "39d1a956d11324b1a4d3e15c9b500c148db76e25"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791024915472-1000231740.jpg",
+          "alt": "Survey",
+          "managed": true,
+          "sha": "c522df4a08d5831188a938ce6d4afb1394173f7a"
+        }
+      ],
+      "type": "sample",
+      "category": "DGPS / GNSS / RTK",
+      "title": "Survey",
+      "date": "2026-10-03",
+      "location": "Rishikesh",
+      "shortDescription": "Short",
+      "description": "Long",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
