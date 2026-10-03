@@ -84,6 +84,45 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-03"
+    },
+    {
+      "id": "p-musbz81r-si4l5",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-03/drone/1791028258161-1000230252.jpg",
+          "alt": "Drone title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/drone/1791028260395-1000229335.jpg",
+          "alt": "Drone title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/drone/1791028261990-1000229217.jpg",
+          "alt": "Drone title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/drone/1791028263907-1000228218.jpg",
+          "alt": "Drone title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        }
+      ],
+      "type": "project",
+      "category": "DRONE",
+      "title": "Drone title",
+      "date": "2026-10-03",
+      "location": "Rishikesh",
+      "shortDescription": "Short text Short text",
+      "description": "Long text long text long text",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-03"
     }
   ],
   "slides": []
