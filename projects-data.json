@@ -207,12 +207,26 @@
           "managed": true,
           "sha": "2475852a33142a03600cb32da186295a60bf7444",
           "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-01/total-station-construction/1791024786872-1000229153.jpg",
+          "alt": "Total station survey",
+          "managed": true,
+          "sha": "cb3162917038bb766bf998df781fb6810a48b8b0",
+          "highlightUntil": "2026-10-30"
+        },
+        {
+          "path": "assets/project-photos/2026-10-01/total-station-construction/1791024790351-1000229159.jpg",
+          "alt": "Total station survey",
+          "managed": true,
+          "sha": "5c1863f7eec95e68c712a7a581080608926796a8",
+          "highlightUntil": "2026-10-30"
         }
       ],
       "type": "project",
-      "category": "DGPS / GNSS / RTK",
-      "title": "Dgps survey",
-      "date": "2026-10-03",
+      "category": "TOTAL STATION / CONSTRUCTION",
+      "title": "Total station survey",
+      "date": "2026-10-01",
       "location": "Rishikesh",
       "shortDescription": "Short",
       "description": "Long",
