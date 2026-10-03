@@ -1,6 +1,52 @@
 {
   "version": 4,
-  "projects": [],
+  "projects": [
+    {
+      "id": "p-muskpwl0-vdntb",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791042951886-img-muskqaby-3yzqz-1000231587.jpg",
+          "alt": "Dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791042956043-img-muskqdjf-3ilbc-1000231584.jpg",
+          "alt": "Dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791042963721-img-muskqjgp-bjjhy-1000231735.jpg",
+          "alt": "Dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791042969162-img-muskqnnu-twbyf-1000231589.jpg",
+          "alt": "Dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791042975562-img-muskqslm-9sg4e-1000231733.jpg",
+          "alt": "Dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-01"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK",
+      "title": "Dgps title",
+      "date": "2026-10-03",
+      "location": "Rishikesh",
+      "shortDescription": "Short text",
+      "description": "Long text long text",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-03"
+    }
+  ],
   "slides": [
     {
       "id": "s-muski829-3ggw8",
