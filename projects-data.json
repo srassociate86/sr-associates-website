@@ -1,442 +1,195 @@
 {
-  "version": 4,
+  "version": 2,
   "projects": [
     {
-      "id": "p-mujiv7e5-2wzv8",
-      "photos": [
-        {
-          "path": "assets/projects/p-mujiv7e5-2wzv8/1790495629123-IMG_5573.jpg",
-          "alt": "Dgps Rtk survey",
-          "managed": true,
-          "sha": "59494415b767fcde5e4ad2a87cf892038de2b3d0"
-        },
-        {
-          "path": "assets/projects/p-mujiv7e5-2wzv8/1790495632303-IMG_5548.jpg",
-          "alt": "Dgps Rtk survey",
-          "managed": true,
-          "sha": "53bf3c203181b82484354366ff2d599c955bbe47"
-        }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "Dgps Rtk survey",
-      "location": "Bhogpur Talla",
+		"id": "latest-gnss-rtk",
+		"type": "latest",
+		"category": "DGPS / GNSS / RTK SURVEY",
+		"title": "DGPS / GNSS / RTK SURVEY",
+      "location": "Uttarakhand",
       "year": "",
+      "shortDescription": "High-accuracy GNSS RTK field surveying.",
+      "description": "GNSS / RTK surveying project. Add project-specific details here from the Project Manager.",
       "visible": true,
       "highlight": true,
-      "shortDescription": "Survey at bhogpur Talla",
-      "description": "Surveying at bhogpur talla Rishikesh using dgps and Total station",
-      "date": "2026-09-24",
-      "highlightDays": 30
-    },
-    {
-      "id": "p-mukrxqwh-ab40b",
       "photos": [
         {
-          "path": "assets/projects/p-mukrxqwh-ab40b/1790571330677-1000230743.jpg",
-          "alt": "Tital Station Survey",
-          "managed": true,
-          "sha": "c8fbb1d16f4eba322ef39cb85ac7b05ac6e2cfe7"
+          "path": "assets/gnss.jpg",
+          "alt": "GNSS RTK surveying",
+          "managed": false
         }
-      ],
-      "type": "project",
-      "category": "TOTAL STATION / CONSTRUCTION",
-      "title": "Total Station Survey",
-      "location": "Rishikesh",
+      ]
+    },
+    {
+      "id": "latest-construction",
+      "type": "latest",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "CONSTRUCTION SURVEY",
+      "location": "Uttarakhand",
       "year": "",
+      "shortDescription": "Construction and engineering survey work.",
+      "description": "Construction survey project. Add project-specific details here from the Project Manager.",
       "visible": true,
       "highlight": true,
-      "shortDescription": "short text",
-      "description": "long text",
-      "date": "2026-09-28",
-      "highlightDays": 30
-    },
-    {
-      "id": "p-muksn5qh-1nbkm",
       "photos": [
         {
-          "path": "assets/projects/p-muksn5qh-1nbkm/1790572515419-IMG_5587.jpg",
-          "alt": "Drone and dgps digital survey",
-          "managed": true,
-          "sha": "98476776652674361a961d428e85273820e0fa99"
-        },
-        {
-          "path": "assets/projects/p-muksn5qh-1nbkm/1790572518533-IMG_5588.jpg",
-          "alt": "Drone and dgps digital survey",
-          "managed": true,
-          "sha": "046c658526cb7c712b173fef2b2135edb7a4ef8b"
-        },
-        {
-          "path": "assets/projects/p-muksn5qh-1nbkm/1790572520623-IMG_5586.jpg",
-          "alt": "Drone and dgps digital survey",
-          "managed": true,
-          "sha": "8f16d31dece23c98a43806a3cdc05516af68a077"
+          "path": "assets/total-station.jpg",
+          "alt": "Total station surveying",
+          "managed": false
         }
-      ],
-      "type": "project",
-      "category": "DRONE",
-      "title": "Drone and dgps digital survey",
-      "location": "Shivpuri uttrakhand",
+      ]
+    },
+    {
+      "id": "latest-drone",
+      "type": "latest",
+      "category": "DRONE SURVEY & MAPPING",
+      "title": "DRONE SURVEY & MAPPING",
+      "location": "Uttarakhand",
       "year": "",
+      "shortDescription": "Aerial mapping and photogrammetry work.",
+      "description": "Drone survey and mapping project. Add project-specific details here from the Project Manager.",
       "visible": true,
       "highlight": true,
-      "shortDescription": "Digital topographical survey at shivpuri Uttrakhand using drone dgps",
-      "description": "Survey by drone and dgps",
-      "date": "2026-09-18",
-      "highlightDays": 30
-    },
-    {
-      "id": "p-mulblrvd-hjoc9",
       "photos": [
         {
-          "path": "assets/project-photos/2026-09-18/gnss-rtk/1790604364324-DSC01902.jpg",
-          "alt": "Land Survey near Shivpuri",
-          "managed": true,
-          "sha": "891694cc66021cdd31b1b1f5ce97d2547fd79801",
-          "highlightUntil": "2026-10-17"
+          "path": "assets/drone.jpg",
+          "alt": "Drone mapping",
+          "managed": false
         }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "Land Survey near Shivpuri",
-      "date": "2026-09-18",
-      "location": "Shivpuri, Uttarakhand",
-      "shortDescription": "Short text test",
-      "description": "Long text test",
-      "highlight": true,
-      "highlightDays": 30,
-      "highlightStarted": "2026-09-28"
+      ]
     },
     {
-      "id": "p-mulch5r0-1kom0",
-      "photos": [
-        {
-          "path": "assets/project-photos/2026-09-03/total-station-construction/1790605828284-1000229153.jpg",
-          "alt": "Survey at Malakhunti",
-          "managed": true,
-          "sha": "e3c21ef1002c1d6fa6a2cbbbcb95aebd617a6297",
-          "highlightUntil": "2026-10-02"
-        }
-      ],
-      "type": "project",
-      "category": "TOTAL STATION / CONSTRUCTION",
-      "title": "Survey at Malakhunti",
-      "date": "2026-09-03",
-      "location": "Malakhunti",
-      "shortDescription": "Column Marking at Malakhunti",
-      "description": "",
-      "highlight": true,
-      "highlightDays": 30,
-      "highlightStarted": "2026-09-28"
-    },
-    {
-      "id": "p-muldp5sk-n5iv1",
-      "photos": [
-        {
-          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607881226-1000228014.jpg",
-          "alt": "Malakhunti",
-          "managed": true,
-          "sha": "389466472823b8025f78070b04b712f3c0ba48a5",
-          "highlightUntil": "2026-10-02"
-        },
-        {
-          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607887413-1000228018.jpg",
-          "alt": "Malakhunti",
-          "managed": true,
-          "sha": "28e22b08a8988c8c92d4f2645c2b27879ba928d4",
-          "highlightUntil": "2026-10-02"
-        },
-        {
-          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607893463-1000227845.jpg",
-          "alt": "Malakhunti",
-          "managed": true,
-          "sha": "d4a6dc46201c4f594c2b6aa25b3986e63da17d2a",
-          "highlightUntil": "2026-10-02"
-        },
-        {
-          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607896022-1000228014.jpg",
-          "alt": "Malakhunti",
-          "managed": true,
-          "sha": "389466472823b8025f78070b04b712f3c0ba48a5",
-          "highlightUntil": "2026-10-02"
-        },
-        {
-          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607903550-1000228018.jpg",
-          "alt": "Malakhunti",
-          "managed": true,
-          "sha": "28e22b08a8988c8c92d4f2645c2b27879ba928d4",
-          "highlightUntil": "2026-10-02"
-        },
-        {
-          "path": "assets/project-photos/2026-09-03/total-station-construction/1790607909150-1000227845.jpg",
-          "alt": "Malakhunti",
-          "managed": true,
-          "sha": "d4a6dc46201c4f594c2b6aa25b3986e63da17d2a",
-          "highlightUntil": "2026-10-02"
-        }
-      ],
-      "type": "project",
-      "category": "TOTAL STATION / CONSTRUCTION",
-      "title": "Malakhunti",
-      "date": "2026-09-03",
-      "location": "Malakhunti",
-      "shortDescription": "",
-      "description": "",
-      "highlight": true,
-      "highlightDays": 30,
-      "highlightStarted": "2026-09-28"
-    },
-    {
-      "id": "p-mupelr92-rygqz",
-      "photos": [
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790851267079-1000231590.jpg",
-          "alt": "Topographical DGPS Survey in Auni Village",
-          "managed": true,
-          "sha": "999427abae283feb422d73c287bbc7bf3dfbc8ab"
-        },
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790851269506-1000231587.jpg",
-          "alt": "Topographical DGPS Survey in Auni Village",
-          "managed": true,
-          "sha": "2475852a33142a03600cb32da186295a60bf7444"
-        }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "Topographical DGPS Survey in Auni Village",
-      "date": "2026-10-01",
-      "location": "Narendranagar",
-      "shortDescription": "Short text",
-      "description": "Long text",
+      "id": "completed-topographical",
+      "type": "completed",
+      "category": "TOPOGRAPHICAL SURVEY",
+      "title": "TOPOGRAPHICAL SURVEY",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Terrain, levels, contours and detailed site mapping.",
+      "description": "Completed topographical survey project.",
+      "visible": true,
       "highlight": false,
-      "highlightDays": 30
-    },
-    {
-      "id": "p-mupfv0nm-a7syn",
       "photos": [
         {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790853380564-1000231584.jpg",
-          "alt": "Site photo test",
-          "managed": true,
-          "sha": "83246cbb73057210752c255fccc47e592a951067",
-          "highlightUntil": "2026-10-30"
+          "path": "assets/gnss.jpg",
+          "alt": "Topographical survey",
+          "managed": false
         }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "Site photo test",
-      "date": "2026-10-01",
-      "location": "Rishikesh",
-      "shortDescription": "Short text",
-      "description": "Long text",
-      "highlight": true,
-      "highlightDays": 30,
-      "highlightStarted": "2026-10-01"
+      ]
     },
     {
-      "id": "p-mupg0ttc-37wpf",
-      "photos": [
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790853656102-1000231583.jpg",
-          "alt": "site photo testing 2",
-          "managed": true,
-          "sha": "88e21dda10d294b8ab544e585a609c031880f30f",
-          "highlightUntil": "2026-10-30"
-        }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "site photo testing 2",
-      "date": "2026-10-01",
-      "location": "narendranagar",
-      "shortDescription": "Short text",
-      "description": "Long text",
-      "highlight": true,
-      "highlightDays": 30,
-      "highlightStarted": "2026-10-01"
-    },
-    {
-      "id": "p-mupgcvg7-brjx2",
-      "photos": [
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790854210983-1000231107.jpg",
-          "alt": "title test",
-          "managed": true,
-          "sha": "affca4ceb28c820a98de5046be7d15bddb0e968a"
-        }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "title test",
-      "date": "2026-10-01",
-      "location": "narendrangr",
-      "shortDescription": "Short text",
-      "description": "Long text",
+      "id": "completed-construction",
+      "type": "completed",
+      "category": "BUILDING / CONSTRUCTION SURVEY",
+      "title": "BUILDING / CONSTRUCTION SURVEY",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Building and construction survey work.",
+      "description": "Completed building / construction survey project.",
+      "visible": true,
       "highlight": false,
-      "highlightDays": 30
-    },
-    {
-      "id": "p-muph4ybi-o0hry",
       "photos": [
         {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790855521473-1000231588.jpg",
-          "alt": "T3st title 2",
-          "managed": true,
-          "sha": "384813b3fe788510ea8e2242f48507b89154c893"
+          "path": "assets/total-station.jpg",
+          "alt": "Construction survey",
+          "managed": false
         }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "T3st title 2",
-      "date": "2026-10-01",
-      "location": "Rishikesh",
-      "shortDescription": "Short text",
-      "description": "Long text",
+      ]
+    },
+    {
+      "id": "completed-aerial",
+      "type": "completed",
+      "category": "AERIAL MAPPING",
+      "title": "AERIAL MAPPING",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Aerial survey, mapping and photogrammetry outputs.",
+      "description": "Completed aerial mapping project.",
+      "visible": true,
       "highlight": false,
-      "highlightDays": 30
-    },
-    {
-      "id": "p-muphhtxh-crjqg",
       "photos": [
         {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790856123998-1000230776.jpg",
-          "alt": "Test title 3",
-          "managed": true,
-          "sha": "69c1cb56486f1cbfc21d2906cb7cc3e83ef9a294"
+          "path": "assets/drone.jpg",
+          "alt": "Aerial mapping",
+          "managed": false
         }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "Test title 3",
-      "date": "2026-10-01",
-      "location": "Rishikesh",
-      "shortDescription": "Short",
-      "description": "Long",
-      "highlight": false,
-      "highlightDays": 30
+      ]
     },
     {
-      "id": "p-mupi0jwi-zl56f",
-      "photos": [
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790856997825-1000231587.jpg",
-          "alt": "Test title 4",
-          "managed": true,
-          "sha": "b58ae81b428d2143c0a1da2ac511080793fbb74a"
-        }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "Test title 4",
-      "date": "2026-10-01",
-      "location": "Rishikesh",
-      "shortDescription": "111",
-      "description": "222",
-      "highlight": false,
-      "highlightDays": 30
-    },
-    {
-      "id": "p-mupiql1c-2y2h7",
-      "photos": [
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790858211737-1000231584.jpg",
-          "alt": "Test title 66",
-          "managed": true,
-          "sha": "531bb008ebd4de5b911315a736c0761610f7b810"
-        },
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790858214659-1000231583.jpg",
-          "alt": "Test title 66",
-          "managed": true,
-          "sha": "04f0eb619d06358593dcd6d0737443462c25c623"
-        }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "Test title 66",
-      "date": "2026-10-01",
-      "location": "Rishikesh",
-      "shortDescription": "",
-      "description": "",
-      "highlight": false,
-      "highlightDays": 30
-    },
-    {
-      "id": "p-mupjmg9n-fi31y",
-      "photos": [
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790859696577-1000231587.jpg",
-          "alt": "T3st title final",
-          "managed": true,
-          "sha": "2475852a33142a03600cb32da186295a60bf7444"
-        },
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790859702554-1000231584.jpg",
-          "alt": "T3st title final",
-          "managed": true,
-          "sha": "c05369861b73e0622ecfda6a6ba2b4a8660be2f2"
-        },
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790859707120-1000231583.jpg",
-          "alt": "T3st title final",
-          "managed": true,
-          "sha": "872f5a14512aad502d1b4c1aa79af2876381ff93"
-        }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "T3st title final",
-      "date": "2026-10-01",
-      "location": "Rishikesh",
-      "shortDescription": "11",
-      "description": "22",
-      "highlight": false,
-      "highlightDays": 30
-    },
-    {
-      "id": "p-mupk3sxj-t3din",
-      "photos": [
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790860508695-IMG_5671.jpg",
-          "alt": "Site survey at auni village narendra nagar",
-          "managed": true,
-          "sha": "28a53eb3c72cf208f4ebe4b57d39154e9c563c82",
-          "highlightUntil": "2026-10-30"
-        },
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790860512436-IMG_5674.jpg",
-          "alt": "Site survey at auni village narendra nagar",
-          "managed": true,
-          "sha": "3ce41b310a71cf3f2eddc430e9b8fc1140a2d534",
-          "highlightUntil": "2026-10-30"
-        },
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790860514894-IMG_5677.jpg",
-          "alt": "Site survey at auni village narendra nagar",
-          "managed": true,
-          "sha": "db274b20e9465718521c0f74b9bcc5647e2e72d5",
-          "highlightUntil": "2026-10-30"
-        },
-        {
-          "path": "assets/project-photos/2026-10-01/gnss-rtk/1790860518342-IMG_5666.jpg",
-          "alt": "Site survey at auni village narendra nagar",
-          "managed": true,
-          "sha": "4cd9d9e3567ad8f7f08e7ec94cb94b40d244f401",
-          "highlightUntil": "2026-10-30"
-        }
-      ],
-      "type": "project",
-      "category": "GNSS / RTK",
-      "title": "Site survey at auni village narendra nagar",
-      "date": "2026-10-01",
+      "id": "sample-gnss",
+		"type": "sample",
+		"category": "DGPS / GNSS / RTK",
+		"title": "DGPS / GNSS / RTK",
       "location": "",
-      "shortDescription": "Auni site survey",
-      "description": "Auni",
-      "highlight": true,
-      "highlightDays": 30,
-      "highlightStarted": "2026-10-01"
+      "year": "",
+      "shortDescription": "High-accuracy coordinate collection and field data.",
+      "description": "Example of GNSS / RTK survey output.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/gnss.jpg",
+          "alt": "GNSS survey sample",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "sample-total-station",
+      "type": "sample",
+      "category": "TOTAL STATION",
+      "title": "TOTAL STATION",
+      "location": "",
+      "year": "",
+      "shortDescription": "Precise observations for construction and engineering.",
+      "description": "Example of total station survey output.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/total-station.jpg",
+          "alt": "Total station survey sample",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "sample-drone",
+      "type": "sample",
+      "category": "DRONE MAPPING",
+      "title": "DRONE MAPPING",
+      "location": "",
+      "year": "",
+      "shortDescription": "Aerial survey, mapping and photogrammetry outputs.",
+      "description": "Example of drone mapping output.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/drone.jpg",
+          "alt": "Drone mapping sample",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "sample-topographical",
+      "type": "sample",
+      "category": "TOPOGRAPHICAL",
+      "title": "TOPOGRAPHICAL",
+      "location": "",
+      "year": "",
+      "shortDescription": "Terrain, levels, contours and detailed site mapping.",
+      "description": "Example of topographical survey output.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/survey-hero.jpg",
+          "alt": "Topographical survey sample",
+          "managed": false
+        }
+      ]
     }
-  ],
-  "slides": []
+  ]
 }

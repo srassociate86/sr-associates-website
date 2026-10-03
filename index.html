@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="SR Associates provides professional land surveying in Rishikesh, including land, topographical, GNSS/RTK, total station, drone mapping, CAD & 3D mapping, and earthwork quantity services.">
+  <meta name="description" content="SR Associates provides professional land surveying in Rishikesh, including land, topographical, DGPS/GNSS/RTK, total station, drone mapping, CAD & 3D mapping, and earthwork quantity services.">
   <title>Land Surveyors in Rishikesh | SR Associates</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="canonical" href="https://srassociate86.github.io/sr-associates-website/">
@@ -391,7 +391,7 @@
   "name": "SR Associates",
   "url": "https://srassociate86.github.io/sr-associates-website/",
   "logo": "https://srassociate86.github.io/sr-associates-website/assets/logo.jpg",
-  "description": "Professional land surveying and digital mapping services including land, topographical, GNSS/RTK, total station, drone mapping, CAD & 3D mapping, and earthwork quantity services.",
+  "description": "Professional land surveying and digital mapping services including land, topographical, DGPS/GNSS/RTK, total station, drone mapping, CAD & 3D mapping, and earthwork quantity services.",
   "telephone": "+918057755380",
   "email": "srassociate86@gmail.com",
   "address": {
@@ -515,7 +515,7 @@
         <article class="service-card"><div class="service-icon">
 		<img src="assets/icons/gnss-rtk-survey.svg" alt="" aria-hidden="true" width="44" height="44">
 
-</div><h3>DGPS / GNSS / RTK Survey</h3><p>High-accuracy GNSS and RTK positioning for control points, boundary work, mapping and site measurements, providing precise coordinates for survey and engineering workflows.</p></article>
+</div><h3>DGPS / GNSS / RTK Survey</h3><p>High-accuracy DGPS, GNSS and RTK positioning for control points, boundary work, mapping and site measurements, providing precise coordinates for survey and engineering workflows.</p></article>
         <article class="service-card"><div class="service-icon">
 		<img src="assets/icons/total-station-survey.svg" alt="" aria-hidden="true" width="44" height="44">
 
@@ -539,17 +539,17 @@
   <p class="section-intro">From field observations to precise digital outputs.</p>
 
   <div class="project-grid category-project-grid" id="categoryProjectGrid">
-    <article class="project-card category-project-card" data-category="GNSS / RTK SURVEY">
-      <div class="category-project-slides" aria-label="GNSS / RTK Survey projects"></div>
-      <div class="category-project-overlay"></div>
-      <button class="category-project-arrow prev" type="button" aria-label="Previous GNSS / RTK project">‹</button>
-      <button class="category-project-arrow next" type="button" aria-label="Next GNSS / RTK project">›</button>
-      <div class="category-project-info">
-        <b>GNSS / RTK SURVEY</b>
-        <span class="category-project-meta">Recent GNSS / RTK survey project</span>
-      </div>
-      <div class="category-project-dots" aria-label="GNSS / RTK project slides"></div>
-    </article>
+    <article class="project-card category-project-card" data-category="DGPS / GNSS / RTK SURVEY">
+  <div class="category-project-slides" aria-label="DGPS / GNSS / RTK Survey projects"></div>
+  <div class="category-project-overlay"></div>
+  <button class="category-project-arrow prev" type="button" aria-label="Previous DGPS / GNSS / RTK project">‹</button>
+  <button class="category-project-arrow next" type="button" aria-label="Next DGPS / GNSS / RTK project">›</button>
+  <div class="category-project-info">
+    <b>DGPS / GNSS / RTK SURVEY</b>
+    <span class="category-project-meta">Recent DGPS / GNSS / RTK survey project</span>
+  </div>
+  <div class="category-project-dots" aria-label="DGPS / GNSS / RTK project slides"></div>
+</article>
 
     <article class="project-card category-project-card" data-category="CONSTRUCTION SURVEY">
       <div class="category-project-slides" aria-label="Construction Survey projects"></div>
@@ -782,7 +782,7 @@
   if(!cards.length) return;
 
   const fallback = {
-    'GNSS / RTK SURVEY': 'assets/gnss.jpg',
+    'DGPS / GNSS / RTK SURVEY': 'assets/gnss.jpg',
     'CONSTRUCTION SURVEY': 'assets/total-station.jpg',
     'DRONE SURVEY & MAPPING': 'assets/drone.jpg'
   };
@@ -803,14 +803,14 @@
     const result = [];
 
     // The Project Manager now uses these three exact categories:
-    // GNSS / RTK, TOTAL STATION / CONSTRUCTION, DRONE.
-    // Keep the existing homepage card wording unchanged, but map each
-    // card to the corresponding Project Manager category.
-    const categoryMap = {
-      'GNSS / RTK SURVEY': ['GNSS / RTK', 'GNSS / RTK SURVEY'],
-      'CONSTRUCTION SURVEY': ['TOTAL STATION / CONSTRUCTION', 'CONSTRUCTION SURVEY'],
-      'DRONE SURVEY & MAPPING': ['DRONE', 'DRONE SURVEY & MAPPING']
-    };
+// DGPS / GNSS / RTK, TOTAL STATION / CONSTRUCTION, DRONE.
+// Keep the existing homepage card wording unchanged, but map each
+// card to the corresponding Project Manager category.
+const categoryMap = {
+  'DGPS / GNSS / RTK SURVEY': ['DGPS / GNSS / RTK', 'DGPS / GNSS / RTK SURVEY'],
+  'CONSTRUCTION SURVEY': ['TOTAL STATION / CONSTRUCTION', 'CONSTRUCTION SURVEY'],
+  'DRONE SURVEY & MAPPING': ['DRONE', 'DRONE SURVEY & MAPPING']
+};
 
     const allowedCategories = categoryMap[category] || [category];
 

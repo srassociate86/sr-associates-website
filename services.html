@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
 
-  <meta name="description" content="SR Associates provides professional land surveying, topographical surveying, GNSS RTK, total station, drone mapping, CAD, 3D mapping and earthwork quantity services.">
+  <meta name="description" content="SR Associates provides professional land surveying, topographical surveying, GNSS RTK, total station, road survey, water supply scheme survey, drone mapping, CAD, 3D mapping and earthwork quantity services.">
 
   <title>Surveying Services | SR Associates</title>
 
@@ -24,7 +24,7 @@
       overflow: hidden;
       background:
         linear-gradient(100deg, rgba(0,0,0,.88), rgba(0,0,0,.55)),
-        url("assets/drone.jpg") center/cover no-repeat;
+        url("assets/survey-services-hero.jpg") center/cover no-repeat;
       color: #fff;
     }
 
@@ -72,6 +72,49 @@
       display: grid;
       gap: 28px;
     }
+
+    /* Service category groups */
+    .service-group {
+      display: grid;
+      gap: 20px;
+    }
+
+    .service-group + .service-group {
+      margin-top: 42px;
+    }
+
+    .service-group-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 0 4px 4px;
+      border-bottom: 1px solid #dedede;
+    }
+
+    .service-group-heading .eyebrow {
+      margin: 0 0 6px;
+    }
+
+    .service-group-heading h2 {
+      margin: 0;
+      font-size: 25px;
+      letter-spacing: -.4px;
+    }
+
+    .service-group-heading p {
+      margin: 0 0 3px;
+      max-width: 520px;
+      color: #777;
+      font-size: 14px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .service-group .service-detail-list {
+      gap: 20px;
+    }
+
 
     .service-detail {
       display: grid;
@@ -312,6 +355,22 @@
       display: none;
     }
 
+    @media (max-width: 720px) {
+      .service-group-heading {
+        display: block;
+      }
+
+      .service-group-heading p {
+        max-width: none;
+        margin-top: 8px;
+        text-align: left;
+      }
+
+      .service-group + .service-group {
+        margin-top: 34px;
+      }
+    }
+
     @media (max-width: 520px) {
       .service-inline-detail-box {
         padding: 18px;
@@ -519,9 +578,10 @@
         <p>
           At SR Associates, we combine field surveying expertise with
           modern measurement and mapping technology to provide reliable
-          spatial data. From a small land parcel to large-area
-          topographical mapping, our work is focused on accuracy,
-          clear documentation and practical project deliverables.
+          spatial data. From a small land parcel to road and water
+          infrastructure projects and large-area topographical mapping,
+          our work is focused on accuracy, clear documentation and
+          practical project deliverables.
         </p>
 
       </div>
@@ -533,6 +593,15 @@
 
       <div class="service-detail-list">
 
+        <section class="service-group">
+          <div class="service-group-heading">
+            <div>
+              <p class="eyebrow red">01 / LAND &amp; SITE SURVEY</p>
+              </div>
+            <p>Core field surveying services for land, terrain, positioning and site measurement.</p>
+          </div>
+
+          <div class="service-detail-list">
 
         <article class="service-detail">
 
@@ -674,7 +743,7 @@
 
             <div class="service-points">
               <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="RTK Positioning" data-detail="Real-time corrected GNSS positioning for collecting accurate field coordinates where suitable correction services and field conditions are available.">RTK Positioning</span>
-              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Control Points" data-detail="Establishment or observation of survey control points used as project references for mapping, construction and related survey work.">Control Points</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Control Points" data-detail="Establishment or observation of survey control points using STATIC GNSS and RTK techniques, providing reliable project references for mapping, construction and related survey work.">Control Points</span>
               <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Coordinates" data-detail="Collection and organization of point coordinates for survey mapping, measurement, CAD processing and project reference.">Coordinates</span>
               <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Georeferencing" data-detail="Positioning survey or mapping information within the coordinate reference system and project reference framework required.">Georeferencing</span>
               <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Large Area Survey" data-detail="Efficient coordinate collection across larger sites and areas where GNSS positioning is suitable and satellite visibility supports the workflow.">Large Area Survey</span>
@@ -730,9 +799,110 @@
         </article>
 
 
+
+          </div>
+        </section>
+
+        <section class="service-group">
+          <div class="service-group-heading">
+            <div>
+              <p class="eyebrow red">02 / INFRASTRUCTURE SURVEY</p>
+             </div>
+            <p>Survey data for roads, water infrastructure and earthwork-related project requirements.</p>
+          </div>
+
+          <div class="service-detail-list">
+
         <article class="service-detail">
 
           <div class="service-detail-number">05</div>
+
+          <div>
+
+            <h3>Road Survey</h3>
+
+            <p>
+              Surveying for road and alignment projects, including existing
+              ground levels, centerline and alignment information,
+              longitudinal profiles, cross sections and site features
+              required for planning, design and earthwork assessment.
+            </p>
+
+            <div class="service-points">
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Road Alignment &amp; Centerline" data-detail="Survey of proposed or existing road alignment and centerline points to establish the required horizontal position and site reference.">Road Alignment &amp; Centerline</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Longitudinal Profile" data-detail="Ground levels along the road alignment for preparing longitudinal profiles and understanding changes in existing terrain.">Longitudinal Profile</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Cross Sections" data-detail="Cross-sectional levels collected at required intervals and important terrain changes to represent the existing road corridor.">Cross Sections</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Existing Features &amp; ROW" data-detail="Mapping of existing roads, structures, utilities and relevant right-of-way features along the survey corridor.">Existing Features &amp; ROW</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Topographic Data" data-detail="Detailed terrain and site information required for road planning, design and related survey requirements.">Topographic Data</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Earthwork Quantities" data-detail="Survey data used for calculating cut, fill and related earthwork quantities for road projects.">Earthwork Quantities</span>
+            </div>
+
+            <div class="service-inline-detail" aria-hidden="true">
+              <div>
+                <div class="service-inline-detail-box">
+                  <strong></strong>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </article>
+
+
+
+        <article class="service-detail">
+
+          <div class="service-detail-number">06</div>
+
+          <div>
+
+            <h3>Water Supply Scheme Survey</h3>
+
+            <p>
+              Surveying for water supply infrastructure, including pipeline routes, existing ground levels, longitudinal profiles, site features and survey data for planning and design of water supply schemes and related structures, as required by the project scope.
+            </p>
+
+            <div class="service-points">
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Pipeline Route Survey" data-detail="Survey of proposed pipeline routes and alignment points to establish the route and collect the required ground information.">Pipeline Route Survey</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Longitudinal Profile" data-detail="Ground levels and profile information along proposed pipeline alignments for understanding existing terrain and planning the scheme.">Longitudinal Profile</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Existing Ground &amp; Infrastructure" data-detail="Mapping of terrain, roads, structures, utilities and other relevant existing features along the proposed scheme.">Existing Ground &amp; Infrastructure</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Tank, Reservoir &amp; Treatment Plant Sites" data-detail="Contour survey and detailed ground-level mapping of proposed tank, reservoir and water treatment plant sites to support site planning and design requirements.">Tank, Reservoir &amp; Treatment Plant Sites</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="Crossings &amp; Structures" data-detail="Survey details for road, drain, stream and other pipeline crossings and related structures along the proposed water supply route.">Crossings &amp; Structures</span>
+              <span class="service-point-trigger" tabindex="0" role="button" aria-expanded="false" data-detail-title="CAD Plans &amp; Profile Data" data-detail="Preparation of survey-based plans, profiles and coordinate data for water supply scheme planning and design requirements.">CAD Plans &amp; Profile Data</span>
+            </div>
+
+            <div class="service-inline-detail" aria-hidden="true">
+              <div>
+                <div class="service-inline-detail-box">
+                  <strong></strong>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </article>
+
+
+          </div>
+        </section>
+
+        <section class="service-group">
+          <div class="service-group-heading">
+            <div>
+              <p class="eyebrow red">03 / MAPPING &amp; DIGITAL</p>
+              </div>
+            <p>Aerial mapping, photogrammetry, CAD and 3D outputs from survey data.</p>
+          </div>
+
+          <div class="service-detail-list">
+
+        <article class="service-detail">
+
+          <div class="service-detail-number">07</div>
 
           <div>
 
@@ -769,7 +939,7 @@
 
         <article class="service-detail">
 
-          <div class="service-detail-number">06</div>
+          <div class="service-detail-number">08</div>
 
           <div>
 
@@ -805,7 +975,7 @@
 
         <article class="service-detail">
 
-          <div class="service-detail-number">07</div>
+          <div class="service-detail-number">09</div>
 
           <div>
 
@@ -840,6 +1010,9 @@
 
         </article>
 
+
+          </div>
+        </section>
 
       </div>
 
