@@ -123,6 +123,40 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-03"
+    },
+    {
+      "id": "p-musdp9o4-mnkqs",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791031153695-1000232053.jpg",
+          "alt": "Sample dgps",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791031158026-1000231740.jpg",
+          "alt": "Sample dgps",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791031159277-1000231904.jpg",
+          "alt": "Sample dgps",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791031161239-1000231641.jpg",
+          "alt": "Sample dgps",
+          "managed": true
+        }
+      ],
+      "type": "sample",
+      "category": "DGPS / GNSS / RTK",
+      "title": "Sample dgps",
+      "date": "2026-10-03",
+      "location": "Rishikesh",
+      "shortDescription": "Short text",
+      "description": "Long text long text long text",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
