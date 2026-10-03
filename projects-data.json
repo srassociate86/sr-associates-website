@@ -1,5 +1,18 @@
 {
   "version": 4,
   "projects": [],
-  "slides": []
+  "slides": [
+    {
+      "id": "s-musjiw20-64zk6",
+      "type": "slideshow",
+      "managed": true,
+      "category": "DGPS / GNSS / RTK",
+      "title": "slideshow title",
+      "date": "2026-10-03",
+      "days": 30,
+      "addedOn": "2026-10-03",
+      "alt": "slideshow title",
+      "path": "assets/slideshow/2026-10-03/dgps-gnss-rtk/1791040931816-IMG_20230823_091628.jpg"
+    }
+  ]
 }
