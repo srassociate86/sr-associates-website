@@ -39,6 +39,51 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-04"
+    },
+    {
+      "id": "p-muttndgn-vyv3h",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-04/construction-survey/1791118407578-img-muttnkbe-gahmz-1000231107.jpg",
+          "alt": "Total station title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/construction-survey/1791118409460-img-muttnlro-lxe5g-1000231079.jpg",
+          "alt": "Total station title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/construction-survey/1791118410929-img-muttnmwh-giun2-1000229153.jpg",
+          "alt": "Total station title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/construction-survey/1791118412287-img-muttnny7-w0fds-1000229155.jpg",
+          "alt": "Total station title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/construction-survey/1791118413334-img-muttnora-ntiv8-1000229159.jpg",
+          "alt": "Total station title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Total station title",
+      "date": "2026-10-04",
+      "location": "Rishikesh",
+      "shortDescription": "Short description",
+      "description": "Long description",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-04"
     }
   ],
   "slides": [
