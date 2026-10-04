@@ -80,6 +80,20 @@
   border-color:var(--red);
   color:#fff;
 }
+.drawing-filter-status{
+  font-size:12px;
+  color:#777;
+  letter-spacing:.2px;
+  display:flex;
+  align-items:center;
+  margin-right:12px;
+  white-space:nowrap;
+  order:-1;
+}
+.drawing-filter-status.filtered{
+  color:#333;
+  font-weight:700;
+}
 
 .drawing-filter-menu{
   position:absolute;
@@ -371,6 +385,7 @@
 }
 
 @media(max-width:720px){
+  .drawing-filter-status{font-size:11px}
   .projects-cta{
     padding:55px 20px;
   }
@@ -471,6 +486,7 @@
       <button data-filter="DRONE MAPPING">Drone Mapping</button>
       <button data-filter="3D SURVEY MODELS">3D Survey Models</button>
     </div>
+    <div class="drawing-filter-status" id="drawingFilterStatus" aria-live="polite">Showing: All Drawings</div>
   </div>
 
   <div class="drawing-list" id="drawingList">
@@ -548,7 +564,13 @@ function dateLabel(value){
 
 function renderDrawings(){
   const box=document.getElementById('drawingList');
+  const status=document.getElementById('drawingFilterStatus');
+  const labels={'ALL':'All Drawings','TOPOGRAPHICAL / CONTOUR / 3D SURVEY':'Topographical / Contour / 3D Survey','BOUNDARY / LAND SURVEY':'Boundary / Land Survey','DRONE MAPPING':'Drone Mapping','3D SURVEY MODELS':'3D Survey Models'};
   const samples=allDrawings.filter(d=>d && d.visible!==false && (currentFilter==='ALL' || d.category===currentFilter));
+  if(status){
+    status.textContent=currentFilter==='ALL'?'Showing: All Drawings':'Filter applied: '+(labels[currentFilter]||currentFilter);
+    status.classList.toggle('filtered',currentFilter!=='ALL');
+  }
   filteredDrawings=[];
   samples.forEach(d=>{
     const imgs=(d.images&&d.images.length?d.images:(d.image?[{path:d.image,alt:d.alt||d.title}]:[]));
