@@ -22,6 +22,28 @@
       "description": "",
       "alt": "Sss",
       "image": "assets/drawings/2026-10-04/topographical-contour-3d-survey/1791081607565-drawing-mut7qt8t-g1o2x-1000232306.jpg"
+    },
+    {
+      "id": "d-mutl7lc7-raxqc",
+      "type": "sample",
+      "visible": true,
+      "managed": true,
+      "images": [
+        {
+          "path": "assets/drawings/2026-10-04/boundary-land-survey/1791104242415-drawing-mutl7yen-uzcw5-IMG_5717.jpg",
+          "alt": "Survey test",
+          "managed": true
+        }
+      ],
+      "category": "BOUNDARY / LAND SURVEY",
+      "categoryLabel": "BOUNDARY / LAND SURVEY",
+      "title": "Survey test",
+      "date": "2026-10-04",
+      "location": "",
+      "shortDescription": "Survey test",
+      "description": "Survey test",
+      "alt": "Survey test",
+      "image": "assets/drawings/2026-10-04/boundary-land-survey/1791104242415-drawing-mutl7yen-uzcw5-IMG_5717.jpg"
     }
   ]
 }
