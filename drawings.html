@@ -527,6 +527,13 @@ function esc(s){
   }[m]));
 }
 
+function dateLabel(value){
+  if(!value)return '';
+  const d=new Date(value+'T00:00:00');
+  if(Number.isNaN(d.getTime()))return value;
+  return d.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
+}
+
 function renderDrawings(){
   const box=document.getElementById('drawingList');
   const samples=allDrawings.filter(d=>d && d.visible!==false && (currentFilter==='ALL' || d.category===currentFilter));
