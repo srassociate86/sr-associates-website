@@ -72,6 +72,69 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-04"
+    },
+    {
+      "id": "p-mutxboyg-m5q3p",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791124589995-img-mutxc2p7-274cf-IMG_5732.jpg",
+          "alt": "Dgps layout at Devprayag Road",
+          "managed": true,
+          "highlightUntil": "2026-10-23"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791124592027-img-mutxc49n-owqwf-IMG_5736.jpg",
+          "alt": "Dgps layout at Devprayag Road",
+          "managed": true,
+          "highlightUntil": "2026-10-23"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791124593770-img-mutxc5m2-84r7e-IMG_5727.jpg",
+          "alt": "Dgps layout at Devprayag Road",
+          "managed": true,
+          "highlightUntil": "2026-10-23"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791124595663-img-mutxc72n-gosgx-IMG_5729.jpg",
+          "alt": "Dgps layout at Devprayag Road",
+          "managed": true,
+          "highlightUntil": "2026-10-23"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791124597448-img-mutxc8g8-meptx-IMG_5724.jpg",
+          "alt": "Dgps layout at Devprayag Road",
+          "managed": true,
+          "highlightUntil": "2026-10-23"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791124599502-img-mutxca1a-yro2b-IMG_5719.jpg",
+          "alt": "Dgps layout at Devprayag Road",
+          "managed": true,
+          "highlightUntil": "2026-10-23"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791124601306-img-mutxcbfe-q6n79-IMG_5726.jpg",
+          "alt": "Dgps layout at Devprayag Road",
+          "managed": true,
+          "highlightUntil": "2026-10-23"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791124602225-img-mutxcc4x-71kpy-IMG_5731.jpg",
+          "alt": "Dgps layout at Devprayag Road",
+          "managed": true,
+          "highlightUntil": "2026-10-23"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Dgps layout at Devprayag Road",
+      "date": "2026-10-04",
+      "location": "Gooler",
+      "shortDescription": "Digital stakeout/layout using Rtk dgps",
+      "description": "",
+      "highlight": true,
+      "highlightDays": 20,
+      "highlightStarted": "2026-10-04"
     }
   ],
   "slides": []
