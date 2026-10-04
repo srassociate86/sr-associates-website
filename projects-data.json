@@ -1,5 +1,45 @@
 {
   "version": 4,
-  "projects": [],
+  "projects": [
+    {
+      "id": "p-muttduam-6ety9",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791117963435-img-mutte1m3-om19r-1000231584.jpg",
+          "alt": "Dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791117968390-img-mutte5fq-kflex-1000231735.jpg",
+          "alt": "Dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791117973986-img-mutte9r6-1w2pd-1000231733.jpg",
+          "alt": "Dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/dgps-gnss-rtk-survey/1791117976599-img-muttebrr-yhqn1-1000231587.jpg",
+          "alt": "Dgps title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Dgps title",
+      "date": "2026-10-04",
+      "location": "Rishikesh",
+      "shortDescription": "Short text",
+      "description": "Long text long text long text",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-04"
+    }
+  ],
   "slides": []
 }
