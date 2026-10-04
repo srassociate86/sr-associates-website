@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /project-manager.html
+
+Sitemap: https://www.landsurveyor.co.in/sitemap.xml

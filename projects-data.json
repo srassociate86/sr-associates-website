@@ -2,141 +2,119 @@
   "version": 4,
   "projects": [
     {
-      "id": "p-muskpwl0-vdntb",
+      "id": "latest-gnss-rtk",
+      "type": "latest",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "DGPS / GNSS / RTK SURVEY",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "High-accuracy GNSS RTK field surveying.",
+      "description": "GNSS / RTK surveying project. Add project-specific details here from the Project Manager.",
+      "visible": true,
+      "highlight": true,
       "photos": [
         {
-          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791042951886-img-muskqaby-3yzqz-1000231587.jpg",
-          "alt": "Dgps title",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
-        },
-        {
-          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791042956043-img-muskqdjf-3ilbc-1000231584.jpg",
-          "alt": "Dgps title",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
-        },
-        {
-          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791042963721-img-muskqjgp-bjjhy-1000231735.jpg",
-          "alt": "Dgps title",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
-        },
-        {
-          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791042969162-img-muskqnnu-twbyf-1000231589.jpg",
-          "alt": "Dgps title",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
-        },
-        {
-          "path": "assets/project-photos/2026-10-03/dgps-gnss-rtk/1791042975562-img-muskqslm-9sg4e-1000231733.jpg",
-          "alt": "Dgps title",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
+          "path": "assets/gnss.jpg",
+          "alt": "GNSS RTK surveying",
+          "managed": false
         }
-      ],
-      "type": "project",
-      "category": "DGPS / GNSS / RTK",
-      "title": "Dgps title",
-      "date": "2026-10-03",
-      "location": "Rishikesh",
-      "shortDescription": "Short text",
-      "description": "Long text long text",
-      "highlight": true,
-      "highlightDays": 30,
-      "highlightStarted": "2026-10-03"
+      ]
     },
     {
-      "id": "p-musks4fn-accac",
+      "id": "latest-construction",
+      "type": "latest",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "CONSTRUCTION SURVEY",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Construction and engineering survey work.",
+      "description": "Construction survey project. Add project-specific details here from the Project Manager.",
+      "visible": true,
+      "highlight": true,
       "photos": [
         {
-          "path": "assets/project-photos/2026-10-03/total-station-construction/1791043047881-img-musksceh-eg6pt-1000231079.jpg",
-          "alt": "Total station title 1",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
-        },
-        {
-          "path": "assets/project-photos/2026-10-03/total-station-construction/1791043049800-img-musksdvs-khaah-1000229155.jpg",
-          "alt": "Total station title 1",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
-        },
-        {
-          "path": "assets/project-photos/2026-10-03/total-station-construction/1791043051725-img-musksfd9-20cx1-1000229153.jpg",
-          "alt": "Total station title 1",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
+          "path": "assets/total-station.jpg",
+          "alt": "Total station surveying",
+          "managed": false
         }
-      ],
-      "type": "project",
-      "category": "TOTAL STATION / CONSTRUCTION",
-      "title": "Total station title 1",
-      "date": "2026-10-03",
-      "location": "Rishikesh",
-      "shortDescription": "Short text",
-      "description": "Long text long text",
-      "highlight": true,
-      "highlightDays": 30,
-      "highlightStarted": "2026-10-03"
+      ]
     },
     {
-      "id": "p-muskypy4-ks257",
+      "id": "latest-drone",
+      "type": "latest",
+      "category": "DRONE SURVEY & MAPPING",
+      "title": "DRONE SURVEY & MAPPING",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Aerial mapping and photogrammetry work.",
+      "description": "Drone survey and mapping project. Add project-specific details here from the Project Manager.",
+      "visible": true,
+      "highlight": true,
       "photos": [
         {
-          "path": "assets/project-photos/2026-10-03/drone/1791043356945-img-muskyyvl-wdo10-1000230252.jpg",
-          "alt": "Drone title",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
-        },
-        {
-          "path": "assets/project-photos/2026-10-03/drone/1791043358875-img-muskz0d7-ikk6v-1000229217.jpg",
-          "alt": "Drone title",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
-        },
-        {
-          "path": "assets/project-photos/2026-10-03/drone/1791043361112-img-muskz23c-6eif2-1000228350.jpg",
-          "alt": "Drone title",
-          "managed": true,
-          "highlightUntil": "2026-11-01"
+          "path": "assets/drone.jpg",
+          "alt": "Drone mapping",
+          "managed": false
         }
-      ],
-      "type": "project",
-      "category": "DRONE",
-      "title": "Drone title",
-      "date": "2026-10-03",
-      "location": "Rishikesh",
-      "shortDescription": "Short text",
-      "description": "Long text long text",
-      "highlight": true,
-      "highlightDays": 30,
-      "highlightStarted": "2026-10-03"
+      ]
+    },
+    {
+      "id": "completed-topographical",
+      "type": "completed",
+      "category": "TOPOGRAPHICAL SURVEY",
+      "title": "TOPOGRAPHICAL SURVEY",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Terrain, levels, contours and detailed site mapping.",
+      "description": "Completed topographical survey project.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/gnss.jpg",
+          "alt": "Topographical survey",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "completed-construction",
+      "type": "completed",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "BUILDING / CONSTRUCTION SURVEY",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Building and construction survey work.",
+      "description": "Completed building / construction survey project.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/total-station.jpg",
+          "alt": "Construction survey",
+          "managed": false
+        }
+      ]
+    },
+    {
+      "id": "completed-aerial",
+      "type": "completed",
+      "category": "DRONE SURVEY & MAPPING",
+      "title": "AERIAL MAPPING",
+      "location": "Uttarakhand",
+      "year": "",
+      "shortDescription": "Aerial survey, mapping and photogrammetry outputs.",
+      "description": "Completed aerial mapping project.",
+      "visible": true,
+      "highlight": false,
+      "photos": [
+        {
+          "path": "assets/drone.jpg",
+          "alt": "Aerial mapping",
+          "managed": false
+        }
+      ]
     }
   ],
-  "slides": [
-    {
-      "id": "s-muski829-3ggw8",
-      "type": "slideshow",
-      "category": "DGPS / GNSS / RTK",
-      "title": "Slideshow dgps",
-      "date": "2026-10-03",
-      "days": 30,
-      "addedOn": "2026-10-03",
-      "alt": "Slideshow dgps",
-      "managed": true,
-      "path": "assets/slideshow/2026-10-03/dgps-gnss-rtk/1791042590866-slide-muskijrm-dg7cl-1000230680.jpg"
-    },
-    {
-      "id": "s-muski82a-z2csx",
-      "type": "slideshow",
-      "category": "DGPS / GNSS / RTK",
-      "title": "Slideshow dgps",
-      "date": "2026-10-03",
-      "days": 30,
-      "addedOn": "2026-10-03",
-      "alt": "Slideshow dgps",
-      "managed": true,
-      "path": "assets/slideshow/2026-10-03/dgps-gnss-rtk/1791042592463-slide-muskikzz-3h2b7-1000231792.jpg"
-    }
-  ]
+  "slides": []
 }
