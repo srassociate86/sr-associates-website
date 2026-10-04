@@ -1,4 +1,47 @@
 {
   "version": 1,
-  "drawings": []
+  "drawings": [
+    {
+      "id": "d-mutodakh-9kwl3",
+      "type": "sample",
+      "visible": true,
+      "managed": true,
+      "images": [
+        {
+          "path": "assets/drawings/2026-10-04/drone-mapping/1791109540078-drawing-mutodi3y-jvpyy-1000232306.jpg",
+          "alt": "Sample title",
+          "managed": true
+        },
+        {
+          "path": "assets/drawings/2026-10-04/drone-mapping/1791109542160-drawing-mutodjps-k2pll-1000232051.jpg",
+          "alt": "Sample title",
+          "managed": true
+        },
+        {
+          "path": "assets/drawings/2026-10-04/drone-mapping/1791109544237-drawing-mutodlbh-6vse3-1000232053.jpg",
+          "alt": "Sample title",
+          "managed": true
+        },
+        {
+          "path": "assets/drawings/2026-10-04/drone-mapping/1791109546477-drawing-mutodn1p-lajm9-1000231740.jpg",
+          "alt": "Sample title",
+          "managed": true
+        },
+        {
+          "path": "assets/drawings/2026-10-04/drone-mapping/1791109548073-drawing-mutodoa1-y8y69-1000231641.jpg",
+          "alt": "Sample title",
+          "managed": true
+        }
+      ],
+      "category": "DRONE MAPPING",
+      "categoryLabel": "DRONE MAPPING",
+      "title": "Sample title",
+      "date": "2026-10-04",
+      "location": "",
+      "shortDescription": "Short text Short text",
+      "description": "Long text long text",
+      "alt": "Sample title",
+      "image": "assets/drawings/2026-10-04/drone-mapping/1791109540078-drawing-mutodi3y-jvpyy-1000232306.jpg"
+    }
+  ]
 }
