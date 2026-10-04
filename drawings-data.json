@@ -1,4 +1,27 @@
 {
   "version": 1,
-  "drawings": []
+  "drawings": [
+    {
+      "id": "d-mut7qlt3-3cjqr",
+      "type": "sample",
+      "visible": true,
+      "managed": true,
+      "images": [
+        {
+          "path": "assets/drawings/2026-10-04/topographical-contour-3d-survey/1791081607565-drawing-mut7qt8t-g1o2x-1000232306.jpg",
+          "alt": "Sss",
+          "managed": true
+        }
+      ],
+      "category": "TOPOGRAPHICAL / CONTOUR / 3D SURVEY",
+      "categoryLabel": "TOPOGRAPHICAL / CONTOUR / 3D SURVEY",
+      "title": "Sss",
+      "date": "2026-10-04",
+      "location": "",
+      "shortDescription": "",
+      "description": "",
+      "alt": "Sss",
+      "image": "assets/drawings/2026-10-04/topographical-contour-3d-survey/1791081607565-drawing-mut7qt8t-g1o2x-1000232306.jpg"
+    }
+  ]
 }
