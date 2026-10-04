@@ -1,20 +1,4 @@
 {
   "version": 1,
-  "drawings": [
-    {
-      "id": "d-muskme67-l9u8o",
-      "type": "sample",
-      "visible": true,
-      "managed": true,
-      "category": "DRONE MAPPING",
-      "categoryLabel": "DRONE MAPPING",
-      "title": "Sample contour",
-      "date": "2026-10-03",
-      "location": "",
-      "shortDescription": "Short text",
-      "description": "Long text",
-      "alt": "Sample contour",
-      "image": "assets/drawings/2026-10-03/drone-mapping/1791042780996-drawing-muskmmh0-jgbwn-1000231740.jpg"
-    }
-  ]
+  "drawings": []
 }

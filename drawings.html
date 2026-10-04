@@ -286,6 +286,15 @@
   background:#111;
 }
 
+.drawing-viewer.photo-changing{overflow:hidden}
+.drawing-viewer.slide-out-left img{animation:drawingOutLeft .22s ease forwards}
+.drawing-viewer.slide-out-right img{animation:drawingOutRight .22s ease forwards}
+.drawing-viewer.slide-in-right img{animation:drawingInRight .28s ease forwards}
+.drawing-viewer.slide-in-left img{animation:drawingInLeft .28s ease forwards}
+@keyframes drawingOutLeft{to{transform:translateX(-22%);opacity:0}}
+@keyframes drawingOutRight{to{transform:translateX(22%);opacity:0}}
+@keyframes drawingInRight{from{transform:translateX(22%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes drawingInLeft{from{transform:translateX(-22%);opacity:0}to{transform:translateX(0);opacity:1}}
 .drawing-viewer img{
   width:100%;
   height:100%;
@@ -517,31 +526,20 @@ function esc(s){
 
 function renderDrawings(){
   const box=document.getElementById('drawingList');
-
-  filteredDrawings=allDrawings.filter(d=>
-    d && d.visible!==false &&
-    (currentFilter==='ALL' || d.category===currentFilter)
-  );
-
+  const samples=allDrawings.filter(d=>d && d.visible!==false && (currentFilter==='ALL' || d.category===currentFilter));
+  filteredDrawings=[];
+  samples.forEach(d=>{
+    const imgs=(d.images&&d.images.length?d.images:(d.image?[{path:d.image,alt:d.alt||d.title}]:[]));
+    imgs.forEach(ph=>{
+      if(!ph?.path)return;
+      filteredDrawings.push({path:ph.path,alt:ph.alt||d.alt||d.title||'Survey drawing sample',title:d.title||'Survey Drawing',description:d.description||'',categoryLabel:d.categoryLabel||d.category||'SURVEY DRAWING',date:d.date||'',location:d.location||''});
+    });
+  });
   if(!filteredDrawings.length){
     box.innerHTML='<div class="empty-drawings"><strong>No drawing samples have been added yet.</strong><span>Drawing examples for this category will appear here when they are added.</span></div>';
     return;
   }
-
-  box.innerHTML=filteredDrawings.map((d,i)=>`
-    <article class="drawing-card" onclick="openDrawing(${i})">
-      <div class="drawing-preview">
-        <img src="${esc(d.image)}"
-             alt="${esc(d.alt||d.title||'Survey drawing sample')}"
-             loading="lazy">
-      </div>
-      <div class="drawing-card-content">
-        <b>${esc(d.categoryLabel||d.category||'SURVEY DRAWING')}</b>
-        <h3>${esc(d.title||'Survey Drawing')}</h3>
-        <p>${esc(d.description||'')}</p>
-      </div>
-    </article>
-  `).join('');
+  box.innerHTML=filteredDrawings.map((d,i)=>`<article class="drawing-card" onclick="openDrawing(${i})"><div class="drawing-preview"><img src="${esc(d.path)}" alt="${esc(d.alt)}" loading="lazy"></div><div class="drawing-card-content"><b>${esc(d.categoryLabel)}</b><h3>${esc(d.title)}</h3><p>${esc(d.description)}</p></div></article>`).join('');
 }
 
 /* =========================================================
@@ -597,69 +595,32 @@ function resetDrawingZoom(event){
   applyDrawingTransform();
 }
 
-function openDrawing(index){
+function openDrawing(index,direction=1){
   if(!filteredDrawings.length)return;
-
   currentDrawingIndex=(index+filteredDrawings.length)%filteredDrawings.length;
   const d=filteredDrawings[currentDrawingIndex];
   const modal=document.getElementById('drawingModal');
   const viewer=document.getElementById('drawingViewer');
-
-  drawingScale=1;
-  drawingX=0;
-  drawingY=0;
-
+  drawingScale=1;drawingX=0;drawingY=0;
   document.getElementById('drawingTitle').textContent=d.title||'Survey Drawing';
-  document.getElementById('drawingMeta').textContent=
-    [d.categoryLabel||d.category,d.date,d.location].filter(Boolean).join(' • ');
-
+  document.getElementById('drawingMeta').textContent=[d.categoryLabel||d.category,d.date,d.location].filter(Boolean).join(' • ');
   viewer.innerHTML='';
-
-  const img=document.createElement('img');
-  img.src=d.image;
-  img.alt=d.alt||d.title||'Survey drawing sample';
-  img.draggable=false;
-  viewer.appendChild(img);
-
+  const img=document.createElement('img');img.src=d.path;img.alt=d.alt||d.title||'Survey drawing sample';img.draggable=false;viewer.appendChild(img);
   if(filteredDrawings.length>1){
-    const prev=document.createElement('button');
-    prev.className='drawing-nav prev';
-    prev.innerHTML='‹';
-    prev.setAttribute('aria-label','Previous drawing');
-    prev.onclick=e=>{
-      e.stopPropagation();
-      showDrawing(currentDrawingIndex-1);
-    };
-
-    const next=document.createElement('button');
-    next.className='drawing-nav next';
-    next.innerHTML='›';
-    next.setAttribute('aria-label','Next drawing');
-    next.onclick=e=>{
-      e.stopPropagation();
-      showDrawing(currentDrawingIndex+1);
-    };
-
-    viewer.appendChild(prev);
-    viewer.appendChild(next);
+    const prev=document.createElement('button');prev.className='drawing-nav prev';prev.innerHTML='‹';prev.setAttribute('aria-label','Previous drawing');prev.onclick=e=>{e.stopPropagation();showDrawing(currentDrawingIndex-1,-1)};
+    const next=document.createElement('button');next.className='drawing-nav next';next.innerHTML='›';next.setAttribute('aria-label','Next drawing');next.onclick=e=>{e.stopPropagation();showDrawing(currentDrawingIndex+1,1)};
+    viewer.appendChild(prev);viewer.appendChild(next);
   }
-
-  const zoom=document.createElement('div');
-  zoom.className='drawing-zoom';
-  zoom.innerHTML=
-    '<button type="button" aria-label="Zoom out" onclick="zoomDrawing(-0.25,event)">−</button>'+
-    '<button type="button" aria-label="Reset zoom" onclick="resetDrawingZoom(event)">↺</button>'+
-    '<button type="button" aria-label="Zoom in" onclick="zoomDrawing(0.25,event)">+</button>';
-  viewer.appendChild(zoom);
-
-  applyDrawingTransform();
-  modal.classList.add('open');
-  document.body.style.overflow='hidden';
+  const zoom=document.createElement('div');zoom.className='drawing-zoom';zoom.innerHTML='<button type="button" aria-label="Zoom out" onclick="zoomDrawing(-0.25,event)">−</button><button type="button" aria-label="Reset zoom" onclick="resetDrawingZoom(event)">↺</button><button type="button" aria-label="Zoom in" onclick="zoomDrawing(0.25,event)">+</button>';viewer.appendChild(zoom);
+  applyDrawingTransform();modal.classList.add('open');document.body.style.overflow='hidden';
 }
-
-function showDrawing(index){
-  if(!filteredDrawings.length)return;
-  openDrawing((index+filteredDrawings.length)%filteredDrawings.length);
+function showDrawing(index,direction=1){
+  const count=filteredDrawings.length;if(!count)return;
+  const nextIndex=(index+count)%count;const viewer=document.getElementById('drawingViewer');
+  if(count===1){openDrawing(nextIndex);return}
+  if(viewer.classList.contains('photo-changing'))return;
+  viewer.classList.add('photo-changing');viewer.classList.remove('slide-in-left','slide-in-right','slide-out-left','slide-out-right');viewer.classList.add(direction<0?'slide-out-right':'slide-out-left');
+  setTimeout(()=>{openDrawing(nextIndex,direction);viewer.classList.remove('slide-out-left','slide-out-right');viewer.classList.add(direction<0?'slide-in-left':'slide-in-right');requestAnimationFrame(()=>requestAnimationFrame(()=>viewer.classList.remove('slide-in-left','slide-in-right')));setTimeout(()=>viewer.classList.remove('photo-changing'),280)},220);
 }
 
 function closeDrawing(){
