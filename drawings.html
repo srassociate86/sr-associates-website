@@ -332,12 +332,6 @@
   cursor:grabbing;
   transition:none;
 }
-/* Mobile touch movement must not animate between finger positions.
-   The normal .28s transform transition is smooth for buttons/desktop,
-   but makes direct finger panning feel delayed. */
-.drawing-viewer.is-touching img{
-  transition:none !important;
-}
 
 .drawing-nav{
   position:absolute;
@@ -420,6 +414,22 @@
     right:14px;
     top:8px;
   }
+}
+/* Keep WhatsApp and Call Us visible on mobile, matching Project Gallery */
+.site-header .nav-whatsapp,
+.site-header > .btn.btn-primary {
+  height:42px; min-height:42px; box-sizing:border-box;
+  display:inline-flex; align-items:center; justify-content:center;
+}
+@media(max-width:720px){
+  .site-header .nav-whatsapp,
+  .site-header > .btn.btn-primary {
+    height:36px; min-height:36px; padding:0 10px; font-size:12px; white-space:nowrap;
+  }
+  .site-header { gap:7px; }
+  .site-header .brand { flex-shrink:1; min-width:0; }
+  .site-header .brand img { max-width:115px; height:auto; }
+  .site-header .menu-toggle { flex-shrink:0; }
 }
 </style>
 </head>
@@ -735,10 +745,6 @@ function touchDistance(a,b){
 }
 
 drawingViewer.addEventListener('touchstart',e=>{
-  /* Disable the image transition for the entire finger gesture so the
-     image follows the finger directly instead of easing behind it. */
-  drawingViewer.classList.add('is-touching');
-
   if(e.touches.length===2){
     touchMode='pinch';
     pinchStartDistance=touchDistance(e.touches[0],e.touches[1]);
@@ -814,12 +820,6 @@ drawingViewer.addEventListener('touchend',e=>{
   }
 
   touchMode='';
-  drawingViewer.classList.remove('is-touching');
-},{passive:true});
-
-drawingViewer.addEventListener('touchcancel',()=>{
-  touchMode='';
-  drawingViewer.classList.remove('is-touching');
 },{passive:true});
 
 /* Double-click toggles 2x zoom. */
