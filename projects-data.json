@@ -84,6 +84,45 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-04"
+    },
+    {
+      "id": "p-muttupfm-sxbf0",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-04/drone-survey-mapping/1791118749310-img-muttuvzy-iq0za-1000232403.jpg",
+          "alt": "Drone title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/drone-survey-mapping/1791118751249-img-muttuxht-6yhhh-1000230252.jpg",
+          "alt": "Drone title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/drone-survey-mapping/1791118752929-img-muttuysh-04alh-1000229335.jpg",
+          "alt": "Drone title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        },
+        {
+          "path": "assets/project-photos/2026-10-04/drone-survey-mapping/1791118754758-img-muttv07a-1v1rk-1000229214.jpg",
+          "alt": "Drone title",
+          "managed": true,
+          "highlightUntil": "2026-11-02"
+        }
+      ],
+      "type": "project",
+      "category": "DRONE SURVEY & MAPPING",
+      "title": "Drone title",
+      "date": "2026-10-04",
+      "location": "Rishikesh",
+      "shortDescription": "Short description",
+      "description": "Long description",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-04"
     }
   ],
   "slides": [
