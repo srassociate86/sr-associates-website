@@ -31,11 +31,11 @@
       ],
       "type": "project",
       "category": "DGPS / GNSS / RTK SURVEY",
-      "title": "Dgps title",
-      "date": "2026-10-04",
+      "title": "Topographical Survey at Village Auni, Narendernagar",
+      "date": "2026-10-01",
       "location": "Rishikesh",
-      "shortDescription": "Short text",
-      "description": "Long text long text long text",
+      "shortDescription": "Contour Survey",
+      "description": "Detailed contour survey at Village Auni, Narendernagar",
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-04"
@@ -43,18 +43,6 @@
     {
       "id": "p-muttndgn-vyv3h",
       "photos": [
-        {
-          "path": "assets/project-photos/2026-10-04/construction-survey/1791118407578-img-muttnkbe-gahmz-1000231107.jpg",
-          "alt": "Total station title",
-          "managed": true,
-          "highlightUntil": "2026-11-02"
-        },
-        {
-          "path": "assets/project-photos/2026-10-04/construction-survey/1791118409460-img-muttnlro-lxe5g-1000231079.jpg",
-          "alt": "Total station title",
-          "managed": true,
-          "highlightUntil": "2026-11-02"
-        },
         {
           "path": "assets/project-photos/2026-10-04/construction-survey/1791118410929-img-muttnmwh-giun2-1000229153.jpg",
           "alt": "Total station title",
@@ -76,77 +64,15 @@
       ],
       "type": "project",
       "category": "CONSTRUCTION SURVEY",
-      "title": "Total station title",
-      "date": "2026-10-04",
-      "location": "Rishikesh",
-      "shortDescription": "Short description",
-      "description": "Long description",
-      "highlight": true,
-      "highlightDays": 30,
-      "highlightStarted": "2026-10-04"
-    },
-    {
-      "id": "p-muttupfm-sxbf0",
-      "photos": [
-        {
-          "path": "assets/project-photos/2026-10-04/drone-survey-mapping/1791118749310-img-muttuvzy-iq0za-1000232403.jpg",
-          "alt": "Drone title",
-          "managed": true,
-          "highlightUntil": "2026-11-02"
-        },
-        {
-          "path": "assets/project-photos/2026-10-04/drone-survey-mapping/1791118751249-img-muttuxht-6yhhh-1000230252.jpg",
-          "alt": "Drone title",
-          "managed": true,
-          "highlightUntil": "2026-11-02"
-        },
-        {
-          "path": "assets/project-photos/2026-10-04/drone-survey-mapping/1791118752929-img-muttuysh-04alh-1000229335.jpg",
-          "alt": "Drone title",
-          "managed": true,
-          "highlightUntil": "2026-11-02"
-        },
-        {
-          "path": "assets/project-photos/2026-10-04/drone-survey-mapping/1791118754758-img-muttv07a-1v1rk-1000229214.jpg",
-          "alt": "Drone title",
-          "managed": true,
-          "highlightUntil": "2026-11-02"
-        }
-      ],
-      "type": "project",
-      "category": "DRONE SURVEY & MAPPING",
-      "title": "Drone title",
-      "date": "2026-10-04",
-      "location": "Rishikesh",
-      "shortDescription": "Short description",
-      "description": "Long description",
+      "title": "Building Layout at Badrinath Highway",
+      "date": "2026-09-29",
+      "location": "Badrinath Highway",
+      "shortDescription": "Digital Layout",
+      "description": "Building Column Layout at Malakhunti",
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-04"
     }
   ],
-  "slides": [
-    {
-      "id": "s-muttincf-4hvvt",
-      "type": "slideshow",
-      "title": "Slideshow title",
-      "date": "2026-10-04",
-      "days": 30,
-      "addedOn": "2026-10-04",
-      "alt": "Slideshow title",
-      "managed": true,
-      "path": "assets/slideshow/2026-10-04/1791118183561-slide-muttirgp-8lvrj-1000231792.jpg"
-    },
-    {
-      "id": "s-muttincf-8s72z",
-      "type": "slideshow",
-      "title": "Slideshow title",
-      "date": "2026-10-04",
-      "days": 30,
-      "addedOn": "2026-10-04",
-      "alt": "Slideshow title",
-      "managed": true,
-      "path": "assets/slideshow/2026-10-04/1791118185170-slide-muttispe-1k1a8-1000230680.jpg"
-    }
-  ]
+  "slides": []
 }

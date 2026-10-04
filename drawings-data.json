@@ -1,47 +1,4 @@
 {
   "version": 1,
-  "drawings": [
-    {
-      "id": "d-mutuc3eu-s7fut",
-      "type": "sample",
-      "visible": true,
-      "managed": true,
-      "images": [
-        {
-          "path": "assets/drawings/2026-10-04/topographical-contour-3d-survey/1791119564064-drawing-mutucco0-xidg1-1000232475.jpg",
-          "alt": "Sample title",
-          "managed": true
-        },
-        {
-          "path": "assets/drawings/2026-10-04/topographical-contour-3d-survey/1791119565869-drawing-mutuce25-rzb13-1000232306.jpg",
-          "alt": "Sample title",
-          "managed": true
-        },
-        {
-          "path": "assets/drawings/2026-10-04/topographical-contour-3d-survey/1791119568154-drawing-mutucftm-adfy2-1000231740.jpg",
-          "alt": "Sample title",
-          "managed": true
-        },
-        {
-          "path": "assets/drawings/2026-10-04/topographical-contour-3d-survey/1791119570068-drawing-mutuchas-zgcnm-1000232053.jpg",
-          "alt": "Sample title",
-          "managed": true
-        },
-        {
-          "path": "assets/drawings/2026-10-04/topographical-contour-3d-survey/1791119571706-drawing-mutucika-oiyjt-1000232051.jpg",
-          "alt": "Sample title",
-          "managed": true
-        }
-      ],
-      "category": "TOPOGRAPHICAL / CONTOUR / 3D SURVEY",
-      "categoryLabel": "TOPOGRAPHICAL / CONTOUR / 3D SURVEY",
-      "title": "Sample title",
-      "date": "2026-10-04",
-      "location": "",
-      "shortDescription": "Short text",
-      "description": "Long text long text long",
-      "alt": "Sample title",
-      "image": "assets/drawings/2026-10-04/topographical-contour-3d-survey/1791119564064-drawing-mutucco0-xidg1-1000232475.jpg"
-    }
-  ]
+  "drawings": []
 }
