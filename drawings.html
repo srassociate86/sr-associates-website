@@ -746,6 +746,7 @@ function touchDistance(a,b){
 
 drawingViewer.addEventListener('touchstart',e=>{
   if(e.touches.length===2){
+    drawingViewer.classList.remove('is-panning');
     touchMode='pinch';
     pinchStartDistance=touchDistance(e.touches[0],e.touches[1]);
     pinchStartScale=drawingScale;
@@ -757,6 +758,12 @@ drawingViewer.addEventListener('touchstart',e=>{
   touchStartX=touchLastX=e.touches[0].clientX;
   touchStartY=touchLastY=e.touches[0].clientY;
   touchMode=drawingScale>1?'pan':'swipe';
+
+  if(touchMode==='pan'){
+    drawingViewer.classList.add('is-panning');
+  }else{
+    drawingViewer.classList.remove('is-panning');
+  }
 },{passive:true});
 
 drawingViewer.addEventListener('touchmove',e=>{
@@ -807,6 +814,12 @@ drawingViewer.addEventListener('touchend',e=>{
     touchMode=drawingScale>1?'pan':'swipe';
     touchLastX=e.touches[0].clientX;
     touchLastY=e.touches[0].clientY;
+
+    if(touchMode==='pan'){
+      drawingViewer.classList.add('is-panning');
+    }else{
+      drawingViewer.classList.remove('is-panning');
+    }
     return;
   }
 
@@ -819,6 +832,7 @@ drawingViewer.addEventListener('touchend',e=>{
     }
   }
 
+  drawingViewer.classList.remove('is-panning');
   touchMode='';
 },{passive:true});
 
