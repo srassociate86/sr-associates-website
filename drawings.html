@@ -332,6 +332,12 @@
   cursor:grabbing;
   transition:none;
 }
+/* Mobile touch movement must not animate between finger positions.
+   The normal .28s transform transition is smooth for buttons/desktop,
+   but makes direct finger panning feel delayed. */
+.drawing-viewer.is-touching img{
+  transition:none !important;
+}
 
 .drawing-nav{
   position:absolute;
@@ -729,6 +735,10 @@ function touchDistance(a,b){
 }
 
 drawingViewer.addEventListener('touchstart',e=>{
+  /* Disable the image transition for the entire finger gesture so the
+     image follows the finger directly instead of easing behind it. */
+  drawingViewer.classList.add('is-touching');
+
   if(e.touches.length===2){
     touchMode='pinch';
     pinchStartDistance=touchDistance(e.touches[0],e.touches[1]);
@@ -804,6 +814,12 @@ drawingViewer.addEventListener('touchend',e=>{
   }
 
   touchMode='';
+  drawingViewer.classList.remove('is-touching');
+},{passive:true});
+
+drawingViewer.addEventListener('touchcancel',()=>{
+  touchMode='';
+  drawingViewer.classList.remove('is-touching');
 },{passive:true});
 
 /* Double-click toggles 2x zoom. */
