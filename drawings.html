@@ -228,7 +228,7 @@
   inset:0;
   z-index:9999;
   display:none;
-  background:rgba(0,0,0,.92);
+  background:rgba(0,0,0,.88);
   align-items:center;
   justify-content:center;
 }
@@ -273,10 +273,11 @@
   text-align:center;
   font-size:12px;
 }
+.drawing-modal-description{color:#ddd;max-width:900px;max-height:18vh;overflow:auto;margin:0 25px 14px;text-align:center;line-height:1.6;white-space:pre-line}
 
 .drawing-viewer{
-  width:min(94vw,1500px);
-  height:min(82vh,900px);
+  width:min(94vw,1400px);
+  height:min(76vh,820px);
   position:relative;
   overflow:hidden;
   display:flex;
@@ -291,10 +292,10 @@
 .drawing-viewer.slide-out-right img{animation:drawingOutRight .22s ease forwards}
 .drawing-viewer.slide-in-right img{animation:drawingInRight .28s ease forwards}
 .drawing-viewer.slide-in-left img{animation:drawingInLeft .28s ease forwards}
-@keyframes drawingOutLeft{to{transform:translateX(-22%);opacity:0}}
-@keyframes drawingOutRight{to{transform:translateX(22%);opacity:0}}
-@keyframes drawingInRight{from{transform:translateX(22%);opacity:0}to{transform:translateX(0);opacity:1}}
-@keyframes drawingInLeft{from{transform:translateX(-22%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes drawingOutLeft{to{transform:translateX(-105%);opacity:.15}}
+@keyframes drawingOutRight{to{transform:translateX(105%);opacity:.15}}
+@keyframes drawingInRight{from{transform:translateX(105%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes drawingInLeft{from{transform:translateX(-105%);opacity:0}to{transform:translateX(0);opacity:1}}
 .drawing-viewer img{
   width:100%;
   height:100%;
@@ -377,9 +378,10 @@
     margin-right:50px;
   }
   .drawing-modal-meta{font-size:11px}
+  .drawing-modal-description{max-height:20vh;font-size:13px}
   .drawing-viewer{
     width:96vw;
-    height:70vh;
+    height:64vh;
   }
   .drawing-close{
     right:14px;
@@ -490,6 +492,7 @@
     <button class="drawing-close" id="drawingClose" aria-label="Close">×</button>
     <h2 class="drawing-modal-title" id="drawingTitle"></h2>
     <div class="drawing-modal-meta" id="drawingMeta"></div>
+    <div class="drawing-modal-description" id="drawingDescription"></div>
 
     <div class="drawing-viewer" id="drawingViewer"></div>
   </div>
@@ -532,14 +535,14 @@ function renderDrawings(){
     const imgs=(d.images&&d.images.length?d.images:(d.image?[{path:d.image,alt:d.alt||d.title}]:[]));
     imgs.forEach(ph=>{
       if(!ph?.path)return;
-      filteredDrawings.push({path:ph.path,alt:ph.alt||d.alt||d.title||'Survey drawing sample',title:d.title||'Survey Drawing',description:d.description||'',categoryLabel:d.categoryLabel||d.category||'SURVEY DRAWING',date:d.date||'',location:d.location||''});
+      filteredDrawings.push({path:ph.path,alt:ph.alt||d.alt||d.title||'Survey drawing sample',title:d.title||'Survey Drawing',shortDescription:d.shortDescription||'',description:d.description||'',categoryLabel:d.categoryLabel||d.category||'SURVEY DRAWING',date:d.date||'',location:d.location||''});
     });
   });
   if(!filteredDrawings.length){
     box.innerHTML='<div class="empty-drawings"><strong>No drawing samples have been added yet.</strong><span>Drawing examples for this category will appear here when they are added.</span></div>';
     return;
   }
-  box.innerHTML=filteredDrawings.map((d,i)=>`<article class="drawing-card" onclick="openDrawing(${i})"><div class="drawing-preview"><img src="${esc(d.path)}" alt="${esc(d.alt)}" loading="lazy"></div><div class="drawing-card-content"><b>${esc(d.categoryLabel)}</b><h3>${esc(d.title)}</h3><p>${esc(d.description)}</p></div></article>`).join('');
+  box.innerHTML=filteredDrawings.map((d,i)=>`<article class="drawing-card" onclick="openDrawing(${i})"><div class="drawing-preview"><img src="${esc(d.path)}" alt="${esc(d.alt)}" loading="lazy"></div><div class="drawing-card-content"><b>${esc(d.categoryLabel)}</b><h3>${esc(d.title)}</h3><p>${esc(d.shortDescription)}</p>${d.date?`<div class="photo-date">${esc(dateLabel(d.date))}</div>`:''}</div></article>`).join('');
 }
 
 /* =========================================================
@@ -604,8 +607,10 @@ function openDrawing(index,direction=1){
   drawingScale=1;drawingX=0;drawingY=0;
   document.getElementById('drawingTitle').textContent=d.title||'Survey Drawing';
   document.getElementById('drawingMeta').textContent=[d.categoryLabel||d.category,d.date,d.location].filter(Boolean).join(' • ');
+  document.getElementById('drawingDescription').textContent=d.description||'';
   viewer.innerHTML='';
   const img=document.createElement('img');img.src=d.path;img.alt=d.alt||d.title||'Survey drawing sample';img.draggable=false;viewer.appendChild(img);
+  if(!modal.classList.contains('open'))history.pushState({drawingLightbox:true},'',window.location.href.split('#')[0]+'#drawing-viewer');
   if(filteredDrawings.length>1){
     const prev=document.createElement('button');prev.className='drawing-nav prev';prev.innerHTML='‹';prev.setAttribute('aria-label','Previous drawing');prev.onclick=e=>{e.stopPropagation();showDrawing(currentDrawingIndex-1,-1)};
     const next=document.createElement('button');next.className='drawing-nav next';next.innerHTML='›';next.setAttribute('aria-label','Next drawing');next.onclick=e=>{e.stopPropagation();showDrawing(currentDrawingIndex+1,1)};
@@ -623,16 +628,22 @@ function showDrawing(index,direction=1){
   setTimeout(()=>{openDrawing(nextIndex,direction);viewer.classList.remove('slide-out-left','slide-out-right');viewer.classList.add(direction<0?'slide-in-left':'slide-in-right');requestAnimationFrame(()=>requestAnimationFrame(()=>viewer.classList.remove('slide-in-left','slide-in-right')));setTimeout(()=>viewer.classList.remove('photo-changing'),280)},220);
 }
 
-function closeDrawing(){
-  document.getElementById('drawingModal').classList.remove('open');
+function closeDrawing(fromHistory=false){
+  const modal=document.getElementById('drawingModal');
+  if(!modal.classList.contains('open'))return;
+  modal.classList.remove('open');
   document.body.style.overflow='';
   endMousePan();
+  if(!fromHistory && window.location.hash==='#drawing-viewer')history.back();
 }
 
 document.getElementById('drawingClose').addEventListener('click',closeDrawing);
 
 document.getElementById('drawingModal').addEventListener('click',e=>{
   if(e.target===document.getElementById('drawingModal'))closeDrawing();
+});
+window.addEventListener('popstate',()=>{
+  if(document.getElementById('drawingModal').classList.contains('open'))closeDrawing(true);
 });
 
 /* Mouse-wheel zoom focused on cursor position. */
@@ -745,7 +756,7 @@ drawingViewer.addEventListener('touchend',e=>{
   if(touchMode==='swipe'){
     const dx=(e.changedTouches[0]?.clientX||touchStartX)-touchStartX;
     if(Math.abs(dx)>=70 && filteredDrawings.length>1){
-      showDrawing(currentDrawingIndex+(dx<0?1:-1));
+      showDrawing(currentDrawingIndex+(dx<0?1:-1),dx<0?1:-1);
     }else{
       applyDrawingTransform();
     }
