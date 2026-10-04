@@ -44,6 +44,28 @@
       "description": "Survey test",
       "alt": "Survey test",
       "image": "assets/drawings/2026-10-04/boundary-land-survey/1791104242415-drawing-mutl7yen-uzcw5-IMG_5717.jpg"
+    },
+    {
+      "id": "d-mutl9n9x-b2o6b",
+      "type": "sample",
+      "visible": true,
+      "managed": true,
+      "images": [
+        {
+          "path": "assets/drawings/2026-10-04/drone-mapping/1791104347354-drawing-mutla7dm-bjdmf-IMG_5729.jpg",
+          "alt": "Sample test",
+          "managed": true
+        }
+      ],
+      "category": "DRONE MAPPING",
+      "categoryLabel": "DRONE MAPPING",
+      "title": "Sample test",
+      "date": "2026-10-04",
+      "location": "",
+      "shortDescription": "",
+      "description": "",
+      "alt": "Sample test",
+      "image": "assets/drawings/2026-10-04/drone-mapping/1791104347354-drawing-mutla7dm-bjdmf-IMG_5729.jpg"
     }
   ]
 }
