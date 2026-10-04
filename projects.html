@@ -202,7 +202,6 @@
     <button data-filter="DGPS / GNSS / RTK SURVEY">DGPS / GNSS / RTK</button>
     <button data-filter="CONSTRUCTION SURVEY">Total Station / Construction</button>
     <button data-filter="DRONE SURVEY & MAPPING">Drone</button>
-    <button data-filter="TOPOGRAPHICAL SURVEY">Topographical Survey</button>
   </div>
 <div class="project-filter-status" id="projectFilterStatus" aria-live="polite">Showing: All Projects</div></div><div class="photo-gallery" id="projectsContainer"></div></section>
 <section class="projects-cta"><p class="eyebrow">HAVE A PROJECT TO SURVEY?</p><h2>Let's work together.<br><span>Get accurate results.</span></h2><p>Contact SR Associates for land surveying, GNSS RTK, total station, construction surveying, drone mapping and digital survey services.</p><div class="projects-cta-actions"><a class="btn btn-primary" href="tel:+918057755380">Call Us</a><a class="btn btn-light" href="https://wa.me/918057755380" target="_blank" rel="noopener">WhatsApp Us</a>
@@ -453,7 +452,7 @@ function renderProjects(){
   const status=document.getElementById('projectFilterStatus');
   galleryItems=buildGalleryItems();
   if(status){
-    const labels={'ALL':'All Projects','DGPS / GNSS / RTK SURVEY':'DGPS / GNSS / RTK','CONSTRUCTION SURVEY':'Total Station / Construction','DRONE SURVEY & MAPPING':'Drone','TOPOGRAPHICAL SURVEY':'Topographical Survey'};
+    const labels={'ALL':'All Projects','DGPS / GNSS / RTK SURVEY':'DGPS / GNSS / RTK','CONSTRUCTION SURVEY':'Total Station / Construction','DRONE SURVEY & MAPPING':'Drone'};
     status.textContent=currentFilter==='ALL'?'Showing: All Projects':'Filter applied: '+(labels[currentFilter]||currentFilter);
     status.classList.toggle('filtered',currentFilter!=='ALL');
   }
