@@ -164,16 +164,22 @@
   margin-bottom:7px;
 }
 .drawing-card-content h3{
-  margin:0 0 7px;
-  font-size:18px;
+  margin:0 0 6px;
+  font-size:15px;
   line-height:1.3;
   text-transform:uppercase;
+  color:#171717;
 }
 .drawing-card-content p{
   margin:0;
   color:#666;
-  font-size:13px;
-  line-height:1.6;
+  font-size:12px;
+  line-height:1.5;
+}
+.drawing-card-content .photo-date{
+  margin-top:8px;
+  color:#999;
+  font-size:11px;
 }
 
 .empty-drawings{
@@ -555,7 +561,7 @@ function renderDrawings(){
     box.innerHTML='<div class="empty-drawings"><strong>No drawing samples have been added yet.</strong><span>Drawing examples for this category will appear here when they are added.</span></div>';
     return;
   }
-  box.innerHTML=filteredDrawings.map((d,i)=>`<article class="drawing-card" onclick="openDrawing(${i})"><div class="drawing-preview"><img src="${esc(d.path)}" alt="${esc(d.alt)}" loading="lazy"></div><div class="drawing-card-content"><b>${esc(d.categoryLabel)}</b><h3>${esc(d.title)}</h3><p>${esc(d.shortDescription)}</p>${d.date?`<div class="photo-date">${esc(dateLabel(d.date))}</div>`:''}</div></article>`).join('');
+  box.innerHTML=filteredDrawings.map((d,i)=>`<article class="drawing-card" onclick="openDrawing(${i})"><div class="drawing-preview"><img src="${esc(d.path)}" alt="${esc(d.alt)}" loading="lazy"></div><div class="drawing-card-content"><h3>${esc(d.title)}</h3><p>${esc(d.shortDescription)}</p>${d.date?`<div class="photo-date">${esc(dateLabel(d.date))}</div>`:''}</div></article>`).join('');
 }
 
 /* =========================================================
