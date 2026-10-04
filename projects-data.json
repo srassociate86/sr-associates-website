@@ -41,5 +41,28 @@
       "highlightStarted": "2026-10-04"
     }
   ],
-  "slides": []
+  "slides": [
+    {
+      "id": "s-muttincf-4hvvt",
+      "type": "slideshow",
+      "title": "Slideshow title",
+      "date": "2026-10-04",
+      "days": 30,
+      "addedOn": "2026-10-04",
+      "alt": "Slideshow title",
+      "managed": true,
+      "path": "assets/slideshow/2026-10-04/1791118183561-slide-muttirgp-8lvrj-1000231792.jpg"
+    },
+    {
+      "id": "s-muttincf-8s72z",
+      "type": "slideshow",
+      "title": "Slideshow title",
+      "date": "2026-10-04",
+      "days": 30,
+      "addedOn": "2026-10-04",
+      "alt": "Slideshow title",
+      "managed": true,
+      "path": "assets/slideshow/2026-10-04/1791118185170-slide-muttispe-1k1a8-1000230680.jpg"
+    }
+  ]
 }
