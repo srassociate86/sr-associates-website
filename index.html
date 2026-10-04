@@ -404,7 +404,7 @@
   "areaServed": {
     "@type": "City",
     "name": "Rishikesh"
-  },
+  }
 }
   </script>
 <style>
@@ -668,7 +668,28 @@
   async function loadHighlights(){
     try{
       const r=await fetch('projects-data.json?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('Project data unavailable');const data=await r.json();const items=[];
-      (data.projects||[]).forEach(p=>{if(!p||p.visible===false||p.highlight!==true)return;(p.photos||[]).forEach(ph=>{if(ph?.path)items.push({id:p.id,title:p.title||'Survey Work',category:p.category||'',photo:ph.path,kind:'project'})})});
+      (data.projects||[]).forEach(p=>{
+  if(!p||p.visible===false||p.highlight!==true)return;
+
+  const start=p.highlightStarted||p.date||'';
+  if(start){
+    const startDate=new Date((/^\d{4}$/.test(start)?start+'-01-01':start)+'T00:00:00');
+    const end=new Date(startDate);
+    end.setDate(end.getDate()+Number(p.highlightDays||30));
+
+    if(Number.isNaN(startDate.getTime())||new Date()>=end)return;
+  }
+
+  (p.photos||[]).forEach(ph=>{
+    if(ph?.path)items.push({
+      id:p.id,
+      title:p.title||'Survey Work',
+      category:p.category||'',
+      photo:ph.path,
+      kind:'project'
+    });
+  });
+});
       (data.slides||[]).forEach(s=>{if(!s?.path)return;const startDate=new Date((s.addedOn||s.date||'')+'T00:00:00');const end=new Date(startDate);end.setDate(end.getDate()+Number(s.days||30));if(Number.isNaN(startDate.getTime())||new Date()<end)items.push({id:s.id,title:s.title||'Field Work',category:s.category||'',photo:s.path,kind:'slideshow'})});
       makeSlides(items.length?items:fallback);
     }catch(e){console.error('Could not load recent highlights:',e);makeSlides(fallback)}
