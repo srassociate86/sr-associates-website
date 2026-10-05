@@ -346,6 +346,54 @@
       "description": "detailed contour map for Govt. ITI, Landhora",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-muuw29yi-8ai0v",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-09-08/construction-survey/1791183381692-img-muuwc6nw-pgj8v-IMG_20170908_144345.jpg",
+          "alt": "Centre for Aromatic Plants",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2017-09-08/construction-survey/1791183386882-img-muuwcao2-8l3hn-IMG_20170908_163244.jpg",
+          "alt": "Centre for Aromatic Plants",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Centre for Aromatic Plants",
+      "date": "2017-09-08",
+      "location": "Selaqui (Dehradun)",
+      "shortDescription": "Detail Survey of Centre for Aromatic Plants Campus",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muuw7qc2-mcq6o",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-09-27/construction-survey/1791183389360-img-muuwcckw-9d7e0-IMG_20170927_163342.jpg",
+          "alt": "Road Survey",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2017-09-27/construction-survey/1791183391340-img-muuwce3w-bczgz-IMG_20170927_164132.jpg",
+          "alt": "Road Survey",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Road Survey",
+      "date": "2017-09-27",
+      "location": "Kashipur-Sitarganj Highway, Gadarpur",
+      "shortDescription": "Road Survey at Gadarpur",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
