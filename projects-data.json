@@ -135,6 +135,126 @@
       "highlight": true,
       "highlightDays": 20,
       "highlightStarted": "2026-10-04"
+    },
+    {
+      "id": "p-muuu9riy-wvtc2",
+      "photos": [
+        {
+          "path": "assets/project-photos/2016-11-09/construction-survey/1791181367811-img-muuv50qr-s3lxl-IMG_20161109_111054.jpg",
+          "alt": "Land Survey at Kapkot, Bageshwar",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2016-11-09/construction-survey/1791181369275-img-muuv51vf-9vcny-IMG_20161109_111057.jpg",
+          "alt": "Land Survey at Kapkot, Bageshwar",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2016-11-09/construction-survey/1791181369917-img-muuv52d9-zxmj4-IMG_20161109_111126.jpg",
+          "alt": "Land Survey at Kapkot, Bageshwar",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Land Survey at Kapkot, Bageshwar",
+      "date": "2016-11-09",
+      "location": "Bageshwar, Uttarakhand",
+      "shortDescription": "Topographical Survey",
+      "description": "Detail contour survey at Kapkot, Bageshwar, Uttarakhand",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muuukl29-uei5u",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-02-12/construction-survey/1791181370688-img-muuv52yo-3onuf-IMG_20170212_110820.jpg",
+          "alt": "Topographical Survey",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Topographical Survey",
+      "date": "2017-02-12",
+      "location": "Nainital, Uttarakhand",
+      "shortDescription": "Survey at Nainital",
+      "description": "Detailed contour survey at Nainital, Uttarakhand",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muuur6ap-p0wyw",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-03-07/construction-survey/1791181372058-img-muuv540q-4wqqf-IMG_20170307_124504_1.jpg",
+          "alt": "Govt. Inter College, Pokhri",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2017-03-07/construction-survey/1791181373287-img-muuv54yv-hvmpe-IMG_20170307_124509.jpg",
+          "alt": "Govt. Inter College, Pokhri",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Govt. Inter College, Pokhri",
+      "date": "2017-03-07",
+      "location": "Naagnath Pokhri, Karnprayag Uttarakhand",
+      "shortDescription": "Contour Map",
+      "description": "Prepairing Contour map for Govt. Inter College, Nagnath, Pokhri (Karnprayag), Uttarakhand",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muuuycey-hbk8l",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-06-18/construction-survey/1791181373954-img-muuv55he-zqtn4-IMG_20170618_125729.jpg",
+          "alt": "Sports Stadium, Kashipur",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2017-06-18/construction-survey/1791181375471-img-muuv56nj-l7d9s-IMG_20170618_125733.jpg",
+          "alt": "Sports Stadium, Kashipur",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Sports Stadium, Kashipur",
+      "date": "2017-06-18",
+      "location": "Kashipur, Uttarakhand",
+      "shortDescription": "Survey of Sports Stadium",
+      "description": "Detailed topographical survey of Sports Stadium, Kashipur, Uttarakhand",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muuv4pj6-mvqo5",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-07-28/construction-survey/1791181376726-img-muuv57me-o3wke-IMG_20170728_185617.jpg",
+          "alt": "Govt. Nursing College",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2017-07-28/construction-survey/1791181377429-img-muuv585x-0zl1q-IMG_20170728_185622.jpg",
+          "alt": "Govt. Nursing College",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Govt. Nursing College",
+      "date": "2017-07-28",
+      "location": "Champawat, Uttarakhand",
+      "shortDescription": "Building Layout",
+      "description": "Layout/Stakeout of Govt. Nursing College Buildings",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
