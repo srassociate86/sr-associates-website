@@ -394,6 +394,33 @@
       "description": "",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-muv1500w-t2i59",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-05/dgps-gnss-rtk-survey/1791191456086-img-muv158wm-riwi8-1000232749.jpg",
+          "alt": "Digital Boundary Survey",
+          "managed": true,
+          "highlightUntil": "2026-11-03"
+        },
+        {
+          "path": "assets/project-photos/2026-10-05/dgps-gnss-rtk-survey/1791191458973-img-muv15b4t-6obbm-1000232751.jpg",
+          "alt": "Digital Boundary Survey",
+          "managed": true,
+          "highlightUntil": "2026-11-03"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Digital Boundary Survey",
+      "date": "2026-10-05",
+      "location": "Bharat Vihar, Rishikesh",
+      "shortDescription": "Digital Boundary Survey",
+      "description": "",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-05"
     }
   ],
   "slides": []
