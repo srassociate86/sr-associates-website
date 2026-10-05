@@ -421,6 +421,159 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-05"
+    },
+    {
+      "id": "p-muv67z3q-qqirp",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-12-21/construction-survey/1791202725118-img-muv7us5a-1xl81-IMG_20171221_110917.jpg",
+          "alt": "Survey of District Jail",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Survey of District Jail",
+      "date": "2017-12-21",
+      "location": "Pithoragarh, Uttarakhand",
+      "shortDescription": "Topographical Survey of District Jail at Pithoragarh",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muv6z22e-5156g",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-03-08/construction-survey/1791202726432-img-muv7ut5s-d7heo-IMG_20180308_153310.jpg",
+          "alt": "Govt. Polytechnic at Jakholi",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-03-08/construction-survey/1791202727552-img-muv7uu0w-elssl-IMG_20180308_143309.jpg",
+          "alt": "Govt. Polytechnic at Jakholi",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Govt. Polytechnic at Jakholi",
+      "date": "2018-03-08",
+      "location": "Jakholi (Rudraprayag), Uttarakhand",
+      "shortDescription": "Detailed Contour Survey",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muv734ry-5nmjg",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-03-10/construction-survey/1791202728869-img-muv7uv1h-txoih-IMG_20180310_130705.jpg",
+          "alt": "Survey for Kisaan Bhawan",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-03-10/construction-survey/1791202731106-img-muv7uwrm-ho5h0-IMG_20180310_115319.jpg",
+          "alt": "Survey for Kisaan Bhawan",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Survey for Kisaan Bhawan",
+      "date": "2018-03-10",
+      "location": "Pawki Devi Mandir",
+      "shortDescription": "Initial Survey for Kisaan Bhawan",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muv7asae-bsxpi",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-04-16/dgps-gnss-rtk-survey/1791202732238-img-muv7uxn2-rry53-IMG_20180416_130442.jpg",
+          "alt": "Sports Stadium Naikhri",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Sports Stadium Naikhri",
+      "date": "2018-04-16",
+      "location": "Naikhri, Chandrabadani",
+      "shortDescription": "Topographical Survey for Sports Stadium at Naikhri (Hindolakhal), Chandrabadani",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muv7izk6-8g0gd",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-05-05/construction-survey/1791202733733-img-muv7uysl-67ffx-IMG_20180505_114320.jpg",
+          "alt": "Land Survey of SSB Residential",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Land Survey of SSB Residential",
+      "date": "2018-05-05",
+      "location": "Pauri Garhwal, Uttarakhand",
+      "shortDescription": "Digital Topographical Survey",
+      "description": "Digital Topographical Survey for SSB Residential Quarters, Pauri.",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muv7ozod-sgy8n",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-05-22/construction-survey/1791202735058-img-muv7uzte-ojmr2-IMG_20180522_144021.jpg",
+          "alt": "Survey for Animal Husbandry Centre, Pipalkoti",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-05-22/construction-survey/1791202736016-img-muv7v0k0-abdmt-IMG_20180522_134343.jpg",
+          "alt": "Survey for Animal Husbandry Centre, Pipalkoti",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Survey for Animal Husbandry Centre, Pipalkoti",
+      "date": "2018-05-22",
+      "location": "Pipalkoti, Badrinath Highway, Uttarakhand",
+      "shortDescription": "Topographical Land Survey of Pashupalan Kendra",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muv7uike-kahsk",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-06-05/construction-survey/1791202737573-img-muv7v1r9-wd0be-IMG_20180605_183933134.jpg",
+          "alt": "Land Survey of Sewage Treatment Plant",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-06-05/construction-survey/1791202738607-img-muv7v2jz-i4gow-IMG_20180605_183803.jpg",
+          "alt": "Land Survey of Sewage Treatment Plant",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Land Survey of Sewage Treatment Plant",
+      "date": "2018-06-05",
+      "location": "Lakkadghat, Rishikesh",
+      "shortDescription": "Detail topographical Survey",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
