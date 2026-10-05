@@ -699,6 +699,84 @@
       "description": "",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-muv8utul-2aymh",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-12-07/construction-survey/1791205160210-img-muv9az2q-7yyx3-IMG_20181207_093619.jpg",
+          "alt": "Survey for Bhed Palan",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-12-07/construction-survey/1791205161628-img-muv9b064-qqh7u-IMG_20181207_085903.jpg",
+          "alt": "Survey for Bhed Palan",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-12-07/construction-survey/1791205163062-img-muv9b19y-yctr3-IMG_20181207_085901.jpg",
+          "alt": "Survey for Bhed Palan",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Survey for Bhed Palan",
+      "date": "2018-12-07",
+      "location": "Gwaldam, Uttarakhand",
+      "shortDescription": "Contour Survey of Bhed Palan",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muv9as79-5uke0",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-01-18/construction-survey/1791205164277-img-muv9b27p-i2a5d-IMG_20190119_124637.jpg",
+          "alt": "Survey of Water Supply Scheme",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-01-18/construction-survey/1791205165640-img-muv9b39k-k9e31-IMG_20190118_143019.jpg",
+          "alt": "Survey of Water Supply Scheme",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-01-18/construction-survey/1791205167224-img-muv9b4hk-6ami3-IMG_20190118_114316.jpg",
+          "alt": "Survey of Water Supply Scheme",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-01-18/construction-survey/1791205168441-img-muv9b5fd-o9r04-IMG_20190117_172455.jpg",
+          "alt": "Survey of Water Supply Scheme",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-01-18/construction-survey/1791205169664-img-muv9b6dc-dsbh9-IMG_20190117_172450.jpg",
+          "alt": "Survey of Water Supply Scheme",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-01-18/construction-survey/1791205170343-img-muv9b6w7-bn2lo-IMG_20190117_172432.jpg",
+          "alt": "Survey of Water Supply Scheme",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-01-18/construction-survey/1791205171659-img-muv9b7wr-k7764-IMG_20190117_131456.jpg",
+          "alt": "Survey of Water Supply Scheme",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Survey of Water Supply Scheme",
+      "date": "2019-01-18",
+      "location": "Gairsain, Uttarakhand",
+      "shortDescription": "Existing & Proposed Water Supply Scheme Survey including Under Construction Vidhan Sabha",
+      "description": "Water Supply Scheme Survey covering detailed topographical and alignment surveys for existing and proposed water supply networks, including rising mains and distribution systems. The survey also includes contouring and site-level surveys for proposed structures such as intake wells, water treatment plants, storage/service reservoirs, and other related infrastructure.",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
