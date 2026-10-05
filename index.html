@@ -650,7 +650,7 @@
     {id:'completed-topographical',title:'TOPOGRAPHICAL SURVEY',category:'FIELD MEASUREMENT & MAPPING',photo:'assets/survey-hero.jpg',kind:'fallback'}
   ];
   let slides=[],current=0,timer=null;
-  function projectLink(p){return p.kind==='project'?'projects.html#project-'+encodeURIComponent(p.id||''):'projects.html'}
+  function projectLink(p){return 'projects.html'}
   function makeSlides(items){
     clearInterval(timer);slideshow.innerHTML='';dots.innerHTML='';
     slides=(items||[]).filter(p=>p&&p.photo).map((p,i)=>{
@@ -729,7 +729,7 @@
     state.dots=[...dotsEl.children];prev.hidden=items.length<2;next.hidden=items.length<2;dotsEl.hidden=items.length<2;
     state.updateMeta=()=>{const item=state.items[state.current];if(item)metaEl.textContent=item.title+(item.kind==='sample'?' • DRAWING SAMPLE':'')};state.updateMeta();
     prev.addEventListener('click',e=>{e.stopPropagation();show(state,state.current-1,true)});next.addEventListener('click',e=>{e.stopPropagation();show(state,state.current+1,true)});
-    card.addEventListener('click',()=>{const item=state.items[state.current];if(item?.kind==='project'&&item.id)window.location.href='projects.html#project-'+encodeURIComponent(item.id);else if(item?.kind!=='sample')window.location.href='projects.html'});
+    card.addEventListener('click',()=>{window.location.href='projects.html'});
     card.addEventListener('mouseenter',()=>clearInterval(state.timer));card.addEventListener('mouseleave',()=>start(state));if(items.length>1)start(state);return state;
   }
   function show(state,index,manual){if(!state.items.length)return;state.current=(index+state.items.length)%state.items.length;state.slides.forEach((s,i)=>s.classList.toggle('active',i===state.current));state.dots.forEach((d,i)=>d.classList.toggle('active',i===state.current));state.updateMeta();if(manual)start(state)}
