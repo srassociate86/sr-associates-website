@@ -622,6 +622,83 @@
       "description": "",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-muv8jyp1-tc4ax",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-09-18/construction-survey/1791204228959-img-muv8r0in-jaeoh-IMG_20180918_131928_1537257650057.jpg",
+          "alt": "Topographical Survey of Sports Stadium",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-09-18/construction-survey/1791204230350-img-muv8r1la-99hvt-IMG_20180918_174129.jpg",
+          "alt": "Topographical Survey of Sports Stadium",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-09-18/construction-survey/1791204231247-img-muv8r2a7-wo97i-IMG_20180918_141440.jpg",
+          "alt": "Topographical Survey of Sports Stadium",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Topographical Survey of Sports Stadium",
+      "date": "2018-09-18",
+      "location": "Bageshwar, Uttarakhand",
+      "shortDescription": "Contour Survey for Stadium at Bageshwar",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muv8o6cd-cifja",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-09-19/construction-survey/1791204232789-img-muv8r3h1-w6kc4-IMG_20180919_115921.jpg",
+          "alt": "Bhed Palan Survey at Khaliyan Bangar",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-09-19/construction-survey/1791204234174-img-muv8r4ji-2xw5y-IMG_20180919_115912.jpg",
+          "alt": "Bhed Palan Survey at Khaliyan Bangar",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Bhed Palan Survey at Khaliyan Bangar",
+      "date": "2018-09-19",
+      "location": "Khaliyan Bangar, Jakholi",
+      "shortDescription": "Detail Topographical Survey for Bhed Palan at Khaliyan Bangar",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muv8qsx9-favx0",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-10-11/construction-survey/1791204235534-img-muv8r5la-8hrdg-IMG_20181011_115716.jpg",
+          "alt": "Land Survey of Gurudwara at Nagrashu",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-10-11/construction-survey/1791204236952-img-muv8r6oo-twc5s-IMG_20181011_115710.jpg",
+          "alt": "Land Survey of Gurudwara at Nagrashu",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Land Survey of Gurudwara at Nagrashu",
+      "date": "2018-10-11",
+      "location": "Nagrashu, Karnprayag",
+      "shortDescription": "Contour Survey of Campus of Gurudwara at Nagrashu",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
