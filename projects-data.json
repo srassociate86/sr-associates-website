@@ -574,6 +574,54 @@
       "description": "",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-muv84t4m-8leeh",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-08-18/dgps-gnss-rtk-survey/1791203585636-img-muv8d84k-2qk0c-IMG_20180818_141805.jpg",
+          "alt": "Road Survey at Jakholi",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-08-18/dgps-gnss-rtk-survey/1791203587280-img-muv8d9e8-nxsyg-IMG_20180818_131434.jpg",
+          "alt": "Road Survey at Jakholi",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Road Survey at Jakholi",
+      "date": "2018-08-18",
+      "location": "Jakholi, Rudraprayag",
+      "shortDescription": "Road Survey for Govt. Polytechnic at Jakholi",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muv8cx1y-eou6t",
+      "photos": [
+        {
+          "path": "assets/project-photos/2018-09-01/dgps-gnss-rtk-survey/1791203588567-img-muv8dadz-x68gb-IMG_20180901_170538.jpg",
+          "alt": "Topographical Surveyof Govt. Inter College",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2018-09-01/dgps-gnss-rtk-survey/1791203589300-img-muv8dayc-d84rc-IMG_20180901_170534.jpg",
+          "alt": "Topographical Surveyof Govt. Inter College",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Topographical Surveyof Govt. Inter College",
+      "date": "2018-09-01",
+      "location": "Joshimatth, Uttarakhand",
+      "shortDescription": "Detailed contour survey of Govt. Inter College, Joshimatth, Uttarakhand",
+      "description": "",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
