@@ -255,6 +255,97 @@
       "description": "Layout/Stakeout of Govt. Nursing College Buildings",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-muuv8mbd-lilrm",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-07-30/construction-survey/1791182644085-img-muuvwdit-iry1d-IMG_20170730_110905.jpg",
+          "alt": "DIET, Lohaghat",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2017-07-30/construction-survey/1791182645317-img-muuvweh1-gxkgr-IMG_20170730_110918.jpg",
+          "alt": "DIET, Lohaghat",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "DIET, Lohaghat",
+      "date": "2017-07-30",
+      "location": "Lohaghat, Champawat",
+      "shortDescription": "Topographical Land Survey",
+      "description": "detailed contour map of DIET Campus at Lohaghat (Champawat), Uttarakhand",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muuvh7p6-yfsha",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-08-09/construction-survey/1791182646796-img-muuvwfm4-ak5mz-IMG_20170809_151749.jpg",
+          "alt": "River Bank Suvey",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2017-08-09/construction-survey/1791182648289-img-muuvwgrl-hpix0-IMG_20170809_151825.jpg",
+          "alt": "River Bank Suvey",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "River Bank Suvey",
+      "date": "2017-08-09",
+      "location": "Dugadda (Kotdwar), Lansdowne",
+      "shortDescription": "Topographical Survey",
+      "description": "Detailed contour map of land at Dugadda (Kotdwar), Lansdowne",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muuvrf0i-p15q7",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-08-16/construction-survey/1791182650902-img-muuvwis6-p03ez-IMG_20170816_134048.jpg",
+          "alt": "Degree College, Doshapani",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2017-08-16/construction-survey/1791182652036-img-muuvwjno-vy5e8-IMG_20170816_150817.jpg",
+          "alt": "Degree College, Doshapani",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Degree College, Doshapani",
+      "date": "2017-08-16",
+      "location": "Bhowali - Mukteshwar Road, Doshapani",
+      "shortDescription": "Topographical Survey",
+      "description": "contour survey of Govt. Degree College",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-muuvw1lu-0yp9x",
+      "photos": [
+        {
+          "path": "assets/project-photos/2017-09-15/construction-survey/1791182653459-img-muuvwkr7-r8l3a-IMG_20170915_141739.jpg",
+          "alt": "Govt. ITI, Landhora",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Govt. ITI, Landhora",
+      "date": "2017-09-15",
+      "location": "Landhora, Roorkie",
+      "shortDescription": "Initial Survey of ITI",
+      "description": "detailed contour map for Govt. ITI, Landhora",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": []
