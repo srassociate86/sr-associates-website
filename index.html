@@ -711,16 +711,52 @@
   const states=[];
   function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
   function getItems(data,category){
-    const allowed=categoryMap[category]||[category],result=[];
-    (data.projects||[]).filter(p=>p&&p.visible!==false&&allowed.includes(p.category)).forEach(p=>(p.photos||[]).forEach(ph=>{if(ph?.path)result.push({path:ph.path,title:p.title||category,id:p.id||'',kind:'project'})}));
-    (data.slides||[]).filter(s=>{
+  const allowed=categoryMap[category]||[category],result=[];
+
+  (data.projects||[])
+    .filter(p=>p&&p.visible!==false&&allowed.includes(p.category))
+    .forEach(p=>(p.photos||[]).forEach(ph=>{
+      if(ph?.path){
+        result.push({
+          path:ph.path,
+          title:p.title||category,
+          id:p.id||'',
+          kind:'project'
+        });
+      }
+    }));
+
+  (data.slides||[])
+    .filter(s=>{
       if(!s?.path||!allowed.includes(s.category))return false;
-      const startDate=new Date((s.addedOn||s.date||'')+'T00:00:00'),end=new Date(startDate);end.setDate(end.getDate()+Number(s.days||30));
+      const startDate=new Date((s.addedOn||s.date||'')+'T00:00:00');
+      const end=new Date(startDate);
+      end.setDate(end.getDate()+Number(s.days||30));
       return Number.isNaN(startDate.getTime())||new Date()<end;
-    }).forEach(s=>result.push({path:s.path,title:s.title||'Field Work',id:'',kind:'slideshow'}));
-    shuffle((data.drawings||[]).filter(d=>d&&d.visible!==false&&d.image)).slice(0,2).forEach(d=>result.push({path:d.image,title:d.title||'Survey Drawing Sample',id:'',kind:'sample'}));
-    return result;
-  }
+    })
+    .forEach(s=>result.push({
+      path:s.path,
+      title:s.title||'Field Work',
+      id:'',
+      kind:'slideshow'
+    }));
+
+  /* Randomly select up to 8 images for each category card */
+  const selectedProjects=shuffle(result).slice(0,8);
+
+  /* Keep the existing drawing-sample behaviour */
+  shuffle((data.drawings||[])
+    .filter(d=>d&&d.visible!==false&&d.image))
+    .slice(0,2)
+    .forEach(d=>selectedProjects.push({
+      path:d.image,
+      title:d.title||'Survey Drawing Sample',
+      id:'',
+      kind:'sample'
+    }));
+
+  return selectedProjects;
+}
   function makeCard(card,items){
     const category=card.dataset.category,slidesEl=card.querySelector('.category-project-slides'),dotsEl=card.querySelector('.category-project-dots'),metaEl=card.querySelector('.category-project-meta'),prev=card.querySelector('.category-project-arrow.prev'),next=card.querySelector('.category-project-arrow.next');
     const state={card,items,current:0,timer:null,slides:[],dots:[]};states.push(state);slidesEl.innerHTML='';dotsEl.innerHTML='';
