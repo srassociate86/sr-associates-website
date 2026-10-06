@@ -463,7 +463,7 @@ function renderGalleryBatch(){
       '<img src="'+esc(x.path)+'" alt="'+esc(x.alt)+'" loading="lazy" decoding="async">'+
       '<div class="photo-card-caption">'+
         '<h3>'+esc(x.title)+'</h3>'+
-        '<p>'+esc(x.shortDescription)+'</p>'+
+        '<p>'+esc(x.location)+'</p>'+
         (x.date?'<div class="photo-date">'+esc(dateLabel(x.date))+'</div>':'')+
       '</div>'+
     '</article>';
