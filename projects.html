@@ -213,6 +213,9 @@
 <footer><span>© 2026 SR Associates. All Rights Reserved.</span><span>Accurate Measurement. Solid Foundation.</span><span>landsurveyor.co.in</span><a href="project-manager.html" class="admin-login-link">Admin Login</a></footer>
 <script>
 const menuToggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav');if(menuToggle)menuToggle.addEventListener('click',()=>nav.classList.toggle('open'));let allProjects=[],allSlides=[],galleryItems=[],currentPhotoIndex=0,currentSlide=0,slideTimer=null,currentFilter='ALL';
+const GALLERY_BATCH_SIZE=12;
+let galleryRenderedCount=0;
+let galleryObserver=null;
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 function projectDate(p){return p.date||p.year||''}
 function dateLabel(v){if(!v)return 'DATE NOT SET';const d=new Date(v.length===4?v+'-01-01':v+'T00:00:00');return d.toLocaleDateString('en-IN',{day:'2-digit',month:'long',year:'numeric'}).toUpperCase()}
@@ -447,18 +450,85 @@ function buildGalleryItems(){
   projects.forEach(p=>(p.photos||[]).forEach(ph=>items.push({path:ph.path,alt:ph.alt||p.title,title:p.title||'Survey Work',shortDescription:p.shortDescription||'',description:p.description||'',location:p.location||'',date:projectDate(p),projectId:p.id||''})));
   return items
 }
+function renderGalleryBatch(){
+  const box=document.getElementById('projectsContainer');
+  if(!box||galleryRenderedCount>=galleryItems.length)return;
+
+  const start=galleryRenderedCount;
+  const end=Math.min(start+GALLERY_BATCH_SIZE,galleryItems.length);
+
+  const html=galleryItems.slice(start,end).map((x,i)=>{
+    const index=start+i;
+    return '<article class="photo-card" onclick="openPhoto('+index+')">'+
+      '<img src="'+esc(x.path)+'" alt="'+esc(x.alt)+'" loading="lazy" decoding="async">'+
+      '<div class="photo-card-caption">'+
+        '<h3>'+esc(x.title)+'</h3>'+
+        '<p>'+esc(x.shortDescription)+'</p>'+
+        (x.date?'<div class="photo-date">'+esc(dateLabel(x.date))+'</div>':'')+
+      '</div>'+
+    '</article>';
+  }).join('');
+
+  const sentinel=document.getElementById('galleryLoadSentinel');
+  if(sentinel)sentinel.remove();
+
+  box.insertAdjacentHTML('beforeend',html);
+  galleryRenderedCount=end;
+
+  if(galleryRenderedCount<galleryItems.length){
+    box.insertAdjacentHTML('beforeend','<div id="galleryLoadSentinel" aria-hidden="true"></div>');
+    const newSentinel=document.getElementById('galleryLoadSentinel');
+    if(galleryObserver&&newSentinel)galleryObserver.observe(newSentinel);
+  }
+}
+
 function renderProjects(){
   const box=document.getElementById('projectsContainer');
   const status=document.getElementById('projectFilterStatus');
+
   galleryItems=buildGalleryItems();
+
   if(status){
-    const labels={'ALL':'All Projects','DGPS / GNSS / RTK SURVEY':'DGPS / GNSS / RTK','CONSTRUCTION SURVEY':'Total Station / Construction','DRONE SURVEY & MAPPING':'Drone'};
-    status.textContent=currentFilter==='ALL'?'Showing: All Projects':'Filter applied: '+(labels[currentFilter]||currentFilter);
+    const labels={
+      'ALL':'All Projects',
+      'DGPS / GNSS / RTK SURVEY':'DGPS / GNSS / RTK',
+      'CONSTRUCTION SURVEY':'Total Station / Construction',
+      'DRONE SURVEY & MAPPING':'Drone'
+    };
+
+    status.textContent=currentFilter==='ALL'
+      ?'Showing: All Projects'
+      :'Filter applied: '+(labels[currentFilter]||currentFilter);
+
     status.classList.toggle('filtered',currentFilter!=='ALL');
   }
-  if(!galleryItems.length){box.innerHTML='<div class="empty-projects">No projects have been added yet.</div>';return}
-  box.innerHTML=galleryItems.map((x,i)=>'<article class="photo-card" onclick="openPhoto('+i+')"><img src="'+esc(x.path)+'" alt="'+esc(x.alt)+'"><div class="photo-card-caption"><h3>'+esc(x.title)+'</h3><p>'+esc(x.shortDescription)+'</p>'+(x.date?'<div class="photo-date">'+esc(dateLabel(x.date))+'</div>':'')+'</div></article>').join('')
-}const filterToggle=document.getElementById('projectFilterToggle'),filterMenu=document.getElementById('projectFilterMenu');if(filterToggle&&filterMenu){filterToggle.addEventListener('click',e=>{e.stopPropagation();const open=filterMenu.classList.toggle('open');filterToggle.setAttribute('aria-expanded',open?'true':'false')});document.addEventListener('click',e=>{if(!e.target.closest('#projectFilter')){filterMenu.classList.remove('open');filterToggle.setAttribute('aria-expanded','false')}});document.querySelectorAll('#projectFilterMenu button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('#projectFilterMenu button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.dataset.filter;renderProjects();filterMenu.classList.remove('open');filterToggle.setAttribute('aria-expanded','false')}))}
+
+  if(galleryObserver){
+    galleryObserver.disconnect();
+    galleryObserver=null;
+  }
+
+  box.innerHTML='';
+  galleryRenderedCount=0;
+
+  if(!galleryItems.length){
+    box.innerHTML='<div class="empty-projects">No projects have been added yet.</div>';
+    return;
+  }
+
+  galleryObserver=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){
+      renderGalleryBatch();
+    }
+  },{
+    root:null,
+    rootMargin:'600px 0px',
+    threshold:0
+  });
+
+  renderGalleryBatch();
+}
+  const filterToggle=document.getElementById('projectFilterToggle'),filterMenu=document.getElementById('projectFilterMenu');if(filterToggle&&filterMenu){filterToggle.addEventListener('click',e=>{e.stopPropagation();const open=filterMenu.classList.toggle('open');filterToggle.setAttribute('aria-expanded',open?'true':'false')});document.addEventListener('click',e=>{if(!e.target.closest('#projectFilter')){filterMenu.classList.remove('open');filterToggle.setAttribute('aria-expanded','false')}});document.querySelectorAll('#projectFilterMenu button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('#projectFilterMenu button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.dataset.filter;renderProjects();filterMenu.classList.remove('open');filterToggle.setAttribute('aria-expanded','false')}))}
 async function loadProjects(){try{const r=await fetch('projects-data.json?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const data=await r.json();allProjects=data.projects||[];allSlides=data.slides||[];renderHighlights();renderProjects();openProjectFromHash()}catch(e){console.error(e);document.getElementById('projectsContainer').innerHTML='<div class="empty-projects">Project data could not be loaded. Please open this page through your website.</div>'}}
 function openProjectFromHash(){const m=window.location.hash.match(/^#project-(.+)$/);if(!m)return;const id=decodeURIComponent(m[1]);const project=allProjects.find(p=>p.id===id);if(!project)return;const idx=galleryItems.findIndex(x=>x.projectId===id);if(idx>=0)openPhoto(idx)}
 window.addEventListener('hashchange',openProjectFromHash);
