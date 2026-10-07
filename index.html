@@ -666,34 +666,76 @@
   slideshow.style.cursor='pointer';slideshow.addEventListener('click',e=>{if(e.target.closest('.hero-project-arrow,.hero-project-dot'))return;const p=slides[current]?.data;if(p)window.location.href=projectLink(p)});
   slideshow.addEventListener('mouseenter',()=>clearInterval(timer));slideshow.addEventListener('mouseleave',start);
   async function loadHighlights(){
-    try{
-      const r=await fetch('projects-data.json?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('Project data unavailable');const data=await r.json();const items=[];
-      (data.projects||[]).forEach(p=>{
-  if(!p||p.visible===false||p.highlight!==true)return;
+  try{
+    const r=await fetch('projects-data.json?v='+Date.now(),{cache:'no-store'});
+    if(!r.ok)throw new Error('Project data unavailable');
 
-  const start=p.highlightStarted||p.date||'';
-  if(start){
-    const startDate=new Date((/^\d{4}$/.test(start)?start+'-01-01':start)+'T00:00:00');
-    const end=new Date(startDate);
-    end.setDate(end.getDate()+Number(p.highlightDays||30));
+    const data=await r.json();
+    const groups=[];
 
-    if(Number.isNaN(startDate.getTime())||new Date()>=end)return;
-  }
+    (data.projects||[]).forEach(p=>{
+      if(!p||p.visible===false||p.highlight!==true)return;
 
-  (p.photos||[]).forEach(ph=>{
-    if(ph?.path)items.push({
-      id:p.id,
-      title:p.title||'Survey Work',
-      category:p.category||'',
-      photo:ph.path,
-      kind:'project'
+      const start=p.highlightStarted||p.date||'';
+
+      if(start){
+        const startDate=new Date((/^\d{4}$/.test(start)?start+'-01-01':start)+'T00:00:00');
+        const end=new Date(startDate);
+        end.setDate(end.getDate()+Number(p.highlightDays||30));
+
+        if(Number.isNaN(startDate.getTime())||new Date()>=end)return;
+      }
+
+      const projectPhotos=(p.photos||[])
+        .filter(ph=>ph?.path)
+        .map(ph=>({
+          id:p.id,
+          title:p.title||'Survey Work',
+          category:p.category||'',
+          photo:ph.path,
+          kind:'project'
+        }));
+
+      if(projectPhotos.length){
+        groups.push({
+          sortDate:start||p.date||'',
+          items:projectPhotos
+        });
+      }
     });
-  });
-});
-      (data.slides||[]).forEach(s=>{if(!s?.path)return;const startDate=new Date((s.addedOn||s.date||'')+'T00:00:00');const end=new Date(startDate);end.setDate(end.getDate()+Number(s.days||30));if(Number.isNaN(startDate.getTime())||new Date()<end)items.push({id:s.id,title:s.title||'Field Work',category:s.category||'',photo:s.path,kind:'slideshow'})});
-      makeSlides(items.length?items:fallback);
-    }catch(e){console.error('Could not load recent highlights:',e);makeSlides(fallback)}
+
+    (data.slides||[]).forEach(s=>{
+      if(!s?.path)return;
+
+      const sortDate=s.addedOn||s.date||'';
+      const startDate=new Date(sortDate+'T00:00:00');
+      const end=new Date(startDate);
+      end.setDate(end.getDate()+Number(s.days||30));
+
+      if(Number.isNaN(startDate.getTime())||new Date()<end){
+        groups.push({
+          sortDate,
+          items:[{
+            id:s.id,
+            title:s.title||'Field Work',
+            category:s.category||'',
+            photo:s.path,
+            kind:'slideshow'
+          }]
+        });
+      }
+    });
+
+    groups.sort((a,b)=>String(b.sortDate).localeCompare(String(a.sortDate)));
+
+    const items=groups.flatMap(g=>g.items);
+
+    makeSlides(items.length?items:fallback);
+  }catch(e){
+    console.error('Could not load recent highlights:',e);
+    makeSlides(fallback);
   }
+}
   loadHighlights();
 })();
 </script>
