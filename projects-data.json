@@ -894,6 +894,81 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-07"
+    },
+    {
+      "id": "p-muzj3ie4-mxari",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-08/drone-survey-mapping/1791463481680-img-muzj3p74-jko6q-b2de14b2-117b-40fc-ad5a-359fbcc192c0.jpg",
+          "alt": "Drone survey at ptc road Narendranagar",
+          "managed": true,
+          "highlightUntil": "2026-11-06"
+        },
+        {
+          "path": "assets/project-photos/2026-10-08/drone-survey-mapping/1791463483700-img-muzj3qr8-nk3bj-IMG_5891.jpg",
+          "alt": "Drone survey at ptc road Narendranagar",
+          "managed": true,
+          "highlightUntil": "2026-11-06"
+        },
+        {
+          "path": "assets/project-photos/2026-10-08/drone-survey-mapping/1791463486001-img-muzj3sj5-ee5bc-IMG_5892.jpg",
+          "alt": "Drone survey at ptc road Narendranagar",
+          "managed": true,
+          "highlightUntil": "2026-11-06"
+        },
+        {
+          "path": "assets/project-photos/2026-10-08/drone-survey-mapping/1791463487888-img-muzj3tzk-grfup-IMG_5888.jpg",
+          "alt": "Drone survey at ptc road Narendranagar",
+          "managed": true,
+          "highlightUntil": "2026-11-06"
+        },
+        {
+          "path": "assets/project-photos/2026-10-08/drone-survey-mapping/1791463490383-img-muzj3vwv-it8m3-IMG_5886.jpg",
+          "alt": "Drone survey at ptc road Narendranagar",
+          "managed": true,
+          "highlightUntil": "2026-11-06"
+        },
+        {
+          "path": "assets/project-photos/2026-10-08/drone-survey-mapping/1791463496234-img-muzj40fe-ywj3i-IMG_5882.jpg",
+          "alt": "Drone survey at ptc road Narendranagar",
+          "managed": true,
+          "highlightUntil": "2026-11-06"
+        },
+        {
+          "path": "assets/project-photos/2026-10-08/drone-survey-mapping/1791463498954-img-muzj42iy-qwjru-IMG_5883.jpg",
+          "alt": "Drone survey at ptc road Narendranagar",
+          "managed": true,
+          "highlightUntil": "2026-11-06"
+        },
+        {
+          "path": "assets/project-photos/2026-10-08/drone-survey-mapping/1791463501034-img-muzj444q-v19ox-IMG_5887.jpg",
+          "alt": "Drone survey at ptc road Narendranagar",
+          "managed": true,
+          "highlightUntil": "2026-11-06"
+        },
+        {
+          "path": "assets/project-photos/2026-10-08/drone-survey-mapping/1791463503136-img-muzj45r4-a72cg-IMG_5890.jpg",
+          "alt": "Drone survey at ptc road Narendranagar",
+          "managed": true,
+          "highlightUntil": "2026-11-06"
+        },
+        {
+          "path": "assets/project-photos/2026-10-08/drone-survey-mapping/1791463505834-img-muzj47u2-381uh-IMG_5881.jpg",
+          "alt": "Drone survey at ptc road Narendranagar",
+          "managed": true,
+          "highlightUntil": "2026-11-06"
+        }
+      ],
+      "type": "project",
+      "category": "DRONE SURVEY & MAPPING",
+      "title": "Drone survey at ptc road Narendranagar",
+      "date": "2026-10-08",
+      "location": "Narendranagar Uttarakhand",
+      "shortDescription": "",
+      "description": "Drone survey done in Narendranagar PTC Road Uttarakhand",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-08"
     }
   ],
   "slides": []
