@@ -969,6 +969,87 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-08"
+    },
+    {
+      "id": "p-mv1tp09a-h0wvx",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602212672-img-mv1tp6ps-n96mb-IMG_5940.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        },
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602213935-img-mv1tp7ow-7ziyx-IMG_5938.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        },
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602215702-img-mv1tp91y-6cm3k-IMG_5937.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        },
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602218097-img-mv1tpawh-4ohbp-IMG_5935.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        },
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602219069-img-mv1tpbnh-wnhp2-IMG_5929.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        },
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602220228-img-mv1tpcjo-qkawg-IMG_5930.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        },
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602221447-img-mv1tpdhj-r38om-IMG_5928.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        },
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602222581-img-mv1tped1-yyv1t-IMG_5927.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        },
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602224341-img-mv1tpfpx-urjyz-IMG_5925.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        },
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602226423-img-mv1tphbr-e3470-IMG_5926.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        },
+        {
+          "path": "assets/project-photos/2026-10-09/dgps-gnss-rtk-survey/1791602227652-img-mv1tpi9w-bk3h3-IMG_5931.jpg",
+          "alt": "Contour survey gaja khadi road chamba uttrakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-07"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Contour survey gaja khadi road chamba uttrakhand",
+      "date": "2026-10-09",
+      "location": "Chamba gaja khadi road",
+      "shortDescription": "",
+      "description": "Contour survey by dgps drone in gaja khadi road chamba uttrakhand",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-10"
     }
   ],
   "slides": [
