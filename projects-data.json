@@ -1230,6 +1230,72 @@
       "description": "Digital Layout using total station for Coronation Hospital at Dehradun",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-mvdeb35y-bai50",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-07-31/dgps-gnss-rtk-survey/1792302755915-img-mvdes9cb-vkn85-20190731_171642.jpg",
+          "alt": "Govt. Inter College Survey",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-07-31/dgps-gnss-rtk-survey/1792302758204-img-mvdesb3w-rxwao-20190731_171653.jpg",
+          "alt": "Govt. Inter College Survey",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Govt. Inter College Survey",
+      "date": "2019-07-31",
+      "location": "Sakeniya, Gadarpur",
+      "shortDescription": "",
+      "description": "Detailed Contour map of Campus of Govt. Inter College, Sakeniya, Gadarpur",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-mvdefmml-glynl",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-08-03/construction-survey/1792302759200-img-mvdesbvk-dwxkr-20190801_171706.jpg",
+          "alt": "Digital Survey of CCR Building",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-08-03/construction-survey/1792302760573-img-mvdescxp-77mp4-20190801_171728.jpg",
+          "alt": "Digital Survey of CCR Building",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-08-03/construction-survey/1792302761668-img-mvdesds4-nqa98-20190803_113724.jpg",
+          "alt": "Digital Survey of CCR Building",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Digital Survey of CCR Building",
+      "date": "2019-08-03",
+      "location": "Haridwar, Uttarakhand",
+      "shortDescription": "",
+      "description": "Detailed Survey of Campus of CCR, Haridwar",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-mvdes0rf-06cvd",
+      "photos": [],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Digital Survey of RTO Campus",
+      "date": "2019-08-13",
+      "location": "Rajpur Road, Dehradun",
+      "shortDescription": "",
+      "description": "Detail Survey of RTO Campus at Rajpur Road, Dehradun",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": [
