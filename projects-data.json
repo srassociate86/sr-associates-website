@@ -1412,6 +1412,117 @@
       "description": "Digital Topographical Land survey of Private Hotel at Nainital",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-mvdfthlw-ipvi3",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-12-05/construction-survey/1792304977549-img-mvdg3vkd-phq9i-IMG_20191206_121113.jpg",
+          "alt": "Digital Survey of Degree College",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-12-05/construction-survey/1792304978907-img-mvdg3wm3-uiiiv-IMG_20191206_114203.jpg",
+          "alt": "Digital Survey of Degree College",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Digital Survey of Degree College",
+      "date": "2019-12-05",
+      "location": "Rishikesh, Uttarakhand",
+      "shortDescription": "",
+      "description": "Detailed Survey of complete campus of Govt. Degree College, Rishikesh",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-mvdfwq8k-kezha",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-12-07/construction-survey/1792304979975-img-mvdg3xfr-awkhz-20191207_172358.jpg",
+          "alt": "Survey of Govt. Polytechnic",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-12-07/construction-survey/1792304981151-img-mvdg3ycf-6u8b9-20191207_172322.jpg",
+          "alt": "Survey of Govt. Polytechnic",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-12-07/construction-survey/1792304982168-img-mvdg3z4o-pnujp-20191207_134838.jpg",
+          "alt": "Survey of Govt. Polytechnic",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-12-07/construction-survey/1792304983075-img-mvdg3ztv-c2sg7-20191207_125629.jpg",
+          "alt": "Survey of Govt. Polytechnic",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Survey of Govt. Polytechnic",
+      "date": "2019-12-07",
+      "location": "Sidcul, Haridwar",
+      "shortDescription": "",
+      "description": "Detail Survey of Govt. Polytechnic, Sidcul Haridwar",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-mvdfzo9w-ikcxd",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-12-10/dgps-gnss-rtk-survey/1792304984628-img-mvdg4110-31670-IMG_20191210_135026.jpg",
+          "alt": "Contour Survey of CMO Complex",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-12-10/dgps-gnss-rtk-survey/1792304986137-img-mvdg426x-wwlfq-IMG_20191210_134949.jpg",
+          "alt": "Contour Survey of CMO Complex",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-12-10/dgps-gnss-rtk-survey/1792304986949-img-mvdg42th-qz75f-IMG_20191210_125844.jpg",
+          "alt": "Contour Survey of CMO Complex",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Contour Survey of CMO Complex",
+      "date": "2019-12-10",
+      "location": "Rudraprayag, Uttarakhand",
+      "shortDescription": "",
+      "description": "Digital Topographical Survey for CMO Complex, near Vikas Bhawan, Rudraprayag",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-mvdg3edg-9kk96",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-12-24/construction-survey/1792304988351-img-mvdg43wf-hyhod-IMG_20191224_160102.jpg",
+          "alt": "Digital Layout of buildings as per Master Plan",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-12-24/construction-survey/1792304989755-img-mvdg44zf-q9eds-IMG_20191224_160056.jpg",
+          "alt": "Digital Layout of buildings as per Master Plan",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Digital Layout of buildings as per Master Plan",
+      "date": "2019-12-24",
+      "location": "Paitthani, Pauri",
+      "shortDescription": "",
+      "description": "Digital Layout using total station",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": [
