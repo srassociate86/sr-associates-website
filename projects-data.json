@@ -1158,6 +1158,78 @@
       "highlight": true,
       "highlightDays": 20,
       "highlightStarted": "2026-10-18"
+    },
+    {
+      "id": "p-mvddicxj-evwqh",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-04-08/construction-survey/1792301576257-img-mvde2z41-t8b94-IMG_20190408_120711.jpg",
+          "alt": "Digital Layout of Stadium",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-04-08/construction-survey/1792301577607-img-mvde305j-e4dj1-IMG_20190408_120713.jpg",
+          "alt": "Digital Layout of Stadium",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Digital Layout of Stadium",
+      "date": "2019-04-08",
+      "location": "Roshnabad, Haridwar",
+      "shortDescription": "",
+      "description": "Digital Layout/Stakeout at Roshnabad Stadium, Haridwar",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-mvddmqw6-unew0",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-04-26/construction-survey/1792301578913-img-mvde315t-6rtbi-IMG_20190426_105931.jpg",
+          "alt": "District Hospital",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-04-26/construction-survey/1792301580073-img-mvde3221-2gv9q-IMG_20190426_122105.jpg",
+          "alt": "District Hospital",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "District Hospital",
+      "date": "2019-04-26",
+      "location": "Haridwar, Uttarakhand",
+      "shortDescription": "",
+      "description": "Detail Survey of District Hospital Campus at Haridwar",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-mvde0esu-0w77l",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-07-03/construction-survey/1792301581524-img-mvde336c-a95ay-20190703_135842.jpg",
+          "alt": "Digital Layout of Building/Columns at Coronation Hospital",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-07-03/construction-survey/1792301583188-img-mvde34gk-fpygd-20190703_135849.jpg",
+          "alt": "Digital Layout of Building/Columns at Coronation Hospital",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Digital Layout of Building/Columns at Coronation Hospital",
+      "date": "2019-07-03",
+      "location": "Dehradun, Uttarakhand",
+      "shortDescription": "",
+      "description": "Digital Layout using total station for Coronation Hospital at Dehradun",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": [
