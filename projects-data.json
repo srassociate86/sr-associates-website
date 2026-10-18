@@ -1296,6 +1296,122 @@
       "description": "Detail Survey of RTO Campus at Rajpur Road, Dehradun",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-mvdezput-hr1yj",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-09-04/dgps-gnss-rtk-survey/1792304203415-img-mvdfna8n-u04rd-IMG_20190904_170327.jpg",
+          "alt": "Contour Survey of Ransi Stadium",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-09-04/dgps-gnss-rtk-survey/1792304204913-img-mvdfnbe9-e9h2j-IMG_20190904_163400.jpg",
+          "alt": "Contour Survey of Ransi Stadium",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-09-04/dgps-gnss-rtk-survey/1792304205776-img-mvdfnc28-1cu2m-20190904_162103.jpg",
+          "alt": "Contour Survey of Ransi Stadium",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-09-04/dgps-gnss-rtk-survey/1792304206825-img-mvdfncvd-ux1sy-20190904_154131.jpg",
+          "alt": "Contour Survey of Ransi Stadium",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Contour Survey of Ransi Stadium",
+      "date": "2019-09-04",
+      "location": "Pauri, Uttarakhand",
+      "shortDescription": "",
+      "description": "Detailed Contour Survey of Ransi Stadium at Pauri, Uttarakhand",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-mvdf48f1-9eqiy",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-09-09/construction-survey/1792304209644-img-mvdfnf1o-0ndll-IMG_20190909_150129.jpg",
+          "alt": "Survey/Layout of Parking",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-09-09/construction-survey/1792304211307-img-mvdfngbv-8rza4-IMG_20190909_150123.jpg",
+          "alt": "Survey/Layout of Parking",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-09-09/construction-survey/1792304212228-img-mvdfnh1g-m27n2-IMG_20190909_150111.jpg",
+          "alt": "Survey/Layout of Parking",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Survey/Layout of Parking",
+      "date": "2019-09-09",
+      "location": "Ukhimatth, Uttarakhand",
+      "shortDescription": "",
+      "description": "Initial Survey, Column Layout at Ukhimatth, Uttarakhand",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-mvdf9kgt-nykxl",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-09-25/dgps-gnss-rtk-survey/1792304213255-img-mvdfnhtz-6nsq3-20190925_123142.jpg",
+          "alt": "Roadways Stand Survey",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-09-25/dgps-gnss-rtk-survey/1792304215163-img-mvdfnjaz-si0ta-IMG_20190925_120346.jpg",
+          "alt": "Roadways Stand Survey",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Roadways Stand Survey",
+      "date": "2019-09-25",
+      "location": "Roorkie, Uttarakhand",
+      "shortDescription": "",
+      "description": "Detailed Survey of entire campus of Roadways Stand at Roorkie, Uttarakhand",
+      "highlight": false,
+      "highlightDays": 30
+    },
+    {
+      "id": "p-mvdfmxvx-chc1z",
+      "photos": [
+        {
+          "path": "assets/project-photos/2019-11-14/construction-survey/1792304216144-img-mvdfnk28-fdfwg-IMG_20191114_154256.jpg",
+          "alt": "Contour Survey of Hotel",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-11-14/construction-survey/1792304217301-img-mvdfnkyd-6tr6q-IMG_20191114_154251.jpg",
+          "alt": "Contour Survey of Hotel",
+          "managed": true
+        },
+        {
+          "path": "assets/project-photos/2019-11-14/construction-survey/1792304218339-img-mvdfnlr7-70zqj-IMG_20191114_140231.jpg",
+          "alt": "Contour Survey of Hotel",
+          "managed": true
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Contour Survey of Hotel",
+      "date": "2019-11-14",
+      "location": "Nainital, Uttarakhand",
+      "shortDescription": "",
+      "description": "Digital Topographical Land survey of Private Hotel at Nainital",
+      "highlight": false,
+      "highlightDays": 30
     }
   ],
   "slides": [
