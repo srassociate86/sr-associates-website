@@ -1119,6 +1119,45 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-10"
+    },
+    {
+      "id": "p-mvd729fm-2i2ex",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-17/dgps-gnss-rtk-survey/1792289862909-img-mvd73x19-caqkm-1000235915.jpg",
+          "alt": "Digital Topographical Land Survey",
+          "managed": true,
+          "highlightUntil": "2026-11-05"
+        },
+        {
+          "path": "assets/project-photos/2026-10-17/dgps-gnss-rtk-survey/1792289864691-img-mvd73yer-wlriu-1000235919.jpg",
+          "alt": "Digital Topographical Land Survey",
+          "managed": true,
+          "highlightUntil": "2026-11-05"
+        },
+        {
+          "path": "assets/project-photos/2026-10-17/dgps-gnss-rtk-survey/1792289865981-img-mvd73zel-0ajz2-1000235916.jpg",
+          "alt": "Digital Topographical Land Survey",
+          "managed": true,
+          "highlightUntil": "2026-11-05"
+        },
+        {
+          "path": "assets/project-photos/2026-10-17/dgps-gnss-rtk-survey/1792289867923-img-mvd740wj-h4tug-1000235918.jpg",
+          "alt": "Digital Topographical Land Survey",
+          "managed": true,
+          "highlightUntil": "2026-11-05"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Digital Topographical Land Survey",
+      "date": "2026-10-17",
+      "location": "Kholachauri, Pauri Garhwal",
+      "shortDescription": "",
+      "description": "Detail contour survey at Kholachauri, Pauri, Uttarakhand",
+      "highlight": true,
+      "highlightDays": 20,
+      "highlightStarted": "2026-10-18"
     }
   ],
   "slides": [
