@@ -1523,6 +1523,87 @@
       "description": "Digital Layout using total station",
       "highlight": false,
       "highlightDays": 30
+    },
+    {
+      "id": "p-mvjaz7tu-d9fnb",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659168801-img-mvjazfa9-hfumv-IMG_6437.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659172392-img-mvjazi20-wa0si-IMG_6430.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659175210-img-mvjazk8a-05uu3-IMG_6421.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659177759-img-mvjazm73-biet7-IMG_6416.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659180075-img-mvjaznzf-0nqcb-IMG_6415.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659181955-img-mvjazpfn-f9dyb-IMG_6409.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659183936-img-mvjazqyo-cp96y-IMG_6422.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659186273-img-mvjazsrl-9jfxd-IMG_6429.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659188359-img-mvjazudj-le206-IMG_6433.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659190407-img-mvjazvyf-25oiy-IMG_6405.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/dgps-gnss-rtk-survey/1792659192485-img-mvjazxk5-de4p5-IMG_6406.jpg",
+          "alt": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Contour dgps survey at Kasmoli Aagrakhal chamba Uttarakhand",
+      "date": "2026-10-22",
+      "location": "Kasmoli chamba",
+      "shortDescription": "",
+      "description": "Contour survey done using dgps and drone",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-22"
     }
   ],
   "slides": [
