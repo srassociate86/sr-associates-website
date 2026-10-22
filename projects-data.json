@@ -1604,6 +1604,87 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-22"
+    },
+    {
+      "id": "p-mvjb2ub9-9wg7q",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659340914-img-mvjb3436-ti0yz-IMG_6397.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659342978-img-mvjb35oi-3ov95-IMG_6396.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659345054-img-mvjb37a6-l5ek6-IMG_6394.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659347134-img-mvjb38vy-1qo54-IMG_6390.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659349372-img-mvjb3am4-kvh6v-IMG_6392.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659352569-img-mvjb3d2x-2qlw6-IMG_6391.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659354659-img-mvjb3eoz-jdsot-IMG_6384.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659358646-img-mvjb3hrq-7s54k-IMG_6385.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659363766-img-mvjb3lpy-0xbo0-IMG_6386.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659367452-img-mvjb3okc-ep0ku-IMG_6378.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        },
+        {
+          "path": "assets/project-photos/2026-10-22/construction-survey/1792659370972-img-mvjb3ra4-uutat-IMG_6380.jpg",
+          "alt": "Total station survey at tapovan Rishikesh",
+          "managed": true,
+          "highlightUntil": "2026-11-20"
+        }
+      ],
+      "type": "project",
+      "category": "CONSTRUCTION SURVEY",
+      "title": "Total station survey at tapovan Rishikesh",
+      "date": "2026-10-22",
+      "location": "Tapovan Rishikesh",
+      "shortDescription": "",
+      "description": "Plots demarcation and area calculations at Tapovan Rishikesh using Total station",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-10-22"
     }
   ],
   "slides": [
