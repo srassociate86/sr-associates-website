@@ -571,4 +571,63 @@ function openProjectFromHash(){const m=window.location.hash.match(/^#project-(.+
 window.addEventListener('hashchange',openProjectFromHash);
 loadProjects();
 </script>
+<!-- Floating Admin Access -->
+<a href="project-manager.html" class="floating-admin" aria-label="Open Admin Login" title="Admin Login">
+  <span aria-hidden="true">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="m14.305 19.53.923-.382"/>
+  <path d="m15.228 16.852-.923-.383"/>
+  <path d="m16.852 15.228-.383-.923"/>
+  <path d="m16.852 20.772-.383.924"/>
+  <path d="m19.148 15.228.383-.923"/>
+  <path d="m19.53 21.696-.382-.924"/>
+  <path d="M2 21a8 8 0 0 1 10.434-7.62"/>
+  <path d="m20.772 16.852.924-.383"/>
+  <path d="m20.772 19.148.924.383"/>
+  <circle cx="10" cy="8" r="5"/>
+  <circle cx="18" cy="18" r="3"/>
+</svg>
+</span>
+</a>
+
+<style>
+  .floating-admin {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d71920;
+	color: #ffffff;
+	border: 1px solid #d71920;
+	border-radius: 50%;
+	box-shadow: 0 3px 10px rgba(215, 25, 32, 0.25);
+    text-decoration: none;
+    font-size: 23px;
+    z-index: 9999;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .floating-admin:hover {
+    background: #40566a;
+    transform: scale(1.06);
+  }
+
+  .floating-admin:focus-visible {
+    outline: 3px solid #78b8ff;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 600px) {
+    .floating-admin {
+      right: 12px;
+      bottom: 12px;
+      width: 42px;
+      height: 42px;
+    }
+  }
+</style>
 </body></html>
