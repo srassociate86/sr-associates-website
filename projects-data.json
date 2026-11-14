@@ -1685,6 +1685,39 @@
       "highlight": true,
       "highlightDays": 30,
       "highlightStarted": "2026-10-22"
+    },
+    {
+      "id": "p-mwg85bqg-kkj2o",
+      "photos": [
+        {
+          "path": "assets/project-photos/2026-11-14/dgps-gnss-rtk-survey/1794649870832-img-mwg872sw-dd5xl-1000243521.jpg",
+          "alt": "Digital Topographical Survey",
+          "managed": true,
+          "highlightUntil": "2026-12-13"
+        },
+        {
+          "path": "assets/project-photos/2026-11-14/dgps-gnss-rtk-survey/1794649874037-img-mwg8759x-z4sgj-1000243520.jpg",
+          "alt": "Digital Topographical Survey",
+          "managed": true,
+          "highlightUntil": "2026-12-13"
+        },
+        {
+          "path": "assets/project-photos/2026-11-14/dgps-gnss-rtk-survey/1794649876847-img-mwg877fz-as26s-1000243517.jpg",
+          "alt": "Digital Topographical Survey",
+          "managed": true,
+          "highlightUntil": "2026-12-13"
+        }
+      ],
+      "type": "project",
+      "category": "DGPS / GNSS / RTK SURVEY",
+      "title": "Digital Topographical Survey",
+      "date": "2026-11-14",
+      "location": "Lakshar, Roorkie",
+      "shortDescription": "",
+      "description": "Detail contour survey for quantity earthwork.",
+      "highlight": true,
+      "highlightDays": 30,
+      "highlightStarted": "2026-11-14"
     }
   ],
   "slides": [
